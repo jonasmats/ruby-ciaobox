@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: ciaobox_development
+  username: <%= ENV['DATABASE_USER'].presence || "root" %>
+  password: <%= ENV['DATABASE_PASSWORD'].presence || "" %>
+  host: <%= ENV['DATABASE_HOST'] || '127.0.0.1' %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+
+test:
+  <<: *default
+  database: ciaobox_test
+
+production:
+  <<: *default
+  database: ciaobox_production
+  username: ciaobox
+  password: <%= ENV['CIAOBOX_DATABASE_PASSWORD'] %>
