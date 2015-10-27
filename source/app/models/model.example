@@ -1,0 +1,36 @@
+class Model < ActiveRecord::Base
+  #1. associations
+    has_many :associations
+
+  #2. scopes
+    # with scope have not params
+    scope :test, -> where(abc: abc)
+
+    # with scope have params
+    scope :test2, ->(params) where(abc: abc)
+
+    # with scope have line to long (over 100 character)
+    scope :test3, ->(param1, param2, param3) do
+      where(key1: param1, key2: param2, key3: param3)
+    end
+
+  #3. class methods
+    class << self
+      def batch_create(data)
+        # ...
+      end
+    end
+  #4. validates
+    validates :title, :presence => true
+
+  #5. callbacks
+    before_create :init_score
+    def init_score
+      self.score = 10
+    end
+
+  #6. instance methods
+    def any_instance_method
+      # ...
+    end
+end
