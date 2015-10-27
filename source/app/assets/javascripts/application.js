@@ -49,6 +49,10 @@
 //= require admin/pages/scripts/index
 //= require admin/pages/scripts/tasks
 
+
+/* OTHER  */
+//= require jquery_ujs
+
 jQuery(document).ready(function() {
   Metronic.init(); // init metronic core componets
   Layout.init(); // init layout

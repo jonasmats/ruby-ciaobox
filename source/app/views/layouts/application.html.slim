@@ -7,6 +7,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body.page-header-fixed.page-quick-sidebar-over-content.page-sidebar-closed-hide-logo.page-container-bg-solid
-    == render partial: "layouts/shared/header"
+    = render partial: "layouts/shared/header"
     = yield
-    == render partial: "layouts/shared/footer"
+    = render partial: "layouts/shared/footer"
