@@ -1,0 +1,40 @@
+/! BEGIN USER LOGIN DROPDOWN
+/! DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte
+li.dropdown.dropdown-user
+  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" 
+    img.img-circle alt="" src="../../assets/admin/layout/img/avatar3_small.jpg" /
+    span.username.username-hide-on-mobile
+      | Nick
+    i.fa.fa-angle-down
+  ul.dropdown-menu.dropdown-menu-default
+    li
+      a href="extra_profile.html" 
+        i.icon-user
+        | My Profile
+    / li
+    /   a href="page_calendar.html" 
+    /     i.icon-calendar
+    /     | My Calendar
+    / li
+    /   a href="inbox.html" 
+    /     i.icon-envelope-open
+    /     | My Inbox
+    /     span.badge.badge-danger
+    /       | 3
+    / li
+    /   a href="page_todo.html" 
+    /     i.icon-rocket
+    /     | My Tasks
+    /     span.badge.badge-success
+    /       | 7
+    li.divider
+    / li
+    /   a href="extra_lock.html" 
+    /     i.icon-lock
+    /     | Lock Screen
+    li
+      = link_to destroy_admin_session_path, method: :delete do
+        i.icon-key
+        | Log Out
+
+/! END USER LOGIN DROPDOWN

@@ -1,0 +1,112 @@
+.page-sidebar-wrapper
+  .page-sidebar.navbar-collapse.collapse
+    ul.page-sidebar-menu[data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"]
+      li.sidebar-toggler-wrapper
+        .sidebar-toggler
+
+      li.sidebar-search-wrapper
+        form.sidebar-search[action="extra_search.html" method="POST"]
+          a.remove[href="javascript:;"]
+            i.icon-close
+          .input-group
+            input.form-control[type="text" placeholder="Search..."]
+            span.input-group-btn
+              a.btn.submit[href="javascript:;"]
+                i.icon-magnifier
+      li.start.active.open
+        a[href="javascript:;"]
+          i.icon-home
+          span.title
+            | Dashboard
+          span.selected
+          span.arrow.open
+        ul.sub-menu
+          li.active
+            a[href="index.html"]
+              i.icon-bar-chart
+              |  Default Dashboard
+          li
+            a[href="index_2.html"]
+              i.icon-bulb
+              |  New Dashboard #1
+          li
+            a[href="index_3.html"]
+              i.icon-graph
+              |  New Dashboard #2
+      li
+        a[href="javascript:;"]
+          i.icon-folder
+          span.title
+            | FAQ management
+          span.arrow
+        ul.sub-menu
+          li
+            a[href="javascript:;"]
+              i.icon-settings
+              |  Categories
+              span.arrow
+            ul.sub-menu
+              li
+                a[href="javascript:;"]
+                  i.icon-user
+                  |  Sample Link 1 
+                  span.arrow
+                ul.sub-menu
+                  li
+                    a[href="#"]
+                      i.icon-power
+                      |  Sample Link 1
+                  li
+                    a[href="#"]
+                      i.icon-paper-plane
+                      |  Sample Link 1
+                  li
+                    a[href="#"]
+                      i.icon-star
+                      |  Sample Link 1
+              li
+                a[href="#"]
+                  i.icon-camera
+                  |  Sample Link 1
+              li
+                a[href="#"]
+                  i.icon-link
+                  |  Sample Link 2
+              li
+                a[href="#"]
+                  i.icon-pointer
+                  |  Sample Link 3
+          li
+            a[href="javascript:;"]
+              i.icon-globe
+              |  Faqs
+              span.arrow
+            ul.sub-menu
+              li
+                a[href="#"]
+                  i.icon-tag
+                  |  Sample Link 1
+              li
+                a[href="#"]
+                  i.icon-pencil
+                  |  Sample Link 1
+              li
+                a[href="#"]
+                  i.icon-graph
+                  |  Sample Link 1
+      li.heading
+        h3.uppercase
+          | More
+      li.last
+        a[href="javascript:;"]
+          i.icon-pointer
+          span.title
+            | Maps
+          span.arrow
+        ul.sub-menu
+          li
+            a[href="maps_google.html"]
+              |  Google Maps
+          li
+            a[href="maps_vector.html"]
+              |  Vector Maps
