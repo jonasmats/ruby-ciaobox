@@ -1,1 +1,1 @@
-Ciabox::SuperAdmin.create(email: "superadmin@gmail.com", password: "1") 
+CiaoboxUser::Super.create(email: "superadmin@gmail.com", password: "1") 

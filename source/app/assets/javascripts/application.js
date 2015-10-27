@@ -13,7 +13,6 @@
 
 /* BEGIN CORE PLUGINS */
 //= require global/plugins/jquery.min
-//= require jquery_ujs
 //= require global/plugins/jquery-migrate.min
 //= require global/plugins/jquery-ui/jquery-ui.min
 //= require global/plugins/bootstrap/js/bootstrap.min
@@ -49,6 +48,10 @@
 //= require admin/layout/scripts/demo
 //= require admin/pages/scripts/index
 //= require admin/pages/scripts/tasks
+
+
+/* OTHER  */
+//= require jquery_ujs
 
 jQuery(document).ready(function() {
   Metronic.init(); // init metronic core componets
