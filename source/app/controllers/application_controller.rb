@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
     when CiaoboxUser::Super.name
       admin_root_path
     when CiaoboxUser::Employee.name
-      admin_root_path
+      employee_root_path
     when CiaoboxUser::Company.name
       admin_root_path
     when User.name
-      root_path
+      dashboard_root_path
     end
   end
 end
