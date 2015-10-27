@@ -1,8 +1,4 @@
-module Admin
-  # create by NVTanh 27/10/2015
-  # Base admin controller
-  ################################################
-  class BaseAdminController < ApplicationController
-    layout 'application.admin'
-  end
+class Admin::BaseAdminController < ApplicationController
+  before_action :authenticate_admin!
+  layout 'application.admin'
 end
