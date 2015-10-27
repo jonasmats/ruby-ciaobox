@@ -13,6 +13,7 @@
 
 /* BEGIN CORE PLUGINS */
 //= require global/plugins/jquery.min
+//= require jquery_ujs
 //= require global/plugins/jquery-migrate.min
 //= require global/plugins/jquery-ui/jquery-ui.min
 //= require global/plugins/bootstrap/js/bootstrap.min

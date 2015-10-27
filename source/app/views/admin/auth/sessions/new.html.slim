@@ -1,6 +1,7 @@
 h2
   | Log in
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = devise_error_messages!
   .field
     = f.label :email
     br
@@ -15,4 +16,3 @@ h2
       = f.label :remember_me
   .actions
     = f.submit "Log in"
-= render "auth/shared/links"
