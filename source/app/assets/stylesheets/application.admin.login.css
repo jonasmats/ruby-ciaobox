@@ -1,0 +1,29 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require_self
+ */
+
+/* BEGIN GLOBAL MANDATORY STYLES */
+@import "global/plugins/font-awesome/css/font-awesome.min.css";
+@import "global/plugins/simple-line-icons/simple-line-icons.min.css";
+@import "global/plugins/bootstrap/css/bootstrap.min.css";
+@import "global/plugins/uniform/css/uniform.default.css";
+
+/* BEGIN PAGE STYLES */
+@import "admin/pages/css/login.css";
+
+/* BEGIN THEME STYLES */
+@import "global/css/components.css";
+@import "global/css/plugins.css";
+@import "admin/layout/css/layout.css";
+@import "admin/layout/css/themes/darkblue.css";
+@import "admin/layout/css/custom.css";
