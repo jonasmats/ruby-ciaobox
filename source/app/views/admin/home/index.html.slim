@@ -1,5 +1,2082 @@
-p
-  | AAAAAAAAAA
-p
-  | AAAAAAAAAA
-= link_to "Logout", destroy_admin_session_path, method: :delete
+.page-container
+  = render partial: "layouts/shared/page_sidebar"
+  .page-content-wrapper
+    .page-content
+      #portlet-config.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+              h4.modal-title
+                | Modal title
+            .modal-body
+              |  Widget settings form goes here 
+            .modal-footer
+              button.btn.blue[type="button"]
+                | Save changes
+              button.btn.default[type="button" data-dismiss="modal"]
+                | Close
+      .theme-panel.hidden-xs.hidden-sm
+        .toggler
+
+        .toggler-close
+
+        .theme-options
+          .theme-option.theme-colors.clearfix
+            span
+              |  THEME COLOR 
+            ul
+              li.color-default.current.tooltips[data-style="default" data-container="body" data-original-title="Default"]
+
+              li.color-darkblue.tooltips[data-style="darkblue" data-container="body" data-original-title="Dark Blue"]
+
+              li.color-blue.tooltips[data-style="blue" data-container="body" data-original-title="Blue"]
+
+              li.color-grey.tooltips[data-style="grey" data-container="body" data-original-title="Grey"]
+
+              li.color-light.tooltips[data-style="light" data-container="body" data-original-title="Light"]
+
+              li.color-light2.tooltips[data-style="light2" data-container="body" data-html="true" data-original-title="Light 2"]
+
+          .theme-option
+            span
+              |  Theme Style 
+            select.layout-style-option.form-control.input-sm
+              option[value="square" selected="selected"]
+                | Square corners
+              option[value="rounded"]
+                | Rounded corners
+          .theme-option
+            span
+              |  Layout 
+            select.layout-option.form-control.input-sm
+              option[value="fluid" selected="selected"]
+                | Fluid
+              option[value="boxed"]
+                | Boxed
+          .theme-option
+            span
+              |  Header 
+            select.page-header-option.form-control.input-sm
+              option[value="fixed" selected="selected"]
+                | Fixed
+              option[value="default"]
+                | Default
+          .theme-option
+            span
+              |  Top Menu Dropdown
+            select.page-header-top-dropdown-style-option.form-control.input-sm
+              option[value="light" selected="selected"]
+                | Light
+              option[value="dark"]
+                | Dark
+          .theme-option
+            span
+              |  Sidebar Mode
+            select.sidebar-option.form-control.input-sm
+              option[value="fixed"]
+                | Fixed
+              option[value="default" selected="selected"]
+                | Default
+          .theme-option
+            span
+              |  Sidebar Menu 
+            select.sidebar-menu-option.form-control.input-sm
+              option[value="accordion" selected="selected"]
+                | Accordion
+              option[value="hover"]
+                | Hover
+          .theme-option
+            span
+              |  Sidebar Style 
+            select.sidebar-style-option.form-control.input-sm
+              option[value="default" selected="selected"]
+                | Default
+              option[value="light"]
+                | Light
+          .theme-option
+            span
+              |  Sidebar Position 
+            select.sidebar-pos-option.form-control.input-sm
+              option[value="left" selected="selected"]
+                | Left
+              option[value="right"]
+                | Right
+          .theme-option
+            span
+              |  Footer 
+            select.page-footer-option.form-control.input-sm
+              option[value="fixed"]
+                | Fixed
+              option[value="default" selected="selected"]
+                | Default
+      .page-bar
+        ul.page-breadcrumb
+          li
+            i.fa.fa-home
+            a[href="index.html"]
+              | Home
+            i.fa.fa-angle-right
+          li
+            a[href="#"]
+              | Dashboard
+        .page-toolbar
+          #dashboard-report-range.pull-right.tooltips.btn.btn-sm.btn-default[data-container="body" data-placement="bottom" data-original-title="Change dashboard date range"]
+            i.icon-calendar
+            |   
+            span.thin.uppercase.visible-lg-inline-block
+            |   
+            i.fa.fa-angle-down
+      h3.page-title
+        |  Dashboard 
+        small
+          | reports & statistics
+      .row
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .dashboard-stat.blue-madison
+            .visual
+              i.fa.fa-comments
+            .details
+              .number
+                |  1349 
+              .desc
+                |  New Feedbacks 
+            a.more[href="javascript:;"]
+              |  View more 
+              i.m-icon-swapright.m-icon-white
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .dashboard-stat.red-intense
+            .visual
+              i.fa.fa-bar-chart-o
+            .details
+              .number
+                |  12,5M$ 
+              .desc
+                |  Total Profit 
+            a.more[href="javascript:;"]
+              |  View more 
+              i.m-icon-swapright.m-icon-white
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .dashboard-stat.green-haze
+            .visual
+              i.fa.fa-shopping-cart
+            .details
+              .number
+                |  549 
+              .desc
+                |  New Orders 
+            a.more[href="javascript:;"]
+              |  View more 
+              i.m-icon-swapright.m-icon-white
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .dashboard-stat.purple-plum
+            .visual
+              i.fa.fa-globe
+            .details
+              .number
+                |  +89% 
+              .desc
+                |  Brand Popularity 
+            a.more[href="javascript:;"]
+              |  View more 
+              i.m-icon-swapright.m-icon-white
+      .clearfix
+
+      .row
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-bar-chart.font-green-sharp.hide
+                span.caption-subject.font-green-sharp.bold.uppercase
+                  | Site Visits
+                span.caption-helper
+                  | weekly stats...
+              .actions
+                .btn-group.btn-group-devided[data-toggle="buttons"]
+                  label.btn.btn-transparent.grey-salsa.btn-circle.btn-sm.active
+                    input#option1.toggle[type="radio" name="options"]
+                    | New
+                  label.btn.btn-transparent.grey-salsa.btn-circle.btn-sm
+                    input#option2.toggle[type="radio" name="options"]
+                    | Returning
+            .portlet-body
+              #site_statistics_loading
+                img[src="../../assets/admin/layout/img/loading.gif" alt="loading"]
+              #site_statistics_content.display-none
+                #site_statistics.chart
+
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-share.font-red-sunglo.hide
+                span.caption-subject.font-red-sunglo.bold.uppercase
+                  | Revenue
+                span.caption-helper
+                  | monthly stats...
+              .actions
+                .btn-group
+                  a.btn.grey-salsa.btn-circle.btn-sm.dropdown-toggle[href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                    |  Filter Range
+                    span.fa.fa-angle-down
+
+                  ul.dropdown-menu.pull-right
+                    li
+                      a[href="javascript:;"]
+                        |  Q1 2014 
+                        span.label.label-sm.label-default
+                          |  past 
+                    li
+                      a[href="javascript:;"]
+                        |  Q2 2014 
+                        span.label.label-sm.label-default
+                          |  past 
+                    li.active
+                      a[href="javascript:;"]
+                        |  Q3 2014 
+                        span.label.label-sm.label-success
+                          |  current 
+                    li
+                      a[href="javascript:;"]
+                        |  Q4 2014 
+                        span.label.label-sm.label-warning
+                          |  upcoming 
+            .portlet-body
+              #site_activities_loading
+                img[src="../../assets/admin/layout/img/loading.gif" alt="loading"]
+              #site_activities_content.display-none
+                #site_activities[style="height: 228px;"]
+
+              div[style="margin: 20px 0 10px 30px"]
+                .row
+                  .col-md-3.col-sm-3.col-xs-6.text-stat
+                    span.label.label-sm.label-success
+                      |  Revenue: 
+                    h3
+                      | $13,234
+                  .col-md-3.col-sm-3.col-xs-6.text-stat
+                    span.label.label-sm.label-info
+                      |  Tax: 
+                    h3
+                      | $134,900
+                  .col-md-3.col-sm-3.col-xs-6.text-stat
+                    span.label.label-sm.label-danger
+                      |  Shipment: 
+                    h3
+                      | $1,134
+                  .col-md-3.col-sm-3.col-xs-6.text-stat
+                    span.label.label-sm.label-warning
+                      |  Orders: 
+                    h3
+                      | 235090
+      .clearfix
+
+      .row
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-share.font-blue-steel.hide
+                span.caption-subject.font-blue-steel.bold.uppercase
+                  | Recent Activities
+              .actions
+                .btn-group
+                  a.btn.btn-sm.btn-default.btn-circle[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                    |  Filter By 
+                    i.fa.fa-angle-down
+                  .dropdown-menu.hold-on-click.dropdown-checkboxes.pull-right
+                    label
+                      input[type="checkbox"]
+                      |  Finance
+                    label
+                      input[type="checkbox" checked=""]
+                      |  Membership
+                    label
+                      input[type="checkbox"]
+                      |  Customer Support
+                    label
+                      input[type="checkbox" checked=""]
+                      |  HR
+                    label
+                      input[type="checkbox"]
+                      |  System
+            .portlet-body
+              .scroller[style="height: 300px;" data-always-visible="1" data-rail-visible="0"]
+                ul.feeds
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-info
+                            i.fa.fa-check
+                        .cont-col2
+                          .desc
+                            |  You have 4 pending tasks. 
+                            span.label.label-sm.label-warning
+                              |  Take action 
+                              i.fa.fa-share
+                    .col2
+                      .date
+                        |  Just now 
+                  li
+                    a[href="javascript:;"]
+
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-success
+                            i.fa.fa-bar-chart-o
+                        .cont-col2
+                          .desc
+                            |  Finance Report for year 2013 has been released. 
+                    .col2
+                      .date
+                        |  20 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-danger
+                            i.fa.fa-user
+                        .cont-col2
+                          .desc
+                            |  You have 5 pending membership that requires a quick review. 
+                    .col2
+                      .date
+                        |  24 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-info
+                            i.fa.fa-shopping-cart
+                        .cont-col2
+                          .desc
+                            |  New order received with 
+                            span.label.label-sm.label-success
+                              |  Reference Number: DR23923 
+                    .col2
+                      .date
+                        |  30 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-success
+                            i.fa.fa-user
+                        .cont-col2
+                          .desc
+                            |  You have 5 pending membership that requires a quick review. 
+                    .col2
+                      .date
+                        |  24 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-default
+                            i.fa.fa-bell-o
+                        .cont-col2
+                          .desc
+                            |  Web server hardware needs to be upgraded. 
+                            span.label.label-sm.label-default
+                              |  Overdue 
+                    .col2
+                      .date
+                        |  2 hours 
+                  li
+                    a[href="javascript:;"]
+
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-default
+                            i.fa.fa-briefcase
+                        .cont-col2
+                          .desc
+                            |  IPO Report for year 2013 has been released. 
+                    .col2
+                      .date
+                        |  20 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-info
+                            i.fa.fa-check
+                        .cont-col2
+                          .desc
+                            |  You have 4 pending tasks. 
+                            span.label.label-sm.label-warning
+                              |  Take action 
+                              i.fa.fa-share
+                    .col2
+                      .date
+                        |  Just now 
+                  li
+                    a[href="javascript:;"]
+
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-danger
+                            i.fa.fa-bar-chart-o
+                        .cont-col2
+                          .desc
+                            |  Finance Report for year 2013 has been released. 
+                    .col2
+                      .date
+                        |  20 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-default
+                            i.fa.fa-user
+                        .cont-col2
+                          .desc
+                            |  You have 5 pending membership that requires a quick review. 
+                    .col2
+                      .date
+                        |  24 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-info
+                            i.fa.fa-shopping-cart
+                        .cont-col2
+                          .desc
+                            |  New order received with 
+                            span.label.label-sm.label-success
+                              |  Reference Number: DR23923 
+                    .col2
+                      .date
+                        |  30 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-success
+                            i.fa.fa-user
+                        .cont-col2
+                          .desc
+                            |  You have 5 pending membership that requires a quick review. 
+                    .col2
+                      .date
+                        |  24 mins 
+                  li
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-warning
+                            i.fa.fa-bell-o
+                        .cont-col2
+                          .desc
+                            |  Web server hardware needs to be upgraded. 
+                            span.label.label-sm.label-default
+                              |  Overdue 
+                    .col2
+                      .date
+                        |  2 hours 
+                  li
+                    a[href="javascript:;"]
+
+                    .col1
+                      .cont
+                        .cont-col1
+                          .label.label-sm.label-info
+                            i.fa.fa-briefcase
+                        .cont-col2
+                          .desc
+                            |  IPO Report for year 2013 has been released. 
+                    .col2
+                      .date
+                        |  20 mins 
+              .scroller-footer
+                .btn-arrow-link.pull-right
+                  a[href="javascript:;"]
+                    | See All Records
+                  i.icon-arrow-right
+        .col-md-6.col-sm-6
+          .portlet.light.tasks-widget
+            .portlet-title
+              .caption
+                i.icon-share.font-green-haze.hide
+                span.caption-subject.font-green-haze.bold.uppercase
+                  | Tasks
+                span.caption-helper
+                  | tasks summary...
+              .actions
+                .btn-group
+                  a.btn.green-haze.btn-circle.btn-sm[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                    |  More 
+                    i.fa.fa-angle-down
+                  ul.dropdown-menu.pull-right
+                    li
+                      a[href="javascript:;"]
+                        i.i
+                        |  All Project 
+                    li.divider
+
+                    li
+                      a[href="javascript:;"]
+                        |  AirAsia 
+                    li
+                      a[href="javascript:;"]
+                        |  Cruise 
+                    li
+                      a[href="javascript:;"]
+                        |  HSBC 
+                    li.divider
+
+                    li
+                      a[href="javascript:;"]
+                        |  Pending 
+                        span.badge.badge-danger
+                          |  4 
+                    li
+                      a[href="javascript:;"]
+                        |  Completed 
+                        span.badge.badge-success
+                          |  12 
+                    li
+                      a[href="javascript:;"]
+                        |  Overdue 
+                        span.badge.badge-warning
+                          |  9 
+            .portlet-body
+              .task-content
+                .scroller[style="height: 305px;" data-always-visible="1" data-rail-visible1="1"]
+                  ul.task-list
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Present 2013 Year IPO Statistics at Board Meeting 
+                        span.label.label-sm.label-success
+                          | Company
+                        span.task-bell
+                          i.fa.fa-bell-o
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Hold An Interview for Marketing Manager Position 
+                        span.label.label-sm.label-danger
+                          | Marketing
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  AirAsia Intranet System Project Internal Meeting 
+                        span.label.label-sm.label-success
+                          | AirAsia
+                        span.task-bell
+                          i.fa.fa-bell-o
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Technical Management Meeting 
+                        span.label.label-sm.label-warning
+                          | Company
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Kick-off Company CRM Mobile App Development 
+                        span.label.label-sm.label-info
+                          | Internal Products
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Prepare Commercial Offer For SmartVision Website Rewamp 
+                        span.label.label-sm.label-danger
+                          | SmartVision
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Sign-Off The Comercial Agreement With AutoSmart 
+                        span.label.label-sm.label-default
+                          | AutoSmart
+                        span.task-bell
+                          i.fa.fa-bell-o
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  Company Staff Meeting 
+                        span.label.label-sm.label-success
+                          | Cruise
+                        span.task-bell
+                          i.fa.fa-bell-o
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+                    li.last-line
+                      .task-checkbox
+                        input.liChild[type="checkbox" value=""]
+                      .task-title
+                        span.task-title-sp
+                          |  KeenThemes Investment Discussion 
+                        span.label.label-sm.label-warning
+                          | KeenThemes 
+                      .task-config
+                        .task-config-btn.btn-group
+                          a.btn.btn-xs.default[href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                            i.fa.fa-cog
+                            i.fa.fa-angle-down
+                          ul.dropdown-menu.pull-right
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-check
+                                |  Complete 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-pencil
+                                |  Edit 
+                            li
+                              a[href="javascript:;"]
+                                i.fa.fa-trash-o
+                                |  Cancel 
+              .task-footer
+                .btn-arrow-link.pull-right
+                  a[href="javascript:;"]
+                    | See All Records
+                  i.icon-arrow-right
+      .clearfix
+
+      .row
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-cursor.font-purple-intense.hide
+                span.caption-subject.font-purple-intense.bold.uppercase
+                  | General Stats
+              .actions
+                a.btn.btn-sm.btn-circle.btn-default.easy-pie-chart-reload[href="javascript:;"]
+                  i.fa.fa-repeat
+                  |  Reload 
+            .portlet-body
+              .row
+                .col-md-4
+                  .easy-pie-chart
+                    .number.transactions[data-percent="55"]
+                      span
+                        |  +55 
+                      |  % 
+                    a.title[href="javascript:;"]
+                      |  Transactions 
+                      i.icon-arrow-right
+                .margin-bottom-10.visible-sm
+
+                .col-md-4
+                  .easy-pie-chart
+                    .number.visits[data-percent="85"]
+                      span
+                        |  +85 
+                      |  % 
+                    a.title[href="javascript:;"]
+                      |  New Visits 
+                      i.icon-arrow-right
+                .margin-bottom-10.visible-sm
+
+                .col-md-4
+                  .easy-pie-chart
+                    .number.bounce[data-percent="46"]
+                      span
+                        |  -46 
+                      |  % 
+                    a.title[href="javascript:;"]
+                      |  Bounce 
+                      i.icon-arrow-right
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-equalizer.font-purple-plum.hide
+                span.caption-subject.font-red-sunglo.bold.uppercase
+                  | Server Stats
+                span.caption-helper
+                  | monthly stats...
+              .tools
+                a.collapse[href=""]
+
+                a.config[href="#portlet-config" data-toggle="modal"]
+
+                a.reload[href=""]
+
+                a.remove[href=""]
+
+            .portlet-body
+              .row
+                .col-md-4
+                  .sparkline-chart
+                    #sparkline_bar.number
+                    a.title[href="javascript:;"]
+                      |  Network 
+                      i.icon-arrow-right
+                .margin-bottom-10.visible-sm
+
+                .col-md-4
+                  .sparkline-chart
+                    #sparkline_bar2.number
+                    a.title[href="javascript:;"]
+                      |  CPU Load 
+                      i.icon-arrow-right
+                .margin-bottom-10.visible-sm
+
+                .col-md-4
+                  .sparkline-chart
+                    #sparkline_line.number
+                    a.title[href="javascript:;"]
+                      |  Load Rate 
+                      i.icon-arrow-right
+      .clearfix
+
+      .row
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-share.font-red-sunglo
+                span.caption-subject.font-red-sunglo.bold.uppercase
+                  | Regional Stats
+              .actions
+                a.btn.btn-circle.btn-icon-only.btn-default[href="javascript:;"]
+                  i.icon-cloud-upload
+                a.btn.btn-circle.btn-icon-only.btn-default[href="javascript:;"]
+                  i.icon-wrench
+                a.btn.btn-circle.btn-icon-only.btn-default.fullscreen[href="javascript:;"]
+
+                a.btn.btn-circle.btn-icon-only.btn-default[href="javascript:;"]
+                  i.icon-trash
+            .portlet-body
+              #region_statistics_loading
+                img[src="../../assets/admin/layout/img/loading.gif" alt="loading"]
+              #region_statistics_content.display-none
+                .btn-toolbar.margin-bottom-10
+                  .btn-group.btn-group-circle[data-toggle="buttons"]
+                    a.btn.grey-salsa.btn-sm.active[href=""]
+                      |  Users 
+                    a.btn.grey-salsa.btn-sm[href=""]
+                      |  Orders 
+                  .btn-group.pull-right
+                    a.btn.btn-circle.grey-salsa.btn-sm.dropdown-toggle[href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"]
+                      |  Select Region 
+                      span.fa.fa-angle-down
+
+                    ul.dropdown-menu.pull-right
+                      li
+                        a#regional_stat_world[href="javascript:;"]
+                          |  World 
+                      li
+                        a#regional_stat_usa[href="javascript:;"]
+                          |  USA 
+                      li
+                        a#regional_stat_europe[href="javascript:;"]
+                          |  Europe 
+                      li
+                        a#regional_stat_russia[href="javascript:;"]
+                          |  Russia 
+                      li
+                        a#regional_stat_germany[href="javascript:;"]
+                          |  Germany 
+                #vmap_world.vmaps.display-none
+
+                #vmap_usa.vmaps.display-none
+
+                #vmap_europe.vmaps.display-none
+
+                #vmap_russia.vmaps.display-none
+
+                #vmap_germany.vmaps.display-none
+
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title.tabbable-line
+              .caption
+                i.icon-globe.font-green-sharp
+                span.caption-subject.font-green-sharp.bold.uppercase
+                  | Feeds
+              ul.nav.nav-tabs
+                li.active
+                  a[href="#tab_1_1" data-toggle="tab"]
+                    |  System 
+                li
+                  a[href="#tab_1_2" data-toggle="tab"]
+                    |  Activities 
+                li
+                  a[href="#tab_1_3" data-toggle="tab"]
+                    |  Recent Users 
+            .portlet-body
+              .tab-content
+                #tab_1_1.tab-pane.active
+                  .scroller[style="height: 339px;" data-always-visible="1" data-rail-visible="0"]
+                    ul.feeds
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  You have 4 pending tasks. 
+                                span.label.label-sm.label-info
+                                  |  Take action 
+                                  i.fa.fa-share
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New version v1.4 just lunched! 
+                        .col2
+                          .date
+                            |  20 mins 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-danger
+                                i.fa.fa-bolt
+                            .cont-col2
+                              .desc
+                                |  Database server #12 overloaded. Please fix the issue. 
+                        .col2
+                          .date
+                            |  24 mins 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-info
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  30 mins 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  40 mins 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-warning
+                                i.fa.fa-plus
+                            .cont-col2
+                              .desc
+                                |  New user registered. 
+                        .col2
+                          .date
+                            |  1.5 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  Web server hardware needs to be upgraded. 
+                                span.label.label-sm.label-default
+                                  |  Overdue 
+                        .col2
+                          .date
+                            |  2 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-default
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  3 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-warning
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  5 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-info
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  18 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-default
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  21 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-info
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  22 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-default
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  21 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-info
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  22 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-default
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  21 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-info
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  22 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-default
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  21 hours 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-info
+                                i.fa.fa-bullhorn
+                            .cont-col2
+                              .desc
+                                |  New order received. Please take care of it. 
+                        .col2
+                          .date
+                            |  22 hours 
+                #tab_1_2.tab-pane
+                  .scroller[style="height: 290px;" data-always-visible="1" data-rail-visible1="1"]
+                    ul.feeds
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New order received 
+                        .col2
+                          .date
+                            |  10 mins 
+                      li
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-danger
+                                i.fa.fa-bolt
+                            .cont-col2
+                              .desc
+                                |  Order #24DOP4 has been rejected. 
+                                span.label.label-sm.label-danger
+                                  |  Take action 
+                                  i.fa.fa-share
+                        .col2
+                          .date
+                            |  24 mins 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                      li
+                        a[href="javascript:;"]
+
+                        .col1
+                          .cont
+                            .cont-col1
+                              .label.label-sm.label-success
+                                i.fa.fa-bell-o
+                            .cont-col2
+                              .desc
+                                |  New user registered 
+                        .col2
+                          .date
+                            |  Just now 
+                #tab_1_3.tab-pane
+                  .scroller[style="height: 290px;" data-always-visible="1" data-rail-visible1="1"]
+                    .row
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Robert Nilson 
+                            span.label.label-sm.label-success.label-mini
+                              |  Approved 
+                          div
+                            |  29 Jan 2013 10:45AM 
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Lisa Miller 
+                            span.label.label-sm.label-info
+                              |  Pending 
+                          div
+                            |  19 Jan 2013 10:45AM 
+                    .row
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Eric Kim 
+                            span.label.label-sm.label-info
+                              |  Pending 
+                          div
+                            |  19 Jan 2013 12:45PM 
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Lisa Miller 
+                            span.label.label-sm.label-danger
+                              |  In progress 
+                          div
+                            |  19 Jan 2013 11:55PM 
+                    .row
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Eric Kim 
+                            span.label.label-sm.label-info
+                              |  Pending 
+                          div
+                            |  19 Jan 2013 12:45PM 
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Lisa Miller 
+                            span.label.label-sm.label-danger
+                              |  In progress 
+                          div
+                            |  19 Jan 2013 11:55PM 
+                    .row
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Eric Kim 
+                            span.label.label-sm.label-info
+                              |  Pending 
+                          div
+                            |  19 Jan 2013 12:45PM 
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Lisa Miller 
+                            span.label.label-sm.label-danger
+                              |  In progress 
+                          div
+                            |  19 Jan 2013 11:55PM 
+                    .row
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Eric Kim 
+                            span.label.label-sm.label-info
+                              |  Pending 
+                          div
+                            |  19 Jan 2013 12:45PM 
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Lisa Miller 
+                            span.label.label-sm.label-danger
+                              |  In progress 
+                          div
+                            |  19 Jan 2013 11:55PM 
+                    .row
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Eric Kim 
+                            span.label.label-sm.label-info
+                              |  Pending 
+                          div
+                            |  19 Jan 2013 12:45PM 
+                      .col-md-6.user-info
+                        img.img-responsive[alt="" src="../../assets/admin/layout/img/avatar.png"]
+                        .details
+                          div
+                            a[href="javascript:;"]
+                              |  Lisa Miller 
+                            span.label.label-sm.label-danger
+                              |  In progress 
+                          div
+                            |  19 Jan 2013 11:55PM 
+      .clearfix
+
+      .row
+        .col-md-6.col-sm-6
+          .portlet.light.calendar
+            .portlet-title
+              .caption
+                i.icon-calendar.font-green-sharp
+                span.caption-subject.font-green-sharp.bold.uppercase
+                  | Feeds
+            .portlet-body
+              #calendar
+
+        .col-md-6.col-sm-6
+          .portlet.light
+            .portlet-title
+              .caption
+                i.icon-bubble.font-red-sunglo
+                span.caption-subject.font-red-sunglo.bold.uppercase
+                  | Chats
+              .actions
+                .portlet-input.input-inline
+                  .input-icon.right
+                    i.icon-magnifier
+                    input.form-control.input-circle[type="text" placeholder="search..."]
+            #chats.portlet-body
+              .scroller[style="height: 341px;" data-always-visible="1" data-rail-visible1="1"]
+                ul.chats
+                  li.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar1.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Bob Nilson 
+                      span.datetime
+                        |  at 20:09 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar2.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Lisa Wong 
+                      span.datetime
+                        |  at 20:11 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar1.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Bob Nilson 
+                      span.datetime
+                        |  at 20:30 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Richard Doe 
+                      span.datetime
+                        |  at 20:33 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Richard Doe 
+                      span.datetime
+                        |  at 20:35 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar1.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Bob Nilson 
+                      span.datetime
+                        |  at 20:40 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Richard Doe 
+                      span.datetime
+                        |  at 20:40 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+                  li.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar1.jpg"]
+                    .message
+                      span.arrow
+
+                      a.name[href="javascript:;"]
+                        |  Bob Nilson 
+                      span.datetime
+                        |  at 20:54 
+                      span.body
+                        |  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod tincidunt ut laoreet. 
+              .chat-form
+                .input-cont
+                  input.form-control[type="text" placeholder="Type a message here..."]
+                .btn-cont
+                  span.arrow
+
+                  a.btn.blue.icn-only[href=""]
+                    i.fa.fa-check.icon-white
+  a.page-quick-sidebar-toggler[href="javascript:;"]
+    i.icon-close
+  .page-quick-sidebar-wrapper
+    .page-quick-sidebar
+      .nav-justified
+        ul.nav.nav-tabs.nav-justified
+          li.active
+            a[href="#quick_sidebar_tab_1" data-toggle="tab"]
+              |  Users 
+              span.badge.badge-danger
+                | 2
+          li
+            a[href="#quick_sidebar_tab_2" data-toggle="tab"]
+              |  Alerts 
+              span.badge.badge-success
+                | 7
+          li.dropdown
+            a.dropdown-toggle[href="javascript:;" data-toggle="dropdown"]
+              |  More
+              i.fa.fa-angle-down
+            ul.dropdown-menu.pull-right[role="menu"]
+              li
+                a[href="#quick_sidebar_tab_3" data-toggle="tab"]
+                  i.icon-bell
+                  |  Alerts 
+              li
+                a[href="#quick_sidebar_tab_3" data-toggle="tab"]
+                  i.icon-info
+                  |  Notifications 
+              li
+                a[href="#quick_sidebar_tab_3" data-toggle="tab"]
+                  i.icon-speech
+                  |  Activities 
+              li.divider
+
+              li
+                a[href="#quick_sidebar_tab_3" data-toggle="tab"]
+                  i.icon-settings
+                  |  Settings 
+        .tab-content
+          #quick_sidebar_tab_1.tab-pane.active.page-quick-sidebar-chat
+            .page-quick-sidebar-chat-users[data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list"]
+              h3.list-heading
+                | Staff
+              ul.media-list.list-items
+                li.media
+                  .media-status
+                    span.badge.badge-success
+                      | 8
+                  img.media-object[src="../../assets/admin/layout/img/avatar3.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Bob Nilson
+                    .media-heading-sub
+                      |  Project Manager 
+                li.media
+                  img.media-object[src="../../assets/admin/layout/img/avatar1.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Nick Larson
+                    .media-heading-sub
+                      |  Art Director 
+                li.media
+                  .media-status
+                    span.badge.badge-danger
+                      | 3
+                  img.media-object[src="../../assets/admin/layout/img/avatar4.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Deon Hubert
+                    .media-heading-sub
+                      |  CTO 
+                li.media
+                  img.media-object[src="../../assets/admin/layout/img/avatar2.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Ella Wong
+                    .media-heading-sub
+                      |  CEO 
+              h3.list-heading
+                | Customers
+              ul.media-list.list-items
+                li.media
+                  .media-status
+                    span.badge.badge-warning
+                      | 2
+                  img.media-object[src="../../assets/admin/layout/img/avatar6.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Lara Kunis
+                    .media-heading-sub
+                      |  CEO, Loop Inc 
+                    .media-heading-small
+                      |  Last seen 03:10 AM 
+                li.media
+                  .media-status
+                    span.label.label-sm.label-success
+                      | new
+                  img.media-object[src="../../assets/admin/layout/img/avatar7.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Ernie Kyllonen
+                    .media-heading-sub
+                      |  Project Manager,
+                      br
+                      |  SmartBizz PTL 
+                li.media
+                  img.media-object[src="../../assets/admin/layout/img/avatar8.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Lisa Stone
+                    .media-heading-sub
+                      |  CTO, Keort Inc 
+                    .media-heading-small
+                      |  Last seen 13:10 PM 
+                li.media
+                  .media-status
+                    span.badge.badge-success
+                      | 7
+                  img.media-object[src="../../assets/admin/layout/img/avatar9.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Deon Portalatin
+                    .media-heading-sub
+                      |  CFO, H&D LTD 
+                li.media
+                  img.media-object[src="../../assets/admin/layout/img/avatar10.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Irina Savikova
+                    .media-heading-sub
+                      |  CEO, Tizda Motors Inc 
+                li.media
+                  .media-status
+                    span.badge.badge-danger
+                      | 4
+                  img.media-object[src="../../assets/admin/layout/img/avatar11.jpg" alt="..."]
+                  .media-body
+                    h4.media-heading
+                      | Maria Gomez
+                    .media-heading-sub
+                      |  Manager, Infomatic Inc 
+                    .media-heading-small
+                      |  Last seen 03:10 AM 
+            .page-quick-sidebar-item
+              .page-quick-sidebar-chat-user
+                .page-quick-sidebar-nav
+                  a.page-quick-sidebar-back-to-list[href="javascript:;"]
+                    i.icon-arrow-left
+                    | Back
+                .page-quick-sidebar-chat-user-messages
+                  .post.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Bob Nilson
+                      span.datetime
+                        | 20:15
+                      span.body
+                        |  When could you send me the report ? 
+                  .post.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar2.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Ella Wong
+                      span.datetime
+                        | 20:15
+                      span.body
+                        |  Its almost done. I will be sending it shortly 
+                  .post.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Bob Nilson
+                      span.datetime
+                        | 20:15
+                      span.body
+                        |  Alright. Thanks! :) 
+                  .post.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar2.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Ella Wong
+                      span.datetime
+                        | 20:16
+                      span.body
+                        |  You are most welcome. Sorry for the delay. 
+                  .post.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Bob Nilson
+                      span.datetime
+                        | 20:17
+                      span.body
+                        |  No probs. Just take your time :) 
+                  .post.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar2.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Ella Wong
+                      span.datetime
+                        | 20:40
+                      span.body
+                        |  Alright. I just emailed it to you. 
+                  .post.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Bob Nilson
+                      span.datetime
+                        | 20:17
+                      span.body
+                        |  Great! Thanks. Will check it right away. 
+                  .post.in
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar2.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Ella Wong
+                      span.datetime
+                        | 20:40
+                      span.body
+                        |  Please let me know if you have any comment. 
+                  .post.out
+                    img.avatar[alt="" src="../../assets/admin/layout/img/avatar3.jpg"]
+                    .message
+                      span.arrow
+                      a.name[href="javascript:;"]
+                        | Bob Nilson
+                      span.datetime
+                        | 20:17
+                      span.body
+                        |  Sure. I will check and buzz you if anything needs to be corrected. 
+                .page-quick-sidebar-chat-user-form
+                  .input-group
+                    input.form-control[type="text" placeholder="Type a message here..."]
+                    .input-group-btn
+                      button.btn.blue[type="button"]
+                        i.icon-paper-clip
+          #quick_sidebar_tab_2.tab-pane.page-quick-sidebar-alerts
+            .page-quick-sidebar-alerts-list
+              h3.list-heading
+                | General
+              ul.feeds.list-items
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-info
+                          i.fa.fa-check
+                      .cont-col2
+                        .desc
+                          |  You have 4 pending tasks. 
+                          span.label.label-sm.label-warning
+                            |  Take action 
+                            i.fa.fa-share
+                  .col2
+                    .date
+                      |  Just now 
+                li
+                  a[href="javascript:;"]
+
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-success
+                          i.fa.fa-bar-chart-o
+                      .cont-col2
+                        .desc
+                          |  Finance Report for year 2013 has been released. 
+                  .col2
+                    .date
+                      |  20 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-danger
+                          i.fa.fa-user
+                      .cont-col2
+                        .desc
+                          |  You have 5 pending membership that requires a quick review. 
+                  .col2
+                    .date
+                      |  24 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-info
+                          i.fa.fa-shopping-cart
+                      .cont-col2
+                        .desc
+                          |  New order received with 
+                          span.label.label-sm.label-success
+                            |  Reference Number: DR23923 
+                  .col2
+                    .date
+                      |  30 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-success
+                          i.fa.fa-user
+                      .cont-col2
+                        .desc
+                          |  You have 5 pending membership that requires a quick review. 
+                  .col2
+                    .date
+                      |  24 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-info
+                          i.fa.fa-bell-o
+                      .cont-col2
+                        .desc
+                          |  Web server hardware needs to be upgraded. 
+                          span.label.label-sm.label-warning
+                            |  Overdue 
+                  .col2
+                    .date
+                      |  2 hours 
+                li
+                  a[href="javascript:;"]
+
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-default
+                          i.fa.fa-briefcase
+                      .cont-col2
+                        .desc
+                          |  IPO Report for year 2013 has been released. 
+                  .col2
+                    .date
+                      |  20 mins 
+              h3.list-heading
+                | System
+              ul.feeds.list-items
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-info
+                          i.fa.fa-check
+                      .cont-col2
+                        .desc
+                          |  You have 4 pending tasks. 
+                          span.label.label-sm.label-warning
+                            |  Take action 
+                            i.fa.fa-share
+                  .col2
+                    .date
+                      |  Just now 
+                li
+                  a[href="javascript:;"]
+
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-danger
+                          i.fa.fa-bar-chart-o
+                      .cont-col2
+                        .desc
+                          |  Finance Report for year 2013 has been released. 
+                  .col2
+                    .date
+                      |  20 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-default
+                          i.fa.fa-user
+                      .cont-col2
+                        .desc
+                          |  You have 5 pending membership that requires a quick review. 
+                  .col2
+                    .date
+                      |  24 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-info
+                          i.fa.fa-shopping-cart
+                      .cont-col2
+                        .desc
+                          |  New order received with 
+                          span.label.label-sm.label-success
+                            |  Reference Number: DR23923 
+                  .col2
+                    .date
+                      |  30 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-success
+                          i.fa.fa-user
+                      .cont-col2
+                        .desc
+                          |  You have 5 pending membership that requires a quick review. 
+                  .col2
+                    .date
+                      |  24 mins 
+                li
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-warning
+                          i.fa.fa-bell-o
+                      .cont-col2
+                        .desc
+                          |  Web server hardware needs to be upgraded. 
+                          span.label.label-sm.label-default
+                            |  Overdue 
+                  .col2
+                    .date
+                      |  2 hours 
+                li
+                  a[href="javascript:;"]
+
+                  .col1
+                    .cont
+                      .cont-col1
+                        .label.label-sm.label-info
+                          i.fa.fa-briefcase
+                      .cont-col2
+                        .desc
+                          |  IPO Report for year 2013 has been released. 
+                  .col2
+                    .date
+                      |  20 mins 
+          #quick_sidebar_tab_3.tab-pane.page-quick-sidebar-settings
+            .page-quick-sidebar-settings-list
+              h3.list-heading
+                | General Settings
+              ul.list-items.borderless
+                li
+                  |  Enable Notifications 
+                  input.make-switch[type="checkbox" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+                li
+                  |  Allow Tracking 
+                  input.make-switch[type="checkbox" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+                li
+                  |  Log Errors 
+                  input.make-switch[type="checkbox" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+                li
+                  |  Auto Sumbit Issues 
+                  input.make-switch[type="checkbox" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+                li
+                  |  Enable SMS Alerts 
+                  input.make-switch[type="checkbox" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+              h3.list-heading
+                | System Settings
+              ul.list-items.borderless
+                li
+                  |  Security Level 
+                  select.form-control.input-inline.input-sm.input-small
+                    option[value="1"]
+                      | Normal
+                    option[value="2" selected]
+                      | Medium
+                    option[value="e"]
+                      | High
+                li
+                  |  Failed Email Attempts 
+                  input.form-control.input-inline.input-sm.input-small[value="5"]
+                li
+                  |  Secondary SMTP Port 
+                  input.form-control.input-inline.input-sm.input-small[value="3560"]
+                li
+                  |  Notify On System Error 
+                  input.make-switch[type="checkbox" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+                li
+                  |  Notify On SMTP Error 
+                  input.make-switch[type="checkbox" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF"]
+              .inner-content
+                button.btn.btn-success
+                  i.icon-settings
+                  |  Save Changes

@@ -1,0 +1,67 @@
+/! BEGIN INBOX DROPDOWN
+/! DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte
+li#header_inbox_bar.dropdown.dropdown-extended.dropdown-inbox
+  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" 
+    i.icon-envelope-open
+    span.badge.badge-default
+      | 4
+  ul.dropdown-menu
+    li.external
+      h3
+        | You have
+        span.bold 7 New
+        | Messages
+      a href="page_inbox.html"  view all
+    li
+      ul.dropdown-menu-list.scroller data-handle-color="#637283" style=("height: 275px;") 
+        li
+          a href="inbox.html?a=view" 
+            span.photo
+              img.img-circle alt="" src="../../assets/admin/layout3/img/avatar2.jpg" /
+            span.subject
+              span.from
+                | Lisa Wong
+              span.time Just Now
+            span.message
+              | Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh...
+        li
+          a href="inbox.html?a=view" 
+            span.photo
+              img.img-circle alt="" src="../../assets/admin/layout3/img/avatar3.jpg" /
+            span.subject
+              span.from
+                | Richard Doe
+              span.time 16 mins
+            span.message
+              | Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+        li
+          a href="inbox.html?a=view" 
+            span.photo
+              img.img-circle alt="" src="../../assets/admin/layout3/img/avatar1.jpg" /
+            span.subject
+              span.from
+                | Bob Nilson
+              span.time 2 hrs
+            span.message
+              | Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+        li
+          a href="inbox.html?a=view" 
+            span.photo
+              img.img-circle alt="" src="../../assets/admin/layout3/img/avatar2.jpg" /
+            span.subject
+              span.from
+                | Lisa Wong
+              span.time 40 mins
+            span.message
+              | Vivamus sed auctor 40% nibh congue nibh...
+        li
+          a href="inbox.html?a=view" 
+            span.photo
+              img.img-circle alt="" src="../../assets/admin/layout3/img/avatar3.jpg" /
+            span.subject
+              span.from
+                | Richard Doe
+              span.time 46 mins
+            span.message
+              | Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+/! END INBOX DROPDOWN
