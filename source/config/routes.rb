@@ -6,11 +6,11 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   draw :admin_routes
   draw :employee_routes
   draw :dashboard_routes
   draw :public_routes
   draw :devise_routes
-
-  root 'welcome#index'
 end
