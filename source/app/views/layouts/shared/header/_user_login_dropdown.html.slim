@@ -1,8 +1,8 @@
 /! BEGIN USER LOGIN DROPDOWN
 /! DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte
 li.dropdown.dropdown-user
-  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" 
-    img.img-circle alt="" src="../../assets/admin/layout/img/avatar3_small.jpg" /
+  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;"
+    = image_tag "admin/layout/img/avatar3_small.jpg", class: "img-circle", alt: ""
     span.username.username-hide-on-mobile
       | Nick
     i.fa.fa-angle-down

@@ -1,9 +1,14 @@
-table
-  thead
-    tr
-      th
-        = Faq::Category.h :name
-      th
-        = t(".action")
-  tbody
-  = render partial: 'category', collection: @categories
+= render partial: "title", locals: {title: "List"}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = Faq::Category.h :name
+          th[width="20%"]
+            = t(".action")
+      tbody
+        = render partial: 'category', collection: @categories
