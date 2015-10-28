@@ -1,0 +1,10 @@
+= form_for [:admin, @social_network] do |f|
+  / = render "/share/admin_site/form_errors", object: f.object
+  .form-group
+    = SocialNetwork.h :link
+    = f.text_field :link
+  .form-group
+    = SocialNetwork.h :icon
+    = f.file_field :icon
+  .actions
+    = f.submit

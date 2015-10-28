@@ -1,0 +1,11 @@
+table
+  thead
+    tr
+      th
+        = SocialNetwork.h :link
+      th
+        = SocialNetwork.h :icon
+      th
+        = t(".action")
+  tbody
+  = render partial: 'social_network', collection: @social_networks

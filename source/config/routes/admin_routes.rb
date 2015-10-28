@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
     resources :faqs
     resources :profile, except: [:destroy, :new, :create]
+    resources :social_networks
   end
 end

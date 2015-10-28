@@ -56,11 +56,12 @@ gem "slim-rails"
 gem 'devise'
 
 # soft delete
-gem "paranoia", "~> 2.0"
+gem 'paranoia', '~> 2.0'
 
 # pagination
 gem 'kaminari'
 # Rails I18n de-facto standard library for ActiveRecord model/data translation.
 gem 'globalize', '~> 5.0.0'
 
+# File upload
 gem "paperclip", "~> 4.3"
