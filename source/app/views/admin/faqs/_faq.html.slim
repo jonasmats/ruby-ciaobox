@@ -1,0 +1,9 @@
+tr
+  td
+    = faq.question
+  td
+    = faq.answer
+  td
+    = link_to t(".edit"), edit_admin_faq_path(faq.id)
+    |
+    = link_to t(".delete"), admin_faq_path(faq.id), method: :delete, data: {confirm: t(".question_destroy")}

@@ -1,4 +1,4 @@
-class Dashboard::HomeController < Dashboard::BaseEmployeeController
+class Dashboard::HomeController < Dashboard::BaseDashboardController
   def index
     render plain: "Hello User"
   end

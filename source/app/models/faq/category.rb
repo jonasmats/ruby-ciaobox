@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: faq_categories
+#
+#  id         :integer          not null, primary key
+#  deleted_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Faq::Category < ActiveRecord::Base
   acts_as_paranoid
   translates :name, fallbacks_for_empty_translations: true
