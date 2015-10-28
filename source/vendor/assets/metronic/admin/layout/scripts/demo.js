@@ -6,18 +6,18 @@ var Demo = function() {
     // Handle Theme Settings
     var handleTheme = function() {
 
-        var panel = $('.theme-panel');
+        // var panel = $('.theme-panel');
 
-        if ($('body').hasClass('page-boxed') === false) {
-            $('.layout-option', panel).val("fluid");
-        }
+        // if ($('body').hasClass('page-boxed') === false) {
+        //     $('.layout-option', panel).val("fluid");
+        // }
 
-        $('.sidebar-option', panel).val("default");
-        $('.page-header-option', panel).val("fixed");
-        $('.page-footer-option', panel).val("default");
-        if ($('.sidebar-pos-option').attr("disabled") === false) {
-            $('.sidebar-pos-option', panel).val(Metronic.isRTL() ? 'right' : 'left');
-        }
+        // $('.sidebar-option', panel).val("default");
+        // $('.page-header-option', panel).val("fixed");
+        // $('.page-footer-option', panel).val("default");
+        // if ($('.sidebar-pos-option').attr("disabled") === false) {
+        //     $('.sidebar-pos-option', panel).val(Metronic.isRTL() ? 'right' : 'left');
+        // }
 
         //handle theme layout
         var resetLayout = function() {
@@ -192,17 +192,17 @@ var Demo = function() {
             }
         };
 
-        $('.toggler', panel).click(function() {
-            $('.toggler').hide();
-            $('.toggler-close').show();
-            $('.theme-panel > .theme-options').show();
-        });
+        // $('.toggler', panel).click(function() {
+        //     $('.toggler').hide();
+        //     $('.toggler-close').show();
+        //     $('.theme-panel > .theme-options').show();
+        // });
 
-        $('.toggler-close', panel).click(function() {
-            $('.toggler').show();
-            $('.toggler-close').hide();
-            $('.theme-panel > .theme-options').hide();
-        });
+        // $('.toggler-close', panel).click(function() {
+        //     $('.toggler').show();
+        //     $('.toggler-close').hide();
+        //     $('.theme-panel > .theme-options').hide();
+        // });
 
         $('.theme-colors > ul > li', panel).click(function() {
             var color = $(this).attr("data-style");
@@ -267,19 +267,19 @@ var Demo = function() {
 
         //main function to initiate the theme
         init: function() {
-            // handles style customer tool
-            handleTheme(); 
+            // // handles style customer tool
+            // handleTheme(); 
             
-            // handle layout style change
-            $('.theme-panel .layout-style-option').change(function() {
-                 setThemeStyle($(this).val());
-            });
+            // // handle layout style change
+            // $('.theme-panel .layout-style-option').change(function() {
+            //      setThemeStyle($(this).val());
+            // });
 
-            // set layout style from cookie
-            if ($.cookie && $.cookie('layout-style-option') === 'rounded') {
-                setThemeStyle($.cookie('layout-style-option'));
-                $('.theme-panel .layout-style-option').val($.cookie('layout-style-option'));
-            }            
+            // // set layout style from cookie
+            // if ($.cookie && $.cookie('layout-style-option') === 'rounded') {
+            //     setThemeStyle($.cookie('layout-style-option'));
+            //     $('.theme-panel .layout-style-option').val($.cookie('layout-style-option'));
+            // }            
         }
     };
 
