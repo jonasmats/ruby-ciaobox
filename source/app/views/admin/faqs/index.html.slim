@@ -1,0 +1,11 @@
+table
+  thead
+    tr
+      th
+        = Faq.h :question
+      th
+        = Faq.h :answer
+      th
+        = t(".action")
+  tbody
+  = render partial: 'faq', collection: @faqs

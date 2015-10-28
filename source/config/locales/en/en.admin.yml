@@ -6,6 +6,7 @@ en:
       action: &action "Action"
       edit: &edit "Edit"
       delete: &delete "Delete"
+      blank: &blank "--Please choose--"
       question_destroy: &question_destroy "Are you sure?"
     faq:
       categories:
@@ -17,3 +18,13 @@ en:
           edit: *edit
           delete: *delete
           question_destroy: *question_destroy
+    faqs:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        blank: *blank
+      faq:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy

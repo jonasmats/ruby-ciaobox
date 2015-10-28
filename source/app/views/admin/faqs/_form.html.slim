@@ -1,0 +1,13 @@
+= form_for [:admin, @faq] do |f|
+  / = render "/share/admin_site/form_errors", object: f.object
+  .form-group
+    = Faq.h :faq_category_id
+    = f.select :faq_category_id, options_for_select(Faq::Category.all.map{|c| [c.name, c.id]}, selected: @faq.faq_category_id), { include_blank: t('.blank') }
+  .form-group
+    = Faq.h :question
+    = f.text_area :question
+  .form-group
+    = Faq.h :answer
+    = f.text_area :answer
+  .actions
+    = f.submit
