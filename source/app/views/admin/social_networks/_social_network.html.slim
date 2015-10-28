@@ -1,0 +1,9 @@
+tr
+  td
+    = social_network.link
+  td
+    = image_tag social_network.icon
+  td
+    = link_to t(".edit"), edit_admin_social_network_path(social_network.id)
+    |
+    = link_to t(".delete"), admin_social_network_path(social_network.id), method: :delete, data: {confirm: t(".question_destroy")}
