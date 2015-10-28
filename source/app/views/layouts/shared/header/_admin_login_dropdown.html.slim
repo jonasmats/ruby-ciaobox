@@ -2,9 +2,9 @@
 /! DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte
 li.dropdown.dropdown-user
   a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" 
-    img.img-circle alt="" src="../../assets/admin/layout/img/avatar3_small.jpg" /
+    = image_tag @admin_avatar, class: "img-circle"
     span.username.username-hide-on-mobile
-      | Nick
+      = @admin_full_name
     i.fa.fa-angle-down
   ul.dropdown-menu.dropdown-menu-default
     li
