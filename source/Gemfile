@@ -47,9 +47,18 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'annotate'
 end
 
 gem "config"
 gem 'dotenv-rails'
 gem "slim-rails"
 gem 'devise'
+
+# soft delete
+gem "paranoia", "~> 2.0"
+
+# pagination
+gem 'kaminari'
+# Rails I18n de-facto standard library for ActiveRecord model/data translation.
+gem 'globalize', '~> 5.0.0'

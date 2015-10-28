@@ -1,0 +1,19 @@
+en:
+  admin:
+    dictionary:
+      submit: &submit "Update"
+      cancle: &cancle "Cancel"
+      action: &action "Action"
+      edit: &edit "Edit"
+      delete: &delete "Delete"
+      question_destroy: &question_destroy "Are you sure?"
+    faq:
+      categories:
+        index:
+          action: *action
+        form:
+          submit: *submit
+        category:
+          edit: *edit
+          delete: *delete
+          question_destroy: *question_destroy

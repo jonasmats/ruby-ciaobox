@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027055655) do
+ActiveRecord::Schema.define(version: 20151028021332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,44 @@ ActiveRecord::Schema.define(version: 20151027055655) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "faq_categories", force: :cascade do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "faq_category_translations", force: :cascade do |t|
+    t.integer  "faq_category_id", null: false
+    t.string   "locale",          null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "name"
+  end
+
+  add_index "faq_category_translations", ["faq_category_id"], name: "index_faq_category_translations_on_faq_category_id", using: :btree
+  add_index "faq_category_translations", ["locale"], name: "index_faq_category_translations_on_locale", using: :btree
+
+  create_table "faq_translations", force: :cascade do |t|
+    t.integer  "faq_id",     null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "question"
+    t.text     "answer"
+  end
+
+  add_index "faq_translations", ["faq_id"], name: "index_faq_translations_on_faq_id", using: :btree
+  add_index "faq_translations", ["locale"], name: "index_faq_translations_on_locale", using: :btree
+
+  create_table "faqs", force: :cascade do |t|
+    t.integer  "faq_category_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "faqs", ["faq_category_id"], name: "index_faqs_on_faq_category_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -53,4 +91,5 @@ ActiveRecord::Schema.define(version: 20151027055655) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "faqs", "faq_categories"
 end

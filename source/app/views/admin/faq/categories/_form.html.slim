@@ -1,0 +1,7 @@
+= form_for [:admin, @category] do |f|
+  / = render "/share/admin_site/form_errors", object: f.object
+  .form-group
+    = Faq::Category.h :name
+    = f.text_field :name
+  .actions
+    = f.submit
