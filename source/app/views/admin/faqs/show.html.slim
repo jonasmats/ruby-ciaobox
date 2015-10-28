@@ -1,5 +1,6 @@
+= render partial: "title", locals: {title: "Detail"}
 p
   strong
-    = Faq::Category.h :name
+    = Faq.h :question
     | :
-  = @category.name
+  = @faq.question

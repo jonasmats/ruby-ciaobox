@@ -1,11 +1,16 @@
-table
-  thead
-    tr
-      th
-        = Faq.h :question
-      th
-        = Faq.h :answer
-      th
-        = t(".action")
-  tbody
-  = render partial: 'faq', collection: @faqs
+= render partial: "title", locals: {title: "List"}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = Faq.h :question
+          th
+            = Faq.h :answer
+          th
+            = t(".action")
+      tbody
+      = render partial: 'faq', collection: @faqs
