@@ -23,4 +23,10 @@ class Admin < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  #1. associations
+  has_one :profile, class_name: CiaoboxUser::Profile.name
+
+  # 6. instance methods
+  delegate :full_name, to: :profile
 end

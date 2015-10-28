@@ -1,0 +1,17 @@
+p
+  | First name:
+  = @profile.first_name
+p
+  | Last name:
+  = @profile.last_name
+p
+  | Email:
+  = @profile.admin.email
+p
+  | Avatar:
+  = image_tag @profile.avatar.url(:medium)
+p
+  | Created at:
+  = @profile.admin.created_at
+
+= link_to "Edit profile", edit_admin_profile_path(current_admin.profile)

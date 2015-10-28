@@ -1,5 +1,5 @@
 class Admin::FaqsController < Admin::BaseAdminController
-  include ::Faq::Parameter
+  include ::Admin::Faq::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]

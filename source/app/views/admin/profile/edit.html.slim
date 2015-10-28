@@ -1,0 +1,12 @@
+= form_for [:admin, @profile], url: admin_profile_path do |f|
+  .form-group
+    = CiaoboxUser::Profile.h :first_name
+    = f.text_field :first_name
+  .form-group
+    = CiaoboxUser::Profile.h :last_name
+    = f.text_field :last_name
+  .form-group
+    = CiaoboxUser::Profile.h :avatar
+    = f.file_field :avatar
+  .actions
+    = f.submit
