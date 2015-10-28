@@ -9,7 +9,7 @@ p
   = @profile.admin.email
 p
   | Avatar:
-  = @profile.avatar
+  = image_tag @profile.avatar.url(:medium)
 p
   | Created at:
   = @profile.admin.created_at

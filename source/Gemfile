@@ -62,3 +62,5 @@ gem "paranoia", "~> 2.0"
 gem 'kaminari'
 # Rails I18n de-facto standard library for ActiveRecord model/data translation.
 gem 'globalize', '~> 5.0.0'
+
+gem "paperclip", "~> 4.3"
