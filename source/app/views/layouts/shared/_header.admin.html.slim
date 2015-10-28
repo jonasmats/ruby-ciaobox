@@ -6,7 +6,7 @@
     .page-logo
       / a href="index.html"
       = link_to admin_root_path do
-        img.logo-default alt="logo" src="../../assets/admin/layout/img/logo.png" /
+        = image_tag "admin/layout/img/logo.png", class: "logo-default", alt: "logo"
       .menu-toggler.sidebar-toggler.hide
     /! END LOGO
     /! BEGIN RESPONSIVE MENU TOGGLER

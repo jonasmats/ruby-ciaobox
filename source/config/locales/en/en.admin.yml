@@ -2,7 +2,7 @@ en:
   admin:
     dictionary:
       submit: &submit "Update"
-      cancle: &cancle "Cancel"
+      cancel: &cancel "Cancel"
       action: &action "Action"
       edit: &edit "Edit"
       delete: &delete "Delete"
@@ -14,6 +14,7 @@ en:
           action: *action
         form:
           submit: *submit
+          cancel: *cancel
         category:
           edit: *edit
           delete: *delete

@@ -1,7 +1,15 @@
-= form_for [:admin, @category] do |f|
-  / = render "/share/admin_site/form_errors", object: f.object
-  .form-group
-    = Faq::Category.h :name
-    = f.text_field :name
-  .actions
-    = f.submit
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_for [:admin, @category], html: {class: "form-horizontal"} do |f|
+      .form-body
+        .form-group.last
+          label.col-md-3.control-label
+            = Faq::Category.h :name
+          .col-md-4
+            = f.text_field :name, class: "form-control", placeholder: ""
+      .form-actions
+        .row
+          .col-md-offset-3.col-md-4
+            = f.submit class: "btn green"
+            = link_to admin_faq_categories_path, class: "btn default" do
+              = t(".cancel")
