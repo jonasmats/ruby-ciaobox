@@ -11,6 +11,10 @@ li.dropdown.dropdown-user
       = link_to admin_profile_index_path do
         i.icon-user
         | My Profile
+    li
+      = link_to new_admin_password_path do
+        i.fa.fa-cog
+        | Change password
     / li
     /   a href="page_calendar.html" 
     /     i.icon-calendar
