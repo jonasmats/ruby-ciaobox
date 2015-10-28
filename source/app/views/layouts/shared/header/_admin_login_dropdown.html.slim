@@ -2,7 +2,7 @@
 /! DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte
 li.dropdown.dropdown-user
   a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" 
-    = image_tag current_admin.profile.avatar.url(:thumb), class: "img-circle"
+    = image_tag @admin_avatar, class: "img-circle"
     span.username.username-hide-on-mobile
       = @admin_full_name
     i.fa.fa-angle-down
