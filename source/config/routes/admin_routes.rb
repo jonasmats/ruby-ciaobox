@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     end
 
     resources :faqs
+    resources :profile
   end
 end
