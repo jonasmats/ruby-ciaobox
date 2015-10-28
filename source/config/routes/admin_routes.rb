@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     end
 
     resources :faqs
-    resources :profile
+    resources :profile, except: [:destroy, :new, :create]
   end
 end

@@ -1,8 +1,17 @@
 p
- | This is profile page
+  | First name:
+  = @profile.first_name
 p
- | This is profile page
+  | Last name:
+  = @profile.last_name
 p
- | This is profile page
+  | Email:
+  = @profile.admin.email
 p
- | This is profile page
+  | Avatar:
+  = @profile.avatar
+p
+  | Created at:
+  = @profile.admin.created_at
+
+= link_to "Edit profile", edit_admin_profile_path(current_admin.profile)
