@@ -8,5 +8,26 @@ html
     = csrf_meta_tags
   body.page-header-fixed.page-quick-sidebar-over-content.page-sidebar-closed-hide-logo.page-container-bg-solid
     = render partial: "layouts/shared/header.admin"
-    = yield
+    .page-container
+      = render partial: "layouts/shared/page_sidebar"
+      .page-content-wrapper
+        .page-content
+          #portlet-config.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+                  h4.modal-title
+                    | Modal title
+                .modal-body
+                  |  Widget settings form goes here 
+                .modal-footer
+                  button.btn.blue[type="button"]
+                    | Save changes
+                  button.btn.default[type="button" data-dismiss="modal"]
+                    | Close
+
+          = render partial: "layouts/shared/page/page_bar"
+          = yield
+      = render partial: "layouts/shared/page/page_quick_sidebar"
     = render partial: "layouts/shared/footer.admin"
