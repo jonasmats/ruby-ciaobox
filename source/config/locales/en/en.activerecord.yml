@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      faq: 'Frequently asked questions'
+      faq/category: 'FAQ Category'
+
+    attributes:
+      faq:
+        question: "Question"
+        answer: "Answer"
+      faq/category:
+        name: "Category name"

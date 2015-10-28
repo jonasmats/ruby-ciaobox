@@ -1,0 +1,7 @@
+tr
+  td
+    = category.name
+  td
+    = link_to t(".edit"), edit_admin_faq_category_path(category.id)
+    |
+    = link_to t(".delete"), admin_faq_category_path(category.id), method: :delete, data: {confirm: t(".question_destroy")}

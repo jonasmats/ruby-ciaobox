@@ -1,0 +1,9 @@
+table
+  thead
+    tr
+      th
+        = Faq::Category.h :name
+      th
+        = t(".action")
+  tbody
+  = render partial: 'category', collection: @categories
