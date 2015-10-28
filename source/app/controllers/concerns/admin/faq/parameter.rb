@@ -1,4 +1,4 @@
-module Faq::Parameter
+module Admin::Faq::Parameter
   extend ActiveSupport::Concern
 
   private

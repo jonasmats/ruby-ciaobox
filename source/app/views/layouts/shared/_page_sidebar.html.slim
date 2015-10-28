@@ -47,35 +47,13 @@
               span.arrow
             ul.sub-menu
               li
-                a[href="javascript:;"]
-                  i.icon-user
-                  |  Sample Link 1 
-                  span.arrow
-                ul.sub-menu
-                  li
-                    a[href="#"]
-                      i.icon-power
-                      |  Sample Link 1
-                  li
-                    a[href="#"]
-                      i.icon-paper-plane
-                      |  Sample Link 1
-                  li
-                    a[href="#"]
-                      i.icon-star
-                      |  Sample Link 1
+                = link_to new_admin_faq_category_path do
+                  i.icon-plus
+                  = t(".faq_category_new")
               li
-                a[href="#"]
-                  i.icon-camera
-                  |  Sample Link 1
-              li
-                a[href="#"]
-                  i.icon-link
-                  |  Sample Link 2
-              li
-                a[href="#"]
-                  i.icon-pointer
-                  |  Sample Link 3
+                = link_to admin_faq_categories_path do
+                  i.fa.fa-list-ol
+                  = t(".faq_category_list")
           li
             a[href="javascript:;"]
               i.icon-globe
@@ -83,17 +61,13 @@
               span.arrow
             ul.sub-menu
               li
-                a[href="#"]
-                  i.icon-tag
-                  |  Sample Link 1
+                = link_to new_admin_faq_path do
+                  i.icon-plus
+                  = t(".faq_new")
               li
-                a[href="#"]
-                  i.icon-pencil
-                  |  Sample Link 1
-              li
-                a[href="#"]
-                  i.icon-graph
-                  |  Sample Link 1
+                = link_to admin_faqs_path do
+                  i.fa.fa-list-ol
+                  = t(".faq_list")
       li.heading
         h3.uppercase
           | More

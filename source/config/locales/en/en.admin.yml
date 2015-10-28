@@ -29,3 +29,13 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+  layouts:
+    dictionary:
+      new: &new " New"
+      list: &list " List"
+    shared:
+      page_sidebar:
+        faq_category_new: *new
+        faq_category_list: *list
+        faq_new: *new
+        faq_list: *list

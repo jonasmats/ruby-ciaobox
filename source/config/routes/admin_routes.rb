@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
 
     resources :faqs
-    resources :profile, except: [:destroy, :new, :create]
+    resources :profile, except: [:destroy, :new, :create, :show]
     resources :social_networks
   end
 end

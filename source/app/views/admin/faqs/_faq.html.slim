@@ -4,6 +4,9 @@ tr
   td
     = faq.answer
   td
-    = link_to t(".edit"), edit_admin_faq_path(faq.id)
-    |
-    = link_to t(".delete"), admin_faq_path(faq.id), method: :delete, data: {confirm: t(".question_destroy")}
+    = link_to edit_admin_faq_path(faq.id), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_faq_path(faq.id), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")
