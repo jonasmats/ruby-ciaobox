@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20151029143161) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
+  enable_extension "uuid-ossp"
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -56,6 +58,17 @@ ActiveRecord::Schema.define(version: 20151029143161) do
 
   add_index "articles", ["admin_id"], name: "index_articles_on_admin_id", using: :btree
 
+  create_table "banners", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "status",             null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "ciaobox_user_profiles", force: :cascade do |t|
     t.integer  "admin_id"
     t.string   "first_name"
@@ -69,6 +82,17 @@ ActiveRecord::Schema.define(version: 20151029143161) do
   end
 
   add_index "ciaobox_user_profiles", ["admin_id"], name: "index_ciaobox_user_profiles_on_admin_id", using: :btree
+
+  create_table "ciaobox_user_users_roles", force: :cascade do |t|
+    t.integer  "admin_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ciaobox_user_users_roles", ["admin_id", "role_id"], name: "index_ciaobox_user_users_roles_on_admin_id_and_role_id", using: :btree
+  add_index "ciaobox_user_users_roles", ["admin_id"], name: "index_ciaobox_user_users_roles_on_admin_id", using: :btree
+  add_index "ciaobox_user_users_roles", ["role_id"], name: "index_ciaobox_user_users_roles_on_role_id", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -137,6 +161,29 @@ ActiveRecord::Schema.define(version: 20151029143161) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "permissions", force: :cascade do |t|
+    t.integer  "role_id",    null: false
+    t.string   "entity",     null: false
+    t.hstore   "settings"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "permissions", ["entity"], name: "index_permissions_on_entity", using: :btree
+  add_index "permissions", ["role_id", "entity"], name: "index_permissions_on_role_id_and_entity", unique: true, using: :btree
+  add_index "permissions", ["role_id"], name: "index_permissions_on_role_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
+
   create_table "social_networks", force: :cascade do |t|
     t.string   "link"
     t.string   "icon_file_name"
@@ -160,9 +207,9 @@ ActiveRecord::Schema.define(version: 20151029143161) do
   add_index "static_page_translations", ["static_page_id"], name: "index_static_page_translations_on_static_page_id", using: :btree
 
   create_table "static_pages", force: :cascade do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.integer  "status"
+    t.string   "title",      null: false
+    t.string   "slug",       null: false
+    t.integer  "status",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -189,5 +236,8 @@ ActiveRecord::Schema.define(version: 20151029143161) do
 
   add_foreign_key "articles", "admins"
   add_foreign_key "ciaobox_user_profiles", "admins"
+  add_foreign_key "ciaobox_user_users_roles", "admins"
+  add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
+  add_foreign_key "permissions", "roles"
 end

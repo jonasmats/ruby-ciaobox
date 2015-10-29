@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :static_pages
     resources :password, only: [:new, :create]
     resources :roles
+    resources :banners
   end
 end

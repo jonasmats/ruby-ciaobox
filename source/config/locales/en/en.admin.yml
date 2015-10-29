@@ -42,7 +42,17 @@ en:
         delete: *delete
         question_destroy: *question_destroy
         view: *view
-
+    banners:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        blank: *blank
+      banner:
+        edit: *edit
+        delete: *delete
+        view: *view
+        question_destroy: *question_destroy
     roles:
       index:
         action: *action
