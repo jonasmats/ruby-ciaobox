@@ -1,4 +1,4 @@
-class Admin::static_pagesController < Admin::BaseAdminController
+class Admin::StaticPagesController < Admin::BaseAdminController
   include ::Admin::StaticPages::Parameter
 
   before_action :load_static_page, only: [:show, :edit, :update, :destroy]
