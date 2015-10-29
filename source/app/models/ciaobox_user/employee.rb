@@ -19,4 +19,5 @@
 #
 
 class CiaoboxUser::Employee < Admin
+  include ::CiaoboxUser::Associations
 end
