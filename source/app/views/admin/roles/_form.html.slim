@@ -1,0 +1,34 @@
+.row
+  .col-lg-12.form-box
+    = form_for [:admin, @role] do |f|
+      .form-group
+        label= Role.h :name
+        = f.text_field :name, class: "form-control"
+      .form-group
+        label= Role.h :description
+        = f.text_area :description, class: "form-control"
+      .form-group
+        label= t(".label_list_permission")
+        table.table.table-striped.table-bordered
+          thead
+            th= Permission.h :entity
+            th= Permission.h :index
+            th= Permission.h :show
+            th= Permission.h :create
+            th= Permission.h :update
+            th= Permission.h :destroy
+          tbody
+            = f.fields_for :permissions do |ff|
+              tr
+                th
+                  = ff.object.entity.constantize.model_name.human
+                  = ff.hidden_field :entity
+                = ff.fields_for :settings do |fff|
+                  fieldset
+                    td= fff.check_box :index,  checked: (ff.object.settings.present? && ff.object.settings["index"] == "1") ? true : false
+                    td= fff.check_box :show,  checked: (ff.object.settings.present? && ff.object.settings["show"] == "1") ? true : false
+                    td= fff.check_box :create,  checked: (ff.object.settings.present? && ff.object.settings["create"] == "1") ? true : false
+                    td= fff.check_box :update,  checked: (ff.object.settings.present? && ff.object.settings["update"] == "1") ? true : false
+                    td= fff.check_box :destroy,  checked: (ff.object.settings.present? && ff.object.settings["destroy"] == "1") ? true : false
+      = f.submit t(".submit"), class: "btn btn-primary"
+      = link_to t(".cancel"), admin_roles_path , class: "btn btn-default"
