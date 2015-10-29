@@ -1,12 +1,13 @@
 class Admin::FaqsController < Admin::BaseAdminController
   include ::Admin::Faq::Parameter
+  include ::Admin::Faq::Finder
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
 
   def index
-    @faqs = Faq.all
+    @faqs = load_faqs
     # .paginate(page: params[:page], per_page: Settings.per_page.admin.product)
   end
 
