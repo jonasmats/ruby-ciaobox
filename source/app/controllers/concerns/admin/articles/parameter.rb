@@ -3,8 +3,8 @@ module Admin::Articles::Parameter
 
   private
     def private_params
-      if params[:ciaobox_user_password]
-        params.require(:ciaobox_user_password).permit(:current, :new, :confirm)
+      if params[:article]
+        params.require(:article).permit(:title, :content, :status)
       end
     end
 end
