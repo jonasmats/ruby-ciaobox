@@ -1,17 +1,46 @@
-p
-  | First name:
-  = @profile.first_name
-p
-  | Last name:
-  = @profile.last_name
-p
-  | Email:
-  = @profile.admin.email
-p
-  | Avatar:
-  = image_tag @profile.avatar.url(:medium)
-p
-  | Created at:
-  = @profile.admin.created_at
+.row.margin-top-20
+  .col-md-12
+    .profile-sidebar
+      .portlet.light.profile-sidebar-portlet
+        .profile-userpic
+          = image_tag @profile.avatar.url(:medium), class: "img-responsive"
+        .profile-usertitle
+          .profile-usertitle-name
+            |  Name
+    .profile-content
+      .row
+        .form-body.form-horizontal
+          .form-group
+            label.control-label.col-md-3
+              = CiaoboxUser::Profile.h :first_name
+              | :
+            .col-md-4
+              p.form-control-static
+                = @profile.first_name
+          .form-group
+            label.control-label.col-md-3
+              = CiaoboxUser::Profile.h :last_name
+              | :
+            .col-md-4
+              p.form-control-static
+                = @profile.last_name
+          .form-group
+            label.control-label.col-md-3
+              = CiaoboxUser::Profile.h :email
+              | :
+            .col-md-4
+              p.form-control-static
+                = @profile.admin.email
+          .form-group
+            label.control-label.col-md-3
+              = CiaoboxUser::Profile.h :created_at
+              | :
+            .col-md-4
+              p.form-control-static
+                = @profile.admin.created_at
+        .form-actions
+          .row
+            .col-md-offset-3.col-md-4
+              = link_to "Edit profile", edit_admin_profile_path(current_admin.profile), class: "btn green"
 
-= link_to "Edit profile", edit_admin_profile_path(current_admin.profile)
+

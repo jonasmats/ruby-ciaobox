@@ -39,3 +39,5 @@ en:
         faq_category_list: *list
         faq_new: *new
         faq_list: *list
+        account_change_password: " Change password"
+        account_profile: " Profile"
