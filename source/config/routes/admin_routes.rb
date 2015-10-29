@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :profile, except: [:destroy, :new, :create, :show]
     resources :social_networks
     resources :articles
+    resources :static_pages
     resources :password, only: [:new, :create]
     resources :roles
   end
