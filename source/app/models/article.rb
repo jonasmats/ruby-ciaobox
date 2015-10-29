@@ -6,6 +6,8 @@ class Article < ActiveRecord::Base
 
   # 1. associations
   belongs_to :admin, class_name: Admin.name
+  # 2. scope
+  scope :article_status, -> (status)  {where(status: statuses[status])}
   # 4. validates
   validates :admin, :title, :content, presence: true
 end

@@ -52,7 +52,8 @@
 
 /* OTHER  */
 //= require jquery_ujs
-
+/* CK Editor*/
+//= require ckeditor/init
 jQuery(document).ready(function() {
   Metronic.init(); // init metronic core componets
   Layout.init(); // init layout

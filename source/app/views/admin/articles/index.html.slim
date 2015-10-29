@@ -13,6 +13,8 @@
           th
             = Article.h :created_at
           th
+            = Article.h :status
+          th
             = t(".action")
       tbody
       = render partial: 'article', collection: @articles
