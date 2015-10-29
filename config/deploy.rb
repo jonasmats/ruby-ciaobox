@@ -19,8 +19,9 @@ set :deploy_to, '/home/ubuntu/ciaobox'
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :debug
 
+set :branch, "staging"
 # Default value for :pty is false
 # set :pty, true
 
