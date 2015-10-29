@@ -70,3 +70,5 @@ gem 'ckeditor'
 
 # Authorization
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
+# Friendly
+gem 'friendly_id', '~> 5.1.0'
