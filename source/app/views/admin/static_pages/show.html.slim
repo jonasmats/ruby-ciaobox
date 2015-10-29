@@ -1,0 +1,16 @@
+= render partial: "title", locals: {title: "Detail"}
+p
+  | Title:
+  = @article.status
+p
+  | Title:
+  = @article.title
+p
+  | Author:
+  = @article.admin.full_name
+p
+  | Created at:
+  = @article.created_at
+p
+  | Content:
+  = @article.content.html_safe

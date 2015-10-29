@@ -71,6 +71,9 @@ gem 'ckeditor'
 # Authorization
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
+# Friendly
+gem 'friendly_id', '~> 5.1.0'
+
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
   gem 'capistrano-rails', '~> 1.1.0'
