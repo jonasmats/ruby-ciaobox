@@ -1,0 +1,15 @@
+tr
+  td
+    = image_tag banner.image
+  td
+    = banner.status
+  td
+    = link_to admin_banner_path(banner.id), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+    = link_to edit_admin_banner_path(banner.id), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_banner_path(banner.id), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

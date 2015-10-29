@@ -13,3 +13,7 @@ en:
         role_label: "Role management"
         role_new: *new
         role_list: *list
+        account_profile: " Change Profile"
+        account_change_password: " Change Password"
+        banner_new: *new
+        banner_list: *list

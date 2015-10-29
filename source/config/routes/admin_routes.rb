@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resources :articles
     resources :password, only: [:new, :create]
     resources :roles
+    resources :banners
   end
 end
