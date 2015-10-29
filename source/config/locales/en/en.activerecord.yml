@@ -4,6 +4,11 @@ en:
       faq: 'Frequently asked questions'
       faq/category: 'FAQ Category'
       ciaobox_user/profile: "Profile"
+      admin: "Admin"
+      user: "User"
+      article: "Article"
+      social_network: "SocialNetwork"
+
     attributes:
       faq:
         question: "Question"
@@ -15,3 +20,13 @@ en:
         last_name: "Last name"
         email: "Email"
         created_at: "Created At"
+      role:
+        name: "Role Name"
+        description: "Role Description"
+      permission:
+        entity: "Entity"
+        index: "Index"
+        show: "Show"
+        create: "Create"
+        update: "Update"
+        destroy: "Destroy"

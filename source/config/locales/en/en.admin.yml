@@ -1,6 +1,7 @@
 en:
   admin:
     dictionary:
+      new: &new "New"
       submit: &submit "Update"
       cancel: &cancel "Cancel"
       action: &action "Action"
@@ -41,15 +42,17 @@ en:
         delete: *delete
         question_destroy: *question_destroy
         view: *view
-  layouts:
-    dictionary:
-      new: &new " New"
-      list: &list " List"
-    shared:
-      page_sidebar:
-        faq_category_new: *new
-        faq_category_list: *list
-        faq_new: *new
-        faq_list: *list
-        account_change_password: " Change password"
-        account_profile: " Profile"
+
+    roles:
+      index:
+        action: *action
+        new: *new
+      form:
+        submit: *submit
+        blank: *blank
+        label_list_permission: "Area Permission"
+        option_label: "Option Label"
+      role:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy

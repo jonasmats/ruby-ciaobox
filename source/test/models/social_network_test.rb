@@ -8,6 +8,7 @@
 #  icon_content_type :string
 #  icon_file_size    :integer
 #  icon_updated_at   :datetime
+#  deleted_at        :datetime
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :social_networks
     resources :articles
     resources :password, only: [:new, :create]
+    resources :roles
   end
 end
