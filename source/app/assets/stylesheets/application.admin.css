@@ -26,6 +26,7 @@
 
 /* BEGIN PAGE STYLES */
 @import "admin/pages/css/tasks.css";
+@import "admin/pages/css/profile.css";
 
 /* BEGIN THEME STYLES */
 @import "global/css/components.css";

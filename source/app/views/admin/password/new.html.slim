@@ -1,12 +1,26 @@
-= form_tag admin_password_index_path do |f|
-  .form-group
-    | Current password
-    = password_field :ciaobox_user_password, :current
-  .form-group
-    | New password
-    = password_field :ciaobox_user_password, :new
-  .form-group
-    | Confirm new password
-    = password_field :ciaobox_user_password, :confirm
-  .actions
-    = submit_tag
+
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_tag admin_password_index_path, class: "form-horizontal" do |f|
+      .form-body
+        .form-group
+          label.col-md-3.control-label
+            | Current password
+          .col-md-4
+            = password_field :ciaobox_user_password, :current, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            | New password
+          .col-md-4
+            = password_field :ciaobox_user_password, :new, class: "form-control", placeholder: ""
+        .form-group.last
+          label.col-md-3.control-label
+            | Confirm new password
+          .col-md-4
+            = password_field :ciaobox_user_password, :confirm, class: "form-control", placeholder: ""
+      .form-actions
+        .row
+          .col-md-offset-3.col-md-4
+            = submit_tag nil, class: "btn green"
+            = link_to admin_root_path, class: "btn default" do
+              = t(".cancel")

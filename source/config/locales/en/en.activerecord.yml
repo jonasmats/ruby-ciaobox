@@ -3,10 +3,15 @@ en:
     models:
       faq: 'Frequently asked questions'
       faq/category: 'FAQ Category'
-
+      ciaobox_user/profile: "Profile"
     attributes:
       faq:
         question: "Question"
         answer: "Answer"
       faq/category:
         name: "Category name"
+      ciaobox_user/profile:
+        first_name: "First name"
+        last_name: "Last name"
+        email: "Email"
+        created_at: "Created At"
