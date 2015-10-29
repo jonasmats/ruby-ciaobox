@@ -1,5 +1,5 @@
 class Admin::Faq::CategoriesController < Admin::BaseAdminController
-  include ::Admin::Faq::Category::Parameter
+  include Admin::Faq::Category::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
