@@ -10,6 +10,6 @@ tr
     = link_to edit_admin_static_page_path(static_page.slug), class: "btn default btn-xs purple" do
       i.fa.fa-edit
       = t(".edit")
-    = link_to admin_static_page_path(static_page.slug), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".delete")} do
+    = link_to admin_static_page_path(static_page.slug), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
       i.fa.fa-trash-o
       = t(".delete")
