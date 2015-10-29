@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :faqs
     resources :profile, except: [:destroy, :new, :create, :show]
     resources :social_networks
+    resources :password, only: [:new, :create]
   end
 end
