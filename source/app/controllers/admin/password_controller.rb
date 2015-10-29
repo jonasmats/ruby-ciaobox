@@ -5,9 +5,10 @@ class Admin::PasswordController < Admin::BaseAdminController
   end
 
   def create
-    if current_admin.valid_password? private_params[:current]
-      if private_params[:new] == private_params[:confirm]
-        if current_admin.update(password: private_params[:new])
+    change_password = ::Profile::ChangePassword.new(current_admin, private_params)
+    if change_password.current_match?
+      if change_password.confirm_match?
+        if change_password.change
           return redirect_to admin_root_path, notice: "Change password succesfully"
         else
           msg = "Change password errors"
@@ -18,8 +19,6 @@ class Admin::PasswordController < Admin::BaseAdminController
     else
       msg = "Current password wrong"
     end
-    
     redirect_to new_admin_password_path, notice: msg
   end
-
 end
