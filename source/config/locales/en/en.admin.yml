@@ -5,6 +5,7 @@ en:
       cancel: &cancel "Cancel"
       action: &action "Action"
       edit: &edit "Edit"
+      edit: &view "View"
       delete: &delete "Delete"
       blank: &blank "--Please choose--"
       question_destroy: &question_destroy "Are you sure?"
@@ -29,6 +30,16 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+    articles:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        blank: *blank
+      article:
+        edit: *edit
+        delete: *delete
+        view: *view
   layouts:
     dictionary:
       new: &new " New"

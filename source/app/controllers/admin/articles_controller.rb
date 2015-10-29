@@ -1,10 +1,15 @@
 class Admin::ArticlesController < Admin::BaseAdminController
-  include ::Admin::Article::Parameter
+  include ::Admin::Articles::Parameter
 
   before_action :load_article, except: [:index, :new, :create]
 
   def index
-    @articles = Article.all
+    @articles =
+      if Article.statuses.keys.include? params[:type]
+        Article.article_status params[:type]
+      else
+        Article.all
+      end
   end
 
   def show
@@ -23,6 +28,13 @@ class Admin::ArticlesController < Admin::BaseAdminController
   end
 
   def destroy
+    msg = 
+      if @article.destroy
+        "Destroy article successfully"
+      else
+        "Destroy article error"
+      end
+    redirect_to admin_articles_path, notice: msg
   end
 
   private

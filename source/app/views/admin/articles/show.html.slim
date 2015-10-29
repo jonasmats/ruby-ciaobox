@@ -1,6 +1,9 @@
 = render partial: "title", locals: {title: "Detail"}
 p
   | Title:
+  = @article.status
+p
+  | Title:
   = @article.title
 p
   | Author:
@@ -9,5 +12,5 @@ p
   | Created at:
   = @article.created_at
 p
-  | Content
+  | Content:
   = @article.content

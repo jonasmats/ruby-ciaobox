@@ -1,4 +1,4 @@
-module Admin::Article::Parameter
+module Admin::Articles::Parameter
   extend ActiveSupport::Concern
 
   private
