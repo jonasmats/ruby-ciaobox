@@ -19,4 +19,5 @@
 #
 
 class CiaoboxUser::Company < Admin
+  include ::CiaoboxUser::Associations
 end
