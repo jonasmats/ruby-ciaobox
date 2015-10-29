@@ -65,3 +65,5 @@ gem 'globalize', '~> 5.0.0'
 
 # File upload
 gem "paperclip", "~> 4.3"
+# Ckeditor
+gem 'ckeditor'
