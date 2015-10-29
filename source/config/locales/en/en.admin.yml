@@ -39,6 +39,7 @@ en:
       article:
         edit: *edit
         delete: *delete
+        question_destroy: *question_destroy
         view: *view
   layouts:
     dictionary:
