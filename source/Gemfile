@@ -70,5 +70,18 @@ gem 'ckeditor'
 
 # Authorization
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
+
 # Friendly
 gem 'friendly_id', '~> 5.1.0'
+
+group :deployment do
+  gem 'capistrano', '~> 3.3.5'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+  gem 'unicorn'
+  gem 'capistrano-rvm'
+  gem "bower-rails", "~> 0.9.2"
+  gem 'whenever', require: false
+  gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+end
