@@ -1,0 +1,12 @@
+= form_tag admin_password_index_path do |f|
+  .form-group
+    | Current password
+    = password_field :ciaobox_user_password, :current
+  .form-group
+    | New password
+    = password_field :ciaobox_user_password, :new
+  .form-group
+    | Confirm new password
+    = password_field :ciaobox_user_password, :confirm
+  .actions
+    = submit_tag
