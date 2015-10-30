@@ -23,8 +23,29 @@ class Admin < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-  #1. associations
-  # has_one :profile, class_name: CiaoboxUser::Profile.name
-  # 6. instance methods
+  
+  enum status: { un_active: 0, active: 1 }
   delegate :full_name, to: :profile
+
+  #1. associations
+  # 2. scope
+  scope :super_admin, -> {where(type: CiaoboxUser::Super.name)}
+  scope :company_admin, -> {where(type: CiaoboxUser::Company.name)}
+  scope :employee_admins, -> {where(type: CiaoboxUser::Employee.name)}
+
+  scope :latest, -> {order("created_at DESC")}
+  # 6. instance methods
+
+  def super?
+    self.type == CiaoboxUser::Super.name
+  end
+
+  def company?
+    self.type == CiaoboxUser::Company.name
+  end
+
+  def employee?
+    self.type == CiaoboxUser::Employee.name
+  end
+
 end

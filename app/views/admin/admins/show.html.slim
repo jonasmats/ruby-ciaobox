@@ -3,7 +3,7 @@
     .profile-sidebar
       .portlet.light.profile-sidebar-portlet
         .profile-userpic
-          = image_tag @profile.avatar.url(:medium), class: "img-responsive"
+          = image_tag @admin.profile.avatar.url(:medium), class: "img-responsive"
         .profile-usertitle
           .profile-usertitle-name
             |  Name
@@ -16,36 +16,36 @@
               | :
             .col-md-4
               p.form-control-static
-                = @profile.first_name
+                = @admin.profile.first_name
           .form-group
             label.control-label.col-md-3
               = CiaoboxUser::Profile.h :last_name
               | :
             .col-md-4
               p.form-control-static
-                = @profile.last_name
+                = @admin.profile.last_name
           .form-group
             label.control-label.col-md-3
               = CiaoboxUser::Profile.h :username
               | :
             .col-md-4
               p.form-control-static
-                = @profile.username
+                = @admin.profile.username
           .form-group
             label.control-label.col-md-3
               = CiaoboxUser::Profile.h :email
               | :
             .col-md-4
               p.form-control-static
-                = @profile.admin.email
+                = @admin.email
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :created_at
+              = Role.h :name
               | :
             .col-md-4
               p.form-control-static
-                = @profile.admin.created_at
-        .form-actions
-          .row
-            .col-md-offset-3.col-md-4
-              = link_to "Edit profile", edit_admin_profile_path(current_admin.profile), class: "btn green"
+                = @admin.roles.first
+          .form-actions
+            .row
+              .col-md-offset-3.col-md-4
+                = link_to "Edit admin info", edit_admin_admin_path(@admin), class: "btn green"

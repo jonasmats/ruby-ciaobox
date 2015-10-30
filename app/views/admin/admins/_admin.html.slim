@@ -1,0 +1,22 @@
+tr
+  td
+    = admin.profile.username
+  td
+    = admin.email
+  td
+    = admin.roles.first
+  td
+    = admin.status
+    - if admin.employee?
+      | Change
+  td
+    = link_to admin_admin_path(admin), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+    = link_to edit_admin_admin_path(admin), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    - if admin.employee?
+      = link_to admin_admin_path(admin), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+        i.fa.fa-trash-o
+        = t(".delete")

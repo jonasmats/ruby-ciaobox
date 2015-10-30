@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  enum status: { un_active: 0, active: 1 }
+
+  scope :latest, -> {order("created_at DESC")}
 end
