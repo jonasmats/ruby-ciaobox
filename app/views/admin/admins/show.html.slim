@@ -40,6 +40,13 @@
                 = @admin.email
           .form-group
             label.control-label.col-md-3
+              = Admin.h :status
+              | :
+            .col-md-4
+              p.form-control-static
+                = @admin.status
+          .form-group
+            label.control-label.col-md-3
               = Role.h :name
               | :
             .col-md-4

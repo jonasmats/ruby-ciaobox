@@ -1,4 +1,10 @@
 = render partial: "title", locals: {title: "List"}
+
+= search_form_for @q, url: admin_admins_path do |f|
+  | Search admin with email or username
+  = f.search_field :email_or_profile_username_cont
+  = f.submit
+
 .portlet.box.green
   .portlet-title
 

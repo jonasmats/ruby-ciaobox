@@ -1,5 +1,5 @@
 class Admin::AdminsController < Admin::BaseAdminController
-  # include ::Admin::Profile::Parameter
+  include ::Admin::Admins::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
@@ -15,21 +15,26 @@ class Admin::AdminsController < Admin::BaseAdminController
       when CiaoboxUser::Employee.name
         Admin.employee_admins
       end
-    @admins.latest
+    @admins.latest.includes(:profile)
+    @q = @admins.ransack(params[:q])
+    @admins = @q.result
   end
 
   def show
-    unless @admin.super? && current_admin.super?
-      redirect_to admin_admins_path, notice: "Only SuperAdmin see SuperAdmin info"
+    unless current_admin.super?
+      if @admin.super?
+        redirect_to admin_admins_path, notice: "Only SuperAdmin see SuperAdmin info"
+      end
     end
   end
 
   def new
+    @admin.build_profile
   end
 
   def create
-    if @emplyee_admin.save
-      redirect_to admin_admin_path(@emplyee_admin), notice: "Create employee admin sucessfully"
+    if @admin.save
+      redirect_to admin_admin_path(@admin), notice: "Create employee admin sucessfully"
     else
       render :new
     end

@@ -8,31 +8,37 @@
             = Admin.h :email
           .col-md-4
             = f.text_field :email, class: "form-control", placeholder: ""
-      .form-group
-        label.col-md-3.control-label
-          = CiaoboxUser::Profile.h :username
-        .col-md-4
-          = f.text_field :email, class: "form-control", placeholder: ""
-      .form-group
-        label.col-md-3.control-label
-          = CiaoboxUser::Profile.h :first_name
-        .col-md-4
-          = f.text_field :email, class: "form-control", placeholder: ""
-      .form-group
-        label.col-md-3.control-label
-          = CiaoboxUser::Profile.h :last_name
-        .col-md-4
-          = f.text_field :email, class: "form-control", placeholder: ""
-      .form-group
-        label.col-md-3.control-label
-          = CiaoboxUser::Profile.h :avatar
-        .col-md-4
-          = f.text_field :email, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = Admin.h :password
+          .col-md-4
+            = f.password_field :password, class: "form-control", placeholder: "", autocomplete: "off"
+      = f.fields_for :profile do |build|
+        .form-group
+          label.col-md-3.control-label
+            = CiaoboxUser::Profile.h :username
+          .col-md-4
+            = build.text_field :username, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = CiaoboxUser::Profile.h :first_name
+          .col-md-4
+            = build.text_field :first_name, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = CiaoboxUser::Profile.h :last_name
+          .col-md-4
+            = build.text_field :last_name, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = CiaoboxUser::Profile.h :avatar
+          .col-md-4
+            = build.file_field :avatar, class: "form-control", placeholder: ""
       .form-group
         label.col-md-3.control-label
           = Admin.h :status
         .col-md-4
-          = f.text_field :email, class: "form-control", placeholder: ""
+          = f.select :status, options_for_select(Admin.statuses.map{|c| [c[0], c[0]]} , selected: @admin.status), { include_blank: t('.blank')}, {class: "form-control"}
       .form-actions
         .row
           .col-md-offset-3.col-md-4
