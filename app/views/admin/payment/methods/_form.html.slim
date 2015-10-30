@@ -1,0 +1,22 @@
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_for [:admin, @payment_method], html: {class: "form-horizontal"} do |f|
+      / = render "/share/admin_site/form_errors", object: f.object
+      .form-body
+        .form-group
+          label.col-md-3.control-label
+            = Payment::Method.h :payment_type
+          .col-md-4
+            = f.select :payment_type, options_for_select(Payment::Method.payment_types.map{|k, v| [k, k]}, selected: @payment_method.payment_type), { include_blank: t('.blank')}, {class: "form-control"}
+        .form-group
+          label.col-md-3.control-label
+            = Payment::Method.h :name
+          .col-md-4
+            = f.text_field :name, class: "form-control", placeholder: ""
+
+      .form-actions
+        .row
+          .col-md-offset-3.col-md-4
+            = f.submit class: "btn green"
+            = link_to admin_payment_methods_path, class: "btn default" do
+              = t(".cancel")

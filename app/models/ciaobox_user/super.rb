@@ -20,4 +20,6 @@
 
 class CiaoboxUser::Super < Admin
   include ::CiaoboxUser::Associations
+
+  has_many :payment_infors, as: :owner, class_name: ::Payment::Infor.name, dependent: :destroy
 end

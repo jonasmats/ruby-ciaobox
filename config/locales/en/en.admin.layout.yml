@@ -17,3 +17,10 @@ en:
         account_change_password: " Change Password"
         banner_new: *new
         banner_list: *list
+        static_page_new: *new
+        static_page_list: *list
+        payment_label: "Payment management"
+        payment_method_new: *new
+        payment_method_list: *list
+        payment_infor_new: *new
+        payment_infor_list: *list

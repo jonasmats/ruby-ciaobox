@@ -76,6 +76,8 @@ gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 # Friendly
 gem 'friendly_id', '~> 5.1.0'
+# A wrapper for MailChimp API 3.0
+gem 'gibbon', '~> 2.1'
 
 # ransack
 gem 'ransack'

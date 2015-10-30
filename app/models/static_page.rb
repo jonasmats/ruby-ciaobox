@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: static_pages
+#
+#  id         :integer          not null, primary key
+#  title      :string           not null
+#  slug       :string           not null
+#  status     :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class StaticPage < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged

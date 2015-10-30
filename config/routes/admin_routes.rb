@@ -16,5 +16,10 @@ Rails.application.routes.draw do
     resources :banners
     resources :admins
     resources :users
+
+    namespace :payment do
+      resources :methods
+      resources :infors
+    end
   end
 end
