@@ -13,7 +13,11 @@
             = CiaoboxUser::Profile.h :last_name
           .col-md-4
             = f.text_field :last_name, class: "form-control", placeholder: ""
-
+        .form-group
+          label.col-md-3.control-label
+            = CiaoboxUser::Profile.h :username
+          .col-md-4
+            = f.text_field :username, class: "form-control", placeholder: ""
         .form-group.last
           label.col-md-3.control-label
             = CiaoboxUser::Profile.h :avatar

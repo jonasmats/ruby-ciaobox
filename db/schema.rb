@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(version: 20151029143161) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "type",                                null: false
+    t.integer  "status",                              null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "type"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -73,15 +74,17 @@ ActiveRecord::Schema.define(version: 20151029143161) do
     t.integer  "admin_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.string   "username"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   add_index "ciaobox_user_profiles", ["admin_id"], name: "index_ciaobox_user_profiles_on_admin_id", using: :btree
+  add_index "ciaobox_user_profiles", ["username"], name: "index_ciaobox_user_profiles_on_username", unique: true, using: :btree
 
   create_table "ciaobox_user_users_roles", force: :cascade do |t|
     t.integer  "admin_id"
@@ -227,6 +230,7 @@ ActiveRecord::Schema.define(version: 20151029143161) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "status",                              null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

@@ -48,6 +48,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'annotate'
+
+  # check N+1 query
+  gem 'bullet'
 end
 
 gem "config"
@@ -73,6 +76,9 @@ gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 # Friendly
 gem 'friendly_id', '~> 5.1.0'
+
+# ransack
+gem 'ransack'
 
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
