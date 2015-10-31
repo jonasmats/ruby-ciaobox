@@ -22,8 +22,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  
+  delegate :full_name, to: :profile
   enum status: { un_active: 0, active: 1 }
 
+  # 1. associations
+  has_one :profile, class_name: User::Profile.name, foreign_key: :user_id
+  accepts_nested_attributes_for :profile, allow_destroy: true
+  # 2. scopes
   scope :latest, -> {order("created_at DESC")}
 end

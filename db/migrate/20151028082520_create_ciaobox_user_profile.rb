@@ -4,10 +4,9 @@ class CreateCiaoboxUserProfile < ActiveRecord::Migration
       t.references :admin, index: true, foreign_key: true
       t.string :first_name
       t.string :last_name
-      t.string :username
+      t.string :username, index: true, unique: true
       t.attachment :avatar
       t.timestamps null: false
     end
-    add_index :ciaobox_user_profiles, :username, unique: :true
   end
 end

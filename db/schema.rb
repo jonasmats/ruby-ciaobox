@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029143161) do
+ActiveRecord::Schema.define(version: 20151031091222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20151029143161) do
   end
 
   add_index "ciaobox_user_profiles", ["admin_id"], name: "index_ciaobox_user_profiles_on_admin_id", using: :btree
-  add_index "ciaobox_user_profiles", ["username"], name: "index_ciaobox_user_profiles_on_username", unique: true, using: :btree
+  add_index "ciaobox_user_profiles", ["username"], name: "index_ciaobox_user_profiles_on_username", using: :btree
 
   create_table "ciaobox_user_users_roles", force: :cascade do |t|
     t.integer  "admin_id"
@@ -219,6 +219,22 @@ ActiveRecord::Schema.define(version: 20151029143161) do
 
   add_index "static_pages", ["slug"], name: "index_static_pages_on_slug", unique: true, using: :btree
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
+  add_index "user_profiles", ["username"], name: "index_user_profiles_on_username", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -244,4 +260,5 @@ ActiveRecord::Schema.define(version: 20151029143161) do
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
   add_foreign_key "permissions", "roles"
+  add_foreign_key "user_profiles", "users"
 end

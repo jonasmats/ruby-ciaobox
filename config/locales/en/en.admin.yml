@@ -64,6 +64,17 @@ en:
         delete: *delete
         question_destroy: *question_destroy
         view: *view
+    users:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        blank: *blank
+      user:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy
+        view: *view
     banners:
       index:
         action: *action
