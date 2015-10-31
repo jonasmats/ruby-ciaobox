@@ -18,6 +18,11 @@ class Admin::AdminsController < Admin::BaseAdminController
     @admins.latest.includes(:profile)
     @q = @admins.ransack(params[:q])
     @admins = @q.result
+    respond_to do |format|
+      format.html
+      format.csv { send_data @admins.to_csv }
+      # format.xls { send_data @admins.to_csv(col_sep: "\t") }
+    end
   end
 
   def show
