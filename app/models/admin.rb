@@ -19,7 +19,7 @@
 #
 
 class Admin < ActiveRecord::Base
-  require 'csv'
+  # require 'csv'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
@@ -38,29 +38,29 @@ class Admin < ActiveRecord::Base
   scope :latest, -> {order("created_at DESC")}
 
   #3. class methods
-  class << self
-    def to_csv(options = {})
-      CSV.generate(options) do |csv|
-        columns = ["#", 
-          "#{Admin.h :email}", 
-          "#{CiaoboxUser::Profile.h :username}", 
-          "#{CiaoboxUser::Profile.h :first_name}", 
-          "#{CiaoboxUser::Profile.h :last_name}", 
-          "#{Admin.h :status}"]
-        csv << columns
-        all.select(:id, :email, :status).each.with_index(1) do |admin, index|
-          row = []
-          row << index
-          row << admin.email
-          row << admin.profile.username
-          row << admin.profile.first_name
-          row << admin.profile.last_name
-          row << admin.status
-          csv << row
-        end
-      end
-    end
-  end
+  # class << self
+  #   def to_csv(options = {})
+  #     CSV.generate(options) do |csv|
+  #       columns = ["#", 
+  #         "#{Admin.h :email}", 
+  #         "#{CiaoboxUser::Profile.h :username}", 
+  #         "#{CiaoboxUser::Profile.h :first_name}", 
+  #         "#{CiaoboxUser::Profile.h :last_name}", 
+  #         "#{Admin.h :status}"]
+  #       csv << columns
+  #       all.select(:id, :email, :status).each.with_index(1) do |admin, index|
+  #         row = []
+  #         row << index
+  #         row << admin.email
+  #         row << admin.profile.username
+  #         row << admin.profile.first_name
+  #         row << admin.profile.last_name
+  #         row << admin.status
+  #         csv << row
+  #       end
+  #     end
+  #   end
+  # end
   # 6. instance methods
 
   def super?
