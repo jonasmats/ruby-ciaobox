@@ -20,7 +20,8 @@ class Admin::AdminsController < Admin::BaseAdminController
     @admins = @q.result
     respond_to do |format|
       format.html
-      format.csv { send_data Export.admins_to_csv(@admins), filename: "Ciaobox_Admins_#{Time.current}.csv" }
+      format.csv { send_data Export.admins_to_csv @admins, filename: "Ciaobox_Admins_#{Time.current}.csv" }
+      format.xls # { filename: "Ciaobox_Admins_#{Time.current}.xls" }
     end
   end
 
