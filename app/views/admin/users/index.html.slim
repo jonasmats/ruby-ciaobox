@@ -1,7 +1,7 @@
 = render partial: "title", locals: {title: "List"}
 
-= search_form_for @q, url: admin_admins_path do |f|
-  | Search admin with email or username
+= search_form_for @q, url: admin_users_path do |f|
+  | Search user with email or username
   = f.search_field :email_or_profile_username_cont
   = f.submit
 
@@ -13,14 +13,12 @@
       thead.flip-content
         tr
           th
-            = CiaoboxUser::Profile.h :username
+            = User::Profile.h :username
           th
-            = Admin.h :email
+            = User.h :email
           th
-            = Admin.h :role
-          th
-            = Admin.h :status
+            = User.h :status
           th
             = t(".action")
       tbody
-      = render partial: 'admin', collection: @admins
+      = render partial: 'user', collection: @users

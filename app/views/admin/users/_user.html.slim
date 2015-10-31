@@ -1,0 +1,21 @@
+tr
+  td
+    = user.profile.username
+  td
+    = user.email
+  td
+    = user.status
+    - if user.active?
+      = link_to "Change to unactive", admin_user_path(user, "user[status]" => User.statuses.keys[0]), method: :patch
+    - else
+      = link_to "Change to active", admin_user_path(user, "user[status]" => User.statuses.keys[1]), method: :patch
+  td
+    = link_to admin_user_path(user), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+    = link_to edit_admin_user_path(user), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_user_path(user), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

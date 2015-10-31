@@ -3,7 +3,7 @@
     .profile-sidebar
       .portlet.light.profile-sidebar-portlet
         .profile-userpic
-          = image_tag @admin.profile.avatar.url(:medium), class: "img-responsive"
+          = image_tag @user.profile.avatar.url(:medium), class: "img-responsive"
         .profile-usertitle
           .profile-usertitle-name
             |  Name
@@ -12,47 +12,40 @@
         .form-body.form-horizontal
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :first_name
+              = User::Profile.h :first_name
               | :
             .col-md-4
               p.form-control-static
-                = @admin.profile.first_name
+                = @user.profile.first_name
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :last_name
+              = User::Profile.h :last_name
               | :
             .col-md-4
               p.form-control-static
-                = @admin.profile.last_name
+                = @user.profile.last_name
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :username
+              = User::Profile.h :username
               | :
             .col-md-4
               p.form-control-static
-                = @admin.profile.username
+                = @user.profile.username
           .form-group
             label.control-label.col-md-3
-              = Admin.h :email
+              = User.h :email
               | :
             .col-md-4
               p.form-control-static
-                = @admin.email
+                = @user.email
           .form-group
             label.control-label.col-md-3
-              = Admin.h :status
+              = User.h :status
               | :
             .col-md-4
               p.form-control-static
-                = @admin.status
-          .form-group
-            label.control-label.col-md-3
-              = Role.h :name
-              | :
-            .col-md-4
-              p.form-control-static
-                = @admin.roles.first
+                = @user.status
           .form-actions
             .row
               .col-md-offset-3.col-md-4
-                = link_to "Edit admin info", edit_admin_admin_path(@admin), class: "btn green"
+                = link_to "Edit user info", edit_admin_user_path(@user), class: "btn green"
