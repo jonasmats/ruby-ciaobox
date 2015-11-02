@@ -68,6 +68,8 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-faster-assets (1.0.2)
+      capistrano (>= 3.1)
     capistrano-rails (1.1.5)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -322,6 +324,7 @@ DEPENDENCIES
   cancancan (~> 1.13, >= 1.13.1)
   capistrano (~> 3.3.5)
   capistrano-bundler
+  capistrano-faster-assets (~> 1.0)
   capistrano-rails (~> 1.1.0)
   capistrano-rvm
   capistrano-sidekiq!
