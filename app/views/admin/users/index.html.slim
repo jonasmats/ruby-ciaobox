@@ -5,6 +5,10 @@
   = f.search_field :email_or_profile_username_cont
   = f.submit
 
+= link_to "Download to CSV", admin_users_path(format: "csv")
+br
+= link_to "Download to XLS", admin_users_path(format: "xls")
+
 .portlet.box.green
   .portlet-title
 

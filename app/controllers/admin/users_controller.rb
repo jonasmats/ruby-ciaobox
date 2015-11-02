@@ -9,6 +9,11 @@ class Admin::UsersController < Admin::BaseAdminController
     @users = User.all.latest.includes(:profile)
     @q = @users.ransack(params[:q])
     @users = @q.result
+    respond_to do |format|
+      format.html
+      format.csv { send_data Export.users_to_csv(@users), filename: "Ciaobox_Users_#{Time.current}.csv" }
+      format.xls # { filename: "Ciaobox_Users_#{Time.current}.xls" }
+    end
   end
 
   def show
