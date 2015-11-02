@@ -1,0 +1,24 @@
+= render partial: "title", locals: {title: "List"}
+
+= search_form_for @q, url: admin_users_path do |f|
+  | Search user with email or username
+  = f.search_field :email_or_profile_username_cont
+  = f.submit
+
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = User::Profile.h :username
+          th
+            = User.h :email
+          th
+            = User.h :status
+          th
+            = t(".action")
+      tbody
+      = render partial: 'user', collection: @users
