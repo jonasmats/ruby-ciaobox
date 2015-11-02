@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031091222) do
+ActiveRecord::Schema.define(version: 20151031052815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,27 @@ ActiveRecord::Schema.define(version: 20151031091222) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "payment_infors", force: :cascade do |t|
+    t.integer  "owner_id",          null: false
+    t.string   "owner_type",        null: false
+    t.integer  "payment_method_id", null: false
+    t.hstore   "infors",            null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "payment_infors", ["owner_id", "owner_type", "payment_method_id"], name: "index_for_payment_infors", using: :btree
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer  "payment_type"
+    t.string   "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "payment_methods", ["payment_type", "name"], name: "index_payment_methods_on_payment_type_and_name", unique: true, using: :btree
+
   create_table "permissions", force: :cascade do |t|
     t.integer  "role_id",    null: false
     t.string   "entity",     null: false
@@ -259,6 +280,7 @@ ActiveRecord::Schema.define(version: 20151031091222) do
   add_foreign_key "ciaobox_user_users_roles", "admins"
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
+  add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
   add_foreign_key "user_profiles", "users"
 end

@@ -1,0 +1,11 @@
+= render partial: "title", locals: {title: "Detail"}
+p
+  strong
+    = Payment::Method.h :payment_type
+    | :
+  = @payment_method.payment_type
+p
+  strong
+    = Payment::Method.h :name
+    | :
+  = @payment_method.name

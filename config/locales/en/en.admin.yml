@@ -99,3 +99,28 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+    payment:
+      methods:
+        index:
+          action: *action
+          new: *new
+        form:
+          submit: *submit
+          blank: *blank
+          option_label: "Option Label"
+        payment_method:
+          edit: *edit
+          delete: *delete
+          question_destroy: *question_destroy
+      infors:
+        index:
+          action: *action
+          new: *new
+        form:
+          submit: *submit
+          blank: *blank
+          option_label: "Option Label"
+        payment_infor:
+          edit: *edit
+          delete: *delete
+          question_destroy: *question_destroy

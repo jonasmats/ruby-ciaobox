@@ -1,0 +1,12 @@
+tr
+  td
+    = payment_method.payment_type
+  td
+    = payment_method.name
+  td
+    = link_to edit_admin_payment_method_path(payment_method.id), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_payment_method_path(payment_method.id), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

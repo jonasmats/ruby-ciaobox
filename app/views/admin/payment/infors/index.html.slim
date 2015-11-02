@@ -1,0 +1,16 @@
+= render partial: "title", locals: {title: "List"}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = Payment::Infor.h :payment_method
+          th
+            = Payment::Infor.h :infors
+          th
+            = t(".action")
+      tbody
+      = render partial: 'payment_infor', collection: @payment_infors
