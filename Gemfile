@@ -90,4 +90,5 @@ group :deployment do
   gem "bower-rails", "~> 0.9.2"
   gem 'whenever', require: false
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+  gem 'capistrano-faster-assets', '~> 1.0'
 end
