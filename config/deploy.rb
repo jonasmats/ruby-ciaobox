@@ -24,7 +24,7 @@ set :log_level, :debug
 set :branch, "staging"
 # Default value for :pty is false
 # set :pty, true
-
+set :bundle_path, nil
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
