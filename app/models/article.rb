@@ -20,5 +20,5 @@ class Article < ActiveRecord::Base
   # 2. scope
   scope :article_status, -> (status)  {where(status: statuses[status])}
   # 4. validates
-  validates :admin, :title, :content, presence: true
+  validates :admin, :title, :content, :status, presence: true
 end

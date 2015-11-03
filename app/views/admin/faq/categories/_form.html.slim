@@ -1,6 +1,7 @@
 .portlet.light.bg-inverse
   .portlet-body.form
     = form_for [:admin, @category], html: {class: "form-horizontal"} do |f|
+      = render "/layouts/shared/form_errors/admin", object: f.object
       .form-body
         .form-group.last
           label.col-md-3.control-label
