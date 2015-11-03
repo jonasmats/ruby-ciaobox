@@ -4,7 +4,7 @@ module Admin::Profile::Parameter
   private
     def private_params
       if params[:ciaobox_user_profile]
-        params.require(:ciaobox_user_profile).permit(:first_name, :last_name, :avatar, :username, :status)
+        params.require(:ciaobox_user_profile).permit(:first_name, :last_name, :avatar, :status)
       end
     end
 end

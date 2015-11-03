@@ -16,7 +16,6 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.create_profile(
           first_name: auth.info.first_name,
           last_name: auth.info.last_name,
-          username: auth.info.username,
           avatar: process_uri(auth.info.image)
         )
       end
