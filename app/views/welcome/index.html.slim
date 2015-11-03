@@ -1,0 +1,136 @@
+= render partial: "layouts/frontend/home_banner"
+section.section-1.clearfix
+  .container
+    h4
+      | Start your own cloud
+    h2
+      | How it works
+    .work-row.clearfix
+      .work-box
+        figure
+          = image_tag "images/work-img-1.jpg", class: "img-responsive", alt: "#"
+        h3
+          | Deliver
+        p
+          | Lorem ipsum dolor sit amet elit consectetur adipiscing
+      .work-box
+        figure
+          = image_tag "images/work-img-2.jpg", class: "img-responsive", alt: "#"
+          h3
+            | Storage
+        p
+          | Lorem ipsum dolor sit amet elit consectetur adipiscing
+      .work-box
+        figure
+          = image_tag "images/work-img-3.jpg", class: "img-responsive", alt: "#"
+        h3
+          | Manage
+        p
+          | Lorem ipsum dolor sit amet elit consectetur adipiscing
+section.section-2.section-home-2
+  .container
+    = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h2
+      | Why Ciao
+      span
+        | Box?
+    p
+      | Easy storage. Easy manage
+section.tabing.clearfix
+  .container
+    ul.nav.nav-tabs[role="tablist"]
+      li.active[role="presentation"]
+        a[href="#home" aria-controls="home" role="tab" data-toggle="tab"]
+          | Cloud facility
+      li[role="presentation"]
+        a[href="#profile" aria-controls="profile" role="tab" data-toggle="tab"]
+          | Innovative services
+      li[role="presentation"]
+        a[href="#messages" aria-controls="messages" role="tab" data-toggle="tab"]
+          | Cloud storage
+      li.last-br[role="presentation"]
+        a[href="#settings" aria-controls="settings" role="tab" data-toggle="tab"]
+          | Secure solution
+    .tab-content
+      #home.tab-pane.clearfix.active[role="tabpanel"]
+        .tabpanel-left
+          h2
+            | Delivers high quality eco-friendly plastic bins
+          p
+            | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt ipsa rem explicabo.
+          input.pricing-bt[type="button" value="Get Pricing"]
+        .tabpanel-right
+          .p-1
+            | On-Demand
+          .p-2
+            | Good Services
+          .p-3
+            | Organized
+          .p-4
+            | Secure Storage
+      #profile.tab-pane.clearfix[role="tabpanel"]
+        .tabpanel-left
+          h2
+            | Delivers high quality eco-friendly plastic bins
+          p
+            | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt ipsa rem explicabo.
+          input.pricing-bt[type="button" value="Get Pricing"]
+        .tabpanel-right
+          = image_tag "images/tab-box.png", class: "img-responsive", alt: "#"
+          .p-1
+            | On-Demand
+          .p-2
+            | Good Services
+          .p-3
+            | Organized
+          .p-4
+            | Secure Storage
+      #messages.tab-pane.clearfix[role="tabpanel"]
+        .tabpanel-left
+          h2
+            | Delivers high quality eco-friendly plastic bins
+          p
+            | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt ipsa rem explicabo.
+          input.pricing-bt[type="button" value="Get Pricing"]
+        .tabpanel-right
+          = image_tag "images/tab-box.png", class: "img-responsive", alt: "#"
+          .p-1
+            | On-Demand
+          .p-2
+            | Good Services
+          .p-3
+            | Organized
+          .p-4
+            | Secure Storage
+      #settings.tab-pane.clearfix[role="tabpanel"]
+        .tabpanel-left
+          h2
+            | Delivers high quality eco-friendly plastic bins
+          p
+            | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt ipsa rem explicabo.
+          input.pricing-bt[type="button" value="Get Pricing"]
+        .tabpanel-right
+          = image_tag "images/tab-box.png", class: "img-responsive", alt: "#"
+          .p-1
+            | On-Demand
+          .p-2
+            | Good Services
+          .p-3
+            | Organized
+          .p-4
+            | Secure Storage
+section.slider.wrapper.clearfix
+  h2
+    | Explore the world of MakeSpace
+  .slide-image
+
+section.map-section.wrapper
+  h2
+    | Our coverage area
+  p
+    | We're just getting started
+  figure
+
+  h3
+    | Ready to order now?
+  input.place-bt-2[type="button" value="Place Order"]
