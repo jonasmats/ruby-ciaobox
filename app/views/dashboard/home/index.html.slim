@@ -1,3 +1,4 @@
 p
   | Welcome
+= image_tag current_user.profile.avatar.url(:medium), class: "img-responsive"
 = link_to "Logout", destroy_user_session_path, method: :delete
