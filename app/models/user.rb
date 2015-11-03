@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   
   delegate :full_name, to: :profile
   enum status: { un_active: 0, active: 1 }
@@ -31,4 +32,14 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, allow_destroy: true
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
+
+  def self.from_omniauth(auth)
+    where(email: auth.info.email).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.status = User.statuses[:active]
+    end
+  end
 end
