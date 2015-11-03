@@ -1,0 +1,41 @@
+header class=[@header_class]
+  .container.clearfix
+    .logo
+      a.new-logo[href="index.html" title="Ciao Box"]
+        = image_tag "images/top-logo.png"
+      a.old-logo[href="index.html" title="Ciao Box"]
+        = image_tag "images/float-logo.png"
+    .build
+      | Build your 
+      span
+        | own cloud
+    nav
+      ul.clearfix
+        li
+          a[href="index.html"]
+            | Home
+        li
+          a[href="about.html"]
+            | About
+        li
+          a[href="prices.html"]
+            | Prices
+        li
+          a[href="faq.html"]
+            | FAQ
+        li
+          a[href="contact.html"]
+            | Contact
+    #sb-toggle-left 
+      a.menu-bt.sb-toggle-left[href="#"]
+        span
+        span
+        span
+    .right
+      .nav-2.clearfix
+        ul
+          li
+            a[href="#"]
+              | EN
+      a.sign-in[href="signin.html" title="Sign In"]
+        | Sign In
