@@ -2,7 +2,7 @@
 
 = search_form_for @q, url: admin_admins_path do |f|
   | Search admin with email or username
-  = f.search_field :email_or_profile_username_cont
+  = f.search_field :email_or_username_cont
   = f.submit
 
 = link_to "Download to CSV", admin_admins_path(format: "csv")

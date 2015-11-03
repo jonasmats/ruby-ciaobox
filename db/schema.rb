@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151103082614) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "username"
     t.string   "type",                                null: false
     t.integer  "status",                              null: false
     t.datetime "created_at",                          null: false
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20151103082614) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  add_index "admins", ["username"], name: "index_admins_on_username", using: :btree
 
   create_table "article_translations", force: :cascade do |t|
     t.integer  "article_id", null: false
@@ -74,7 +76,6 @@ ActiveRecord::Schema.define(version: 20151103082614) do
     t.integer  "admin_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "username"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -84,7 +85,6 @@ ActiveRecord::Schema.define(version: 20151103082614) do
   end
 
   add_index "ciaobox_user_profiles", ["admin_id"], name: "index_ciaobox_user_profiles_on_admin_id", using: :btree
-  add_index "ciaobox_user_profiles", ["username"], name: "index_ciaobox_user_profiles_on_username", using: :btree
 
   create_table "ciaobox_user_users_roles", force: :cascade do |t|
     t.integer  "admin_id"
@@ -244,7 +244,6 @@ ActiveRecord::Schema.define(version: 20151103082614) do
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "username"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -254,7 +253,6 @@ ActiveRecord::Schema.define(version: 20151103082614) do
   end
 
   add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
-  add_index "user_profiles", ["username"], name: "index_user_profiles_on_username", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -267,6 +265,7 @@ ActiveRecord::Schema.define(version: 20151103082614) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "username"
     t.integer  "status",                              null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -276,6 +275,7 @@ ActiveRecord::Schema.define(version: 20151103082614) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   add_foreign_key "articles", "admins"
   add_foreign_key "ciaobox_user_profiles", "admins"

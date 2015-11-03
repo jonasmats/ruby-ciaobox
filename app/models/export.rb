@@ -10,7 +10,7 @@ class Export
           "#{CiaoboxUser::Profile.h :last_name}", 
           "#{Admin.h :status}"]
         csv << columns
-        admins.select(:id, :email, :status).each.with_index(1) do |admin, index|
+        admins.select(:id, :email, :status, :username).each.with_index(1) do |admin, index|
           row = []
           row << index
           row << admin.email
@@ -32,7 +32,7 @@ class Export
           "#{User::Profile.h :last_name}", 
           "#{User.h :status}"]
         csv << columns
-        users.select(:id, :email, :status).each.with_index(1) do |user, index|
+        users.select(:id, :email, :status, :username).each.with_index(1) do |user, index|
           row = []
           row << index
           row << user.email
