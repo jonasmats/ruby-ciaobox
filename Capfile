@@ -20,6 +20,7 @@ require 'capistrano/rails'
 require 'capistrano/unicorn_nginx'
 require "whenever/capistrano"
 require 'capistrano/sidekiq'
+require 'capistrano/faster_assets'
 
 # require 'capistrano/rvm'
 # require 'capistrano/rbenv'

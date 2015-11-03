@@ -25,7 +25,7 @@ server ip_address,
   my_property: :my_value
 
 
-set :rails_env, 'staging'
+set :rails_env, 'production'
 
 set :bundle_flags, "--no-deployment"
 

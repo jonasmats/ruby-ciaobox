@@ -19,11 +19,12 @@ set :deploy_to, '/home/ubuntu/ciaobox'
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :debug
 
+set :branch, "staging"
 # Default value for :pty is false
 # set :pty, true
-
+set :bundle_path, nil
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
@@ -46,7 +47,8 @@ namespace :bower do
     end
   end
 end
-before 'deploy:compile_assets', 'bower:install'
+
+#before 'deploy:compile_assets', 'bower:install'
 
 namespace :deploy do
   desc 'Invoke a rake command'

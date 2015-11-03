@@ -19,4 +19,4 @@ production:
   <<: *default
   database: ciaobox_production
   username: ciaobox
-  password: <%= ENV['CIAOBOX_DATABASE_PASSWORD'] %>
+  password: "1"
