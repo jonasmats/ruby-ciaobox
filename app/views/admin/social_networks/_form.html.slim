@@ -1,5 +1,5 @@
 = form_for [:admin, @social_network] do |f|
-  / = render "/share/admin_site/form_errors", object: f.object
+  = render "/layouts/shared/form_errors/admin", object: f.object
   .form-group
     = SocialNetwork.h :link
     = f.text_field :link

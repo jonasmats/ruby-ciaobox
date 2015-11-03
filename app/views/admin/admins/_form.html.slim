@@ -1,6 +1,7 @@
 .portlet.light.bg-inverse
   .portlet-body.form
     = form_for [:admin, @admin], url: (@admin.new_record?  ? admin_admins_path : admin_admin_path), html: {class: "form-horizontal"} do |f|
+      = render "/layouts/shared/form_errors/admin", object: f.object
       .form-body
       - if @admin.new_record?
         .form-group
