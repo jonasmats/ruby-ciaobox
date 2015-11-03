@@ -163,6 +163,28 @@
             = link_to admin_banners_path do
               i.fa.fa-list-ol
               = t(".banner_list")
+      li
+        a[href="javascript:;"]
+          i.icon-folder
+          span.title
+            | User management
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_users_path do
+              i.fa.fa-list-ol
+              = t(".banner_list")
+      li
+        a[href="javascript:;"]
+          i.icon-folder
+          span.title
+            | Admin management
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_admins_path do
+              i.fa.fa-list-ol
+              = t(".banner_list")
       li.heading
         h3.uppercase
           | More
