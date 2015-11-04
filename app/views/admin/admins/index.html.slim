@@ -11,11 +11,11 @@ br
 br
 = link_to "Import file", new_admin_import_admin_path
 br
-- if flash[:notice].present?
+- if flash[:alert].present?
   h2
     | This is email exists
-  - flash[:notice].each do |error|
-    li= error
+    - flash[:alert].each do |error|
+      li= error
 br
 .portlet.box.green
   .portlet-title
