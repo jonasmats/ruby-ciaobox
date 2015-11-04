@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   draw :dashboard_routes
   draw :public_routes
   draw :devise_routes
+  draw :api_v1
 end
