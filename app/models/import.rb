@@ -32,7 +32,7 @@ class Import
       else
       # save to user
         user = User.new
-        user.attributes = row.to_hash.slice(*row.to_hash.keys)\
+        user.attributes = row.to_hash.slice(*row.to_hash.keys)
         user.password = '1'
         user.save!
         #save to profile
