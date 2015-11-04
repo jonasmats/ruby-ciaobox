@@ -1,0 +1,7 @@
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = label_tag 'Select an Excel File :'
+    = form_tag import_file_admin_admins_path, multipart: true do
+      = file_field_tag :file, class: 'form-control',  accept: ".csv,.xlsx"
+      br
+      = submit_tag "Import", class: 'btn btn-primary'
