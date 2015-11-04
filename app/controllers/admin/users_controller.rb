@@ -52,14 +52,6 @@ class Admin::UsersController < Admin::BaseAdminController
     redirect_to admin_users_path, notice: msg
   end
 
-  def import
-  end
-
-  def import_file
-    User.import(params[:file])
-    redirect_to admin_users_path
-  end
-
   private
   def load_instance
     @user = User.find(params[:id])
