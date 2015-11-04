@@ -54,6 +54,53 @@
 //= require jquery_ujs
 /* CK Editor*/
 //= require ckeditor/init
+
+function ActiveSideBarMenu(options) {
+  var module = this;
+  var defaults = {
+    url: window.location.pathname,
+    menu: $('.page-sidebar-menu'),
+  };
+
+  module.settings = $.extend({}, defaults, options);
+  module.activeAbsolute = function() {
+    var found = module.settings.menu.find('a[href="'+ module.settings.url +'"]');
+    if (found.length == 1) {
+      var current_tab = found[0];
+      var all_tabs = $(current_tab).parents('li');
+      for (i = 0; i < all_tabs.length; i++) {
+        var $li = $(all_tabs[i]);
+        var has_sub_menu = $li.has("ul.sub-menu");
+        if (has_sub_menu) {
+          $li.addClass('active open');
+          $li.children('a').children('span.arrow').addClass('open');
+        } else {
+          $li.addClass('active');
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  module.activeRelation = function() {
+    return false;
+  }
+
+  module.activeDefault = function() {
+    
+  }
+  module.init = function() {
+    var isActiveAbsolue = module.activeAbsolute();
+    if (!isActiveAbsolue) {
+      var isActiveReation = module.activeRelation();
+      if (!isActiveReation) {
+        module.activeDefault();
+      }
+    }
+  }
+}
+
 jQuery(document).ready(function() {
   Metronic.init(); // init metronic core componets
   Layout.init(); // init layout
@@ -67,4 +114,8 @@ jQuery(document).ready(function() {
   Index.initChat();
   Index.initMiniCharts();
   Tasks.initDashboardWidget();
+
+  var activeSideBarMenu = new ActiveSideBarMenu();
+  activeSideBarMenu.init();
+
 });
