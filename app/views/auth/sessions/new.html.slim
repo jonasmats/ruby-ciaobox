@@ -1,22 +1,28 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
+= render partial: "layouts/frontend/header"
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Login Account
 
-= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+section.signin-main
+  .container
+    .signin-main-left
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "signin-form"}) do |f|
+        .signin-field
+          = f.email_field :email, autofocus: true, placeholder: "Email Address"
+        .signin-field.signin-last
+          = f.password_field :password, autocomplete: "off", placeholder: "Password"
+          span
+            | Must be at least 8 characters long
+          a[href="#" title="Forgot Password?"]
+            | Forgot Password?
+        .signin-submit
+          = f.submit "Log in"
+    .signin-main-right
+      span
+        | or
+      = render partial: "layouts/frontend/account/social_invite"
 
-= render "auth/shared/links"
+= render partial: "layouts/frontend/account/section_work"
