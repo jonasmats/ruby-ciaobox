@@ -3,12 +3,11 @@ class Admin::ImportAdminsController < Admin::BaseAdminController
   end
 
   def create
-    if params[:file]
+    if params[:file].present?
       flash[:notice] = Import.import_admins(params[:file])
       redirect_to admin_admins_path
     else
-      flash[:notice] = 'Please choice file'
-      redirect_to new_admin_import_admin_path
+      redirect_to new_admin_import_admin_path, notice: 'Please choice file'
     end
   end
 end

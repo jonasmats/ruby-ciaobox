@@ -2,7 +2,7 @@
   .portlet-body.form
     = label_tag 'Select an Excel File :'
     = form_tag admin_import_admins_path, multipart: true do
-      = file_field_tag :file, class: 'form-control',  accept: ".csv,.xlsx"
+      = file_field_tag :file, class: 'form-control',  accept: ".csv,.xlsx,.xls"
       - if flash[:notice].present?
         li= flash[:notice]
       br

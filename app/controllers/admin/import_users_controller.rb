@@ -7,8 +7,7 @@ class Admin::ImportUsersController < Admin::BaseAdminController
       flash[:notice] = Import.import_users(params[:file])
       redirect_to admin_users_path
     else
-      flash[:notice] = 'Please choice file'
-      redirect_to new_admin_import_user_path
+      redirect_to new_admin_import_user_path, notice: 'Please choice file'
     end
   end
 end

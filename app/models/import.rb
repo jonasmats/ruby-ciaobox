@@ -32,13 +32,11 @@ class Import
       else
       # save to user
         user = User.new
-        user.attributes = row.to_hash.slice(*row.to_hash.keys)
-        user.id = (User.last.id + 1) if user.id.blank?
+        user.attributes = row.to_hash.slice(*row.to_hash.keys)\
         user.password = '1'
         user.save!
         #save to profile
         profile = user.build_profile
-        profile.id = (::User::Profile.last.id + 1)
         profile.attributes = profile_row
         profile.save!
       end
@@ -68,15 +66,12 @@ class Import
       # save to admin
         admin = Admin.new
         admin.attributes = row.to_hash.slice(*row.to_hash.keys)
-        binding.pry
-        admin.id = (Admin.last.id + 1)
         admin.password = '1'
         admin.type = ::CiaoboxUser::Employee.name
         admin.save!
 
         #save to profile
         profile = admin.build_profile
-        profile.id = (::User::Profile.last.id + 1)
         profile.attributes = profile_row
         profile.save!
       end
