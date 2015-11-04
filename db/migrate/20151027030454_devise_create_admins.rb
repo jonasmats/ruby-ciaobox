@@ -31,7 +31,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration
       # t.datetime :locked_at
       t.string :username, index: true, unique: true
       t.string :type, null: false
-      t.integer :status, null: false
+      t.integer :status, null: false, default: 1
       t.timestamps null: false
     end
 
