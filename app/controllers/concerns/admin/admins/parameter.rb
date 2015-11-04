@@ -5,8 +5,8 @@ module Admin::Admins::Parameter
     def private_params
       if params[:ciaobox_user_employee]
         params.require(:ciaobox_user_employee)
-          .permit(:email, :status, :password, 
-            profile_attributes: [:id, :first_name, :last_name, :username, :avatar, :admin_id])
+          .permit(:email, :username, :status, :password, 
+            profile_attributes: [:id, :first_name, :last_name, :avatar, :admin_id])
       end
     end
 end

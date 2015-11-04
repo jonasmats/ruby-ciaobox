@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.provider = auth.provider
       user.uid = auth.uid
+      user.username = auth.username
       user.status = User.statuses[:active]
     end
   end

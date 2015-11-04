@@ -29,7 +29,7 @@ class Admin < ActiveRecord::Base
   delegate :full_name, to: :profile
 
   #1. associations
-  has_one :profile, class_name: CiaoboxUser::Profile.name, foreign_key: :admin_id
+  has_one :profile, class_name: ::CiaoboxUser::Profile.name, foreign_key: :admin_id
   # 2. scope
   scope :super_admin, -> {where(type: CiaoboxUser::Super.name)}
   scope :company_admin, -> {where(type: CiaoboxUser::Company.name)}

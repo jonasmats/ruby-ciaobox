@@ -14,12 +14,12 @@
             = Admin.h :password
           .col-md-4
             = f.password_field :password, class: "form-control", placeholder: "", autocomplete: "off"
-      = f.fields_for :profile do |build|
         .form-group
           label.col-md-3.control-label
-            = CiaoboxUser::Profile.h :username
+            = Admin.h :username
           .col-md-4
-            = build.text_field :username, class: "form-control", placeholder: ""
+            = f.text_field :username, class: "form-control", placeholder: ""
+      = f.fields_for :profile do |build|
         .form-group
           label.col-md-3.control-label
             = CiaoboxUser::Profile.h :first_name

@@ -19,7 +19,7 @@
                 = @user.profile.first_name
           .form-group
             label.control-label.col-md-3
-              = User::Profile.h :last_name
+              = User.h :last_name
               | :
             .col-md-4
               p.form-control-static
@@ -30,7 +30,7 @@
               | :
             .col-md-4
               p.form-control-static
-                = @user.profile.username
+                = @user.username
           .form-group
             label.control-label.col-md-3
               = User.h :email

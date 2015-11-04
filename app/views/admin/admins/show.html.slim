@@ -26,11 +26,11 @@
                 = @admin.profile.last_name
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :username
+              = Admin.h :username
               | :
             .col-md-4
               p.form-control-static
-                = @admin.profile.username
+                = @admin.username
           .form-group
             label.control-label.col-md-3
               = Admin.h :email
