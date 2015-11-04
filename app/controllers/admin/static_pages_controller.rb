@@ -22,7 +22,7 @@ class Admin::StaticPagesController < Admin::BaseAdminController
 
   def create
     if @static_page.save
-      redirect_to admin_static_page_path(@static_page), notice: "Create static page successfully" and return
+      redirect_to admin_static_page_path(@static_page), notice: t('admin.static_pages.create.success') and return
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Admin::StaticPagesController < Admin::BaseAdminController
 
   def update
     if @static_page.save
-      redirect_to admin_static_page_path(@static_page), notice: "Update static page successfully" and return
+      redirect_to admin_static_page_path(@static_page), notice: t('admin.static_pages.update.success') and return
     else
       render :edit
     end
@@ -42,9 +42,9 @@ class Admin::StaticPagesController < Admin::BaseAdminController
   def destroy
     msg = 
       if @static_page.destroy
-        "Destroy static page successfully"
+        t('admin.static_pages.destroy.success')
       else
-        "Destroy static page error"
+        t('admin.static_pages.destroy.error')
       end
     redirect_to admin_static_pages_path, notice: msg
   end

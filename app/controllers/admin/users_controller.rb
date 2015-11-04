@@ -25,7 +25,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def create
     if @user.save
-      redirect_to admin_user_path(@user), notice: "Create employee user sucessfully"
+      redirect_to admin_user_path(@user), notice: t('admin.users.create.success')
     else
       render :new
     end
@@ -36,7 +36,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
-      redirect_to admin_user_path(@user), notice: "Update employee user sucessfully"
+      redirect_to admin_user_path(@user), notice: t('admin.users.update.success')
     else
       render :edit
     end
@@ -45,9 +45,9 @@ class Admin::UsersController < Admin::BaseAdminController
   def destroy
     msg = 
       if @user.destroy
-        "Destroy employee user sucessfully"
+        t('admin.users.destroy.success')
       else
-        "Destroy employee user error"
+        t('admin.users.destroy.error')
       end
     redirect_to admin_users_path, notice: msg
   end
