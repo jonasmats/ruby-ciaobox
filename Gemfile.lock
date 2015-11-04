@@ -131,6 +131,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-async (0.10.1)
+      devise (~> 3.2)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
@@ -374,6 +376,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   config
   devise
+  devise-async
   dotenv-rails
   friendly_id (~> 5.1.0)
   gibbon (~> 2.1)
@@ -397,6 +400,7 @@ DEPENDENCIES
   roo-xls
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sidekiq
   slim-rails
   spring
   therubyracer

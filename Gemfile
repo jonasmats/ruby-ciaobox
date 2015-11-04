@@ -90,6 +90,11 @@ gem 'omniauth-google-oauth2'
 #gem excel file
 gem 'roo'
 gem 'roo-xls'
+# Sidekiq
+gem 'sidekiq'
+
+# Send email asycjob devise
+gem 'devise-async'
 
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
