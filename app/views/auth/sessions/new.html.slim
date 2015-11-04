@@ -1,4 +1,4 @@
-= render partial: "layouts/frontend/header"
+= render partial: "layouts/frontend/header.account"
 section.section-2.about
   .container
     figure
@@ -20,6 +20,11 @@ section.signin-main
             | Forgot Password?
         .signin-submit
           = f.submit "Log in"
+          .already-account
+            |  Create account ?
+            a[href="#" title="Log in"]
+            = link_to new_user_registration_path, title: "Signup" do
+              |  Signup
     .signin-main-right
       span
         | or
