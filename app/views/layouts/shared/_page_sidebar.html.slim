@@ -6,36 +6,36 @@
 
       li.sidebar-search-wrapper
         form.sidebar-search[action="extra_search.html" method="POST"]
-          a.remove[href="javascript:;"]
-            i.icon-close
-          .input-group
-            input.form-control[type="text" placeholder="Search..."]
-            span.input-group-btn
-              a.btn.submit[href="javascript:;"]
-                i.icon-magnifier
-      li.start
-        a[href="javascript:;"]
-          i.icon-home
-          span.title
-            | Dashboard
-          span.selected
-          span.arrow.open
-        ul.sub-menu
-          li
-            a[href="index.html"]
-              i.icon-bar-chart
-              |  Default Dashboard
-          li
-            a[href="index_2.html"]
-              i.icon-bulb
-              |  New Dashboard #1
-          li
-            a[href="index_3.html"]
-              i.icon-graph
-              |  New Dashboard #2
+        /   a.remove[href="javascript:;"]
+        /     i.icon-close
+        /   .input-group
+        /     input.form-control[type="text" placeholder="Search..."]
+        /     span.input-group-btn
+        /       a.btn.submit[href="javascript:;"]
+        /         i.icon-magnifier
+      / li.start
+      /   a[href="javascript:;"]
+      /     i.icon-home
+      /     span.title
+      /       | Dashboard
+      /     span.selected
+      /     span.arrow.open
+      /   ul.sub-menu
+      /     li
+      /       a[href="index.html"]
+      /         i.icon-bar-chart
+      /         |  Default Dashboard
+      /     li
+      /       a[href="index_2.html"]
+      /         i.icon-bulb
+      /         |  New Dashboard #1
+      /     li
+      /       a[href="index_3.html"]
+      /         i.icon-graph
+      /         |  New Dashboard #2
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.fa.fa-group
           span.title
             = t(".role_label")
           span.arrow
@@ -50,7 +50,7 @@
               = t(".role_list")
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.icon-wrench
           span.title
             = t(".faq_label")
           span.arrow
@@ -85,7 +85,7 @@
                   = t(".faq_list")
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.fa.fa-credit-card
           span.title
             = t(".payment_label")
           span.arrow
@@ -106,8 +106,8 @@
                   = t(".payment_method_list")
           li
             a[href="javascript:;"]
-              i.icon-globe
-              |  Payment Infor
+              i.fa.fa-info
+              |  Payment Information
               span.arrow
             ul.sub-menu
               li
@@ -120,9 +120,9 @@
                   = t(".payment_infor_list")
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.icon-users
           span.title
-            | Account management
+            | Profile management
           span.arrow
         ul.sub-menu
           li
@@ -165,9 +165,9 @@
               = t(".banner_list")
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.icon-pencil
           span.title
-            | Articles management
+            | Blogs management
           span.arrow
         ul.sub-menu
           li
@@ -180,7 +180,7 @@
               = t(".banner_list")
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.icon-user
           span.title
             | User management
           span.arrow
@@ -191,28 +191,28 @@
               = t(".banner_list")
       li
         a[href="javascript:;"]
-          i.icon-folder
+          i.fa.fa-user-secret
           span.title
-            | Admin management
+            | Admin Management
           span.arrow
         ul.sub-menu
           li
             = link_to admin_admins_path do
               i.fa.fa-list-ol
               = t(".banner_list")
-      li.heading
-        h3.uppercase
-          | More
-      li.last
-        a[href="javascript:;"]
-          i.icon-pointer
-          span.title
-            | Maps
-          span.arrow
-        ul.sub-menu
-          li
-            a[href="maps_google.html"]
-              |  Google Maps
-          li
-            a[href="maps_vector.html"]
-              |  Vector Maps
+      / li.heading
+      /   h3.uppercase
+      /     | More
+      / li.last
+      /   a[href="javascript:;"]
+      /     i.icon-pointer
+      /     span.title
+      /       | Maps
+      /     span.arrow
+      /   ul.sub-menu
+      /     li
+      /       a[href="maps_google.html"]
+      /         |  Google Maps
+      /     li
+      /       a[href="maps_vector.html"]
+      /         |  Vector Maps
