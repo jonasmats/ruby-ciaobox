@@ -12,7 +12,7 @@ class Admin::UsersController < Admin::BaseAdminController
     respond_to do |format|
       format.html
       format.csv { send_data Export.users_to_csv(@users), filename: "Ciaobox_Users_#{Time.current}.csv" }
-      format.xls # { filename: "Ciaobox_Users_#{Time.current}.xls" }
+      format.xls { send_data Export.users_to_csv(@users, col_sep: "\t"), filename: "Ciaobox_Users_#{Time.current}.xls" }
     end
   end
 
