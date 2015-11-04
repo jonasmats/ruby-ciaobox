@@ -48,6 +48,11 @@ class Admin::AdminsController < Admin::BaseAdminController
   def edit
   end
 
+  def import_file
+    Admin.import(params[:file])
+    redirect_to admin_admins_path
+  end
+
   def update
     if @admin.save
       redirect_to admin_admin_path(@admin), notice: "Update employee admin sucessfully"

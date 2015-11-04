@@ -87,6 +87,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+#gem excel file
+gem 'roo'
+gem 'roo-xls'
+
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
   gem 'capistrano-rails', '~> 1.1.0'
