@@ -1,4 +1,4 @@
-.sb-slidebar.sb-left
+nav
   ul.clearfix
     li
       = link_to root_path do
@@ -15,3 +15,16 @@
     li
       a[href="contact.html"]
         | Contact
+#sb-toggle-left
+  a.menu-bt.sb-toggle-left[href="#"]
+    span
+    span
+    span
+.right
+  .nav-2.clearfix
+    ul
+      li
+        a[href="#"]
+          | EN
+  = link_to new_user_session_path, class: "sign-in", title: "Sign In" do
+    | Sign In
