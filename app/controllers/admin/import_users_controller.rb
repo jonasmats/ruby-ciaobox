@@ -3,7 +3,12 @@ class Admin::ImportUsersController < Admin::BaseAdminController
   end
 
   def create
-    Import.import_users(params[:file])
-    redirect_to admin_users_path
+    if params[:file].present?
+      flash[:notice] = Import.import_users(params[:file])
+      redirect_to admin_users_path
+    else
+      flash[:notice] = 'Please choice file'
+      redirect_to new_admin_import_user_path
+    end
   end
 end

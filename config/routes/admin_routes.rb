@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :admins
     resources :users
     resources :import_users, only: [:new, :create]
+    resources :import_admins, only: [:new, :create]
 
     namespace :payment do
       resources :methods
