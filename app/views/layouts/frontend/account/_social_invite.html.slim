@@ -1,0 +1,9 @@
+.social-invite
+  = link_to user_omniauth_authorize_path(:facebook), :class => "share-fb" do
+    i.fa.fa-facebook
+    span
+      | Sign in with facebook
+  = link_to user_omniauth_authorize_path(:google_oauth2), :class => "share-mail" do
+    i.fa.fa-google-plus
+    span
+      | Sign in with google+

@@ -1,5 +1,4 @@
 class Auth::SessionsController < Devise::SessionsController
-  layout 'empty'
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
