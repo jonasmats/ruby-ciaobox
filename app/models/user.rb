@@ -46,32 +46,4 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  def self.import(file)
-    spreadsheet = Import.open_spreadsheet(file)
-    header = spreadsheet.row(1).map!(&:downcase)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      row.delete('#')
-      profile_row = {}
-      row.each do |k,v|
-        if k.include?(' ')
-          key = k.gsub(' ', '_')
-          profile_row[key] = v
-          row.delete(k)
-        end
-      end
-      
-      # save to user
-      user = find_by(email: row["email"]) || new
-      user.attributes = row.to_hash.slice(*row.to_hash.keys)
-      user.password = '1'
-      user.save!
-
-      #save to profile
-      profile = Profile.find_by(user_id: user.id) || user.build_profile
-      profile.attributes = profile_row
-      profile.save!
-    end
-  end
 end

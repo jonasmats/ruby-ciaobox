@@ -9,8 +9,12 @@
 br
 = link_to "Download to XLS", admin_users_path(format: "xls")
 br
-= link_to "Import file", import_admin_users_path
-
+= link_to "Import file", new_admin_import_user_path
+- if flash[:notice].present?
+  h2
+    | This is email exists
+  - flash[:notice].each do |error|
+    li= error
 .portlet.box.green
   .portlet-title
 

@@ -14,18 +14,10 @@ Rails.application.routes.draw do
     resources :password, only: [:new, :create]
     resources :roles
     resources :banners
-    resources :admins do
-      collection do
-        get 'import'
-        post 'import_file'
-      end
-    end
-    resources :users do
-      collection do
-        get 'import'
-        post 'import_file'
-      end
-    end
+    resources :admins
+    resources :users
+    resources :import_users, only: [:new, :create]
+    resources :import_admins, only: [:new, :create]
 
     namespace :payment do
       resources :methods
