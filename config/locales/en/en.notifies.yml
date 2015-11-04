@@ -1,0 +1,49 @@
+en:
+  admin:
+    admins:
+      show:
+        success: Only SuperAdmin see SuperAdmin info
+      create:
+        success: Create employee admin sucessfully
+      update: 
+        success: Update employee admin sucessfully
+      destroy:
+        success: Destroy employee admin sucessfully
+        error: Destroy employee admin error
+        not_employee: Just only delete Employee
+    articles:
+      create:
+        success: Create article successfully
+      update: 
+        success: Update article successfully
+      destroy: 
+        success: Destroy article successfully
+        error: Destroy article error
+    import_admins:
+      error_empty: Please choice file
+    import_users:
+      error_empty: Please choice file
+    passwords:
+      create:
+        success: Change password succesfully
+        error: Change password errors
+        error_confirm: Password new and password confirm not match
+        wrong_password: Current password wrong
+    static_pages:
+      create:
+        success: Create static page successfully
+      update: 
+        success: Update static page successfully
+      destroy:
+        success: Destroy static page successfully
+        error: Destroy static page error
+    users:
+      create:
+        success: Create employee user sucessfully
+      update:
+        success: Update employee user sucessfully
+      destroy:
+        success: Destroy static page successfully
+        error: Destroy employee user error
+
+

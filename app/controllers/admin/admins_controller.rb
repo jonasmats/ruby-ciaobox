@@ -28,7 +28,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   def show
     unless current_admin.super?
       if @admin.super?
-        redirect_to admin_admins_path, notice: "Only SuperAdmin see SuperAdmin info"
+        redirect_to admin_admins_path, notice: t('admin.admins.show.success')
       end
     end
   end
@@ -39,7 +39,7 @@ class Admin::AdminsController < Admin::BaseAdminController
 
   def create
     if @admin.save
-      redirect_to admin_admin_path(@admin), notice: "Create employee admin sucessfully"
+      redirect_to admin_admin_path(@admin), notice: t('admin.admins.create.success')
     else
       render :new
     end
@@ -55,7 +55,7 @@ class Admin::AdminsController < Admin::BaseAdminController
 
   def update
     if @admin.save
-      redirect_to admin_admin_path(@admin), notice: "Update employee admin sucessfully"
+      redirect_to admin_admin_path(@admin), notice: t('admin.admins.update.success')
     else
       render :edit
     end
@@ -65,12 +65,12 @@ class Admin::AdminsController < Admin::BaseAdminController
     msg = 
       if @admin.employee?
         if @admin.destroy
-          "Destroy employee admin sucessfully"
+          t('admin.admins.destroy.success')
         else
-          "Destroy employee admin error"
+          t('admin.admins.destroy.error')
         end
       else
-        "Just only delete Employee"
+        t('admin.admins.destroy.not_employee')
       end
     redirect_to admin_admins_path, notice: msg
   end
