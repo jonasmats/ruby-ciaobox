@@ -24,3 +24,7 @@ en:
         payment_method_list: *list
         payment_infor_new: *new
         payment_infor_list: *list
+        category_label: "Categories"
+        profile_label: "Profile management"
+        import_user: "Import User"
+        import_employee: "Import Employee"

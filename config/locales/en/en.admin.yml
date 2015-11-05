@@ -10,6 +10,8 @@ en:
       delete: &delete "Delete"
       blank: &blank "--Please choose--"
       question_destroy: &question_destroy "Are you sure?"
+      un_publish: &un_publish "Private"
+      publish: &publish "Publish"
     faq:
       categories:
         index:
@@ -37,6 +39,8 @@ en:
       form:
         submit: *submit
         blank: *blank
+        un_publish: *un_publish
+        publish: *publish
       article:
         edit: *edit
         delete: *delete
@@ -48,6 +52,8 @@ en:
       form:
         submit: *submit
         blank: *blank
+        un_publish: *un_publish
+        publish: *publish
       static_page:
         edit: *edit
         delete: *delete
@@ -67,9 +73,12 @@ en:
     users:
       index:
         action: *action
+        download_tools: "Download Tools"
       form:
         submit: *submit
         blank: *blank
+        active: "Active"
+        un_active: "Lock"
       user:
         edit: *edit
         delete: *delete
@@ -81,6 +90,8 @@ en:
       form:
         submit: *submit
         blank: *blank
+        un_publish: *un_publish
+        publish: *publish
       banner:
         edit: *edit
         delete: *delete
@@ -88,6 +99,7 @@ en:
         question_destroy: *question_destroy
     roles:
       index:
+        title: "List"
         action: *action
         new: *new
       form:

@@ -40,7 +40,7 @@ class Admin::StaticPagesController < Admin::BaseAdminController
   end
 
   def destroy
-    msg = 
+    msg =
       if @static_page.destroy
         t('admin.static_pages.destroy.success')
       else
