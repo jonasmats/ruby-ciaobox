@@ -16,7 +16,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
-require 'spreadsheet'
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -24,8 +23,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :async,
-         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
-  
+         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2],
+         :authentication_keys => [:login]
+
+  attr_accessor :login
+
   delegate :full_name, to: :profile
   enum status: { un_active: 0, active: 1 }
 
@@ -34,7 +36,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, allow_destroy: true
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
-
+  # 4 validates
+  validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
+  # 6
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_create do |user|
       user.email = auth.info.email
@@ -46,4 +50,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_hash).where(["username = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions.to_hash).first
+    end
+  end
 end

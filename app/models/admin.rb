@@ -19,13 +19,15 @@
 #
 
 class Admin < ActiveRecord::Base
-  # require 'csv'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :async
-  
+         :async,
+         :authentication_keys => [:login]
+
+  attr_accessor :login
+
   enum status: { un_active: 0, active: 1 }
   delegate :full_name, to: :profile
 
@@ -39,29 +41,18 @@ class Admin < ActiveRecord::Base
   scope :latest, -> {order("created_at DESC")}
 
   #3. class methods
-  # class << self
-  #   def to_csv(options = {})
-  #     CSV.generate(options) do |csv|
-  #       columns = ["#", 
-  #         "#{Admin.h :email}", 
-  #         "#{CiaoboxUser::Profile.h :username}", 
-  #         "#{CiaoboxUser::Profile.h :first_name}", 
-  #         "#{CiaoboxUser::Profile.h :last_name}", 
-  #         "#{Admin.h :status}"]
-  #       csv << columns
-  #       all.select(:id, :email, :status).each.with_index(1) do |admin, index|
-  #         row = []
-  #         row << index
-  #         row << admin.email
-  #         row << admin.profile.username
-  #         row << admin.profile.first_name
-  #         row << admin.profile.last_name
-  #         row << admin.status
-  #         csv << row
-  #       end
-  #     end
-  #   end
-  # end
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_hash).where(["username = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions.to_hash).first
+    end
+  end
+
+  # 4 validates
+  validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
+  
   # 6. instance methods
 
   def super?
