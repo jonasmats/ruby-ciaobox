@@ -6,9 +6,9 @@ class Ability
       return false
     else
       case admin.class.name
-      when CiaoboxUser::Super
+      when CiaoboxUser::Super.name
         can :manage, :all
-      when CiaoboxUser::Company
+      when CiaoboxUser::Company.name
         can :manage, :all
         cannot :manage, Role
       end

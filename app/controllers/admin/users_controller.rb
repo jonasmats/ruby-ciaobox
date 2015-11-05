@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::BaseAdminController
   end
 
   def destroy
-    msg = 
+    msg =
       if @user.destroy
         t('admin.users.destroy.success')
       else

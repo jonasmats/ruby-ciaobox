@@ -6,7 +6,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   before_action :set_params, only: [:create, :update]
 
   def index
-    @admins = 
+    @admins =
       case current_admin.type
       when CiaoboxUser::Super.name
         Admin.all
@@ -62,7 +62,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def destroy
-    msg = 
+    msg =
       if @admin.employee?
         if @admin.destroy
           t('admin.admins.destroy.success')

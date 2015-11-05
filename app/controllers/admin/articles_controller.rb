@@ -40,7 +40,7 @@ class Admin::ArticlesController < Admin::BaseAdminController
   end
 
   def destroy
-    msg = 
+    msg =
       if @article.destroy
         t('admin.admins.destroy.success')
       else

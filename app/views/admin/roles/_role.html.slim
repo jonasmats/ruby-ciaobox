@@ -2,5 +2,9 @@ tr
   td= role.name
   td= role.description
   td
-    = link_to t(".edit"), edit_admin_role_path(role.id)
-    = link_to t(".delete"), admin_role_path(role.id), method: :delete, data: {confirm: t(".question_destroy")}
+    = link_to edit_admin_role_path(role.id), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_role_path(role.id), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

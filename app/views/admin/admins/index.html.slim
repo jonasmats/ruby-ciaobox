@@ -5,11 +5,6 @@
   = f.search_field :email_or_username_cont
   = f.submit
 
-= link_to "Download to CSV", admin_admins_path(format: "csv")
-br
-= link_to "Download to XLS", admin_admins_path(format: "xls")
-br
-= link_to "Import file", new_admin_import_admin_path
 br
 - if flash[:alert].present?
   h2
@@ -19,7 +14,20 @@ br
 br
 .portlet.box.green
   .portlet-title
-
+    btn-set.pull-right.btn-group
+      a.btn.purple data-toggle="dropdown" href="javascript:;"
+        i.fa.fa-download
+        = t(".download_tools")
+        i.fa.fa-angle-down
+      ul.dropdown-menu
+        li
+          = link_to admin_admins_path(format: "csv") do
+            i.fa.fa-file-o
+            | Download to CSV
+        li
+          = link_to admin_admins_path(format: "xls") do
+            i.fa.fa-file-excel-o
+            | Download to Excel
   .portlet-body.flip-scroll
     table.table.table-bordered.table-striped.table-condensed.flip-content
       thead.flip-content
