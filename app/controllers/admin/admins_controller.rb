@@ -36,7 +36,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def update
-    if @admin.save
+    if @admin.save!
       respond_to do |format|
         format.html { redirect_to admin_admin_path(@admin), notice: t('notice.admin.updated', model: Admin.human_name) }
         format.js
@@ -57,9 +57,6 @@ class Admin::AdminsController < Admin::BaseAdminController
       else
         t('notice.admin.admins.destroy.not_employee')
       end
-    else
-      t('notice.admin.admins.destroy.not_employee')
-    end
     redirect_to admin_admins_path, notice: msg
   end
 

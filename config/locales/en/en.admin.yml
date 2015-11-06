@@ -67,6 +67,9 @@ en:
     admins:
       index:
         action: *action
+        download_tools: "Download Tools"
+        download_csv: "Download to CSV"
+        download_xls: "Donwload to Excel"
       form:
         submit: *submit
         blank: *blank
@@ -79,6 +82,8 @@ en:
       index:
         action: *action
         download_tools: "Download Tools"
+        download_csv: "Download to CSV"
+        download_xls: "Donwload to Excel"
       form:
         submit: *submit
         blank: *blank

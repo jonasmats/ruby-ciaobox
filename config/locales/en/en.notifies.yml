@@ -43,11 +43,11 @@ en:
           error: Destroy static page error
       users:
         create:
-          success: Create employee user sucessfully
+          success: Create customer sucessfully
         update:
-          success: Update employee user sucessfully
+          success: Update customer sucessfully
         destroy:
-          success: Destroy static page successfully
-          error: Destroy employee user error
+          success: Destroy customer successfully
+          error: Destroy customer error
 
 

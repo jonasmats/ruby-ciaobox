@@ -35,6 +35,7 @@ class Admin < ActiveRecord::Base
 
   #1. associations
   has_one :profile, class_name: ::CiaoboxUser::Profile.name, foreign_key: :admin_id
+  accepts_nested_attributes_for :profile
   # 2. scope
   scope :super_admin, -> { where(type: CiaoboxUser::Super.name) }
   scope :company_admin, -> { where(type: CiaoboxUser::Company.name) }
