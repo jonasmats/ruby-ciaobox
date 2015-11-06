@@ -1,4 +1,5 @@
 class Admin::ArticlesController < Admin::BaseAdminController
+  authorize_resource class: Article
   include ::Admin::Articles::Parameter
 
   before_action :load_article, only: [:show, :edit, :update, :destroy]

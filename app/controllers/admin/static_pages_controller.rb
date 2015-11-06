@@ -1,4 +1,5 @@
 class Admin::StaticPagesController < Admin::BaseAdminController
+  authorize_resource
   include ::Admin::StaticPages::Parameter
 
   before_action :load_static_page, only: [:show, :edit, :update, :destroy]

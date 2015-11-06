@@ -1,4 +1,5 @@
 class Admin::SocialNetworksController < Admin::BaseAdminController
+  authorize_resource
   include ::Admin::SocialNetwork::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]

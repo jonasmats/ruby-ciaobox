@@ -7,7 +7,7 @@ class Admin::BaseAdminController < ApplicationController
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:cancan] = I18n.t(:access_denied, scope: [:admin, :label])
-    redirect_to admin_root_url
+    redirect_to admin_root_path
   end
 
   private
