@@ -48,14 +48,12 @@ class Admin::AdminsController < Admin::BaseAdminController
   def edit
   end
 
-  def import_file
-    Admin.import(params[:file])
-    redirect_to admin_admins_path
-  end
-
   def update
     if @admin.save
-      redirect_to admin_admin_path(@admin), notice: t('admin.admins.update.success')
+      respond_to do |format|
+        format.html { redirect_to admin_admin_path(@admin), notice: t('admin.admins.update.success') }
+        format.js
+      end
     else
       render :edit
     end

@@ -36,7 +36,10 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
-      redirect_to admin_user_path(@user), notice: t('admin.users.update.success')
+      respond_to do |format|
+        format.html { redirect_to admin_user_path(@user), notice: t('admin.users.update.success') }
+        format.js
+      end
     else
       render :edit
     end

@@ -40,6 +40,7 @@
 //= require global/plugins/fullcalendar/fullcalendar.min
 //= require global/plugins/jquery-easypiechart/jquery.easypiechart.min
 //= require global/plugins/jquery.sparkline.min
+//= require global/plugins/bootstrap-toastr/toastr
 
 /* BEGIN PAGE LEVEL SCRIPTS */
 //= require global/scripts/metronic
