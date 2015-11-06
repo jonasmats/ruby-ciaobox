@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     passwords: "admin/auth/passwords",
     unlocks: "admin/auth/unlocks"
   }
-  devise_for :users, :controllers => { 
+  devise_for :users, path: "/", :controllers => {
     omniauth_callbacks:  "auth/omniauth_callbacks",
     passwords: "auth/passwords",
     sessions: "auth/sessions",
