@@ -7,8 +7,8 @@ tr
     = admin.roles.first
   td
     span id= "status_admin_#{admin.id}"
-      = admin.status
-    span style=("margin-left: 20px") 
+      = t(".#{admin.status}")
+    span style=("margin-left: 20px")
       - if admin.employee?
         - if admin.active?
           = link_to "Change to unactive", admin_admin_path(admin, "ciaobox_user_employee[status]" => Admin.statuses.keys[0]), method: :patch, remote: :true, id: "change_status_admin_#{admin.id}"
