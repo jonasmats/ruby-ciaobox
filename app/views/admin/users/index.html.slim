@@ -1,12 +1,5 @@
 = render partial: "title", locals: {title: "List"}
 
-= search_form_for @q, url: admin_users_path, class: "search-form" do |f|
-  .input-group
-    = f.search_field :email_or_username_cont, class: "form-control"
-    span.input-group-btn
-      = button_tag( class: "btn submit") do
-        i.icon-magnifier
-
 .row
   col-lg-10.col-md-10.col-sm-6.col-xs-12
     = search_form_for @q, url: admin_users_path, class: "search-form" do |f|

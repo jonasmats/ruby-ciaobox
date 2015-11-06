@@ -58,7 +58,7 @@
           li
             a[href="javascript:;"]
               i.icon-settings
-              = t(".category_label")
+              = t(".faq_category_label")
               span.arrow
             ul.sub-menu
               li
@@ -72,7 +72,7 @@
           li
             a[href="javascript:;"]
               i.icon-globe
-              |  Faqs
+              = t(".faqs_label")
               span.arrow
             ul.sub-menu
               li
@@ -152,7 +152,7 @@
         a[href="javascript:;"]
           i.icon-folder
           span.title
-            | Banner management
+            = t(".banner_label")
           span.arrow
         ul.sub-menu
           li
@@ -167,51 +167,51 @@
         a[href="javascript:;"]
           i.icon-pencil
           span.title
-            | Blogs management
+            = t(".blog_label")
           span.arrow
         ul.sub-menu
           li
             = link_to new_admin_article_path do
               i.icon-plus
-              = t(".banner_new")
+              = t(".blog_new")
           li
             = link_to admin_articles_path do
               i.fa.fa-list-ol
-              = t(".banner_list")
+              = t(".blog_list")
       li
         a[href="javascript:;"]
           i.icon-user
           span.title
-            | Customer management
+            = t(".customer_label")
           span.arrow
         ul.sub-menu
           li
             = link_to new_admin_user_path do
               i.icon-plus
-              = t(".banner_new")
+              = t(".customer_new")
           li
             = link_to admin_users_path do
               i.fa.fa-list-ol
-              = t(".banner_list")
+              = t(".customer_list")
           li
             = link_to new_admin_import_user_path do
               i.fa.fa-upload
-              = t(".import_user")
+              = t(".customer_import_user")
       li
         a[href="javascript:;"]
           i.fa.fa-user-secret
           span.title
-            | Admin Management
+            = t(".admin_label")
           span.arrow
         ul.sub-menu
           li
             = link_to admin_admins_path do
               i.fa.fa-list-ol
-              = t(".banner_list")
+              = t(".admin_list")
           li
             = link_to new_admin_import_admin_path do
               i.fa.fa-upload
-              = t(".import_employee")
+              = t(".admin_import_employee")
       / li.heading
       /   h3.uppercase
       /     | More
