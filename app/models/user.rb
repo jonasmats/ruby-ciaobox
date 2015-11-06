@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   
   after_create :create_instance_profile
 
-  delegate :full_name, to: :profile
+  delegate :full_name, :avatar, to: :profile, allow_nil: true
   enum status: { un_active: 0, active: 1 }
 
   # 1. associations
