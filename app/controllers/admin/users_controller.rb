@@ -7,9 +7,8 @@ class Admin::UsersController < Admin::BaseAdminController
   before_action :set_params, only: [:create, :update]
 
   def index
-    @users = User.all.latest.includes(:profile)
-    @q = @users.ransack(params[:q])
-    @users = @q.result
+    @q = User.all.ransack(params[:q])
+    @users = @q.result.latest
     respond_to do |format|
       format.html
       format.csv { send_data Export.users_to_csv(@users), filename: "Ciaobox_Users_#{Time.current}.csv" }

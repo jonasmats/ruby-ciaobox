@@ -5,20 +5,11 @@ class Admin::AdminsController < Admin::BaseAdminController
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
+  before_action :check_permission, only: [:edit, :show, :update]
 
   def index
-    @admins =
-      case current_admin.type
-      when CiaoboxUser::Super.name
-        Admin.all
-      when CiaoboxUser::Company.name
-        Admin.company_admin.employee_admins
-      when CiaoboxUser::Employee.name
-        Admin.employee_admins
-      end
-    @admins.latest.includes(:profile)
-    @q = @admins.ransack(params[:q])
-    @admins = @q.result
+    @q = Admin.load_admins_for_manager_admin(current_admin.type).ransack(params[:q])
+    @admins = @q.result.latest
     respond_to do |format|
       format.html
       format.csv { send_data Export.admins_to_csv(@admins), filename: "Ciaobox_Admins_#{Time.current}.csv" }
@@ -27,11 +18,6 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def show
-    unless current_admin.super?
-      if @admin.super?
-        redirect_to admin_admins_path, notice: t('notice.admin.admins.show.success')
-      end
-    end
   end
 
   def new
@@ -50,7 +36,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def update
-    if @admin.save
+    if @admin.save!
       respond_to do |format|
         format.html { redirect_to admin_admin_path(@admin), notice: t('notice.admin.updated', model: Admin.human_name) }
         format.js
@@ -64,7 +50,7 @@ class Admin::AdminsController < Admin::BaseAdminController
     msg =
       if @admin.employee?
         if @admin.destroy
-          t('notinotice.ce.admin.admins.destroy.success')
+          t('notice.admin.admins.destroy.success')
         else
           t('notice.admin.admins.destroy.error')
         end
@@ -85,5 +71,17 @@ class Admin::AdminsController < Admin::BaseAdminController
 
   def set_params
     @admin.assign_attributes private_params
+  end
+
+  def check_permission
+    if current_admin.company?
+      if @admin.super?
+        redirect_to admin_admins_path, notice: t('notice.admin.admins.show.success')
+      end
+    elsif current_admin.employee?
+      if @admin.super? || @admin.company?
+        redirect_to admin_admins_path, notice: t('notice.admin.admins.show.success')
+      end
+    end
   end
 end

@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   attr_accessor :login
-
-  after_create :create_profile
+  
+  after_create :create_instance_profile
 
   delegate :full_name, to: :profile
   enum status: { un_active: 0, active: 1 }
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   validates :status, presence: true
   # 5
   private
-  def create_profile
+  def create_instance_profile
     self.create_profile
   end
 

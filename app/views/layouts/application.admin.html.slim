@@ -9,7 +9,13 @@ html
   body.page-header-fixed.page-quick-sidebar-over-content.page-sidebar-closed-hide-logo.page-container-bg-solid
     = render partial: "layouts/shared/header.admin"
     .page-container
-      = render partial: "layouts/shared/page_sidebar"
+      - case current_admin.type
+      - when CiaoboxUser::Super.name
+          = render partial: "layouts/shared/sidebar/admin/super"
+      - when CiaoboxUser::Company.name
+          = render partial: "layouts/shared/sidebar/admin/company"
+      - when CiaoboxUser::Employee.name
+          = render partial: "layouts/shared/sidebar/admin/employee"
       .page-content-wrapper
         .page-content
           #portlet-config.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]

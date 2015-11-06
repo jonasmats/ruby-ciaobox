@@ -4,7 +4,7 @@ en:
       new: &new " New"
       list: &list " List"
     shared:
-      page_sidebar:
+      sidebar:
         faq_label: "FAQs management"
         faqs_label: " FAQs"
         faq_category_label: " Categories"

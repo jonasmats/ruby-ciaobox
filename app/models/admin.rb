@@ -22,9 +22,11 @@ class Admin < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :async,
-         :authentication_keys => [:login]
+  :recoverable, :rememberable, :trackable, :validatable,
+  :async,
+  :authentication_keys => [:login]
+
+  after_create :create_instance_profile
 
   attr_accessor :login
 
@@ -33,10 +35,22 @@ class Admin < ActiveRecord::Base
 
   #1. associations
   has_one :profile, class_name: ::CiaoboxUser::Profile.name, foreign_key: :admin_id
+  accepts_nested_attributes_for :profile
   # 2. scope
-  scope :super_admin, -> {where(type: CiaoboxUser::Super.name)}
-  scope :company_admin, -> {where(type: CiaoboxUser::Company.name)}
-  scope :employee_admins, -> {where(type: CiaoboxUser::Employee.name)}
+  scope :super_admin, -> { where(type: CiaoboxUser::Super.name) }
+  scope :company_admin, -> { where(type: CiaoboxUser::Company.name) }
+  scope :employee_admins, -> { where(type: CiaoboxUser::Employee.name) }
+
+  scope :load_admins_for_manager_admin, -> (type) do
+   case type
+    when CiaoboxUser::Super.name
+      self.all
+    when CiaoboxUser::Company.name
+      self.where(type: [CiaoboxUser::Company.name, CiaoboxUser::Employee.name])
+    when CiaoboxUser::Employee.name
+      self.employee_admins
+    end
+  end
 
   scope :latest, -> {order("created_at DESC")}
 
@@ -52,6 +66,7 @@ class Admin < ActiveRecord::Base
 
   # 4 validates
   validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
+  # 5
   
   # 6. instance methods
 
@@ -67,4 +82,8 @@ class Admin < ActiveRecord::Base
     self.type == CiaoboxUser::Employee.name
   end
 
+  private
+  def create_instance_profile
+    self.create_profile
+  end
 end

@@ -18,11 +18,11 @@
         li
           = link_to admin_users_path(format: "csv") do
             i.fa.fa-file-o
-            | Download to CSV
+            = t(".download_csv")
         li
           = link_to admin_users_path(format: "xls") do
             i.fa.fa-file-excel-o
-            | Download to Excel
+            = t(".download_xls")
 
 - if flash[:alert].present?
   h2
