@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   attr_accessor :login
-  
+
   after_create :create_profile
 
   delegate :full_name, to: :profile
@@ -40,11 +40,13 @@ class User < ActiveRecord::Base
   scope :latest, -> {order("created_at DESC")}
   # 4 validates
   validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
+  validates :status, presence: true
   # 5
   private
   def create_profile
     self.create_profile
   end
+
   # 6
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_create do |user|

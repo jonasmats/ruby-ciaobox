@@ -9,15 +9,15 @@ class Admin::PasswordController < Admin::BaseAdminController
     if change_password.current_match?
       if change_password.confirm_match?
         if change_password.change
-          return redirect_to admin_root_path, notice: t('admin.admins.create.success')
+          return redirect_to admin_root_path, notice: t('notice.admin.passwords.create.success')
         else
-          msg = t('notice.admin.admins.create.error')
+          msg = t('notice.admin.passwords.create.error')
         end
       else
-        msg = t('notice.admin.admins.create.error_confirm')
+        msg = t('notice.admin.passwords.create.error_confirm')
       end
     else
-      msg = t('notice.admin.admins.create.wrong_password')
+      msg = t('notice.admin.passwords.create.wrong_password')
     end
     redirect_to new_admin_password_path, notice: msg
   end
