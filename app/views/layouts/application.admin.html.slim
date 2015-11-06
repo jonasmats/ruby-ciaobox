@@ -20,7 +20,7 @@ html
                   h4.modal-title
                     | Modal title
                 .modal-body
-                  |  Widget settings form goes here 
+                  |  Widget settings form goes here
                 .modal-footer
                   button.btn.blue[type="button"]
                     | Save changes
@@ -28,6 +28,7 @@ html
                     | Close
 
           = render partial: "layouts/shared/page/page_bar"
+          = render partial: "layouts/shared/flash/notice"
           = yield
       = render partial: "layouts/shared/page/page_quick_sidebar"
     = render partial: "layouts/shared/footer.admin"

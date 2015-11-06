@@ -29,7 +29,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   def show
     unless current_admin.super?
       if @admin.super?
-        redirect_to admin_admins_path, notice: t('admin.admins.show.success')
+        redirect_to admin_admins_path, notice: t('notice.admin.admins.show.success')
       end
     end
   end
@@ -40,7 +40,7 @@ class Admin::AdminsController < Admin::BaseAdminController
 
   def create
     if @admin.save
-      redirect_to admin_admin_path(@admin), notice: t('admin.admins.create.success')
+      redirect_to admin_admin_path(@admin), notice: t('notice.admin.created', model: Admin.human_name)
     else
       render :new
     end
@@ -52,7 +52,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   def update
     if @admin.save
       respond_to do |format|
-        format.html { redirect_to admin_admin_path(@admin), notice: t('admin.admins.update.success') }
+        format.html { redirect_to admin_admin_path(@admin), notice: t('notice.admin.updated', model: Admin.human_name) }
         format.js
       end
     else
@@ -64,12 +64,12 @@ class Admin::AdminsController < Admin::BaseAdminController
     msg =
       if @admin.employee?
         if @admin.destroy
-          t('admin.admins.destroy.success')
+          t('notinotice.ce.admin.admins.destroy.success')
         else
-          t('admin.admins.destroy.error')
+          t('notice.admin.admins.destroy.error')
         end
       else
-        t('admin.admins.destroy.not_employee')
+        t('notice.admin.admins.destroy.not_employee')
       end
     redirect_to admin_admins_path, notice: msg
   end

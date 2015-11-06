@@ -1,5 +1,5 @@
 class Admin::Faq::CategoriesController < Admin::BaseAdminController
-  include Admin::Faq::Category::Parameter
+  include Admin::Faqs::Category::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
@@ -15,7 +15,7 @@ class Admin::Faq::CategoriesController < Admin::BaseAdminController
 
   def create
     if @category.save
-      redirect_to admin_faq_categories_path
+      redirect_to admin_faq_categories_path, notice: t('notice.admin.created', model: Faq::Category.human_name)
     else
       render :new
     end
@@ -26,7 +26,7 @@ class Admin::Faq::CategoriesController < Admin::BaseAdminController
 
   def update
     if @category.save
-      redirect_to admin_faq_categories_path
+      redirect_to admin_faq_categories_path, notice: t('notice.admin.updated', model: Faq::Category.human_name)
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class Admin::Faq::CategoriesController < Admin::BaseAdminController
 
   def destroy
     @category.destroy
-    redirect_to admin_faq_categories_path
+    redirect_to admin_faq_categories_path, notice: t('notice.admin.deleted', model: Faq::Category.human_name)
   end
 
   private

@@ -23,7 +23,7 @@ class Admin::ArticlesController < Admin::BaseAdminController
 
   def create
     if @article.save
-      redirect_to admin_article_path(@article), notice: t('admin.admins.update.success') and return
+      redirect_to admin_article_path(@article), notice: t('notice.admin.created', model: Article.human_name)
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Admin::ArticlesController < Admin::BaseAdminController
 
   def update
     if @article.save
-      redirect_to admin_article_path(@article), notice: t('admin.admins.update.success') and return
+      redirect_to admin_article_path(@article), notice: t('notice.admin.updated', model: Article.human_name)
     else
       render :edit
     end
@@ -43,9 +43,9 @@ class Admin::ArticlesController < Admin::BaseAdminController
   def destroy
     msg =
       if @article.destroy
-        t('admin.admins.destroy.success')
+        t('notice.admin.admins.destroy.success')
       else
-        t('admin.admins.destroy.error')
+        t('notice.admin.admins.destroy.error')
       end
     redirect_to admin_articles_path, notice: msg
   end

@@ -1,7 +1,7 @@
 class Admin::FaqsController < Admin::BaseAdminController
-  authorize_resource class: Faq
-  include ::Admin::Faq::Parameter
-  include ::Admin::Faq::Finder
+  authorize_resource class: ::Faq.name
+  include ::Admin::Faqs::Parameter
+  include ::Admin::Faqs::Finder
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
@@ -17,7 +17,7 @@ class Admin::FaqsController < Admin::BaseAdminController
 
   def create
     if @faq.save
-      redirect_to admin_faqs_path
+      redirect_to admin_faqs_path, notice: t('notice.admin.created', model: Faq.name)
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::FaqsController < Admin::BaseAdminController
 
   def update
     if @faq.save
-      redirect_to admin_faqs_path
+      redirect_to admin_faqs_path, notice: t('notice.admin.updated', model: Faq.name)
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Admin::FaqsController < Admin::BaseAdminController
 
   def destroy
     @faq.destroy
-    redirect_to admin_faqs_path
+    redirect_to admin_faqs_path, notice: t('notice.admin.deleted', model: Faq.name)
   end
 
   private

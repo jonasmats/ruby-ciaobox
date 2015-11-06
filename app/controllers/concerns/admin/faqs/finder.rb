@@ -1,4 +1,4 @@
-module Admin::Faq::Finder
+module Admin::Faqs::Finder
   extend ActiveSupport::Concern
   def load_faqs
     ::Faq.all

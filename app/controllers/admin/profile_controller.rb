@@ -11,7 +11,7 @@ class Admin::ProfileController < Admin::BaseAdminController
 
   def update
     if @profile.update(private_params)
-      redirect_to admin_profile_index_path
+      redirect_to admin_profile_index_path, notice: t('notice.admin.updated', model: CiaoboxUser::Profile.human_name)
     else
       render :edit
     end
