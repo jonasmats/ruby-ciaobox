@@ -35,54 +35,39 @@
       /         |  New Dashboard #2
       li
         a[href="javascript:;"]
-          i.fa.fa-group
-          span.title
-            = t(".role_label")
-          span.arrow
-        ul.sub-menu
-          li
-            = link_to new_admin_role_path do
-              i.icon-plus
-              = t(".role_new")
-          li
-            = link_to admin_roles_path do
-              i.fa.fa-list-ol
-              = t(".role_list")
-      li
-        a[href="javascript:;"]
           i.icon-wrench
           span.title
-            = t(".faq_label")
+            = I18n.t("layouts.shared.sidebar.faq_label")
           span.arrow
         ul.sub-menu
           li
             a[href="javascript:;"]
               i.icon-settings
-              = t(".faq_category_label")
+              = I18n.t("layouts.shared.sidebar.faq_category_label")
               span.arrow
             ul.sub-menu
               li
                 = link_to new_admin_faq_category_path do
                   i.icon-plus
-                  = t(".faq_category_new")
+                  = I18n.t("layouts.shared.sidebar.faq_category_new")
               li
                 = link_to admin_faq_categories_path do
                   i.fa.fa-list-ol
-                  = t(".faq_category_list")
+                  = I18n.t("layouts.shared.sidebar.faq_category_list")
           li
             a[href="javascript:;"]
               i.icon-globe
-              = t(".faqs_label")
+              = I18n.t("layouts.shared.sidebar.faqs_label")
               span.arrow
             ul.sub-menu
               li
                 = link_to new_admin_faq_path do
                   i.icon-plus
-                  = t(".faq_new")
+                  = I18n.t("layouts.shared.sidebar.faq_new")
               li
                 = link_to admin_faqs_path do
                   i.fa.fa-list-ol
-                  = t(".faq_list")
+                  = I18n.t("layouts.shared.sidebar.faq_list")
       / li
       /   a[href="javascript:;"]
       /     i.fa.fa-credit-card
@@ -122,17 +107,17 @@
         a[href="javascript:;"]
           i.icon-users
           span.title
-            = t(".profile_label")
+          = I18n.t("layouts.shared.sidebar.profile_label")
           span.arrow
         ul.sub-menu
           li
             = link_to admin_profile_index_path do
               i.icon-bar-chart
-              = t(".account_profile")
+              = I18n.t("layouts.shared.sidebar.account_profile")
           li
             = link_to new_admin_password_path do
               i.icon-plus
-              = t(".account_change_password")
+              = I18n.t("layouts.shared.sidebar.account_change_password")
       li
         a[href="javascript:;"]
           i.icon-folder
@@ -143,90 +128,90 @@
           li
             = link_to new_admin_static_page_path do
               i.icon-plus
-              = t(".static_page_new")
+              = I18n.t("layouts.shared.sidebar.static_page_new")
           li
             = link_to admin_static_pages_path do
               i.fa.fa-list-ol
-              = t(".static_page_list")
+              = I18n.t("layouts.shared.sidebar.static_page_list")
       li
         a[href="javascript:;"]
           i.icon-folder
           span.title
-            = t(".banner_label")
+            = I18n.t("layouts.shared.sidebar.banner_label")
           span.arrow
         ul.sub-menu
           li
             = link_to new_admin_banner_path do
               i.icon-plus
-              = t(".banner_new")
+              = I18n.t("layouts.shared.sidebar.banner_new")
           li
             = link_to admin_banners_path do
               i.fa.fa-list-ol
-              = t(".banner_list")
+              = I18n.t("layouts.shared.sidebar.banner_list")
       li
         a[href="javascript:;"]
           i.icon-pencil
           span.title
-            = t(".blog_label")
+            = I18n.t("layouts.shared.sidebar.blog_label")
           span.arrow
         ul.sub-menu
           li
             = link_to new_admin_article_path do
               i.icon-plus
-              = t(".blog_new")
+              = I18n.t("layouts.shared.sidebar.blog_new")
           li
             = link_to admin_articles_path do
               i.fa.fa-list-ol
-              = t(".blog_list")
+              = I18n.t("layouts.shared.sidebar.blog_list")
       li
         a[href="javascript:;"]
           i.fa.fa-globe
           span.title
-            = t(".social_network_label")
+            = I18n.t("layouts.shared.sidebar.social_network_label")
           span.arrow
         ul.sub-menu
           li
             = link_to new_admin_social_network_path do
               i.icon-plus
-              = t(".social_network_new")
+              = I18n.t("layouts.shared.sidebar.social_network_new")
           li
             = link_to admin_social_networks_path do
               i.fa.fa-list-ol
-              = t(".social_network_list")
+              = I18n.t("layouts.shared.sidebar.social_network_list")
       li
         a[href="javascript:;"]
           i.icon-user
           span.title
-            = t(".customer_label")
+            = I18n.t("layouts.shared.sidebar.customer_label")
           span.arrow
         ul.sub-menu
           li
             = link_to new_admin_user_path do
               i.icon-plus
-              = t(".customer_new")
+              = I18n.t("layouts.shared.sidebar.customer_new")
           li
             = link_to admin_users_path do
               i.fa.fa-list-ol
-              = t(".customer_list")
+              = I18n.t("layouts.shared.sidebar.customer_list")
           li
             = link_to new_admin_import_user_path do
               i.fa.fa-upload
-              = t(".customer_import_user")
+              = I18n.t("layouts.shared.sidebar.customer_import_user")
       li
         a[href="javascript:;"]
           i.fa.fa-user-secret
           span.title
-            = t(".admin_label")
+            = I18n.t("layouts.shared.sidebar.admin_label")
           span.arrow
         ul.sub-menu
           li
             = link_to admin_admins_path do
               i.fa.fa-list-ol
-              = t(".admin_list")
+              = I18n.t("layouts.shared.sidebar.admin_list")
           li
             = link_to new_admin_import_admin_path do
               i.fa.fa-upload
-              = t(".admin_import_employee")
+              = I18n.t("layouts.shared.sidebar.admin_import_employee")
       / li.heading
       /   h3.uppercase
       /     | More

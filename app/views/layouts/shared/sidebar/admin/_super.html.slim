@@ -1,0 +1,245 @@
+.page-sidebar-wrapper
+  .page-sidebar.navbar-collapse.collapse
+    ul.page-sidebar-menu[data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"]
+      li.sidebar-toggler-wrapper
+        .sidebar-toggler
+
+      li.sidebar-search-wrapper
+        form.sidebar-search[action="extra_search.html" method="POST"]
+        /   a.remove[href="javascript:;"]
+        /     i.icon-close
+        /   .input-group
+        /     input.form-control[type="text" placeholder="Search..."]
+        /     span.input-group-btn
+        /       a.btn.submit[href="javascript:;"]
+        /         i.icon-magnifier
+      / li.start
+      /   a[href="javascript:;"]
+      /     i.icon-home
+      /     span.title
+      /       | Dashboard
+      /     span.selected
+      /     span.arrow.open
+      /   ul.sub-menu
+      /     li
+      /       a[href="index.html"]
+      /         i.icon-bar-chart
+      /         |  Default Dashboard
+      /     li
+      /       a[href="index_2.html"]
+      /         i.icon-bulb
+      /         |  New Dashboard #1
+      /     li
+      /       a[href="index_3.html"]
+      /         i.icon-graph
+      /         |  New Dashboard #2
+      li
+        a[href="javascript:;"]
+          i.fa.fa-group
+          span.title
+            = I18n.t("layouts.shared.sidebar.role_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_role_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.role_new")
+          li
+            = link_to admin_roles_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.role_list")
+      li
+        a[href="javascript:;"]
+          i.icon-wrench
+          span.title
+            = I18n.t("layouts.shared.sidebar.faq_label")
+          span.arrow
+        ul.sub-menu
+          li
+            a[href="javascript:;"]
+              i.icon-settings
+              = I18n.t("layouts.shared.sidebar.faq_category_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_faq_category_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.faq_category_new")
+              li
+                = link_to admin_faq_categories_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.faq_category_list")
+          li
+            a[href="javascript:;"]
+              i.icon-globe
+              = I18n.t("layouts.shared.sidebar.faqs_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_faq_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.faq_new")
+              li
+                = link_to admin_faqs_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.faq_list")
+      / li
+      /   a[href="javascript:;"]
+      /     i.fa.fa-credit-card
+      /     span.title
+      /       = t(".payment_label")
+      /     span.arrow
+      /   ul.sub-menu
+      /     li
+      /       a[href="javascript:;"]
+      /         i.icon-settings
+      /         |  Payment Method
+      /         span.arrow
+      /       ul.sub-menu
+      /         li
+      /           = link_to new_admin_payment_method_path do
+      /             i.icon-plus
+      /             = t(".payment_method_new")
+      /         li
+      /           = link_to admin_payment_methods_path do
+      /             i.fa.fa-list-ol
+      /             = t(".payment_method_list")
+      /     li
+      /       a[href="javascript:;"]
+      /         i.fa.fa-info
+      /         |  Payment Information
+      /         span.arrow
+      /       ul.sub-menu
+      /         li
+      /           = link_to new_admin_payment_infor_path do
+      /             i.icon-plus
+      /             = t(".payment_info_new")
+      /         li
+      /           = link_to admin_payment_infors_path do
+      /             i.fa.fa-list-ol
+      /             = t(".payment_infor_list")
+      li
+        a[href="javascript:;"]
+          i.icon-users
+          span.title
+          = I18n.t("layouts.shared.sidebar.profile_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_profile_index_path do
+              i.icon-bar-chart
+              = I18n.t("layouts.shared.sidebar.account_profile")
+          li
+            = link_to new_admin_password_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.account_change_password")
+      li
+        a[href="javascript:;"]
+          i.icon-folder
+          span.title
+            | Static page management
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_static_page_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.static_page_new")
+          li
+            = link_to admin_static_pages_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.static_page_list")
+      li
+        a[href="javascript:;"]
+          i.icon-folder
+          span.title
+            = I18n.t("layouts.shared.sidebar.banner_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_banner_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.banner_new")
+          li
+            = link_to admin_banners_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.banner_list")
+      li
+        a[href="javascript:;"]
+          i.icon-pencil
+          span.title
+            = I18n.t("layouts.shared.sidebar.blog_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_article_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.blog_new")
+          li
+            = link_to admin_articles_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.blog_list")
+      li
+        a[href="javascript:;"]
+          i.fa.fa-globe
+          span.title
+            = I18n.t("layouts.shared.sidebar.social_network_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_social_network_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.social_network_new")
+          li
+            = link_to admin_social_networks_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.social_network_list")
+      li
+        a[href="javascript:;"]
+          i.icon-user
+          span.title
+            = I18n.t("layouts.shared.sidebar.customer_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_user_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.customer_new")
+          li
+            = link_to admin_users_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.customer_list")
+          li
+            = link_to new_admin_import_user_path do
+              i.fa.fa-upload
+              = I18n.t("layouts.shared.sidebar.customer_import_user")
+      li
+        a[href="javascript:;"]
+          i.fa.fa-user-secret
+          span.title
+            = I18n.t("layouts.shared.sidebar.admin_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_admins_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.admin_list")
+          li
+            = link_to new_admin_import_admin_path do
+              i.fa.fa-upload
+              = I18n.t("layouts.shared.sidebar.admin_import_employee")
+      / li.heading
+      /   h3.uppercase
+      /     | More
+      / li.last
+      /   a[href="javascript:;"]
+      /     i.icon-pointer
+      /     span.title
+      /       | Maps
+      /     span.arrow
+      /   ul.sub-menu
+      /     li
+      /       a[href="maps_google.html"]
+      /         |  Google Maps
+      /     li
+      /       a[href="maps_vector.html"]
+      /         |  Vector Maps

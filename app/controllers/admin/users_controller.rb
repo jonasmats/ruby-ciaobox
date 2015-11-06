@@ -7,8 +7,7 @@ class Admin::UsersController < Admin::BaseAdminController
   before_action :set_params, only: [:create, :update]
 
   def index
-    @users = User.all.latest.includes(:profile)
-    @q = @users.ransack(params[:q])
+    @q = User.all.ransack(params[:q])
     @users = @q.result
     respond_to do |format|
       format.html

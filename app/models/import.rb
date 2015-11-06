@@ -36,7 +36,7 @@ class Import
         user.password = '1'
         user.save!
         #save to profile
-        profile = user.build_profile
+        profile = user.profile
         profile.attributes = profile_row
         profile.save!
       end
@@ -71,7 +71,7 @@ class Import
         admin.save!
 
         #save to profile
-        profile = admin.build_profile
+        profile = admin.profile
         profile.attributes = profile_row
         profile.save!
       end

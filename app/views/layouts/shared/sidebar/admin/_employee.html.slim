@@ -1,0 +1,72 @@
+.page-sidebar-wrapper
+  .page-sidebar.navbar-collapse.collapse
+    ul.page-sidebar-menu[data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"]
+      li.sidebar-toggler-wrapper
+        .sidebar-toggler
+
+      li.sidebar-search-wrapper
+        form.sidebar-search[action="extra_search.html" method="POST"]
+      li
+        a[href="javascript:;"]
+          i.icon-users
+          span.title
+          = I18n.t("layouts.shared.sidebar.profile_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_profile_index_path do
+              i.icon-bar-chart
+              = I18n.t("layouts.shared.sidebar.account_profile")
+          li
+            = link_to new_admin_password_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.account_change_password")
+      li
+        a[href="javascript:;"]
+          i.icon-pencil
+          span.title
+            = I18n.t("layouts.shared.sidebar.blog_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_article_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.blog_new")
+          li
+            = link_to admin_articles_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.blog_list")
+      li
+        a[href="javascript:;"]
+          i.icon-user
+          span.title
+            = I18n.t("layouts.shared.sidebar.customer_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_user_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.customer_new")
+          li
+            = link_to admin_users_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.customer_list")
+          li
+            = link_to new_admin_import_user_path do
+              i.fa.fa-upload
+              = I18n.t("layouts.shared.sidebar.customer_import_user")
+      li
+        a[href="javascript:;"]
+          i.fa.fa-user-secret
+          span.title
+            = I18n.t("layouts.shared.sidebar.admin_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_admins_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.admin_list")
+          li
+            = link_to new_admin_import_admin_path do
+              i.fa.fa-upload
+              = I18n.t("layouts.shared.sidebar.admin_import_employee")

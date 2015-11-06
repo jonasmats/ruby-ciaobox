@@ -12,7 +12,9 @@ class User::Profile < ActiveRecord::Base
     'user_'
   end
   # 4 validate
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/, presence: true
+    validates :first_name, :last_name, presence: true, on: :update
+    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/, 
+      presence: true, on: :update
   # 6. instance methods
   def full_name
     "#{self.first_name} #{self.last_name}"
