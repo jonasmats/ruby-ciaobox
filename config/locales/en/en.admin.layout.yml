@@ -6,6 +6,8 @@ en:
     shared:
       page_sidebar:
         faq_label: "FAQs management"
+        faqs_label: " FAQs"
+        faq_category_label: " Categories"
         faq_category_new: *new
         faq_category_list: *list
         faq_new: *new
@@ -15,6 +17,7 @@ en:
         role_list: *list
         account_profile: " Change Profile"
         account_change_password: " Change Password"
+        banner_label: "Banner management"
         banner_new: *new
         banner_list: *list
         static_page_new: *new
@@ -24,7 +27,14 @@ en:
         payment_method_list: *list
         payment_infor_new: *new
         payment_infor_list: *list
-        category_label: "Categories"
         profile_label: "Profile management"
-        import_user: "Import User"
-        import_employee: "Import Employee"
+        blog_label: "Blog management"
+        blog_new: *new
+        blog_list: *list
+        customer_label: "Customer management"
+        customer_new: *new
+        customer_list: *list
+        customer_import_user: " Import Users"
+        admin_label: "Admin Management"
+        admin_list: *list
+        admin_import_employee: " Import Employees"
