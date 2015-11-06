@@ -6,12 +6,14 @@ tr
   td
     = admin.roles.first
   td
-    = admin.status
-    - if admin.employee?
-      - if admin.active?
-        = link_to "Change to unactive", admin_admin_path(admin, "ciaobox_user_employee[status]" => Admin.statuses.keys[0]), method: :patch
-      - else
-        = link_to "Change to active", admin_admin_path(admin, "ciaobox_user_employee[status]" => Admin.statuses.keys[1]), method: :patch
+    span id= "status_admin_#{admin.id}"
+      = admin.status
+    span style=("margin-left: 20px") 
+      - if admin.employee?
+        - if admin.active?
+          = link_to "Change to unactive", admin_admin_path(admin, "ciaobox_user_employee[status]" => Admin.statuses.keys[0]), method: :patch, remote: :true, id: "change_status_admin_#{admin.id}"
+        - else
+          = link_to "Change to active", admin_admin_path(admin, "ciaobox_user_employee[status]" => Admin.statuses.keys[1]), method: :patch, remote: :true, id: "change_status_admin_#{admin.id}"
   td
     = link_to admin_admin_path(admin), class: "btn default btn-xs purple" do
       i.fa.fa-view

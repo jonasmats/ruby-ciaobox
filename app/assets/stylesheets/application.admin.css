@@ -23,6 +23,7 @@
 @import "global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css";
 @import "global/plugins/fullcalendar/fullcalendar.min.css";
 @import "global/plugins/jqvmap/jqvmap/jqvmap.css";
+@import "global/plugins/bootstrap-toastr/toastr.css";
 
 /* BEGIN PAGE STYLES */
 @import "admin/pages/css/tasks.css";
