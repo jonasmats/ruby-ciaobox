@@ -1,4 +1,5 @@
 class Admin::BannersController < Admin::BaseAdminController
+  authorize_resource class: Banner
   include ::Admin::Banners::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]

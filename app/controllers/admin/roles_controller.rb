@@ -1,4 +1,5 @@
 class Admin::RolesController < Admin::BaseAdminController
+  authorize_resource
   include Admin::Roles::Parameter
   include Admin::Roles::Finder
 

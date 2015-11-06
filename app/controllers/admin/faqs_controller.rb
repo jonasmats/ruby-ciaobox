@@ -1,4 +1,5 @@
 class Admin::FaqsController < Admin::BaseAdminController
+  authorize_resource class: Faq
   include ::Admin::Faq::Parameter
   include ::Admin::Faq::Finder
 

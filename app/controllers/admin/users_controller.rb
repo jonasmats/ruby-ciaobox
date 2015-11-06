@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::BaseAdminController
+  authorize_resource class: User
   include ::Admin::Users::Parameter
 
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
