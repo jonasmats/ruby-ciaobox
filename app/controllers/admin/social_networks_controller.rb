@@ -16,7 +16,7 @@ class Admin::SocialNetworksController < Admin::BaseAdminController
 
   def create
     if @social_network.save
-      redirect_to admin_social_networks_path
+      redirect_to admin_social_networks_path, notice: t('notice.admin.created', model: SocialNetwork.human_name)
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::SocialNetworksController < Admin::BaseAdminController
 
   def update
     if @social_network.save
-      redirect_to admin_social_networks_path
+      redirect_to admin_social_networks_path, notice: t('notice.admin.updated', model: SocialNetwork.human_name)
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Admin::SocialNetworksController < Admin::BaseAdminController
 
   def destroy
     @social_network.destroy
-    redirect_to admin_social_networks_path
+    redirect_to admin_social_networks_path, notice: t('notice.admin.deleted', model: SocialNetwork.human_name)
   end
 
   private

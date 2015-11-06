@@ -19,7 +19,7 @@ class Admin::BannersController < Admin::BaseAdminController
 
   def create
     if @banner.save
-      redirect_to admin_banners_path
+      redirect_to admin_banners_path, notice: t('notice.admin.created', model: Banner.human_name)
     else
       render :new
     end
@@ -30,7 +30,7 @@ class Admin::BannersController < Admin::BaseAdminController
 
   def update
     if @banner.save
-      redirect_to admin_banners_path
+      redirect_to admin_banners_path, notice: t('notice.admin.updated', model: Banner.human_name)
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class Admin::BannersController < Admin::BaseAdminController
 
   def destroy
     @banner.destroy
-    redirect_to admin_banners_path
+    redirect_to admin_banners_path, notice: t('notice.admin.deleted', model: Banner.human_name)
   end
 
   private

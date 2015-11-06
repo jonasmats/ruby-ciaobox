@@ -1,12 +1,12 @@
 class User::Profile < ActiveRecord::Base
-  has_attached_file :avatar, 
-    styles: { medium: "300x300>", thumb: "100x100>" }, 
+  has_attached_file :avatar,
+    styles: { medium: "300x300>", thumb: "100x100>" },
     default_url: "/images/:style/missing.png",
     url: "/images/:class/:attachment/:basename-:hash.:extension",
     hash_secret: "@CiaoboxSecretSocialIcont@" # decode with base64
 
   # 1. associations
-  belongs_to :user
+  belongs_to :user, class_name: User.name, foreign_key: :user_id
   # 3. class methods
   def self.table_name_prefix
     'user_'

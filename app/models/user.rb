@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
   enum status: { un_active: 0, active: 1 }
 
   # 1. associations
-  has_one :profile, class_name: User::Profile.name, foreign_key: :user_id
-  accepts_nested_attributes_for :profile, allow_destroy: true
+  has_one :profile, class_name: User::Profile.name, foreign_key: :user_id, dependent: :destroy
+  accepts_nested_attributes_for :profile
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates

@@ -26,7 +26,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def create
     if @user.save
-      redirect_to admin_user_path(@user), notice: t('admin.users.create.success')
+      redirect_to admin_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
       render :new
     end
@@ -38,7 +38,7 @@ class Admin::UsersController < Admin::BaseAdminController
   def update
     if @user.save
       respond_to do |format|
-        format.html { redirect_to admin_user_path(@user), notice: t('admin.users.update.success') }
+        format.html { redirect_to admin_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }
         format.js
       end
     else
@@ -49,16 +49,16 @@ class Admin::UsersController < Admin::BaseAdminController
   def destroy
     msg =
       if @user.destroy
-        t('admin.users.destroy.success')
+        t('notice.admin.users.destroy.success')
       else
-        t('admin.users.destroy.error')
+        t('notice.admin.users.destroy.error')
       end
     redirect_to admin_users_path, notice: msg
   end
 
   private
   def load_instance
-    @user = User.find(params[:id])
+    @user = ::User.find(params[:id])
   end
 
   def create_instance

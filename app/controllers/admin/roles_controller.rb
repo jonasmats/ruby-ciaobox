@@ -21,7 +21,7 @@ class Admin::RolesController < Admin::BaseAdminController
   def create
     # authorize! :create, "Role"
     if @role.save
-      redirect_to admin_roles_path
+      redirect_to admin_roles_path, notice: t('notice.admin.created', model: Role.human_name)
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Admin::RolesController < Admin::BaseAdminController
   def update
     # authorize! :update, "Role"
     if @role.save
-      redirect_to admin_roles_path
+      redirect_to admin_roles_path, notice: t('notice.admin.updated', model: Role.human_name)
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class Admin::RolesController < Admin::BaseAdminController
   def destroy
     # authorize! :destroy, "Role"
     @role.destroy
-    redirect_to admin_roles_path
+    redirect_to admin_roles_path, notice: t('notice.admin.deleted', model: Role.human_name)
   end
 
   private
