@@ -1,6 +1,19 @@
 = render partial: "title", locals: {title: "Detail"}
-p
-  strong
-    = Faq::Category.h :name
-    | :
-  = @category.name
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_faq_categories_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Faq::Category.h :name
+        td
+          = @category.name

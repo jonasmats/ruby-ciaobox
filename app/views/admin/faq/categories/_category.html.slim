@@ -2,6 +2,9 @@ tr
   td
     = category.name
   td
+    = link_to admin_faq_category_path(category.id), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
     = link_to edit_admin_faq_category_path(category.id), class: "btn default btn-xs purple" do
       i.fa.fa-edit
       = t(".edit")
