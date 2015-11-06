@@ -11,6 +11,8 @@ class Ability
       when CiaoboxUser::Company.name
         can :manage, :all
         cannot :manage, Role
+      when CiaoboxUser::Employee.name
+        can :manage, [Article, User, Admin, User::Profile, CiaoboxUser::Profile]
       end
       # role = admin.role
       # if role.present?

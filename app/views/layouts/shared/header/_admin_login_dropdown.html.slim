@@ -7,14 +7,14 @@ li.dropdown.dropdown-user
       = @admin_full_name
     i.fa.fa-angle-down
   ul.dropdown-menu.dropdown-menu-default
-    / li
-    /   = link_to admin_profile_index_path do
-    /     i.icon-user
-    /     | My Profile
-    / li
-    /   = link_to new_admin_password_path do
-    /     i.fa.fa-cog
-    /     | Change password
+    li
+      = link_to admin_profile_index_path do
+        i.icon-user
+        = I18n.t("layouts.shared.sidebar.account_profile")
+    li
+      = link_to new_admin_password_path do
+        i.fa.fa-cog
+        = I18n.t("layouts.shared.sidebar.account_change_password")
     / li
     /   a href="page_calendar.html" 
     /     i.icon-calendar
