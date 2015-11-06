@@ -1,11 +1,25 @@
-p
-  strong
-    = SocialNetwork.h :link
-    | :
-  = @social_network.link
+= render partial: "title", locals: {title: "Detail"}
 
-p
-  strong
-    = SocialNetwork.h :icon
-    | :
-  = image_tag @social_network.icon
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_social_networks_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = SocialNetwork.h :link
+        td
+          = @social_network.link
+      tr
+        td
+          strong
+            = SocialNetwork.h :icon
+        td
+          = image_tag @social_network.icon

@@ -31,6 +31,9 @@ en:
         blog_label: "Blog management"
         blog_new: *new
         blog_list: *list
+        social_network_label: "Social Network"
+        social_network_new: *new
+        social_network_list: *list
         customer_label: "Customer management"
         customer_new: *new
         customer_list: *list

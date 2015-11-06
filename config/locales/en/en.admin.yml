@@ -12,6 +12,7 @@ en:
       question_destroy: &question_destroy "Are you sure?"
       un_publish: &un_publish "Private"
       publish: &publish "Publish"
+      back: &back " Back"
     faq:
       categories:
         index:
@@ -36,6 +37,8 @@ en:
     articles:
       index:
         action: *action
+      show:
+        back: *back
       form:
         submit: *submit
         blank: *blank
@@ -49,6 +52,8 @@ en:
     static_pages:
       index:
         action: *action
+      show:
+        back: *back
       form:
         submit: *submit
         blank: *blank
@@ -87,6 +92,8 @@ en:
     banners:
       index:
         action: *action
+      show:
+        back: *back
       form:
         submit: *submit
         blank: *blank
@@ -136,3 +143,15 @@ en:
           edit: *edit
           delete: *delete
           question_destroy: *question_destroy
+    social_networks:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        cancel: *cancel
+      show:
+        back: *back
+      social_network:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy

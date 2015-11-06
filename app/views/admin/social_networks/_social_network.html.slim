@@ -4,6 +4,12 @@ tr
   td
     = image_tag social_network.icon
   td
-    = link_to t(".edit"), edit_admin_social_network_path(social_network.id)
-    |
-    = link_to t(".delete"), admin_social_network_path(social_network.id), method: :delete, data: {confirm: t(".question_destroy")}
+    = link_to admin_social_network_path(social_network.id), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+    = link_to edit_admin_social_network_path(social_network.id), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_social_network_path(social_network.id), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

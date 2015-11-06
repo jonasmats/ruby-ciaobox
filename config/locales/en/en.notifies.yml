@@ -16,7 +16,7 @@ en:
         success: Create article successfully
       update: 
         success: Update article successfully
-      destroy: 
+      destroy:
         success: Destroy article successfully
         error: Destroy article error
     import_admins:
@@ -32,7 +32,7 @@ en:
     static_pages:
       create:
         success: Create static page successfully
-      update: 
+      update:
         success: Update static page successfully
       destroy:
         success: Destroy static page successfully

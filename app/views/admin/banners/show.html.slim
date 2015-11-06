@@ -1,6 +1,25 @@
 = render partial: "title", locals: {title: "Detail"}
-p
-  strong
-    = Banner.h :status
-    | :
-  = @banner.status
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_banners_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Banner.h :image
+        td
+          = image_tag @banner.image
+      tr
+        td
+          strong
+            = Banner.h :status
+        td
+          = @banner.status

@@ -180,6 +180,21 @@
               = t(".blog_list")
       li
         a[href="javascript:;"]
+          i.fa.fa-globe
+          span.title
+            = t(".social_network_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_social_network_path do
+              i.icon-plus
+              = t(".social_network_new")
+          li
+            = link_to admin_social_networks_path do
+              i.fa.fa-list-ol
+              = t(".social_network_list")
+      li
+        a[href="javascript:;"]
           i.icon-user
           span.title
             = t(".customer_label")

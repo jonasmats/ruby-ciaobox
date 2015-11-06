@@ -1,10 +1,21 @@
-= form_for [:admin, @social_network] do |f|
-  = render "/layouts/shared/form_errors/admin", object: f.object
-  .form-group
-    = SocialNetwork.h :link
-    = f.text_field :link
-  .form-group
-    = SocialNetwork.h :icon
-    = f.file_field :icon
-  .actions
-    = f.submit
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_for [:admin, @social_network], html: {class: "form-horizontal"} do |f|
+      = render "/layouts/shared/form_errors/admin", object: f.object
+      .form-body
+        .form-group
+          label.col-md-3.control-label
+            = SocialNetwork.h :link
+          .col-md-4
+            = f.text_field :link, class: "form-control", placeholder: ""
+        .form-group.last
+          label.col-md-3.control-label
+            = SocialNetwork.h :icon
+          .col-md-4
+            = f.file_field :icon, class: "form-control", placeholder: ""
+        .form-actions
+          .row
+            .col-md-offset-3.col-md-4
+              = f.submit class: "btn green"
+              = link_to admin_social_networks_path, class: "btn default" do
+                = t(".cancel")

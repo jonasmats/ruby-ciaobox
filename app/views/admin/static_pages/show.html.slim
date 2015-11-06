@@ -1,13 +1,37 @@
 = render partial: "title", locals: {title: "Detail"}
-p
-  | Title:
-  = @static_page.title
-p
-  | Created at:
-  = @static_page.created_at
-p
-  | Status:
-  = @static_page.status
-p
-  | Content:
-  = @static_page.content.html_safe
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_static_pages_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = StaticPage.h :title
+        td
+          = @static_page.title
+      tr
+        td
+          strong
+            = StaticPage.h :status
+        td
+          = @static_page.status
+      tr
+        td
+          strong
+            = StaticPage.h :content
+        td
+          = @static_page.content.html_safe
+      tr
+        td
+          strong
+            = StaticPage.h :created_at
+        td
+          = @static_page.created_at

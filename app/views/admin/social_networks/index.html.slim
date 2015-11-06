@@ -1,11 +1,16 @@
-table
-  thead
-    tr
-      th
-        = SocialNetwork.h :link
-      th
-        = SocialNetwork.h :icon
-      th
-        = t(".action")
-  tbody
-  = render partial: 'social_network', collection: @social_networks
+= render partial: "title", locals: {title: "List"}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = SocialNetwork.h :name
+          th
+            = SocialNetwork.h :icon
+          th[width="20%"]
+            = t(".action")
+      tbody
+        = render partial: 'social_network', collection: @social_networks
