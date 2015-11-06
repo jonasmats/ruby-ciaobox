@@ -13,6 +13,8 @@ en:
       un_publish: &un_publish "Private"
       publish: &publish "Publish"
       back: &back " Back"
+      active: &active "Active"
+      un_active: &un_active "Lock"
     faq:
       categories:
         index:
@@ -70,11 +72,15 @@ en:
       form:
         submit: *submit
         blank: *blank
+        active: *active
+        un_active: *un_active
       admin:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
         view: *view
+        active: *active
+        un_active: *un_active
     users:
       index:
         action: *action
@@ -82,13 +88,15 @@ en:
       form:
         submit: *submit
         blank: *blank
-        active: "Active"
-        un_active: "Lock"
+        active: *active
+        un_active: *un_active
       user:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
         view: *view
+        active: *active
+        un_active: *un_active
     banners:
       index:
         action: *action

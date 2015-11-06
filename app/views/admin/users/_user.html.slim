@@ -5,8 +5,8 @@ tr
     = user.email
   td
     span id= "status_user_#{user.id}"
-      = user.status
-    span style=("margin-left: 20px") 
+      = t(".#{user.status}")
+    span style=("margin-left: 20px")
       - if user.active?
         = link_to "Change to unactive", admin_user_path(user, "user[status]" => User.statuses.keys[0]), method: :patch, remote: :true, id: "change_status_user_#{user.id}"
       - else
