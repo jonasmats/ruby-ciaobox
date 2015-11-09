@@ -1,22 +1,5 @@
 nav
-  ul.clearfix
-    li
-      = link_to root_path do
-        | Home
-    li
-      = link_to abouts_path do
-        | About
-    li
-      = link_to prices_path do
-        | Prices
-    li
-      = link_to faqs_path do
-        | FAQ
-    li
-      = link_to contacts_path do
-        | Contact
-
-
+  = render partial: "layouts/frontend/links"
 #sb-toggle-left
   a.menu-bt.sb-toggle-left[href="#"]
     span
