@@ -18,7 +18,7 @@
 //= require js/slidebars.min
 //= require js/custom
 //= require js/jquery.placeholder.min
-
+//= require underscore-min
 /* OTHER  */
 //= require jquery_ujs
 

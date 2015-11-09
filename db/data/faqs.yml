@@ -1,6 +1,7 @@
 -
-  id: 1
-  name: "General Questions"
+  category:
+    id: 1
+    name: "General Questions"
   faqs:
     -
       question: "What is MakeSpace?"
@@ -16,8 +17,9 @@
       answer: "<p>MakeSpace is New York’s #1 consumer rated storage company. We deliver free bins (or boxes if you’re outside of NYC, Washington, D.C., or Chicago) for you to pack with items you'd like to store. We pick up, store, and deliver your stuff back when you want so you never have to visit a storage unit again.</p><p>At our secure storage facility, we upload high-quality overhead photos of your bins or boxes so you know what you have in MakeSpace at all times. This makes ordering your things back simple.</p>"
 
 -
-  id: 2
-  name: "Pricing and Billing"
+  category:
+    id: 2
+    name: "Pricing and Billing"
   faqs:
     -
       question: "How much does MakeSpace cost?"
@@ -29,9 +31,9 @@
       question: "Can you tell me more about the 3-month minimum?"
       answer: "<p>MakeSpace is New York’s #1 consumer rated storage company. We deliver free bins (or boxes if you’re outside of NYC, Washington, D.C., or Chicago) for you to pack with items you'd like to store. We pick up, store, and deliver your stuff back when you want so you never have to visit a storage unit again.</p><p>At our secure storage facility, we upload high-quality overhead photos of your bins or boxes so you know what you have in MakeSpace at all times. This makes ordering your things back simple.</p>"
 
--
-  id: 3
-  name: "Packing"
+- category:
+    id: 3
+    name: "Packing"
   faqs:
     -
       question: "How do I know how many MakeSpace bins or boxes I need?"
