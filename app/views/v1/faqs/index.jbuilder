@@ -1,8 +1,8 @@
-json.data @faqs do |faq|
-  json.id faq.id
-  json.question faq.question
-  json.answer faq.answer
+json.data @categories do |category|
+  json.id category.id
+  json.name category.name
 
-  json.category faq.faq_category, :id, :name
+  json.faqs category.faqs, :id, :question, :answer
+
 end
 
