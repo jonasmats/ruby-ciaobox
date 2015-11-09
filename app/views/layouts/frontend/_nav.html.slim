@@ -4,17 +4,19 @@ nav
       = link_to root_path do
         | Home
     li
-      a[href="about.html"]
+      = link_to abouts_path do
         | About
     li
-      a[href="prices.html"]
+      = link_to prices_path do
         | Prices
     li
       = link_to faqs_path do
         | FAQ
     li
-      a[href="contact.html"]
+      = link_to contacts_path do
         | Contact
+
+
 #sb-toggle-left
   a.menu-bt.sb-toggle-left[href="#"]
     span
