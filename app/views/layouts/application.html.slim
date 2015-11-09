@@ -8,6 +8,11 @@ html
     = csrf_meta_tags
   body
     #sb-site.sb-slide
+      - if current_page?root_path
+        = render partial: "layouts/frontend/header"
+      - else
+        = render partial: "layouts/frontend/header.account"
+
       = yield
       = render partial: "layouts/frontend/footer"
     = render partial: "layouts/frontend/slidebar_left"

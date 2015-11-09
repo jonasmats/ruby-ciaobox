@@ -1,6 +1,25 @@
 = render partial: "title", locals: {title: "Detail"}
-p
-  strong
-    = Faq.h :question
-    | :
-  = @faq.question
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_faqs_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Faq.h :question
+        td
+          = @faq.question
+      tr
+        td
+          strong
+            = Faq.h :answer
+        td
+          = @faq.answer.html_safe

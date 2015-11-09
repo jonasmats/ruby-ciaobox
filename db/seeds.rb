@@ -10,3 +10,6 @@ Shipping.create!(zip_code: '260000', way: 'standard')
 Shipping.create!(zip_code: '960000', way: 'fly')
 Shipping.create!(zip_code: '220000', way: 'fly')
 Shipping.create!(zip_code: '790000', way: 'fly')
+
+
+require File.dirname(__FILE__) + '/seeds/faqs'

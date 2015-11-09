@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   attr_accessor :login
-  
+
   after_create :create_instance_profile
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true

@@ -16,7 +16,7 @@ class Faq < ActiveRecord::Base
   # 1. associations
   belongs_to :faq_category, class_name: Faq::Category.name
   # 2. scopes
-
+  default_scope -> { includes(:translations, :faq_category) }
   # 3. class methods
 
   # 4. validates
