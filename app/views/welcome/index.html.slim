@@ -134,3 +134,10 @@ section.map-section.wrapper
   h3
     | Ready to order now?
   input.place-bt-2[type="button" value="Place Order"]
+
+-home_banner = Banner.current_home_banner
+-if home_banner
+  css:
+    .banner {
+      background: url("#{home_banner.try(:image).url}") no-repeat center center;
+    }
