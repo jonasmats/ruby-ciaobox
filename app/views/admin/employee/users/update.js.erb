@@ -1,0 +1,37 @@
+var value = "";
+var link = "";
+var msg_alert = "";
+<% if @user.active? %>
+  link = "<%= admin_user_path(@user, 'user[status]' => User.statuses.keys[0]) %>"
+  value = "un_active";
+  msg_alert = "Change to active successfully"
+<% elsif @user.un_active? %>
+  link = "<%= admin_user_path(@user, 'user[status]' => User.statuses.keys[1]) %>"
+  value = "active";
+  msg_alert = "Change to un active successfully"
+<% end %>
+
+$('#change_status_user_<%=@user.id%>').attr('href', link);
+$('#change_status_user_<%=@user.id%>').html("Change to " + value);
+$('#status_user_<%=@user.id%>').html("<%=@user.status%>");
+
+toastr["success"](msg_alert)
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+

@@ -168,3 +168,22 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+    employee:
+      users:
+        index:
+          action: *action
+          download_tools: "Download Tools"
+          download_csv: "Download to CSV"
+          download_xls: "Donwload to Excel"
+        form:
+          submit: *submit
+          blank: *blank
+          active: *active
+          un_active: *un_active
+        user:
+          edit: *edit
+          delete: *delete
+          question_destroy: *question_destroy
+          view: *view
+          active: *active
+          un_active: *un_active

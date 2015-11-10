@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
   
-  after_create :create_instance_profile
+  after_create :create_instance_profile, unless: :check_has_param_profile?
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true
   enum status: { un_active: 0, active: 1 }
@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
   private
   def create_instance_profile
     self.create_profile
+  end
+
+  def check_has_param_profile?
+    self.profile.present?
   end
 
   # 6
