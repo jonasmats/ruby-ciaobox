@@ -64,26 +64,8 @@
           .col-md-4
             = fff.text_field :country, class: "form-control", placeholder: ""
         
-      .form-group
-          label.col-md-3.control-label
-            = User.h :note
-          .col-md-4
-            = f.fields_for :note do |ff|
-              - if @user.note.present?
-                - @user.note.each do |k,v|
-                  #more_note_user
-                    label.col-md-3.control-label
-                      = User.h k
-                    fieldset
-                      = ff.text_area k, value: v, class: "form-control"
-                  br
-              - else
-                #more_note_user
-                  label.col-md-3.control-label
-                    = User.h :note_1
-                  fieldset
-                    = ff.text_area :note_1, class: "form-control"
-              = link_to "Add note", '', class: 'btn btn-info', id: 'add_note_user'
+      = render "note", f: f
+
       .form-group
         label.col-md-3.control-label
           = User.h :status
@@ -95,18 +77,3 @@
             = f.submit class: "btn green"
             = link_to admin_employee_users_path, class: "btn default" do
               = t(".cancel")
-
-javascript:
-  $(document).ready(function(){
-    var id = 1
-    var max = 4
-    $('#add_note_user').on('click', function(){
-      if (id < max){
-        id += 1
-        $('#more_note_user').append('<br><label class="col-md-3 control-label">Note '+id+'</label><fieldset><textarea class="form-control" name="user[note][note_'+id+']"></textarea></fieldset>');
-      }else{
-        alert('Maximun is 4 notes')
-      }
-      return false;
-    })
-  })
