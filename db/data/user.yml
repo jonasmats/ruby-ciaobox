@@ -1,0 +1,50 @@
+-
+  user:
+    id: 1
+    email: "user_1@gmail.com"
+    username: "user_1"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "User 1"
+-
+  user:
+    id: 2
+    email: "user_2@gmail.com"
+    username: "user_2"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "User 2"
+-
+  user:
+    id: 3
+    email: "user_3@gmail.com"
+    username: "user_3"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "User 3"
+-
+  user:
+    id: 4
+    email: "user_4@gmail.com"
+    username: "user_4"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "User 4"
+-
+  user:
+    id: 5
+    email: "user_5@gmail.com"
+    username: "user_5"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "User 5"

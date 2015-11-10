@@ -1,0 +1,10 @@
+-
+  super_admin:
+    id: 1
+    email: "superadmin@gmail.com"
+    username: "superadmin"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Super admin"

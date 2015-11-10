@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104090736) do
+ActiveRecord::Schema.define(version: 20151111044050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(version: 20151104090736) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "drivers", force: :cascade do |t|
+    t.string   "code",       null: false
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "faq_categories", force: :cascade do |t|
     t.datetime "deleted_at"
@@ -217,11 +224,14 @@ ActiveRecord::Schema.define(version: 20151104090736) do
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
 
   create_table "shippings", force: :cascade do |t|
-    t.string   "zip_code",   null: false
-    t.string   "way",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "zip_code",               null: false
+    t.integer  "way",        default: 0, null: false
+    t.integer  "driver_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  add_index "shippings", ["driver_id"], name: "index_shippings_on_driver_id", using: :btree
 
   create_table "social_networks", force: :cascade do |t|
     t.string   "link"
@@ -299,5 +309,6 @@ ActiveRecord::Schema.define(version: 20151104090736) do
   add_foreign_key "faqs", "faq_categories"
   add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
+  add_foreign_key "shippings", "drivers"
   add_foreign_key "user_profiles", "users"
 end

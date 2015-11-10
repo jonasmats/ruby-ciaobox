@@ -1,0 +1,50 @@
+-
+  employee:
+    id: 1
+    email: "employee_1@gmail.com"
+    username: "employee_1"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Employee 1"
+-
+  employee:
+    id: 2
+    email: "employee_2@gmail.com"
+    username: "employee_2"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Employee 2"
+-
+  employee:
+    id: 3
+    email: "employee_3@gmail.com"
+    username: "employee_3"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Employee 3"
+-
+  employee:
+    id: 4
+    email: "employee_4@gmail.com"
+    username: "employee_4"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Employee 4"
+-
+  employee:
+    id: 5
+    email: "employee_5@gmail.com"
+    username: "employee_5"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Employee 5"

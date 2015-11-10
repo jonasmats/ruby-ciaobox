@@ -9,6 +9,7 @@ def create_faq(attrs, faq_category)
 end
 
 ActiveRecord::Base.transaction do
+  puts "Seed db for FAQ"
   config.each do |attr|
     faq_category = create_faq_category(attr['category'])
 
