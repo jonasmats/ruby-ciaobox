@@ -3,5 +3,6 @@ Rails.application.routes.draw do
     resources :zip_codes, only: :create
     resources :newsletters, only: :create
     resources :faqs, only: :index
+    resources :social_networks, only: :index
   end
 end

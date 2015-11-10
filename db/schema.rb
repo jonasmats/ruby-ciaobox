@@ -224,6 +224,7 @@ ActiveRecord::Schema.define(version: 20151104090736) do
   end
 
   create_table "social_networks", force: :cascade do |t|
+    t.string   "name"
     t.string   "link"
     t.string   "icon_file_name"
     t.string   "icon_content_type"
