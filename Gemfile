@@ -98,7 +98,6 @@ gem 'devise-async'
 
 # Version for api
 gem 'versionist'
-gem 'jbuilder', '~> 2.0'
 
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
