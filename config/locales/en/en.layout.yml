@@ -1,0 +1,9 @@
+en:
+  layouts:
+    frontend:
+      links:
+        home: 'Home'
+        about: 'About'
+        prices: 'Prices'
+        faq: 'FAQ'
+        contact: 'Contact'

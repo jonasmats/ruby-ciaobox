@@ -1,0 +1,9 @@
+it:
+  layouts:
+    frontend:
+      links:
+        home: 'Casa'
+        about: 'Di'
+        prices: 'Prezzi'
+        faq: 'FAQ'
+        contact: 'Contatto'
