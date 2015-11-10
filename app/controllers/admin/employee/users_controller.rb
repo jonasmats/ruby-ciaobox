@@ -22,11 +22,12 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
 
   def new
     @user.build_profile
+    @user.build_address
   end
 
   def create
     if @user.save
-      redirect_to admin_employee_user_path(@user), notice: t('notice.admin.employee.created', model: User.human_name)
+      redirect_to admin_employee_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
       render :new
     end
@@ -38,7 +39,7 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   def update
     if @user.save
       respond_to do |format|
-        format.html { redirect_to admin_employee_user_path(@user), notice: t('notice.admin.employee.updated', model: User.human_name) }
+        format.html { redirect_to admin_employee_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }
         format.js
       end
     else
@@ -49,9 +50,9 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   def destroy
     msg =
       if @user.destroy
-        t('notice.admin.employee.users.destroy.success')
+        t('notice.admin.users.destroy.success')
       else
-        t('notice.admin.employee.users.destroy.error')
+        t('notice.admin.users.destroy.error')
       end
     redirect_to admin_employee_users_path, notice: msg
   end

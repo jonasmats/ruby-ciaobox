@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
 
   # 1. associations
   has_one :profile, class_name: User::Profile.name, foreign_key: :user_id, dependent: :destroy
+  has_one :address, class_name: Address.name, foreign_key: :user_id, dependent: :destroy
   accepts_nested_attributes_for :profile
+  accepts_nested_attributes_for :address
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates

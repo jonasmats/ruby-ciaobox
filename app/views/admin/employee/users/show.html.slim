@@ -47,6 +47,27 @@
                 = @user.email
           .form-group
             label.control-label.col-md-3
+              = Address.h :address_name
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.address_name
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :city
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.city
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :country
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.country
+          .form-group
+            label.control-label.col-md-3
               = User.h :status
               | :
             .col-md-4
@@ -58,8 +79,11 @@
               | :
             .col-md-4
               p.form-control-static
-                = @user.note
+                - if @user.note.present?
+                  - @user.note.each do |k,v|
+                    -if v.present?
+                      li= v
           .form-actions
             .row
               .col-md-offset-3.col-md-4
-                = link_to "Edit user info", edit_admin_user_path(@user), class: "btn green"
+                = link_to "Edit user info", edit_admin_employee_user_path(@user), class: "btn green"

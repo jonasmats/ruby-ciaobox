@@ -44,6 +44,14 @@ br
           th
             = User.h :status
           th
+            = User.h 'CAP'
+          th
+            = User::Profile.h :telephone
+          th
+            = Address.h :city
+          th
+            = Address.h :country
+          th
             = t(".action")
       tbody
       = render partial: 'user', collection: @users

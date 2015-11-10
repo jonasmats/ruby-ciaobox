@@ -293,6 +293,7 @@ ActiveRecord::Schema.define(version: 20151109070056) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.hstore   "note"
+    t.string   "cap"
     t.string   "username"
     t.integer  "status",                 default: 1,  null: false
     t.datetime "created_at",                          null: false
