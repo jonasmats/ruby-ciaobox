@@ -24,6 +24,6 @@ class Banner < ActiveRecord::Base
   validates :status, presence: true
 
   def self.current_home_banner
-    where(status: 1).first
+    where(status: self.statuses[:publish]).first
   end
 end
