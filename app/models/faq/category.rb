@@ -15,6 +15,7 @@ class Faq::Category < ActiveRecord::Base
   # 1. associations
   has_many :faqs, dependent: :destroy, foreign_key: :faq_category_id
   # 2. scopes
+  default_scope -> { includes(:translations) }
 
   # 3. class methods
 

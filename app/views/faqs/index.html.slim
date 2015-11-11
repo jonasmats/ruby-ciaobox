@@ -1,0 +1,57 @@
+section#jbreadcrumb.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Frequently Asked Questions
+
+script#jfaq-template[type="text/template"]
+  |  <section class="question-type clearfix"> <div class="container"> <h3><%- name %></h3> <a href="#" title=""><i class="fa fa-angle-down"></i></a> </div> </section> <section class="question-type-bottom clearfix"> <div class="container"> <div class="question-type-inner"> <% _.each(faqs, function(faq) { %> <div class="question-answer"> <div class="question"> <a href="#one" title="<%- faq.question %>"><%- faq.question %></a></div> <div id="one" class="answer"> <span>A</span> <div class="answer-description"> <%= faq.answer %> </div> </div> </div> <% }); %> </div> </div> </section>
+
+javascript:
+  var FAQ = function(options) {
+    var module = this;
+
+    var defaults = {
+      url: "#{v1_faqs_path}",
+      faqs: [],
+      container: $('#jbreadcrumb'),
+      template: $('#jfaq-template')
+    };
+    module.settings = $.extend({}, defaults, options);
+
+    module.get_faqs = function(callback) {
+      $.ajax({
+        url: module.settings.url,
+        dataType: 'json',
+        success: function(res) {
+          module.settings.faqs = res.data;
+          if(callback) {
+            callback()
+          }
+        }
+      });
+    }
+    module.bindEvents = function() {
+      $(".question-answer").click(function(e) {
+        e.preventDefault();
+        $(this).find(".question").toggleClass("selected");
+        $(this).find(".answer").slideToggle();
+      });
+    }
+    module.renderFaqs = function() {
+      var template = _.template($("#jfaq-template").html());
+      _.each(module.settings.faqs, function(data) {
+        module.settings.container.after(template(data));
+      });
+      module.bindEvents();
+    }
+    module.init = function() {
+      module.get_faqs(module.renderFaqs);
+    }
+  }
+
+  jQuery(document).ready(function() {
+    faq = new FAQ;
+    faq.init();
+  });

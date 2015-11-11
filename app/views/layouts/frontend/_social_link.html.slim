@@ -1,0 +1,53 @@
+.social-icon#js-area-icon-one
+
+.social-icon.social-icon-second#js-area-icon-second
+
+script#js-social-netwok-template[type="text/template"]
+  | <a href="<%= link %>" style="background: url('<%= icon_url %>') no-repeat left;" target="_blank"><%= name %></a>
+
+javascript:
+  var SOCIAL_LINK = function(options) {
+    var module = this;
+
+    var defaults = {
+      url: "#{v1_social_networks_path}",
+      social_networks: [],
+      container_one: $('#js-area-icon-one'),
+      container_second: $('#js-area-icon-second'),
+      template: $('#jsocial-link-template')
+    };
+    module.settings = $.extend({}, defaults, options);
+
+    module.get_social_links = function(callback) {
+      $.ajax({
+        url: module.settings.url,
+        dataType: 'json',
+        success: function(res) {
+          module.settings.social_networks = res.social_networks;
+          if(callback) {
+            callback()
+          }
+        }
+      });
+    }
+
+    module.renderSocialLink = function() {
+      var template = _.template($("#js-social-netwok-template").html());
+      _.each(module.settings.social_networks, function(social_network, index) {
+        if(index <= 1){
+          module.settings.container_one.append(template(social_network));
+        } else {
+          module.settings.container_second.append(template(social_network));
+        }
+      });
+
+    }
+    module.init = function() {
+      module.get_social_links(module.renderSocialLink);
+    }
+  }
+
+  jQuery(document).ready(function() {
+    social_link = new SOCIAL_LINK;
+    social_link.init();
+  });

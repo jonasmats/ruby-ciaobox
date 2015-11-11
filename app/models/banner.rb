@@ -22,4 +22,8 @@ class Banner < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ },
     presence: true
   validates :status, presence: true
+
+  def self.current_home_banner
+    where(status: self.statuses[:publish]).first
+  end
 end

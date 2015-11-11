@@ -23,11 +23,12 @@ class SocialNetwork < ActiveRecord::Base
   # 3. class methods
 
   # 4. validates
-  validates :link, presence: true
-  has_attached_file :icon, url: "/images/:class/:attachment/:basename-:hash.:extension",
+  validates :name, :link, presence: true
+  has_attached_file :icon,
+    default_url: "assets/images/facebook-icon.png",
+    url: "/images/:class/:attachment/:basename-:hash.:extension",
     hash_secret: "@CiaoboxSecretSocialIcont@" # decode with base64
-  validates_attachment :icon, content_type: { content_type: /\Aimage\/.*\Z/ },
-    presence: true
+  validates_attachment :icon, content_type: { content_type: /\Aimage\/.*\Z/ }
 
   # 5. callbacks
 

@@ -1,8 +1,10 @@
 tr
   td
+    = faq.faq_category.name
+  td
     = faq.question
   td
-    = faq.answer
+    = faq.answer.html_safe
   td
     = link_to edit_admin_faq_path(faq.id), class: "btn default btn-xs purple" do
       i.fa.fa-edit

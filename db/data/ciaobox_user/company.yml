@@ -1,0 +1,10 @@
+-
+  company_admin:
+    id: 1
+    email: "companyadmin@gmail.com"
+    username: "companyadmin"
+    password: "1"
+
+  profile:
+    first_name: "Ciaobox"
+    last_name: "Company admin"
