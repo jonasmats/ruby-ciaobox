@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
     self.create_address
   end
 
+  #chec has params
   def check_has_param_address?
     self.address.present?
   end
