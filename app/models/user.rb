@@ -27,8 +27,9 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   attr_accessor :login
-  
+
   after_create :create_instance_profile, unless: :check_has_param_profile?
+  after_create :create_instance_address, unless: :check_has_param_address?
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true
   enum status: { un_active: 0, active: 1 }
@@ -51,6 +52,14 @@ class User < ActiveRecord::Base
 
   def check_has_param_profile?
     self.profile.present?
+  end
+
+  def create_instance_address
+    self.create_address
+  end
+
+  def check_has_param_address?
+    self.address.present?
   end
 
   # 6
