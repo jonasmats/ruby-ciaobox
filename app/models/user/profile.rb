@@ -7,6 +7,8 @@ class User::Profile < ActiveRecord::Base
 
   # 1. associations
   belongs_to :user, class_name: User.name, foreign_key: :user_id
+  has_one :address, through: :user, class_name: Address.name
+  accepts_nested_attributes_for :address
   # 3. class methods
   def self.table_name_prefix
     'user_'

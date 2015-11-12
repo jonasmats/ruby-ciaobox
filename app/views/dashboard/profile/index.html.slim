@@ -12,40 +12,61 @@
         .form-body.form-horizontal
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :first_name
+              = User::Profile.h :first_name
               | :
             .col-md-4
               p.form-control-static
                 = @profile.first_name
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :last_name
+              = User::Profile.h :last_name
               | :
             .col-md-4
               p.form-control-static
                 = @profile.last_name
           .form-group
             label.control-label.col-md-3
-              = Admin.h :username
+              = User.h :username
               | :
             .col-md-4
               p.form-control-static
-                = current_admin.username
+                = current_user.username
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :email
+              = User.h :email
               | :
             .col-md-4
               p.form-control-static
-                = @profile.admin.email
+                = current_user.email
           .form-group
             label.control-label.col-md-3
-              = CiaoboxUser::Profile.h :created_at
+              = Address.h :address_name
               | :
             .col-md-4
               p.form-control-static
-                = @profile.admin.created_at
+                = @address.address_name
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :city
+              | :
+            .col-md-4
+              p.form-control-static
+                = @address.city
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :country
+              | :
+            .col-md-4
+              p.form-control-static
+                = @address.country
+          .form-group
+            label.control-label.col-md-3
+              = User::Profile.h :created_at
+              | :
+            .col-md-4
+              p.form-control-static
+                = @profile.user.created_at
         .form-actions
           .row
             .col-md-offset-3.col-md-4
-              = link_to "Edit profile", edit_admin_profile_path(@profile), class: "btn green"
+              = link_to "Edit profile", edit_dashboard_profile_path(@profile), class: "btn green"
