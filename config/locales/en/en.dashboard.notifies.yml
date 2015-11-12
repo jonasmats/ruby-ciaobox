@@ -4,6 +4,12 @@ en:
       created: &created "%{model} was successfully created!"
       updated: &updated "%{model} was successfully updated!"
       deleted: &deleted "%{model} was successfully deleted!"
+      passwords:
+        create:
+          success: Change password succesfully
+          error: Change password errors
+          error_confirm: Password new and password confirm not match
+          wrong_password: Current password wrong
 
 
 
