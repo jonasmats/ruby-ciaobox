@@ -208,3 +208,5 @@ en:
           delete: *delete
           question_destroy: *question_destroy
           view: *view
+        title:
+          sub_title: "Blog management"
