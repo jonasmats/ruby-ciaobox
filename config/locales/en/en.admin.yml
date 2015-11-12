@@ -187,3 +187,26 @@ en:
           view: *view
           active: *active
           un_active: *un_active
+      articles:
+        index:
+          title: "List"
+          action: *action
+        show:
+          title: Detail
+          back: *back
+        edit:
+          title: "Edit"
+        new:
+          title: New
+        form:
+          submit: *submit
+          blank: *blank
+          un_publish: *un_publish
+          publish: *publish
+        article:
+          edit: *edit
+          delete: *delete
+          question_destroy: *question_destroy
+          view: *view
+        title:
+          sub_title: "Blog management"

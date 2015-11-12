@@ -1,4 +1,4 @@
-class Admin::ArticlesController < Admin::BaseAdminController
+class Admin::Employee::ArticlesController < Admin::BaseAdminController
   authorize_resource class: Article
   include ::Admin::Articles::Parameter
 
@@ -20,10 +20,9 @@ class Admin::ArticlesController < Admin::BaseAdminController
 
   def new
   end
-
   def create
     if @article.save
-      redirect_to admin_article_path(@article), notice: t('notice.admin.created', model: Article.human_name)
+      redirect_to admin_employee_article_path(@article), notice: t('notice.admin.created', model: Article.human_name)
     else
       render :new
     end
@@ -34,7 +33,7 @@ class Admin::ArticlesController < Admin::BaseAdminController
 
   def update
     if @article.save
-      redirect_to admin_article_path(@article), notice: t('notice.admin.updated', model: Article.human_name)
+      redirect_to admin_employee_article_path(@article), notice: t('notice.admin.updated', model: Article.human_name)
     else
       render :edit
     end
@@ -47,7 +46,7 @@ class Admin::ArticlesController < Admin::BaseAdminController
       else
         t('notice.admin.admins.destroy.error')
       end
-    redirect_to admin_articles_path, notice: msg
+    redirect_to admin_employee_articles_path, notice: msg
   end
 
   private
