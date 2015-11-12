@@ -3138,3 +3138,51 @@ padding-top: 16px;
 .banner-box .title {
   margin-top: -28px;
 }
+/**Edit12-11-2015**/
+.language_EN.nav-item.has-location-dropdown {
+    position: relative;
+    padding-right: 18px;
+    margin-top: 32px;
+}
+.language_EN .nav-city-selected {
+    position: relative;
+    cursor: pointer;
+}
+.language_EN .header-light .nav-link, .language_EN .header-light .subnav-link, .language_EN .header-light .nav-username, .language_EN .header-light .nav-item-container-link {
+    color: white;
+}
+.language_EN .location-dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #d6d5dc;
+    top: 100%;
+    width: auto;
+    border-radius: 4px;
+    margin: 0;
+    left: -2px;
+    background: #ffffff;
+}
+.language_EN .dropdown-item {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 35px;
+}
+.language_EN .nav-link, .subnav-link {
+    padding: 5px 18px;
+    color: #ffffff;
+    font-size: 16px;
+}
+.language_EN .location-dropdown li:first-of-type a {
+    padding-right: 15px;
+    position: relative;
+    color: #333;
+    padding:9px 24px 13px 10px;
+}
+.language_EN .location-dropdown .dropdown-item a {
+    padding-right: 6px;
+    color: #333;
+    height: 40px;
+    padding:  9px 24px 13px 10px;
+}

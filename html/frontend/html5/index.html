@@ -63,9 +63,34 @@
               </div>
               <div class="right">
                   <div class="nav-2 clearfix">
+                  <!--Edit 12-11-2015 -->
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                        $(".has-location-dropdown").click(function(){
+                            $(".location-dropdown").slideToggle();
+                        });
+                       $(".location-dropdown .dropdown-item a").click(function () {
+                          var selectedText = $(this).text();
+                          var selectedValue = $(".nav-city").text();
+                          $(".nav-city").text(selectedText);
+                      });
+                    });
+                  </script>
                       <ul>
-                          <li><a href="#">EN</a></li>
+                          <!-- <li><a href="#">EN</a></li> -->
                           <!-- <li class="appear-name"><a href="#">John Brant</a></li> -->
+                        <li class="nav-item has-location-dropdown language_EN">
+                            <p class="nav-link nav-city-selected js-location-select"><span class="nav-city">EN</span><span class="nav-city-caret"></span></p>
+                            <ul class="location-dropdown" >
+                              <li class="dropdown-item nav-chicago">
+                                <a href="#" class="js-location-change">EN<span class="nav-city-caret menu-nav-city-caret"></span></a></li>
+                              <li class="dropdown-item nav-chicago">
+                                <a href="#" class="js-location-change">VN<span class="nav-city-caret menu-nav-city-caret"></span></a></li>
+                              <li class="dropdown-item nav-nyc">
+                                <a href="#" class="js-location-change">FN</a>
+                              </li>
+                            </ul>              
+                        </li>
                       </ul>
                   </div>
                   <!-- <input type="button" value="Sign In" class="sign-in"> -->
