@@ -68,12 +68,12 @@ Rails.application.configure do
 
   # Default mailer url
   config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "rubydn.com@gmail.com",
-    :password  => "ZsXaafxYRDAp3QTRWmytbA", # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :address   => Settings.action_mailer.address,
+    :port      => Settings.action_mailer.port, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => Settings.action_mailer.enable_starttls_auto, # detects and uses STARTTLS
+    :user_name => Settings.action_mailer.user_name,
+    :password  => Settings.action_mailer.password, # SMTP password is any valid API key
+    :authentication => Settings.action_mailer.authentication, # Mandrill supports 'plain' or 'login'
     # :domain => 'example.com', # your domain to identify your server when connecting
   }
 end

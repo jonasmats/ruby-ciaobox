@@ -1,0 +1,7 @@
+action_mailer:
+  address: smtp.mandrillapp.com
+  port: 587
+  enable_starttls_auto: true
+  user_name: rubydn.com@gmail.com
+  password: ZsXaafxYRDAp3QTRWmytbA
+  authentication: login
