@@ -7,3 +7,6 @@ en:
         prices: 'Prices'
         faq: 'FAQ'
         contact: 'Contact'
+        logout: 'Logout'
+        profile: 'Profile'
+        change_pass_word: 'Change password'

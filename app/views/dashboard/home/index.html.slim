@@ -2,6 +2,6 @@ p
   | Welcome
 - if current_user.avatar.present?
   = image_tag current_user.profile.avatar.url(:medium), class: "img-responsive"
-= link_to "Profile", dashboard_profile_index_path
+= link_to I18n.t("layouts.frontend.links.profile"), dashboard_profile_index_path
 br
-= link_to "Logout", destroy_user_session_path, method: :delete
+= link_to I18n.t("layouts.frontend.links.logout"), destroy_user_session_path, method: :delete
