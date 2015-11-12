@@ -14,7 +14,7 @@ li.dropdown.dropdown-user
     li
       = link_to new_admin_password_path do
         i.fa.fa-cog
-        = I18n.t("layouts.shared.sidebar.account_change_password")
+        = I18n.t("layouts.frontend.links.change_pass_word")
     / li
     /   a href="page_calendar.html" 
     /     i.icon-calendar
@@ -39,6 +39,6 @@ li.dropdown.dropdown-user
     li
       = link_to destroy_admin_session_path, method: :delete do
         i.icon-key
-        | Log Out
+        = I18n.t("layouts.frontend.links.logout")
 
 /! END USER LOGIN DROPDOWN

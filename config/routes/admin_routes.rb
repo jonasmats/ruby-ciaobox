@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
 
     resources :faqs
-    resources :profile, except: [:destroy, :new, :create, :show]
+    resources :profile, only: [:index, :edit, :update]
     resources :social_networks
     resources :articles
     resources :static_pages
