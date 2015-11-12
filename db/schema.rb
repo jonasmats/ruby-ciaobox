@@ -11,12 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111044050) do
+ActiveRecord::Schema.define(version: 20151109070056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
   enable_extension "uuid-ossp"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "address_name"
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -270,6 +281,7 @@ ActiveRecord::Schema.define(version: 20151111044050) do
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "telephone"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -291,6 +303,8 @@ ActiveRecord::Schema.define(version: 20151111044050) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.hstore   "note"
+    t.string   "cap"
     t.string   "username"
     t.integer  "status",                 default: 1,  null: false
     t.datetime "created_at",                          null: false
@@ -303,6 +317,7 @@ ActiveRecord::Schema.define(version: 20151111044050) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "articles", "admins"
   add_foreign_key "ciaobox_user_profiles", "admins"
   add_foreign_key "ciaobox_user_users_roles", "admins"

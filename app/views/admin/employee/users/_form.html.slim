@@ -1,0 +1,79 @@
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_for [:admin, @user], url: (@user.new_record?  ? admin_employee_users_path : admin_employee_user_path), html: {class: "form-horizontal"} do |f|
+      = render "/layouts/shared/form_errors/admin", object: f.object
+      .form-body
+      - if @user.new_record?
+        .form-group
+          label.col-md-3.control-label
+            = User.h :email
+          .col-md-4
+            = f.text_field :email, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = User.h :password
+          .col-md-4
+            = f.password_field :password, class: "form-control", placeholder: "", autocomplete: "off"
+        .form-group
+          label.col-md-3.control-label
+            = User.h :username
+          .col-md-4
+            = f.text_field :username, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = User.h :cap
+          .col-md-4
+            = f.text_field :cap, class: "form-control", placeholder: ""
+
+      = f.fields_for :profile do |build|
+        .form-group
+          label.col-md-3.control-label
+            = User::Profile.h :first_name
+          .col-md-4
+            = build.text_field :first_name, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = User::Profile.h :last_name
+          .col-md-4
+            = build.text_field :last_name, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = User::Profile.h :telephone
+          .col-md-4
+            = build.text_field :telephone, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = User::Profile.h :avatar
+          .col-md-4
+            = build.file_field :avatar, class: "form-control", placeholder: ""
+
+      = f.fields_for :address do |fff|
+        .form-group
+          label.col-md-3.control-label
+            = Address.h :address_name
+          .col-md-4
+            = fff.text_field :address_name, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = Address.h :city
+          .col-md-4
+            = fff.text_field :city, class: "form-control", placeholder: ""
+        .form-group
+          label.col-md-3.control-label
+            = Address.h :country
+          .col-md-4
+            = fff.text_field :country, class: "form-control", placeholder: ""
+        
+      = render "note", f: f
+
+      .form-group
+        label.col-md-3.control-label
+          = User.h :status
+        .col-md-4
+          = f.select :status, options_for_select(User.statuses.map{|k, v| [t(".#{k}"), k]} , selected: @user.status), { include_blank: t('.blank')}, {class: "form-control"}
+      .form-actions
+        .row
+          .col-md-offset-3.col-md-4
+            = f.submit class: "btn green"
+            = link_to admin_employee_users_path, class: "btn default" do
+              = t(".cancel")

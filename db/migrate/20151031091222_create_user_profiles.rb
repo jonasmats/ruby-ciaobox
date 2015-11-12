@@ -4,7 +4,9 @@ class CreateUserProfiles < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true, unique: :true
       t.string :first_name
       t.string :last_name
+      t.string :telephone
       t.attachment :avatar
+
       t.timestamps null: false
     end
   end

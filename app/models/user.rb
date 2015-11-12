@@ -28,14 +28,17 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  after_create :create_instance_profile
+  after_create :create_instance_profile, unless: :check_has_param_profile?
+  after_create :create_instance_address, unless: :check_has_param_address?
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true
   enum status: { un_active: 0, active: 1 }
 
   # 1. associations
   has_one :profile, class_name: User::Profile.name, foreign_key: :user_id, dependent: :destroy
+  has_one :address, class_name: Address.name, foreign_key: :user_id, dependent: :destroy
   accepts_nested_attributes_for :profile
+  accepts_nested_attributes_for :address
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates
@@ -45,6 +48,19 @@ class User < ActiveRecord::Base
   private
   def create_instance_profile
     self.create_profile
+  end
+
+  def check_has_param_profile?
+    self.profile.present?
+  end
+
+  def create_instance_address
+    self.create_address
+  end
+
+  #chec has params
+  def check_has_param_address?
+    self.address.present?
   end
 
   # 6

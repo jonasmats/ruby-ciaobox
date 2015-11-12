@@ -49,5 +49,15 @@ en:
         destroy:
           success: Destroy customer successfully
           error: Destroy customer error
+      employee:
+        users:
+          create:
+            success: Create customer sucessfully
+          update:
+            success: Update customer sucessfully
+          destroy:
+            success: Destroy customer successfully
+            error: Destroy customer error
+
 
 

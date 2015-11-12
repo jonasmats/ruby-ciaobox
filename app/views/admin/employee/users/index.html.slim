@@ -1,0 +1,57 @@
+= render partial: "title", locals: {title: "List"}
+
+.row
+  col-lg-10.col-md-10.col-sm-6.col-xs-12
+    = search_form_for @q, url: admin_employee_users_path, class: "search-form" do |f|
+      .input-group
+        = f.search_field :email_or_username_cont, class: "form-control"
+        span.input-group-btn
+          = button_tag( class: "btn submit") do
+            i.icon-magnifier
+  col-lg-2.col-md-2.col-sm-6.col-xs-12
+    btn-set.pull-right.btn-group
+      a.btn.purple data-toggle="dropdown" href="javascript:;"
+        i.fa.fa-download
+        = t(".download_tools")
+        i.fa.fa-angle-down
+      ul.dropdown-menu
+        li
+          = link_to admin_users_path(format: "csv") do
+            i.fa.fa-file-o
+            = t(".download_csv")
+        li
+          = link_to admin_users_path(format: "xls") do
+            i.fa.fa-file-excel-o
+            = t(".download_xls")
+
+- if flash[:alert].present?
+  h2
+    | This is email exists
+    - flash[:alert].each do |error|
+      li= error
+br
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = User.h :username
+          th
+            = User.h :email
+          th
+            = User.h :status
+          th
+            = User.h :cap
+          th
+            = User::Profile.h :telephone
+          th
+            = Address.h :city
+          th
+            = Address.h :country
+          th
+            = t(".action")
+      tbody
+      = render partial: 'user', collection: @users
