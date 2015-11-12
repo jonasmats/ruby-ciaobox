@@ -3,7 +3,17 @@ html
   head
     title
       | Ciaobox
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application.dashboard', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  = yield
+  body
+    #sb-site.sb-slide
+      - if current_page?root_path
+        = render partial: "layouts/frontend/header"
+      - else
+        = render partial: "layouts/frontend/header.account"
+
+      = yield
+      = render partial: "layouts/frontend/footer"
+    .sb-slidebar.sb-left
+      = render partial: "layouts/frontend/links"
