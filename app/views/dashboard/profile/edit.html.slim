@@ -1,3 +1,10 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Edit Profile
+
 .portlet.light.bg-inverse
   .portlet-body.form
     = form_for [:dashboard, @profile], html: {class: "form-horizontal"}, url: dashboard_profile_path do |f|

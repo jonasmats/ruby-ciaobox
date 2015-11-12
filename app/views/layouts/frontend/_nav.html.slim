@@ -11,5 +11,9 @@ nav
       li
         a[href="#"]
           | EN
-  = link_to new_user_session_path, class: "sign-in", title: "Sign In" do
-    | Sign In
+  - if current_user.blank?
+    = link_to new_user_session_path, class: "sign-in", title: "Sign In" do
+      | Sign In
+  - else
+    = link_to destroy_user_session_path, class: "sign-in", title: "Sign Out", method: :delete do
+      | Logout
