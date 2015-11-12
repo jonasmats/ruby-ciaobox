@@ -12,7 +12,7 @@ class Dashboard::ProfileController < Dashboard::BaseDashboardController
 
   def update
     if @profile.update(private_params)
-      redirect_to dashboard_profile_index_path, notice: t('notice.user.updated', model: User::Profile.human_name)
+      redirect_to dashboard_profile_index_path, notice: t('notice.dashboard.updated', model: User::Profile.human_name)
     else
       render :edit
     end

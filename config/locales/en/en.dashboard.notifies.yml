@@ -1,6 +1,6 @@
 en:
   notice:
-    user:
+    dashboard:
       created: &created "%{model} was successfully created!"
       updated: &updated "%{model} was successfully updated!"
       deleted: &deleted "%{model} was successfully deleted!"
