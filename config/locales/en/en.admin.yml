@@ -187,3 +187,18 @@ en:
           view: *view
           active: *active
           un_active: *un_active
+      articles:
+        index:
+          action: *action
+        show:
+          back: *back
+        form:
+          submit: *submit
+          blank: *blank
+          un_publish: *un_publish
+          publish: *publish
+        article:
+          edit: *edit
+          delete: *delete
+          question_destroy: *question_destroy
+          view: *view

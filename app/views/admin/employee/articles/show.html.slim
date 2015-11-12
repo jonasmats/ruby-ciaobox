@@ -1,0 +1,43 @@
+= render partial: "title", locals: {title: "Detail"}
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_employee_articles_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Article.h :title
+        td
+          = @article.title
+      tr
+        td
+          strong
+            | Author
+        td
+          = @article.admin.full_name
+      tr
+        td
+          strong
+            = Article.h :content
+        td
+          = @article.content.html_safe
+      tr
+        td
+          strong
+            = Article.h :status
+        td
+          = @article.status
+      tr
+        td
+          strong
+            = Article.h :created_at
+        td
+          = @article.created_at

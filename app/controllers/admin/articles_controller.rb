@@ -9,9 +9,9 @@ class Admin::ArticlesController < Admin::BaseAdminController
   def index
     @articles =
       if Article.statuses.keys.include? params[:type]
-        Article.article_status params[:type]
+        Article.article_status(params[:type]).includes(:admin, :translations)
       else
-        Article.all
+        Article.all.includes(:admin, :translations)
       end
   end
 
