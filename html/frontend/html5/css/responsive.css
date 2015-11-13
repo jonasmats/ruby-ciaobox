@@ -694,6 +694,13 @@
 .banner-box .title {
   margin-top: 0;
 }
+/*Edit 13-11-2015*/
+.language_EN .nav-link, .subnav-link{
+	color: #333;
+}
+.language_EN.nav-item.has-location-dropdown{
+	background: url(../images/language-arrow.png)  no-repeat scroll right center;
+}
 }
 
 @media (max-width: 643px) {
