@@ -34,7 +34,6 @@ class Admin::Employee::ArticlesController < Admin::BaseAdminController
   def update
     if @article.save
       respond_to do |format|
-        
         format.html { redirect_to admin_employee_article_path(@article), notice: t('notice.admin.updated', model: Article.human_name)}
         format.js
       end
