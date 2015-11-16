@@ -5,3 +5,6 @@ action_mailer:
   user_name: rubydn.com@gmail.com
   password: ZsXaafxYRDAp3QTRWmytbA
   authentication: login
+
+devise:
+  mailer_sender: dev.ciaobox@gmail.com
