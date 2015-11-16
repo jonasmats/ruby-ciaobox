@@ -4,7 +4,7 @@ tr
   td
     = admin.email
   td
-    = admin.roles.first
+    = admin.roles.try(:first).try(:name)
   td
     span id= "status_admin_#{admin.id}"
       = t(".#{admin.status}")
