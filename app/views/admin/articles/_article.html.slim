@@ -6,7 +6,13 @@ tr
   td
     = article.created_at
   td
-    = article.status
+    span id= "status_article_#{article.id}"
+      = article.status
+    span style=("margin-left: 20px")
+      - if article.publish?
+          = link_to "Change to un_publish", admin_article_path(article, "article[status]" => Article.statuses.keys[0]), method: :patch, remote: :true, id: "change_status_article_#{article.id}"
+      - else
+        = link_to "Change to publish", admin_article_path(article, "article[status]" => Article.statuses.keys[1]), method: :patch, remote: :true, id: "change_status_article_#{article.id}"
   td
     = link_to admin_article_path(article), class: "btn default btn-xs purple" do
       i.fa.fa-view

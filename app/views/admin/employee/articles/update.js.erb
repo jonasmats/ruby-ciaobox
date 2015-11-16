@@ -1,0 +1,37 @@
+var value = "";
+var link = "";
+var msg_alert = "";
+<% if @article.publish? %>
+  link = "<%= admin_employee_article_path(@article, 'article[status]' => Article.statuses.keys[0]) %>"
+  value = "un_publish";
+  msg_alert = "Change to publish successfully"
+<% else%>
+  link = "<%= admin_employee_article_path(@article, 'article[status]' => Article.statuses.keys[1]) %>"
+  value = "publish";
+  msg_alert = "Change to un publish successfully"
+<% end %>
+
+$('#change_status_article_<%=@article.id%>').attr('href', link);
+$('#change_status_article_<%=@article.id%>').html("Change to " + value);
+$('#status_article_<%=@article.id%>').html("<%=@article.status%>");
+
+toastr["success"](msg_alert)
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
