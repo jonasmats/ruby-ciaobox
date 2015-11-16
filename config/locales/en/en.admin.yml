@@ -1,5 +1,23 @@
 en:
   admin:
+    auth:
+      sessions:
+        new:
+          placeholder:
+            username: "Enter email or username"
+            password: "Enter password"
+    profile:
+      edit:
+        placeholder:
+          first_name: "Enter first name"
+          last_name: "Enter last name"
+          avatar: "Choose avatar"
+    passwords:
+      new:
+        placeholder:
+          current_password: "Enter current password"
+          new_password: "Enter new password"
+          confirm_password: "Re-enter new password"
     dictionary:
       new: &new "New"
       submit: &submit "Update"
@@ -22,6 +40,8 @@ en:
         form:
           submit: *submit
           cancel: *cancel
+          placeholder:
+            name: "Enter Category name"
         category:
           edit: *edit
           delete: *delete
@@ -32,6 +52,9 @@ en:
       form:
         submit: *submit
         blank: *blank
+        placeholder:
+          question: "Enter question"
+          answer: "Enter answer"
       faq:
         edit: *edit
         delete: *delete
@@ -46,6 +69,9 @@ en:
         blank: *blank
         un_publish: *un_publish
         publish: *publish
+        placeholder:
+          title: "Enter title"
+          content: "Enter content"
       article:
         edit: *edit
         delete: *delete
@@ -77,6 +103,12 @@ en:
         blank: *blank
         active: *active
         un_active: *un_active
+        placeholder:
+          email: "Enter email"
+          password: "Enter password"
+          username: "Enter username"
+          first_name: "Enter first name"
+          last_name: "Enter last name"
       admin:
         edit: *edit
         delete: *delete
@@ -95,6 +127,12 @@ en:
         blank: *blank
         active: *active
         un_active: *un_active
+        placeholder:
+          email: "Enter email"
+          password: "Enter password"
+          username: "Enter username"
+          first_name: "Enter first name"
+          last_name: "Enter last name"
       user:
         edit: *edit
         delete: *delete
@@ -127,6 +165,9 @@ en:
         blank: *blank
         label_list_permission: "Area Permission"
         option_label: "Option Label"
+        placeholder:
+          name: "Enter role name"
+          description: "Enter role description"
       role:
         edit: *edit
         delete: *delete
@@ -162,6 +203,8 @@ en:
       form:
         submit: *submit
         cancel: *cancel
+        placeholder:
+          link: "Enter social link"
       show:
         back: *back
       social_network:
@@ -210,3 +253,4 @@ en:
           view: *view
         title:
           sub_title: "Blog management"
+      

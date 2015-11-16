@@ -205,6 +205,10 @@
           span.arrow
         ul.sub-menu
           li
+            = link_to new_admin_admin_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.admin_new")
+          li
             = link_to admin_admins_path do
               i.fa.fa-list-ol
               = I18n.t("layouts.shared.sidebar.admin_list")

@@ -1,4 +1,4 @@
-class Admin::PasswordController < Admin::BaseAdminController
+class Admin::PasswordsController < Admin::BaseAdminController
   include ::Admin::Password::Parameter
 
   def new
