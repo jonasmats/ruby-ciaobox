@@ -2,6 +2,8 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   authorize_resource class: User
   include ::Admin::Employee::Users::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.customer')) { |instance| instance.send :admin_employee_users_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -18,9 +20,11 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   end
 
   def show
+    add_crumb @user.full_name, admin_employee_user_path(@user)
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_employee_user_path
     @user.build_profile
     @user.build_address
   end
@@ -34,6 +38,7 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb @user.full_name, edit_admin_employee_user_path(@user)
   end
 
   def update
