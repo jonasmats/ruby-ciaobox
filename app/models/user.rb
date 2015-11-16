@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   has_one :address, class_name: Address.name, foreign_key: :user_id, dependent: :destroy
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
+
+  has_one :log_action, as: :subject
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates

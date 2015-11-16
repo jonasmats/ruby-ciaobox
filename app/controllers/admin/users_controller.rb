@@ -25,6 +25,12 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def create
     if @user.save
+      data = private_params.tap { |hs| hs.delete('password') }
+      @user.create_log_action({
+          owner_id: current_admin.id,
+          action_type: params[:action],
+          data: data
+        })
       redirect_to admin_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
       render :new
