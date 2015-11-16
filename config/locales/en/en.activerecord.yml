@@ -20,6 +20,7 @@ en:
         last_name: "Last name"
         email: "Email"
         created_at: "Created At"
+        avatar: "Avatar"
       role:
         name: "Role Name"
         description: "Role Description"
@@ -30,3 +31,10 @@ en:
         create: "Create"
         update: "Update"
         destroy: "Destroy"
+      admin:
+        email: "Email"
+        password: "Password"
+        username: "Username"
+        role: "Role"
+        status: "Status"
+        avatar: "Avatar"
