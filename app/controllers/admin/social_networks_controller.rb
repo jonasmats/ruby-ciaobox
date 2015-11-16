@@ -2,6 +2,8 @@ class Admin::SocialNetworksController < Admin::BaseAdminController
   authorize_resource
   include ::Admin::SocialNetwork::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.social')) { |instance| instance.send :admin_social_networks_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -12,6 +14,7 @@ class Admin::SocialNetworksController < Admin::BaseAdminController
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_social_network_path
   end
 
   def create
@@ -23,6 +26,7 @@ class Admin::SocialNetworksController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_social_network_path(@social_network)
   end
 
   def update

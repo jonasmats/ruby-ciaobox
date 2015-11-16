@@ -2,6 +2,8 @@ class Admin::AdminsController < Admin::BaseAdminController
   authorize_resource class: Admin
   include ::Admin::Admins::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.admin')) { |instance| instance.send :admin_admins_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -18,9 +20,11 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def show
+    add_crumb @admin.full_name, admin_admin_path(@admin)
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_admin_path
     @admin.build_profile
   end
 
@@ -33,6 +37,7 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb @admin.full_name, edit_admin_admin_path(@admin)
   end
 
   def update

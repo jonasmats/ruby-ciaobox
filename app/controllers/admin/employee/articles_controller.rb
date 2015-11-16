@@ -2,6 +2,8 @@ class Admin::Employee::ArticlesController < Admin::BaseAdminController
   authorize_resource class: Article
   include ::Admin::Articles::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.blog')) { |instance| instance.send :admin_employee_articles_path }
+
   before_action :load_article, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -16,10 +18,13 @@ class Admin::Employee::ArticlesController < Admin::BaseAdminController
   end
 
   def show
+    add_crumb I18n.t('admins.breadcrumbs.show'), admin_employee_article_path(@article)
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_employee_article_path
   end
+
   def create
     if @article.save
       redirect_to admin_employee_article_path(@article), notice: t('notice.admin.created', model: Article.human_name)
@@ -29,6 +34,7 @@ class Admin::Employee::ArticlesController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_employee_article_path(@article)
   end
 
   def update
