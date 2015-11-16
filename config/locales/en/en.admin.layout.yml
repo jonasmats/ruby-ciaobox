@@ -41,3 +41,5 @@ en:
         admin_label: "Admin Management"
         admin_list: *list
         admin_import_employee: " Import Employees"
+      dashboard:
+        employee_feature: All features of Company Employee User
