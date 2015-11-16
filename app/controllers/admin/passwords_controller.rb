@@ -2,6 +2,7 @@ class Admin::PasswordsController < Admin::BaseAdminController
   include ::Admin::Password::Parameter
 
   def new
+    add_crumb "ChangePassword", new_admin_password_path
   end
 
   def create

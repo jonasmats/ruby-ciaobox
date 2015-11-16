@@ -1,0 +1,20 @@
+en:
+  admins:
+    breadcrumbs:
+      new: New
+      edit: Edit
+      show: Show
+      home: Dashboard
+      profile: Profile
+      role: Role
+      category: Category
+      faqs: FAQs
+      static_page: Static page
+      banner: Banner
+      blog: Blog
+      social: Social link
+      customer: Customer
+      admin: Employee
+      import:
+        user: Import User
+        admin: Import Employees

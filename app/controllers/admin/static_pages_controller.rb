@@ -2,6 +2,8 @@ class Admin::StaticPagesController < Admin::BaseAdminController
   authorize_resource
   include ::Admin::StaticPages::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.static_page')) { |instance| instance.send :admin_static_pages_path }
+
   before_action :load_static_page, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -16,9 +18,11 @@ class Admin::StaticPagesController < Admin::BaseAdminController
   end
 
   def show
+    add_crumb I18n.t('admins.breadcrumbs.show'), admin_static_page_path(@static_page)
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_static_page_path
   end
 
   def create
@@ -30,6 +34,7 @@ class Admin::StaticPagesController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_static_page_path(@static_page)
   end
 
   def update

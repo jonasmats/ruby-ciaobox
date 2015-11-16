@@ -5,6 +5,8 @@ class Admin::BaseAdminController < ApplicationController
   before_action :current_ability
   layout 'application.admin'
 
+  add_crumb I18n.t('admins.breadcrumbs.home'), :admin_root_path
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:cancan] = I18n.t(:access_denied, scope: [:admin, :label])
     redirect_to admin_root_path

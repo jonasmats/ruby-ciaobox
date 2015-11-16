@@ -3,6 +3,8 @@ class Admin::FaqsController < Admin::BaseAdminController
   include ::Admin::Faqs::Parameter
   include ::Admin::Faqs::Finder
 
+  add_crumb(I18n.t('admins.breadcrumbs.faqs')) { |instance| instance.send :admin_faqs_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -13,6 +15,7 @@ class Admin::FaqsController < Admin::BaseAdminController
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_faq_path
   end
 
   def create
@@ -24,6 +27,7 @@ class Admin::FaqsController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_faq_path(@faq)
   end
 
   def update

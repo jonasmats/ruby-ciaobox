@@ -3,6 +3,8 @@ class Admin::RolesController < Admin::BaseAdminController
   include Admin::Roles::Parameter
   include Admin::Roles::Finder
 
+  add_crumb(I18n.t('admins.breadcrumbs.role')) { |instance| instance.send :admin_roles_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -13,6 +15,7 @@ class Admin::RolesController < Admin::BaseAdminController
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_role_path
     Role::ALL_ENTITY.each do |entity|
       @role.permissions.find_or_initialize_by entity: entity
     end
@@ -28,6 +31,7 @@ class Admin::RolesController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_role_path(@role)
   end
 
   def update

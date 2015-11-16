@@ -99,6 +99,9 @@ gem 'devise-async'
 # Version for api
 gem 'versionist'
 
+# Gemfile
+gem "crummy", "~> 1.8.0"
+
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
   gem 'capistrano-rails', '~> 1.1.0'
