@@ -1,7 +1,7 @@
 var value = "";
 var link = "";
 var msg_alert = "";
-<% if @article.status? %>
+<% if @article.publish? %>
   link = "<%= admin_employee_article_path(@article, 'article[status]' => Article.statuses.keys[0]) %>"
   value = "un_publish";
   msg_alert = "Change to publish successfully"
