@@ -7,4 +7,4 @@ action_mailer:
   authentication: login
 
 devise:
-  mailer_sender: dev.ciaobox@gmail.com
+  mailer_sender: rubydn.com@gmail.com
