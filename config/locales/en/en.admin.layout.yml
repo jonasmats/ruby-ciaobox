@@ -39,6 +39,7 @@ en:
         customer_list: *list
         customer_import_user: " Import Users"
         admin_label: "Admin Management"
+        admin_new: *new
         admin_list: *list
         admin_import_employee: " Import Employees"
       dashboard:

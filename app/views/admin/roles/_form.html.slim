@@ -4,10 +4,10 @@
       = render "/layouts/shared/form_errors/admin", object: f.object
       .form-group
         label= Role.h :name
-        = f.text_field :name, class: "form-control"
+        = f.text_field :name, class: "form-control", placeholder: "#{t('.placeholder.name')}"
       .form-group
         label= Role.h :description
-        = f.text_area :description, class: "form-control"
+        = f.text_area :description, class: "form-control", placeholder: "#{t('.placeholder.description')}"
       .form-group
         label= t(".label_list_permission")
         table.table.table-striped.table-bordered

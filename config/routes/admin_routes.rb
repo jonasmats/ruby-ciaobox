@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :social_networks
     resources :articles
     resources :static_pages
-    resources :password, only: [:new, :create]
+    resources :passwords, only: [:new, :create]
     resources :roles
     resources :banners
     resources :admins
