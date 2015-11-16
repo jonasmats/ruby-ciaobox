@@ -1,0 +1,115 @@
+.row.margin-top-20
+  .col-md-12
+    .profile-sidebar
+      .portlet.light.profile-sidebar-portlet
+        .profile-userpic
+          -
+          = image_tag current_admin.profile.avatar.url(:medium), class: "img-responsive"
+        .profile-usertitle
+          .profile-usertitle-name
+            = "#{current_admin.profile.first_name} #{current_admin.profile.last_name}"
+    .profile-content
+      .row
+        .form-body.form-horizontal
+          .form-group
+            label.control-label.col-md-3
+              = Admin.h :email
+              | :
+            .col-md-4
+              p.form-control-static
+                = current_admin.email
+          .form-group
+            label.control-label.col-md-3
+              = Admin.h :username
+              | :
+            .col-md-4
+              p.form-control-static
+                = current_admin.username
+          .form-group
+            label.control-label.col-md-3
+              = Role.h :name
+              | :
+            .col-md-4
+              p.form-control-static
+                = current_admin.roles.first
+
+.row
+  .col-md-12.col-sm-12
+    .portlet.light
+      .portlet-title
+        .caption
+          i.icon-share.font-blue-steel.hide
+          span.caption-subject.font-blue-steel.bold.uppercase
+            = I18n.t("layouts.shared.dashboard.employee_feature")
+        .actions
+      .portlet-body
+        .scroller[style="height: 300px;" data-always-visible="1" data-rail-visible="0"]
+          ul.feeds
+            li
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-default
+                      i.icon-user
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.sidebar.account_profile"), admin_profile_index_path
+            li
+              a[href="javascript:;"]
+
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-default
+                      i.fa.fa-cog
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.sidebar.account_change_password"), new_admin_password_path
+            li
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-success
+                      i.icon-plus
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.dashboard.blog_new"), new_admin_employee_article_path
+            li
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-success
+                      i.fa.fa-list-ol
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.dashboard.blog_list"), admin_employee_articles_path
+            li
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-info
+                      i.icon-plus
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.dashboard.customer_new"), new_admin_employee_user_path
+            li
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-info
+                      i.fa.fa-list-ol
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.dashboard.customer_list"), admin_employee_users_path
+            li
+              a[href="javascript:;"]
+
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-info
+                      i.fa.fa-upload
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.sidebar.customer_import_user"), new_admin_import_user_path
+.clearfix

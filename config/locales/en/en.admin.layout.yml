@@ -42,3 +42,9 @@ en:
         admin_new: *new
         admin_list: *list
         admin_import_employee: " Import Employees"
+      dashboard:
+        employee_feature: All features of Company Employee User
+        blog_new: New Blog
+        blog_list: List Blogs
+        customer_new: New User
+        customer_list: List Users
