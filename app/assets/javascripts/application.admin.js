@@ -131,7 +131,7 @@ jQuery(document).ready(function() {
     })
       .done(function( msg ) {
         console.log(msg.code)
-        $('.num_notification').html("0");
+        // $('.num_notification').html("0");
       });
   });
 });

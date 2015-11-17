@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def create_instance_notification
-    info = {full_name: self.full_name, email: self.email}
+    info = {username: self.username, email: self.email}
     self.user_notification.create!(info: info)
   end
 
