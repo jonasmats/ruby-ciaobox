@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
 
-  has_one :log_action, as: :subject
+  has_many :log_actions, as: :subject
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates
