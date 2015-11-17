@@ -1,0 +1,17 @@
+= image_tag article.cover, class: "img-responsive" if params[:action] == "show"
+section.post
+  header.entry-header
+    = image_tag article.admin_avatar, art: article.admin_full_name, height: 52, width: 52, class: "entry-avatar"
+    h2.entry-title
+      = link_to article.title, article_path(article)
+    p.entry-meta
+      = t(".posted_on")
+      a.entry-date
+        = article.created_at.time_format :long
+      | |
+      = t(".created_by")
+      a.entry-author
+        = article.admin_full_name
+  .entry-description
+    p
+      = params[:action] == "show" ? article.content.html_safe : article.description
