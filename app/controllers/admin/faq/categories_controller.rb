@@ -1,6 +1,8 @@
 class Admin::Faq::CategoriesController < Admin::BaseAdminController
   include Admin::Faqs::Category::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.category')) { |instance| instance.send :admin_faq_categories_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -11,6 +13,7 @@ class Admin::Faq::CategoriesController < Admin::BaseAdminController
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_faq_category_path
   end
 
   def create
@@ -22,6 +25,7 @@ class Admin::Faq::CategoriesController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_faq_category_path(@category)
   end
 
   def update

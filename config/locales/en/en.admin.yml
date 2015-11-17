@@ -64,6 +64,8 @@ en:
         action: *action
       show:
         back: *back
+        un_publish: *un_publish
+        publish: *publish
       form:
         submit: *submit
         blank: *blank
@@ -77,6 +79,8 @@ en:
         delete: *delete
         question_destroy: *question_destroy
         view: *view
+        un_publish: *un_publish
+        publish: *publish
     static_pages:
       index:
         action: *action
@@ -98,6 +102,8 @@ en:
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
         download_xls: "Donwload to Excel"
+        placeholder:
+          search_email_or_username: "Search by email or username"
       form:
         submit: *submit
         blank: *blank
@@ -123,6 +129,8 @@ en:
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
         download_xls: "Donwload to Excel"
+        placeholder:
+          search_email_or_username: "Search by email or username"
       form:
         submit: *submit
         blank: *blank
@@ -163,6 +171,8 @@ en:
         delete: *delete
         view: *view
         question_destroy: *question_destroy
+        un_publish: *un_publish
+        publish: *publish
     roles:
       index:
         title: "List"
@@ -213,6 +223,7 @@ en:
         cancel: *cancel
         placeholder:
           link: "Enter social link"
+          name: "Enter social name"
       show:
         back: *back
       social_network:
@@ -226,6 +237,8 @@ en:
           download_tools: "Download Tools"
           download_csv: "Download to CSV"
           download_xls: "Donwload to Excel"
+          placeholder:
+            search_email_or_username: "Search by email or username"
         form:
           submit: *submit
           blank: *blank
@@ -258,6 +271,8 @@ en:
         show:
           title: Detail
           back: *back
+          un_publish: *un_publish
+          publish: *publish
         edit:
           title: "Edit"
         new:
@@ -272,6 +287,7 @@ en:
           delete: *delete
           question_destroy: *question_destroy
           view: *view
+          un_publish: *un_publish
+          publish: *publish
         title:
           sub_title: "Blog management"
-      

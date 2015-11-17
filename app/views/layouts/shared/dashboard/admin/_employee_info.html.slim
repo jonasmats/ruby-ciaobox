@@ -31,7 +31,7 @@
               | :
             .col-md-4
               p.form-control-static
-                = current_admin.roles.first
+                = current_admin.roles.try(:first).try(:name)
 
 .row
   .col-md-12.col-sm-12
@@ -65,24 +65,26 @@
                   .cont-col2
                     .desc
                       = link_to I18n.t("layouts.shared.sidebar.account_change_password"), new_admin_password_path
-            li
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-success
-                      i.icon-plus
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.dashboard.blog_new"), new_admin_employee_article_path
-            li
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-success
-                      i.fa.fa-list-ol
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.dashboard.blog_list"), admin_employee_articles_path
+            - if can? :index, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-success
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.blog_new"), new_admin_employee_article_path
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-success
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.blog_list"), admin_employee_articles_path
             li
               .col1
                 .cont

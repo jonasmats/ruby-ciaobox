@@ -20,4 +20,18 @@
 
 class CiaoboxUser::Employee < Admin
   include ::CiaoboxUser::Associations
+
+  # 1. associations
+  has_many :users_roles, class_name: CiaoboxUser::UsersRole.name, foreign_key: :admin_id
+  has_many :roles, through: :users_roles, class_name: Role.name
+
+  # 2. scopes
+
+  # 3. class methods
+
+  # 4. validates
+
+  # 5. callbacks
+
+  # 6. instance methods
 end

@@ -1,12 +1,14 @@
 class Admin::ProfileController < Admin::BaseAdminController
   include ::Admin::Profile::Parameter
-
+  add_crumb I18n.t('admins.breadcrumbs.profile'), :admin_profile_index_path
+  
   before_action :load_profile
 
   def index
   end
 
   def edit
+    add_crumb "#{@profile.full_name}", edit_admin_profile_path(@profile)
   end
 
   def update

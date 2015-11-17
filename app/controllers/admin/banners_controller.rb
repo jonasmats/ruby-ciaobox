@@ -2,6 +2,8 @@ class Admin::BannersController < Admin::BaseAdminController
   authorize_resource class: Banner
   include ::Admin::Banners::Parameter
 
+  add_crumb(I18n.t('admins.breadcrumbs.banner')) { |instance| instance.send :admin_banners_path }
+
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
   before_action :create_instance, only: [:new, :create]
   before_action :set_params, only: [:create, :update]
@@ -12,9 +14,11 @@ class Admin::BannersController < Admin::BaseAdminController
   end
 
   def show
+    add_crumb I18n.t('admins.breadcrumbs.show'), admin_banner_path(@banner)
   end
 
   def new
+    add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_banner_path
   end
 
   def create
@@ -26,6 +30,7 @@ class Admin::BannersController < Admin::BaseAdminController
   end
 
   def edit
+    add_crumb I18n.t('admins.breadcrumbs.edit'), edit_admin_banner_path(@banner)
   end
 
   def update

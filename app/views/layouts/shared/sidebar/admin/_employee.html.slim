@@ -4,38 +4,28 @@
       li.sidebar-toggler-wrapper
         .sidebar-toggler
 
-      li.sidebar-search-wrapper
-        form.sidebar-search[action="extra_search.html" method="POST"]
-      / li
-      /   a[href="javascript:;"]
-      /     i.icon-users
-      /     span.title
-      /     = I18n.t("layouts.shared.sidebar.profile_label")
-      /     span.arrow
-      /   ul.sub-menu
-      /     li
-      /       = link_to admin_profile_index_path do
-      /         i.icon-bar-chart
-      /         = I18n.t("layouts.shared.sidebar.account_profile")
-      /     li
-      /       = link_to new_admin_password_path do
-      /         i.icon-plus
-      /         = I18n.t("layouts.shared.sidebar.account_change_password")
       li
-        a[href="javascript:;"]
-          i.icon-pencil
+        = link_to admin_root_path do
+          i.icon-home
           span.title
-            = I18n.t("layouts.shared.sidebar.blog_label")
-          span.arrow
-        ul.sub-menu
-          li
-            = link_to new_admin_employee_article_path do
-              i.icon-plus
-              = I18n.t("layouts.shared.sidebar.blog_new")
-          li
-            = link_to admin_employee_articles_path do
-              i.fa.fa-list-ol
-              = I18n.t("layouts.shared.sidebar.blog_list")
+            = I18n.t("layouts.shared.sidebar.dashboard")
+
+      - if can? :index, "Article"
+        li
+          a[href="javascript:;"]
+            i.icon-pencil
+            span.title
+              = I18n.t("layouts.shared.sidebar.blog_label")
+            span.arrow
+          ul.sub-menu
+            li
+              = link_to new_admin_employee_article_path do
+                i.icon-plus
+                = I18n.t("layouts.shared.sidebar.blog_new")
+            li
+              = link_to admin_employee_articles_path do
+                i.fa.fa-list-ol
+                = I18n.t("layouts.shared.sidebar.blog_list")
       li
         a[href="javascript:;"]
           i.icon-user
@@ -55,22 +45,3 @@
             = link_to new_admin_import_user_path do
               i.fa.fa-upload
               = I18n.t("layouts.shared.sidebar.customer_import_user")
-      li
-        a[href="javascript:;"]
-          i.fa.fa-user-secret
-          span.title
-            = I18n.t("layouts.shared.sidebar.admin_label")
-          span.arrow
-        ul.sub-menu
-          li
-            = link_to new_admin_admin_path do
-              i.icon-plus
-              = I18n.t("layouts.shared.sidebar.admin_new")
-          li
-            = link_to admin_admins_path do
-              i.fa.fa-list-ol
-              = I18n.t("layouts.shared.sidebar.admin_list")
-          li
-            = link_to new_admin_import_admin_path do
-              i.fa.fa-upload
-              = I18n.t("layouts.shared.sidebar.admin_import_employee")

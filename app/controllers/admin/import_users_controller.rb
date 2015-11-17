@@ -1,5 +1,6 @@
 class Admin::ImportUsersController < Admin::BaseAdminController
   def new
+    add_crumb I18n.t('admins.breadcrumbs.import.user'), new_admin_import_user_path
   end
 
   def create

@@ -34,10 +34,10 @@
           strong
             = Article.h :status
         td
-          = @article.status
+          = t(".#{@article.status}")
       tr
         td
           strong
             = Article.h :created_at
         td
-          = @article.created_at
+          = @article.created_at.default_format

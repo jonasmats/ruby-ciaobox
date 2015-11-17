@@ -51,7 +51,7 @@
               | :
             .col-md-4
               p.form-control-static
-                = @admin.roles.first
+                = @admin.roles.try(:first).try(:name)
           .form-actions
             .row
               .col-md-offset-3.col-md-4
