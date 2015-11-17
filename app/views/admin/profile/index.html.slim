@@ -44,7 +44,7 @@
               | :
             .col-md-4
               p.form-control-static
-                = @profile.admin.created_at
+                = @profile.admin.created_at.default_format
         .form-actions
           .row
             .col-md-offset-3.col-md-4
