@@ -21,6 +21,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def new
     @user.build_profile
+    @user.build_address
   end
 
   def create
