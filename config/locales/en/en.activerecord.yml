@@ -34,3 +34,12 @@ en:
         email: Email
         password: Password
         username: Username
+        status: Status
+        status: Status
+        note: Note
+      address:
+        cap: CAP
+        telephone: Telephone
+        city: City
+        country: Country
+        address_name: Address Name
