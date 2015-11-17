@@ -6,7 +6,7 @@
           = image_tag @profile.avatar.url(:medium), class: "img-responsive"
         .profile-usertitle
           .profile-usertitle-name
-            = "#{@profile.first_name} #{@profile.last_name}"
+            = current_admin.full_name
     .profile-content
       .row
         .form-body.form-horizontal

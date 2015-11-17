@@ -19,7 +19,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.inet     :current_sign_in_ip
       t.inet     :last_sign_in_ip
       t.hstore   :note
-      t.string   :cap
       t.datetime :deleted_at
 
       ## Confirmable

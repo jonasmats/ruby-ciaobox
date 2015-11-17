@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20151116074400) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "cap"
     t.string   "address_name"
     t.string   "city"
     t.string   "country"
@@ -315,7 +316,6 @@ ActiveRecord::Schema.define(version: 20151116074400) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.hstore   "note"
-    t.string   "cap"
     t.datetime "deleted_at"
     t.string   "username"
     t.integer  "status",                 default: 1,  null: false
