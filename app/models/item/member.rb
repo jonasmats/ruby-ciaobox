@@ -1,4 +1,4 @@
-class Member < Item
+class Item::Member < Item
   store_accessor :data, :name, :title
   has_one :item_picture, dependent: :destroy, foreign_key: :item_id
 

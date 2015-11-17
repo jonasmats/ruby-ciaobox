@@ -1,6 +1,6 @@
 module Admin::ItemsHelper
   def sti_item_path(type = "item", item = nil, action = nil)
-    send "admin_#{format_sti(action, type, item)}_path", item
+    send "admin_#{format_sti(action, type.underscore.gsub('/','_'), item)}_path", item
   end
 
   def format_sti(action, type, item)

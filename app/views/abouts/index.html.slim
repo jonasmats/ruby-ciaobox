@@ -91,45 +91,11 @@ section.container.team-leader-title.clearfix
     | Meet Our Team Leaders
 section.team-profile.clearfix
   .container.team-main
-    .team-person
-      figure
-        = image_tag "images/team-img1.png", alt: "#"
-      h4
-        | John Anderson
-      span
-        | Founder & CEO
-    .team-person
-      figure
-        = image_tag "images/team-img2.png", alt: "#"
-      h4
-        | Sameul Richards
-      span
-        | Co-Founder & Head of Operations
-    .team-person
-      figure
-        = image_tag "images/team-img3.png", alt: "#"
-      h4
-        | Peter Jhonson
-      span
-        | CFO & SVP Business Operations
-    .team-person
-      figure
-        = image_tag "images/team-img4.png", alt: "#"
-      h4
-        | John Anderson
-      span
-        | Founder & CEO
-    .team-person
-      figure
-        = image_tag "images/team-img5.png", alt: "#"
-      h4
-        | Sameul Richards
-      span
-        | Co-Founder & Head of Operations
-    .team-person
-      figure
-        = image_tag "images/team-img6.png", alt: "#"
-      h4
-        | Peter Jhonson
-      span
-        | CFO & SVP Business Operations
+    - Item::Member.display_all.each do |member|
+      .team-person
+        figure
+          = image_tag member.item_picture.image.url, alt: "#"
+        h4
+          = member.name
+        span
+          = member.title

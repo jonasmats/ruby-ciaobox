@@ -57,10 +57,11 @@ class Admin::ItemsController < Admin::BaseAdminController
     end
 
     def item_params
-      params.require(type.underscore.to_sym).permit(data: type.constantize.stored_attributes[:data], item_picture_attributes: [:image])
+      params.require(type.underscore.gsub('/','_').to_sym).permit(data: type.constantize.stored_attributes[:data], item_picture_attributes: [:image])
     end
 
     def view_path
-      @view_path = "/admin/items/#{@type.downcase}"
+      # binding.pry
+      @view_path = "/admin/items/#{@type.underscore.gsub('item/', '')}"
     end
 end

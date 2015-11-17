@@ -1,4 +1,4 @@
-class Press < Item
+class Item::Press < Item
   store_accessor :data, :timeline, :description
   has_one :item_picture, dependent: :destroy, foreign_key: :item_id
 

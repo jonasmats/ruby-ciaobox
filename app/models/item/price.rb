@@ -1,4 +1,4 @@
-class Price < Item
+class Item::Price < Item
   store_accessor :data, :heading, :money, :description
   has_one :item_picture, dependent: :destroy, foreign_key: :item_id
 

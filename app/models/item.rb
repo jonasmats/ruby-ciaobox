@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
 
   class << self
     def types
-      %w(Member Press Price Privacy KeyPoint)
+      %w(Item::Member Item::Press Item::Price Item::Privacy Item::KeyPoint)
     end
   end
 end

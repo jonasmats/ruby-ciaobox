@@ -1,4 +1,4 @@
-class Privacy < Item
+class Item::Privacy < Item
   store_accessor :data, :heading, :description
 
   validates :heading, :description, presence: true

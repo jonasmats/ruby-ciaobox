@@ -1,4 +1,4 @@
-class KeyPoint < Item
+class Item::KeyPoint < Item
   store_accessor :data, :description
 
   validates :description, presence: true

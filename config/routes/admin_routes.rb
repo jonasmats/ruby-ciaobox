@@ -20,11 +20,11 @@ Rails.application.routes.draw do
     resources :import_admins, only: [:new, :create]
 
     resources :items
-    resources :members, controller: 'items', type: 'Member'
-    resources :presses, controller: 'items', type: 'Press'
-    resources :prices, controller: 'items', type: 'Price'
-    resources :privacies, controller: 'items', type: 'Privacy'
-    resources :key_points, controller: 'items', type: 'KeyPoint'
+    resources :item_members, controller: 'items', type: 'Item::Member'
+    resources :item_presses, controller: 'items', type: 'Item::Press'
+    resources :item_prices, controller: 'items', type: 'Item::Price'
+    resources :item_privacies, controller: 'items', type: 'Item::Privacy'
+    resources :item_key_points, controller: 'items', type: 'Item::KeyPoint'
 
     namespace :payment do
       resources :methods

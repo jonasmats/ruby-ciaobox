@@ -8,7 +8,6 @@
         - @item.errors.full_messages.each do |message|
           li
             = message
-
   = render partial: "#{@view_path}/form", locals: {f: f}
 
   = f.submit class: "btn btn-primary"
