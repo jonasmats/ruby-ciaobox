@@ -31,6 +31,19 @@ en:
         create: "Create"
         update: "Update"
         destroy: "Destroy"
+      user:
+        email: Email
+        password: Password
+        username: Username
+        status: Status
+        status: Status
+        note: Note
+      address:
+        cap: CAP
+        telephone: Telephone
+        city: City
+        country: Country
+        address_name: Address Name
       admin:
         email: "Email"
         password: "Password"

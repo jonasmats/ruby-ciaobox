@@ -19,6 +19,8 @@ class DeviseCreateAdmins < ActiveRecord::Migration
       t.inet     :current_sign_in_ip
       t.inet     :last_sign_in_ip
 
+      t.datetime :deleted_at
+
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at

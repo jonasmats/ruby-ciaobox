@@ -6,7 +6,7 @@
           = image_tag @user.profile.avatar.url(:medium), class: "img-responsive"
         .profile-usertitle
           .profile-usertitle-name
-            |  Name
+            = @user.full_name
     .profile-content
       .row
         .form-body.form-horizontal
@@ -16,14 +16,21 @@
               | :
             .col-md-4
               p.form-control-static
-                = @user.profile.first_name
+                = @user.profile.try(:first_name)
           .form-group
             label.control-label.col-md-3
               = User.h :last_name
               | :
             .col-md-4
               p.form-control-static
-                = @user.profile.last_name
+                = @user.profile.try(:last_name)
+          .form-group
+            label.control-label.col-md-3
+              = User::Profile.h :telephone
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.profile.try(:telephone)
           .form-group
             label.control-label.col-md-3
               = User::Profile.h :username
@@ -40,11 +47,49 @@
                 = @user.email
           .form-group
             label.control-label.col-md-3
+              = Address.h :cap
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.try(:cap)
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :address_name
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.try(:address_name)
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :city
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.try(:city)
+          .form-group
+            label.control-label.col-md-3
+              = Address.h :country
+              | :
+            .col-md-4
+              p.form-control-static
+                = @user.address.try(:country)
+          .form-group
+            label.control-label.col-md-3
               = User.h :status
               | :
             .col-md-4
               p.form-control-static
                 = @user.status
+          .form-group
+            label.control-label.col-md-3
+              = User.h :note
+              | :
+            .col-md-4
+              p.form-control-static
+                - if @user.note.present?
+                  - @user.note.each do |k,v|
+                    -if v.present?
+                      li= v
           .form-actions
             .row
               .col-md-offset-3.col-md-4

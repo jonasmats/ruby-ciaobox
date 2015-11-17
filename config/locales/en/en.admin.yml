@@ -116,6 +116,7 @@ en:
           username: "Enter username"
           first_name: "Enter first name"
           last_name: "Enter last name"
+          telephone: "Enter telephone"
       admin:
         edit: *edit
         delete: *delete
@@ -142,6 +143,13 @@ en:
           username: "Enter username"
           first_name: "Enter first name"
           last_name: "Enter last name"
+          telephone: "Enter telephone"
+          cap: "Enter CAP"
+          address_name: "Enter address name"
+          city: "Enter city"
+          country: "Enter Country"
+      note:
+        add_more: Add more
       user:
         edit: *edit
         delete: *delete
@@ -237,6 +245,19 @@ en:
           blank: *blank
           active: *active
           un_active: *un_active
+          placeholder:
+            email: "Enter email"
+            password: "Enter password"
+            username: "Enter username"
+            first_name: "Enter first name"
+            last_name: "Enter last name"
+            telephone: "Enter telephone"
+            cap: "Enter CAP"
+            address_name: "Enter address name"
+            city: "Enter city"
+            country: "Enter Country"
+        note:
+          add_more: Add more
         user:
           edit: *edit
           delete: *delete

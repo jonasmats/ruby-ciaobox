@@ -10,7 +10,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def index
     @q = User.all.ransack(params[:q])
-    @users = @q.result.latest
+    @users = @q.result.latest.includes(:profile, :address)
     respond_to do |format|
       format.html
       format.csv { send_data Export.users_to_csv(@users), filename: "Ciaobox_Users_#{Time.current}.csv" }
@@ -25,10 +25,17 @@ class Admin::UsersController < Admin::BaseAdminController
   def new
     add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_user_path
     @user.build_profile
+    @user.build_address
   end
 
   def create
     if @user.save
+      # LogActionsJob.perform_later({
+      #     owner_id: current_admin.id,
+      #     action_type: params[:action],
+      #     data: log_params
+      #   }, @user)
+      active_job_log_action(log_params)
       redirect_to admin_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
       render :new
@@ -41,6 +48,12 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
+      # LogActionsJob.perform_later({
+      #     owner_id: current_admin.id,
+      #     action_type: params[:action],
+      #     data: log_params
+      #   }, @user)
+      active_job_log_action(log_params)
       respond_to do |format|
         format.html { redirect_to admin_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }
         format.js
@@ -53,6 +66,12 @@ class Admin::UsersController < Admin::BaseAdminController
   def destroy
     msg =
       if @user.destroy
+        active_job_log_action(params.extract!(:id))
+        # LogActionsJob.perform_later({
+        #     owner_id: current_admin.id,
+        #     action_type: params[:action],
+        #     data: params.extract!(:id)
+        #   }, @user)
         t('notice.admin.users.destroy.success')
       else
         t('notice.admin.users.destroy.error')
@@ -71,5 +90,13 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def set_params
     @user.assign_attributes private_params
+  end
+
+  def active_job_log_action(data)
+    LogActionsJob.perform_later({
+      owner_id: current_admin.id,
+      action_type: params[:action],
+      data: data
+    }, @user)
   end
 end
