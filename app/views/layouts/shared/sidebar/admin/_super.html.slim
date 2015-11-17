@@ -247,3 +247,82 @@
       /     li
       /       a[href="maps_vector.html"]
       /         |  Vector Maps
+
+
+      li
+        a[href="javascript:;"]
+          i.fa.fa-file-o
+          span.title
+            = I18n.t("layouts.shared.sidebar.static_item_label")
+          span.arrow
+        ul.sub-menu
+          li
+            a[href="javascript:;"]
+              i.fa.fa-user
+              = I18n.t("layouts.shared.sidebar.item_member_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_member_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.static_member_new")
+              li
+                = link_to admin_members_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.static_member_list")
+          li
+            a[href="javascript:;"]
+              i.fa.fa-tasks
+              = I18n.t("layouts.shared.sidebar.item_press_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_press_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.static_press_new")
+              li
+                = link_to admin_presses_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.static_press_list")
+          li
+            a[href="javascript:;"]
+              i.fa.fa-money
+              = I18n.t("layouts.shared.sidebar.item_price_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_price_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.static_price_new")
+              li
+                = link_to admin_prices_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.static_price_list")
+          li
+            a[href="javascript:;"]
+              i.fa.fa-shield
+              = I18n.t("layouts.shared.sidebar.item_privacy_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_privacy_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.static_privacy_new")
+              li
+                = link_to admin_privacies_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.static_price_list")
+          li
+            a[href="javascript:;"]
+              i.fa.fa-key
+              = I18n.t("layouts.shared.sidebar.item_keypoint_label")
+              span.arrow
+            ul.sub-menu
+              li
+                = link_to new_admin_key_point_path do
+                  i.icon-plus
+                  = I18n.t("layouts.shared.sidebar.static_keypoint_new")
+              li
+                = link_to admin_key_points_path do
+                  i.fa.fa-list-ol
+                  = I18n.t("layouts.shared.sidebar.static_keypoint_list")

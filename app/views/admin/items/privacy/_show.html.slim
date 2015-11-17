@@ -1,0 +1,19 @@
+.table-responsive
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th[width="30%"]
+          | Fields
+        th
+          | Value
+    tbody
+      tr
+        th
+          | heading
+        td
+          = @item.heading
+      tr
+        th
+          | description
+        td
+          = @item.description

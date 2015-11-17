@@ -1,0 +1,16 @@
+= form_for [:admin, @item.becomes(@type.constantize)], html: {role: "form", multipart: true} do |f|
+  - if @item.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@item.errors.count, "error")
+        |  prohibited this item from being saved:
+      ul
+        - @item.errors.full_messages.each do |message|
+          li
+            = message
+
+  = render partial: "#{@view_path}/form", locals: {f: f}
+
+  = f.submit class: "btn btn-primary"
+  = link_to sti_item_path(@type), class: "btn default" do
+    = t(".cancel")

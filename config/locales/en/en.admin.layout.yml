@@ -42,6 +42,22 @@ en:
         admin_new: *new
         admin_list: *list
         admin_import_employee: " Import Employees"
+        static_item_label: " Static Items"
+        item_member_label: " Members"
+        static_member_new: *new
+        static_member_list: *list
+        item_press_label: " Presses"
+        static_press_new: *new
+        static_press_list: *list
+        item_price_label: " Prices"
+        static_price_new: *new
+        static_price_list: *list
+        item_privacy_label: " Privacies"
+        static_privacy_new: *new
+        static_privacy_list: *list
+        item_keypoint_label: " KeyPoints"
+        static_keypoint_new: *new
+        static_keypoint_list: *list
       dashboard:
         employee_feature: All features of Company Employee User
         blog_new: New Blog

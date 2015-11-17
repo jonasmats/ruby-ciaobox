@@ -253,4 +253,19 @@ en:
           view: *view
         title:
           sub_title: "Blog management"
-      
+    items:
+      member:
+        item:
+          member_destroy: *question_destroy
+      press:
+        item:
+          press_destroy: *question_destroy
+      price:
+        item:
+          price_destroy: *question_destroy
+      privacy:
+        item:
+          privacy_destroy: *question_destroy
+      keypoint:
+        item:
+          keypoint_destroy: *question_destroy

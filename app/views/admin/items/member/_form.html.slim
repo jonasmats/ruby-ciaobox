@@ -1,0 +1,17 @@
+.form-group
+  label
+    | Image
+= f.fields_for :item_picture, @item.new_record? ? @item.build_item_picture : @item.item_picture do |ff|
+  .form-group
+    = image_tag @item.item_picture.image.url, class: "img-responsive" if @item.persisted?
+    = ff.file_field :image, class: "form-control"
+
+= f.fields_for :data, OpenStruct.new(f.object.data) do |ff|
+  .form-group
+    label
+      | name
+    = ff.text_field :name, class: "form-control"
+  .form-group
+    label
+      | title
+    = ff.text_field :title, class: "form-control"

@@ -19,6 +19,13 @@ Rails.application.routes.draw do
     resources :import_users, only: [:new, :create]
     resources :import_admins, only: [:new, :create]
 
+    resources :items
+    resources :members, controller: 'items', type: 'Member'
+    resources :presses, controller: 'items', type: 'Press'
+    resources :prices, controller: 'items', type: 'Price'
+    resources :privacies, controller: 'items', type: 'Privacy'
+    resources :key_points, controller: 'items', type: 'KeyPoint'
+
     namespace :payment do
       resources :methods
       resources :infors

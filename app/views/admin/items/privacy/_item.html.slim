@@ -1,0 +1,17 @@
+tr
+  td
+    = item.heading
+  td
+    = item.description
+  td
+    = link_to admin_privacy_path(item), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+  td
+    = link_to edit_admin_privacy_path(item), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+  td
+    = link_to admin_privacy_path(item), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".privacy_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")
