@@ -74,6 +74,7 @@ en:
         placeholder:
           title: "Enter title"
           content: "Enter content"
+          description: "Enter description"
       article:
         edit: *edit
         delete: *delete

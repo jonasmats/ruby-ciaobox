@@ -4,7 +4,7 @@ module Admin::Articles::Parameter
   private
     def private_params
       if params[:article]
-        params.require(:article).permit(:title, :content, :status)
+        params.require(:article).permit(:cover, :title, :description, :content, :status)
       end
     end
 end

@@ -53,3 +53,7 @@ en:
         avatar: "Avatar"
       article:
         author: "Author"
+        cover: "Cover"
+        title: "Title"
+        description: "Description"
+        content: "Content"

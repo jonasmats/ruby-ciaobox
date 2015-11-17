@@ -32,7 +32,7 @@ class Admin < ActiveRecord::Base
   attr_accessor :login
 
   enum status: { un_active: 0, active: 1 }
-  delegate :full_name, to: :profile
+  delegate :full_name, :avatar, to: :profile
 
   #1. associations
   has_one :profile, class_name: ::CiaoboxUser::Profile.name, foreign_key: :admin_id
@@ -68,7 +68,7 @@ class Admin < ActiveRecord::Base
   # 4 validates
   validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
   # 5
-  
+
   # 6. instance methods
 
   def super?
