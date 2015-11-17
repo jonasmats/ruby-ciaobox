@@ -98,6 +98,8 @@ en:
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
         download_xls: "Donwload to Excel"
+        placeholder:
+          search_email_or_username: "Search by email or username"
       form:
         submit: *submit
         blank: *blank
@@ -122,6 +124,8 @@ en:
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
         download_xls: "Donwload to Excel"
+        placeholder:
+          search_email_or_username: "Search by email or username"
       form:
         submit: *submit
         blank: *blank
@@ -218,6 +222,8 @@ en:
           download_tools: "Download Tools"
           download_csv: "Download to CSV"
           download_xls: "Donwload to Excel"
+          placeholder:
+            search_email_or_username: "Search by email or username"
         form:
           submit: *submit
           blank: *blank
