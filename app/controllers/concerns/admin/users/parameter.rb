@@ -17,7 +17,7 @@ module Admin::Users::Parameter
         note = params[:user][:note].present? ? params[:user][:note].keys[0..3] : nil
         params.require(:user)
           .permit(:email, :username, :status, :cap, note: note,
-            profile_attributes: [:id, :first_name, :last_name, :telephone, :user_id, :avatar],
+            profile_attributes: [:id, :first_name, :last_name, :telephone, :user_id],
             address_attributes: [:id, :cap, :address_name, :city, :country, :user_id])
       end
     end
