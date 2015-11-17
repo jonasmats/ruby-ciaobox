@@ -26,11 +26,11 @@ class Admin::UsersController < Admin::BaseAdminController
   def create
     if @user.save
       data = private_params.tap { |hs| hs.delete('password') }
-      @user.create_log_action({
+      LogActionsJob.perform_later({
           owner_id: current_admin.id,
           action_type: params[:action],
           data: data
-        })
+        }, @user)
       redirect_to admin_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
       render :new
@@ -42,6 +42,12 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
+      data = private_params.tap { |hs| hs.delete('password') }
+      LogActionsJob.perform_later({
+          owner_id: current_admin.id,
+          action_type: params[:action],
+          data: data
+        }, @user)
       respond_to do |format|
         format.html { redirect_to admin_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }
         format.js
@@ -54,6 +60,11 @@ class Admin::UsersController < Admin::BaseAdminController
   def destroy
     msg =
       if @user.destroy
+        LogActionsJob.perform_later({
+            owner_id: current_admin.id,
+            action_type: params[:action],
+            data: params.extract!(:id)
+          }, @user)
         t('notice.admin.users.destroy.success')
       else
         t('notice.admin.users.destroy.error')

@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20151116074400) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.datetime "deleted_at"
     t.string   "username"
     t.string   "type",                                null: false
     t.integer  "status",                 default: 1,  null: false
@@ -185,11 +186,11 @@ ActiveRecord::Schema.define(version: 20151116074400) do
   create_table "log_actions", force: :cascade do |t|
     t.integer  "owner_id"
     t.string   "action_type"
-    t.integer  "object_id"
-    t.string   "object_type"
+    t.integer  "subject_id"
+    t.string   "subject_type"
     t.hstore   "data"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -315,6 +316,7 @@ ActiveRecord::Schema.define(version: 20151116074400) do
     t.inet     "last_sign_in_ip"
     t.hstore   "note"
     t.string   "cap"
+    t.datetime "deleted_at"
     t.string   "username"
     t.integer  "status",                 default: 1,  null: false
     t.datetime "created_at",                          null: false

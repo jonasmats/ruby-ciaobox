@@ -29,6 +29,7 @@ class Admin < ActiveRecord::Base
   after_create :create_instance_profile
 
   attr_accessor :login
+  acts_as_paranoid
 
   enum status: { un_active: 0, active: 1 }
   delegate :full_name, to: :profile
