@@ -3,6 +3,7 @@ class Admin::BaseAdminController < ApplicationController
   before_action :full_name
   before_action :avatar
   before_action :current_ability
+  before_action :notification
   layout 'application.admin'
 
   add_crumb I18n.t('admins.breadcrumbs.home'), :admin_root_path
@@ -28,5 +29,9 @@ class Admin::BaseAdminController < ApplicationController
 
   def avatar
     @admin_avatar = profile.avatar.url(:thumb)
+  end
+
+  def notification
+    @notifications = Notification.open.latest.select(:id, :info, :type, :created_at)
   end
 end
