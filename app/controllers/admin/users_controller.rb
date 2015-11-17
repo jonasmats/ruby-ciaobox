@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def index
     @q = User.all.ransack(params[:q])
-    @users = @q.result.latest
+    @users = @q.result.latest.includes(:profile, :address)
     respond_to do |format|
       format.html
       format.csv { send_data Export.users_to_csv(@users), filename: "Ciaobox_Users_#{Time.current}.csv" }

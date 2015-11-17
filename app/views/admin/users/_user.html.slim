@@ -12,6 +12,14 @@ tr
       - else
         = link_to "Change to active", admin_user_path(user, "user[status]" => User.statuses.keys[1]), method: :patch, remote: :true, id: "change_status_user_#{user.id}"
   td
+    = user.address.try(:cap)
+  td
+    = user.profile.try(:telephone)
+  td
+    = user.address.try(:city)
+    td
+    = user.address.try(:country)
+  td
     = link_to admin_user_path(user), class: "btn default btn-xs purple" do
       i.fa.fa-view
       = t(".view")
