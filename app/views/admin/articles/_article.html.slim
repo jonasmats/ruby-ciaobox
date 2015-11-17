@@ -4,10 +4,10 @@ tr
   td
     = article.admin.full_name
   td
-    = article.created_at
+    = article.created_at.default_format
   td
     span id= "status_article_#{article.id}"
-      = article.status
+      = t(".#{article.status}")
     span style=("margin-left: 20px")
       - if article.publish?
           = link_to "Change to un_publish", admin_article_path(article, "article[status]" => Article.statuses.keys[0]), method: :patch, remote: :true, id: "change_status_article_#{article.id}"

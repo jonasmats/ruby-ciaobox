@@ -20,6 +20,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_paranoid
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :async,
@@ -43,6 +44,8 @@ class User < ActiveRecord::Base
   has_many :schedule_notification, class_name: Notification::ScheduleCreate.name, foreign_key: :user_id, dependent: :destroy
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
+
+  has_many :log_actions, as: :subject
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates

@@ -6,7 +6,7 @@
           = image_tag @user.profile.avatar.url(:medium), class: "img-responsive"
         .profile-usertitle
           .profile-usertitle-name
-            |  Name
+            = @user.full_name
     .profile-content
       .row
         .form-body.form-horizontal
@@ -47,11 +47,11 @@
                 = @user.email
           .form-group
             label.control-label.col-md-3
-              = User.h :cap
+              = Address.h :cap
               | :
             .col-md-4
               p.form-control-static
-                = @user.cap
+                = @user.address.try(:cap)
           .form-group
             label.control-label.col-md-3
               = Address.h :address_name

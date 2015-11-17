@@ -1,0 +1,82 @@
+doctype html
+html
+  head
+    title
+      | Ciaobox
+    = stylesheet_link_tag    'application.blog', media: 'all'
+    = javascript_include_tag 'application.blog'
+    = csrf_meta_tags
+  body
+    #secondary.col-sm-3.sidebar style=("display: none;")
+      aside
+        .about
+          h4 About us
+          p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        .socialmedia
+          h4 Share
+          .socials-sidebar
+            a.btn.btn-facebook href="#" title="Facebook"
+              i.fa.fa-facebook
+            a.btn.btn-twitter href="#" title="Twitter"
+              i.fa.fa-twitter
+            a.btn.btn-linkedin href="#" title="LinkedIn"
+              i.fa.fa-linkedin
+            a.btn.btn-flickr href="#" title="Flickr"
+              i.fa.fa-flickr
+            a.btn.btn-pinterest href="#" title="Pinterest"
+              i.fa.fa-pinterest
+            a.btn.btn-tumblr href="#" title="Tumblr"
+              i.fa.fa-tumblr
+            a.btn.btn-dropbox href="#" title="Dropbox"
+              i.fa.fa-dropbox
+            a.btn.btn-google-plus href="#" title="Google+"
+              i.fa.fa-google-plus
+            a.btn.btn-instagram href="#" title="Instagram"
+              i.fa.fa-instagram
+            a.btn.btn-github href="#" title="GitHub"
+              i.fa.fa-github
+            a.btn.btn-bitbucket href="#" title="Bitbucket"
+              i.fa.fa-bitbucket
+            a.btn.btn-vk href="#" title="VK"
+              i.fa.fa-vk
+          /! /.socials-sidebar
+    #primary.col-sm-12
+      .content
+        header.header
+          hgroup.pull-left
+            h1.site-title
+              = link_to root_path, title: "Ciao Box" do
+                = image_tag "images/float-logo.png"
+          #togglesidebar.btn.btn-primary.pull-right
+            i.fa.fa-bars
+
+        = yield
+
+        footer.footer
+          p © 2015 CiaoBox. Powered by CiaoBox.
+          .socials-footer
+            a.btn.btn-facebook href="#" title="Facebook"
+              i.fa.fa-facebook
+            a.btn.btn-twitter href="#" title="Twitter"
+              i.fa.fa-twitter
+            a.btn.btn-linkedin href="#" title="LinkedIn"
+              i.fa.fa-linkedin
+            a.btn.btn-flickr href="#" title="Flickr"
+              i.fa.fa-flickr
+            a.btn.btn-pinterest href="#" title="Pinterest"
+              i.fa.fa-pinterest
+            a.btn.btn-tumblr href="#" title="Tumblr"
+              i.fa.fa-tumblr
+            a.btn.btn-dropbox href="#" title="Dropbox"
+              i.fa.fa-dropbox
+            a.btn.btn-google-plus href="#" title="Google+"
+              i.fa.fa-google-plus
+            a.btn.btn-instagram href="#" title="Instagram"
+              i.fa.fa-instagram
+            a.btn.btn-github href="#" title="GitHub"
+              i.fa.fa-github
+            a.btn.btn-bitbucket href="#" title="Bitbucket"
+              i.fa.fa-bitbucket
+            a.btn.btn-vk href="#" title="VK"
+              i.fa.fa-vk
+          /! /.socials-footer

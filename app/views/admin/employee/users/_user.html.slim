@@ -12,7 +12,7 @@ tr
       - else
         = link_to "Change to active", admin_employee_user_path(user, "user[status]" => User.statuses.keys[1]), method: :patch, remote: :true, id: "change_status_user_#{user.id}"
   td
-    = user.cap
+    = user.address.try(:cap)
   td
     = user.profile.try(:telephone)
   td
