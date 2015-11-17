@@ -21,6 +21,7 @@
 class Admin < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_paranoid
   devise :database_authenticatable,
   :recoverable, :rememberable, :trackable, :validatable,
   :async,
@@ -29,7 +30,6 @@ class Admin < ActiveRecord::Base
   after_create :create_instance_profile
 
   attr_accessor :login
-  acts_as_paranoid
 
   enum status: { un_active: 0, active: 1 }
   delegate :full_name, to: :profile

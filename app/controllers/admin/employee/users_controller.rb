@@ -27,11 +27,10 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
 
   def create
     if @user.save
-      data = private_params.tap { |hs| hs.delete('password') }
       LogActionsJob.perform_later({
           owner_id: current_admin.id,
           action_type: params[:action],
-          data: data
+          data: log_params
         }, @user)
       redirect_to admin_employee_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
@@ -44,11 +43,10 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
-      data = private_params.tap { |hs| hs.delete('password') }
       LogActionsJob.perform_later({
           owner_id: current_admin.id,
           action_type: params[:action],
-          data: data
+          data: log_params
         }, @user)
       respond_to do |format|
         format.html { redirect_to admin_employee_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }

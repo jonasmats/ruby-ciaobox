@@ -20,6 +20,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_paranoid
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :async,
@@ -27,7 +28,6 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   attr_accessor :login
-  acts_as_paranoid
 
   after_create :create_instance_profile, unless: :check_has_param_profile?
   after_create :create_instance_address, unless: :check_has_param_address?
