@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
   after_create :create_instance_profile, unless: :check_has_param_profile?
   after_create :create_instance_address, unless: :check_has_param_address?
+  after_create :create_instance_notification
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true
   enum status: { un_active: 0, active: 1 }
@@ -37,6 +38,9 @@ class User < ActiveRecord::Base
   # 1. associations
   has_one :profile, class_name: User::Profile.name, foreign_key: :user_id, dependent: :destroy
   has_one :address, class_name: Address.name, foreign_key: :user_id, dependent: :destroy
+  has_many :notification, class_name: Notification.name, foreign_key: :user_id, dependent: :destroy
+  has_many :user_notification, class_name: Notification::UserRegister.name, foreign_key: :user_id, dependent: :destroy
+  has_many :schedule_notification, class_name: Notification::ScheduleCreate.name, foreign_key: :user_id, dependent: :destroy
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
   # 2. scopes
@@ -61,6 +65,11 @@ class User < ActiveRecord::Base
   #chec has params
   def check_has_param_address?
     self.address.present?
+  end
+
+  def create_instance_notification
+    info = {full_name: self.full_name, email: self.email}
+    self.user_notification.create!(info: info)
   end
 
   # 6

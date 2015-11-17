@@ -119,4 +119,19 @@ jQuery(document).ready(function() {
   var activeSideBarMenu = new ActiveSideBarMenu();
   activeSideBarMenu.init();
 
+
+  $( "#header_notification_bar" ).on( "click", function() {
+    // alert("/v1/notification");
+    var ids_val = $('#ids_notification').val()
+    // console.log(ids_val)
+    $.ajax({
+      method: "POST",
+      url: "/v1/notification",
+      data: { ids: ids_val }
+    })
+      .done(function( msg ) {
+        console.log(msg.code)
+        $('.num_notification').html("0");
+      });
+  });
 });

@@ -1,0 +1,12 @@
+li
+  a href="javascript:;" 
+    span.time
+      = time_ago_in_words(notification.created_at)
+    span.details
+      span.label.label-sm.label-icon.label-success
+        - case notification.type
+        - when Notification::UserRegister.name
+          i.fa.fa-user
+        - when Notification::ScheduleCreate.name
+          i.fa.fa-calendar
+      = "#{notification.info["email"]}"
