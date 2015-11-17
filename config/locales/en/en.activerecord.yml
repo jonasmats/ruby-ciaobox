@@ -38,3 +38,5 @@ en:
         role: "Role"
         status: "Status"
         avatar: "Avatar"
+      article:
+        author: "Author"

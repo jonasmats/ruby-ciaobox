@@ -2,7 +2,7 @@ tr
   td
     = image_tag banner.image, class: "img-responsive"
   td
-    = banner.status
+    = t(".#{banner.status}")
   td
     = link_to admin_banner_path(banner.id), class: "btn default btn-xs purple" do
       i.fa.fa-view
