@@ -52,11 +52,12 @@ ActiveRecord::Schema.define(version: 20151111044050) do
   add_index "admins", ["username"], name: "index_admins_on_username", using: :btree
 
   create_table "article_translations", force: :cascade do |t|
-    t.integer  "article_id", null: false
-    t.string   "locale",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "article_id",  null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "title"
+    t.text     "description"
     t.text     "content"
   end
 
