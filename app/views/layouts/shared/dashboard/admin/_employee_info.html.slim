@@ -1,38 +1,3 @@
-.row.margin-top-20
-  .col-md-12
-    .profile-sidebar
-      .portlet.light.profile-sidebar-portlet
-        .profile-userpic
-          -
-          = image_tag current_admin.profile.avatar.url(:medium), class: "img-responsive"
-        .profile-usertitle
-          .profile-usertitle-name
-            = "#{current_admin.profile.first_name} #{current_admin.profile.last_name}"
-    .profile-content
-      .row
-        .form-body.form-horizontal
-          .form-group
-            label.control-label.col-md-3
-              = Admin.h :email
-              | :
-            .col-md-4
-              p.form-control-static
-                = current_admin.email
-          .form-group
-            label.control-label.col-md-3
-              = Admin.h :username
-              | :
-            .col-md-4
-              p.form-control-static
-                = current_admin.username
-          .form-group
-            label.control-label.col-md-3
-              = Role.h :name
-              | :
-            .col-md-4
-              p.form-control-static
-                = current_admin.roles.try(:first).try(:name)
-
 .row
   .col-md-12.col-sm-12
     .portlet.light
@@ -85,33 +50,36 @@
                     .cont-col2
                       .desc
                         = link_to I18n.t("layouts.shared.dashboard.blog_list"), admin_employee_articles_path
-            li
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-info
-                      i.icon-plus
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.dashboard.customer_new"), new_admin_employee_user_path
-            li
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-info
-                      i.fa.fa-list-ol
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.dashboard.customer_list"), admin_employee_users_path
-            li
-              a[href="javascript:;"]
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.customer_new"), new_admin_employee_user_path
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.customer_list"), admin_employee_users_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
 
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-info
-                      i.fa.fa-upload
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.sidebar.customer_import_user"), new_admin_import_user_path
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-upload
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.sidebar.customer_import_user"), new_admin_import_user_path
 .clearfix

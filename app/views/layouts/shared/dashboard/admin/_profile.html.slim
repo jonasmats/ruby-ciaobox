@@ -1,0 +1,34 @@
+.row.margin-top-20
+  .col-md-12
+    .profile-sidebar
+      .portlet.light.profile-sidebar-portlet
+        .profile-userpic
+          -
+          = image_tag current_admin.profile.avatar.url(:medium), class: "img-responsive"
+        .profile-usertitle
+          .profile-usertitle-name
+            = "#{current_admin.profile.first_name} #{current_admin.profile.last_name}"
+    .profile-content
+      .row
+        .form-body.form-horizontal
+          .form-group
+            label.control-label.col-md-3
+              = Admin.h :email
+              | :
+            .col-md-4
+              p.form-control-static
+                = current_admin.email
+          .form-group
+            label.control-label.col-md-3
+              = Admin.h :username
+              | :
+            .col-md-4
+              p.form-control-static
+                = current_admin.username
+          .form-group
+            label.control-label.col-md-3
+              = Role.h :name
+              | :
+            .col-md-4
+              p.form-control-static
+                = current_admin.roles.try(:first).try(:name)
