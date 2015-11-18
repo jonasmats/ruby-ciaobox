@@ -7,7 +7,7 @@ class Item::Press < Item
 
   class << self
     def display_all
-      self.all
+      self.includes(:item_picture).all
     end
   end
 end

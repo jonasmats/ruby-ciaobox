@@ -1,0 +1,47 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Press
+section.tabing.tabing-bg.clearfix
+  ul.nav.nav-tabs[role="tablist"]
+    li[role="presentation"]
+      a[href="#home" aria-controls="home" role="tab" data-toggle="tab"]
+        | Company
+    li.active[role="presentation"]
+      a[href="#profile" aria-controls="profile" role="tab" data-toggle="tab"]
+        | Press
+    li.last-br[role="presentation"]
+      a[href="#messages" aria-controls="messages" role="tab" data-toggle="tab"]
+        | Careers
+section.press-tab-main.clearfix
+  .container
+    p
+      | The fastest way to reach our media relations team is to write to 
+      a[href="#" title="press@ciaobox.com"]
+        | press@ciaobox.com
+    - presses = Item::Press.display_all
+    .press-tab-inner
+      .press-tab-inner-left
+        - presses.slice(0, presses.length/2).each do |press|
+          .press-tab-box
+            a[href="#" title=""]
+              figure
+                = image_tag press.item_picture.image.url, alt: "#"
+            .press-tab-text
+              h4
+                = press.timeline
+              p
+                = press.description
+      .press-tab-inner-right
+        - presses.slice(presses.length/2, presses.length).each do |press|
+          .press-tab-box
+            a[href="#" title=""]
+              figure
+                = image_tag press.item_picture.image.url, alt: "#"
+            .press-tab-text
+              h4
+                = press.timeline
+              p
+                = press.description

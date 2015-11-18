@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :abouts, only: :index
   resources :prices, only: :index
   resources :articles, only: [:index, :show], path: "blogs"
+  resources :presses, only: :index
 
   get 'set_language/en'
   get 'set_language/it'

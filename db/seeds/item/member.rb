@@ -1,6 +1,6 @@
 name = 'member'
 config = YAML.load_file Rails.root.join("db/data/item/#{name}.yml")
-path_image = Rails.public_path.join("master/items/members/")
+path_image = Rails.public_path.join("master/items/#{name.pluralize}/")
 type = 'Item::Member'
 class_name = type.constantize
 

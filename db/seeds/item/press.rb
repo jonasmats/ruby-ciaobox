@@ -1,7 +1,7 @@
-name = 'price'
+name = 'press'
 config = YAML.load_file Rails.root.join("db/data/item/#{name}.yml")
 path_image = Rails.public_path.join("master/items/#{name.pluralize}/")
-type = 'Item::Price'
+type = 'Item::Press'
 class_name = type.constantize
 
 ActiveRecord::Base.transaction do
