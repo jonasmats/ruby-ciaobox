@@ -2,4 +2,4 @@
   .form-group
     label
       | description
-    = ff.cktext_area :content, class: "form-control", placeholder: "#{t('.placeholder.content')}", ckeditor: { toolbar: [['Source', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo','Redo'],[ 'Bold', 'Italic', 'Underline'],[ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],['Format','TextColor','BGColor', 'Maximize', 'ShowBlocks'], ['Link','Unlink']]}
+    = ff.cktext_area :content, class: "form-control", placeholder: "#{t('.placeholder.content')}", ckeditor: { toolbar: [['Source', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo','Redo'],[ 'Bold', 'Italic', 'Underline'],[ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],['Format','TextColor','BGColor', 'Maximize', 'ShowBlocks'], ['Image','Link','Unlink']]}

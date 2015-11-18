@@ -4,34 +4,11 @@ section.section-2.about
       = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
     h1
       | About Us
-section.tabing.tabing-bg.clearfix
-  ul.nav.nav-tabs[role="tablist"]
-    li.active[role="presentation"]
-      a[href="#home" aria-controls="home" role="tab" data-toggle="tab"]
-        | Company
-    li[role="presentation"]
-      a[href="#profile" aria-controls="profile" role="tab" data-toggle="tab"]
-        | Press
-    li.last-br[role="presentation"]
-      a[href="#messages" aria-controls="messages" role="tab" data-toggle="tab"]
-        | Careers
+
 -item_about = Item::About.first
 - if item_about.present?
-  section.tabing.about-tab.clearfix
-    .container
-      .tab-content
-        #home.tab-pane.clearfix.active[role="tabpanel"]
-          .tabpanel-left
-            = item_about.content.html_safe
-          .tabpanel-right
-            .p-1
-              | On-Demand
-            .p-2
-              | Good Services
-            .p-3
-              | Organized
-            .p-4
-              | Secure Storage
+  = item_about.content.html_safe
+
 section.container.team-leader-title.clearfix
   h3
     | Meet Our Team Leaders
