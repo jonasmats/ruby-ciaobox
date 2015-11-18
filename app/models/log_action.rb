@@ -4,4 +4,6 @@ class LogAction < ActiveRecord::Base
 
   #scope
   scope :latest, -> {order("created_at DESC")}
+
+  delegate :full_name, :avatar, to: :admin, prefix: true
 end

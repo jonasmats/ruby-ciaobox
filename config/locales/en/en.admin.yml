@@ -240,6 +240,8 @@ en:
         back: *back
       log_action:
         view: *view
+      title:
+        sub_title: "Log Actions"
     employee:
       users:
         index:
