@@ -61,7 +61,7 @@ class Admin::ItemsController < Admin::BaseAdminController
     end
 
     def load_items
-      if ['Item::Member'].include?(@type)
+      if %w(Item::Member Item::Price).include?(@type)
         type_class.includes(:item_picture).all
       else
         type_class.all

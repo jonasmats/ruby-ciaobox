@@ -9,5 +9,6 @@
 
 # require File.dirname(__FILE__) + '/seeds/user'
 
-require File.dirname(__FILE__) + '/seeds/item/member'
+# require File.dirname(__FILE__) + '/seeds/item/member'
 # require File.dirname(__FILE__) + '/seeds/item/about'
+require File.dirname(__FILE__) + '/seeds/item/price'

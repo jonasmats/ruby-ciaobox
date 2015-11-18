@@ -1,0 +1,39 @@
+-
+  price:
+    id: 1
+    data:
+      heading: MakeSpace Bin
+      money: $6.25/mo per Bin
+      description: Save time and money from buying cardboard boxes. We bring high-quality, durable MakeSpace bins that can hold up to 40 lbs right to your door.
+  picture:
+    file: '1.png'
+
+-
+  price:
+    id: 2
+    data:
+      heading: Large Items
+      money: $12.50/mo* per Item
+      description: If one of our Uploaders can carry it out of your apartment, we’ll store it for $12.50 a month.
+  picture:
+    file: '2.png'
+
+-
+  price:
+    id: 3
+    data:
+      heading: MakeSpace Bin
+      money: $6.25/mo per Bin
+      description: Save time and money from buying cardboard boxes. We bring high-quality, durable MakeSpace bins that can hold up to 40 lbs right to your door.
+  picture:
+    file: '1.png'
+
+-
+  price:
+    id: 4
+    data:
+      heading: Large Items
+      money: $12.50/mo* per Item
+      description: If one of our Uploaders can carry it out of your apartment, we’ll store it for $12.50 a month.
+  picture:
+    file: '2.png'
