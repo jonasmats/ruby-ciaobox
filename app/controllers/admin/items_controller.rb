@@ -3,7 +3,7 @@ class Admin::ItemsController < Admin::BaseAdminController
   before_action :set_type, :view_path
 
   def index
-    @items = type_class.all
+    @items = load_items
   end
 
   def show
@@ -60,8 +60,15 @@ class Admin::ItemsController < Admin::BaseAdminController
       params.require(type.underscore.gsub('/','_').to_sym).permit(data: type.constantize.stored_attributes[:data], item_picture_attributes: [:image])
     end
 
+    def load_items
+      if ['Item::Member'].include?(@type)
+        type_class.includes(:item_picture).all
+      else
+        type_class.all
+      end
+    end
+
     def view_path
-      # binding.pry
       @view_path = "/admin/items/#{@type.underscore.gsub('item/', '')}"
     end
 end

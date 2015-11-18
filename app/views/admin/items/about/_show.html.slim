@@ -1,0 +1,14 @@
+.table-responsive
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th[width="30%"]
+          | Fields
+        th
+          | Value
+    tbody
+      tr
+        th
+          | about
+        td
+          = @item.content.html_safe

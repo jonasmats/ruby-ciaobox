@@ -58,6 +58,9 @@ en:
         item_keypoint_label: " KeyPoints"
         static_keypoint_new: *new
         static_keypoint_list: *list
+        item_about_label: " Abouts"
+        static_about_new: *new
+        static_about_list: *list
         dashboard: "Dashboard"
       dashboard:
         employee_feature: All features of Company Employee User

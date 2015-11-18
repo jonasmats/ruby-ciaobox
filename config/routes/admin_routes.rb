@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :item_prices, controller: 'items', type: 'Item::Price'
     resources :item_privacies, controller: 'items', type: 'Item::Privacy'
     resources :item_key_points, controller: 'items', type: 'Item::KeyPoint'
+    resources :item_abouts, controller: 'items', type: 'Item::About'
 
     namespace :payment do
       resources :methods

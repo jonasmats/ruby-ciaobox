@@ -308,3 +308,6 @@ en:
       keypoint:
         item:
           keypoint_destroy: *question_destroy
+      about:
+        item:
+          about_destroy: *question_destroy

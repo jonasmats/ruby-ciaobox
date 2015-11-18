@@ -1,3 +1,3 @@
 h1
-  | New #{@type.capitalize}
+  | New #{@type.gsub('Item::', '')}
 = render 'form'

@@ -1,13 +1,14 @@
 class Item < ActiveRecord::Base
-  scope :members, -> { where(type: 'Member')}
-  scope :presses, -> { where(type: 'Press')}
-  scope :prices, -> { where(type: 'Price')}
-  scope :privacies, -> { where(type: 'Privacy')}
-  scope :keypoints, -> { where(type: 'KeyPoint')}
+  scope :members, -> { where(type: 'Item::Member')}
+  scope :presses, -> { where(type: 'Item::Press')}
+  scope :prices, -> { where(type: 'Item::Price')}
+  scope :privacies, -> { where(type: 'Item::Privacy')}
+  scope :keypoints, -> { where(type: 'Item::KeyPoint')}
+  scope :keypoints, -> { where(type: 'Item::About')}
 
   class << self
     def types
-      %w(Item::Member Item::Press Item::Price Item::Privacy Item::KeyPoint)
+      %w(Item::Member Item::Press Item::Price Item::Privacy Item::KeyPoint Item::About)
     end
   end
 end

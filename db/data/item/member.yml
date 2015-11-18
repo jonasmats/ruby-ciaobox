@@ -1,0 +1,48 @@
+-
+  member:
+    id: 1
+    data:
+      name: John Anderson
+      title: Founder & CEO
+  picture:
+    file: 'team-img1.png'
+-
+  member:
+    id: 2
+    data:
+      name: Sameul Richards
+      title: Co-Founder & Head of Operations
+  picture:
+    file: 'team-img2.png'
+-
+  member:
+    id: 3
+    data:
+      name: Peter Jhonson
+      title: CFO & SVP Business Operations
+  picture:
+    file: 'team-img3.png'
+-
+  member:
+    id: 4
+    data:
+      name: John Anderson
+      title: Founder & CEO
+  picture:
+    file: 'team-img4.png'
+-
+  member:
+    id: 5
+    data:
+      name: Sameul Richards
+      title: Co-Founder & Head of Operations
+  picture:
+    file: 'team-img5.png'
+-
+  member:
+    id: 6
+    data:
+      name: Peter Jhonson
+      title: CFO & SVP Business Operations
+  picture:
+    file: 'team-img6.png'
