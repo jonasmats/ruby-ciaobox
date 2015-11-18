@@ -69,6 +69,8 @@ en:
         log_action_list: Log Action List
       dashboard:
         employee_feature: All features of Company Employee User
+        company_feature: All features of Company Admin
+        super_feature: All features of Super Admin
         blog_new: New Blog
         blog_list: List Blogs
         customer_new: New Customer
