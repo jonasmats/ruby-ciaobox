@@ -58,9 +58,10 @@ en:
         item_keypoint_label: " KeyPoints"
         static_keypoint_new: *new
         static_keypoint_list: *list
+        dashboard: "Dashboard"
       dashboard:
         employee_feature: All features of Company Employee User
         blog_new: New Blog
         blog_list: List Blogs
-        customer_new: New User
-        customer_list: List Users
+        customer_new: New Customer
+        customer_list: List Customers

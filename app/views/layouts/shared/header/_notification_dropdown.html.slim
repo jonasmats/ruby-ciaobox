@@ -1,79 +1,16 @@
-/! BEGIN NOTIFICATION DROPDOWN
-/! DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte
 li#header_notification_bar.dropdown.dropdown-extended.dropdown-notification
-  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;" 
+  a.dropdown-toggle data-close-others="true" data-toggle="dropdown" href="javascript:;" 
     i.icon-bell
-    span.badge.badge-default
-      | 7
+    span.badge.badge-default.num_notification
+      = @notifications.count(:id)
   ul.dropdown-menu
     li.external
       h3
-        span.bold 12 pending
-        | notifications
-      a href="extra_profile.html"  view all
+        span.bold.num_notification
+          = @notifications.count(:id)
+        |   notifications
+      / a href="extra_profile.html"  view all
     li
       ul.dropdown-menu-list.scroller data-handle-color="#637283" style=("height: 250px;") 
-        li
-          a href="javascript:;" 
-            span.time just now
-            span.details
-              span.label.label-sm.label-icon.label-success
-                i.fa.fa-plus
-              | New user registered.
-        li
-          a href="javascript:;" 
-            span.time 3 mins
-            span.details
-              span.label.label-sm.label-icon.label-danger
-                i.fa.fa-bolt
-              | Server #12 overloaded.
-        li
-          a href="javascript:;" 
-            span.time 10 mins
-            span.details
-              span.label.label-sm.label-icon.label-warning
-                i.fa.fa-bell-o
-              | Server #2 not responding.
-        li
-          a href="javascript:;" 
-            span.time 14 hrs
-            span.details
-              span.label.label-sm.label-icon.label-info
-                i.fa.fa-bullhorn
-              | Application error.
-        li
-          a href="javascript:;" 
-            span.time 2 days
-            span.details
-              span.label.label-sm.label-icon.label-danger
-                i.fa.fa-bolt
-              | Database overloaded 68%.
-        li
-          a href="javascript:;" 
-            span.time 3 days
-            span.details
-              span.label.label-sm.label-icon.label-danger
-                i.fa.fa-bolt
-              | A user IP blocked.
-        li
-          a href="javascript:;" 
-            span.time 4 days
-            span.details
-              span.label.label-sm.label-icon.label-warning
-                i.fa.fa-bell-o
-              | Storage Server #4 not responding dfdfdfd.
-        li
-          a href="javascript:;" 
-            span.time 5 days
-            span.details
-              span.label.label-sm.label-icon.label-info
-                i.fa.fa-bullhorn
-              | System Error.
-        li
-          a href="javascript:;" 
-            span.time 9 days
-            span.details
-              span.label.label-sm.label-icon.label-danger
-                i.fa.fa-bolt
-              | Storage server failed.
-/! END NOTIFICATION DROPDOWN
+        = render partial: "layouts/shared/header/notification/notification", collection: @notifications
+= hidden_field_tag 'ids_notification', @notifications.ids

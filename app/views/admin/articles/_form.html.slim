@@ -8,11 +8,21 @@
             = Article.h :status
           .col-md-4
             = f.select :status, options_for_select(Article.statuses.map{|k, v| [t(".#{k}"), k]} , selected: @article.status), { include_blank: t('.blank')}, {class: "form-control"}
+        form-group.last
+          label.col-md-3.control-label
+            = Article.h :cover
+          .col-md-9
+            = f.file_field :cover, class: "form-control"
         .form-group
           label.col-md-3.control-label
             = Article.h :title
           .col-md-4
             = f.text_field :title, class: "form-control", placeholder: "#{t('.placeholder.title')}"
+        .form-group
+          label.col-md-3.control-label
+            = Article.h :description
+          .col-md-4
+            = f.text_area :description, class: "form-control", placeholder: "#{t('.placeholder.description')}"
         .form-group.last
           label.col-md-3.control-label
             = Article.h :content

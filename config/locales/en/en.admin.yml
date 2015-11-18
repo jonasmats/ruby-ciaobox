@@ -64,6 +64,8 @@ en:
         action: *action
       show:
         back: *back
+        un_publish: *un_publish
+        publish: *publish
       form:
         submit: *submit
         blank: *blank
@@ -72,11 +74,14 @@ en:
         placeholder:
           title: "Enter title"
           content: "Enter content"
+          description: "Enter description"
       article:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
         view: *view
+        un_publish: *un_publish
+        publish: *publish
     static_pages:
       index:
         action: *action
@@ -98,6 +103,8 @@ en:
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
         download_xls: "Donwload to Excel"
+        placeholder:
+          search_email_or_username: "Search by email or username"
       form:
         submit: *submit
         blank: *blank
@@ -109,6 +116,7 @@ en:
           username: "Enter username"
           first_name: "Enter first name"
           last_name: "Enter last name"
+          telephone: "Enter telephone"
       admin:
         edit: *edit
         delete: *delete
@@ -122,6 +130,8 @@ en:
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
         download_xls: "Donwload to Excel"
+        placeholder:
+          search_email_or_username: "Search by email or username"
       form:
         submit: *submit
         blank: *blank
@@ -133,6 +143,13 @@ en:
           username: "Enter username"
           first_name: "Enter first name"
           last_name: "Enter last name"
+          telephone: "Enter telephone"
+          cap: "Enter CAP"
+          address_name: "Enter address name"
+          city: "Enter city"
+          country: "Enter Country"
+      note:
+        add_more: Add more
       user:
         edit: *edit
         delete: *delete
@@ -155,6 +172,8 @@ en:
         delete: *delete
         view: *view
         question_destroy: *question_destroy
+        un_publish: *un_publish
+        publish: *publish
     roles:
       index:
         title: "List"
@@ -205,6 +224,7 @@ en:
         cancel: *cancel
         placeholder:
           link: "Enter social link"
+          name: "Enter social name"
       show:
         back: *back
       social_network:
@@ -218,11 +238,26 @@ en:
           download_tools: "Download Tools"
           download_csv: "Download to CSV"
           download_xls: "Donwload to Excel"
+          placeholder:
+            search_email_or_username: "Search by email or username"
         form:
           submit: *submit
           blank: *blank
           active: *active
           un_active: *un_active
+          placeholder:
+            email: "Enter email"
+            password: "Enter password"
+            username: "Enter username"
+            first_name: "Enter first name"
+            last_name: "Enter last name"
+            telephone: "Enter telephone"
+            cap: "Enter CAP"
+            address_name: "Enter address name"
+            city: "Enter city"
+            country: "Enter Country"
+        note:
+          add_more: Add more
         user:
           edit: *edit
           delete: *delete
@@ -237,6 +272,8 @@ en:
         show:
           title: Detail
           back: *back
+          un_publish: *un_publish
+          publish: *publish
         edit:
           title: "Edit"
         new:
@@ -251,6 +288,8 @@ en:
           delete: *delete
           question_destroy: *question_destroy
           view: *view
+          un_publish: *un_publish
+          publish: *publish
         title:
           sub_title: "Blog management"
     items:

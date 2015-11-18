@@ -20,7 +20,13 @@
       tr
         td
           strong
-            | Author
+            = Article.h :description
+        td
+          = @article.description
+      tr
+        td
+          strong
+            = Article.h :author
         td
           = @article.admin.full_name
       tr
@@ -34,10 +40,10 @@
           strong
             = Article.h :status
         td
-          = @article.status
+          = t(".#{@article.status}")
       tr
         td
           strong
             = Article.h :created_at
         td
-          = @article.created_at
+          = @article.created_at.default_format

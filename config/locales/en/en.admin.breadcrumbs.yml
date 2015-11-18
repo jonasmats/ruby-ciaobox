@@ -1,5 +1,8 @@
 en:
   admins:
+    notification:
+      user_register: registerd
+      schedule_create: has been create schedule
     breadcrumbs:
       new: New
       edit: Edit

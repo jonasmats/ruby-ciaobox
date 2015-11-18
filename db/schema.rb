@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151117030304) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -20,6 +21,7 @@ ActiveRecord::Schema.define(version: 20151117030304) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "cap"
     t.string   "address_name"
     t.string   "city"
     t.string   "country"
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151117030304) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.datetime "deleted_at"
     t.string   "username"
     t.string   "type",                                null: false
     t.integer  "status",                 default: 1,  null: false
@@ -52,11 +55,12 @@ ActiveRecord::Schema.define(version: 20151117030304) do
   add_index "admins", ["username"], name: "index_admins_on_username", using: :btree
 
   create_table "article_translations", force: :cascade do |t|
-    t.integer  "article_id", null: false
-    t.string   "locale",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "article_id",  null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "title"
+    t.text     "description"
     t.text     "content"
   end
 
@@ -65,9 +69,13 @@ ActiveRecord::Schema.define(version: 20151117030304) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "admin_id"
-    t.integer  "status",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",             null: false
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "articles", ["admin_id"], name: "index_articles_on_admin_id", using: :btree
@@ -182,6 +190,7 @@ ActiveRecord::Schema.define(version: 20151117030304) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+<<<<<<< HEAD
   create_table "item_pictures", force: :cascade do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -197,6 +206,16 @@ ActiveRecord::Schema.define(version: 20151117030304) do
     t.hstore   "data",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+  create_table "log_actions", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "action_type"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.hstore   "data"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+>>>>>>> develop
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -206,6 +225,17 @@ ActiveRecord::Schema.define(version: 20151117030304) do
   end
 
   add_index "newsletters", ["email"], name: "index_newsletters_on_email", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.hstore   "info",       default: {}, null: false
+    t.integer  "status",     default: 0,  null: false
+    t.string   "type"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "payment_infors", force: :cascade do |t|
     t.integer  "owner_id",          null: false
@@ -321,7 +351,7 @@ ActiveRecord::Schema.define(version: 20151117030304) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.hstore   "note"
-    t.string   "cap"
+    t.datetime "deleted_at"
     t.string   "username"
     t.integer  "status",                 default: 1,  null: false
     t.datetime "created_at",                          null: false
@@ -340,6 +370,7 @@ ActiveRecord::Schema.define(version: 20151117030304) do
   add_foreign_key "ciaobox_user_users_roles", "admins"
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
+  add_foreign_key "notifications", "users"
   add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
   add_foreign_key "shippings", "drivers"

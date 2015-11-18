@@ -24,6 +24,9 @@ module Ciaobox
     # I18n fallbacks for empty translations
     config.i18n.fallbacks = true
 
+    #Active job
+    config.active_job.queue_adapter = :sidekiq
+
     # Autoload
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
