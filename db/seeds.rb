@@ -12,4 +12,5 @@
 # require File.dirname(__FILE__) + '/seeds/item/member'
 # require File.dirname(__FILE__) + '/seeds/item/about'
 # require File.dirname(__FILE__) + '/seeds/item/price'
-require File.dirname(__FILE__) + '/seeds/item/press'
+# require File.dirname(__FILE__) + '/seeds/item/press'
+require File.dirname(__FILE__) + '/seeds/item/key_point'
