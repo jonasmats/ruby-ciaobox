@@ -1,5 +1,10 @@
 en:
   hello: "Hello world"
+  locale:
+    en: "EN"
+    it: "IT"
+    fr: "FR"
+    de: "DE"
   time:
     formats:
       default: "%d/%m/%Y %H:%M:%S"

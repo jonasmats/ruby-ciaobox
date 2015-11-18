@@ -8,3 +8,10 @@ require File.dirname(__FILE__) + '/seeds/ciaobox_user/employee'
 
 
 require File.dirname(__FILE__) + '/seeds/user'
+
+require File.dirname(__FILE__) + '/seeds/item/member'
+require File.dirname(__FILE__) + '/seeds/item/about'
+require File.dirname(__FILE__) + '/seeds/item/price'
+require File.dirname(__FILE__) + '/seeds/item/press'
+require File.dirname(__FILE__) + '/seeds/item/key_point'
+require File.dirname(__FILE__) + '/seeds/item/how_it_work'

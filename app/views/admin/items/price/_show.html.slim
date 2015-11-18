@@ -1,0 +1,29 @@
+.table-responsive
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th[width="30%"]
+          | Fields
+        th
+          | Value
+    tbody
+      tr
+        th
+          | Image
+        td
+          = image_tag @item.item_picture.image.url(:thumb), class: "img-responsive"
+      tr
+        th
+          | heading
+        td
+          = @item.heading
+      tr
+        th
+          | money
+        td
+          = @item.money
+      tr
+        th
+          | description
+        td
+          = @item.description

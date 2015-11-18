@@ -1,0 +1,71 @@
+-
+  press:
+    id: 1
+    data:
+      timeline: JUNE 2, 2015
+      description: This Man Is Revolutionizing the Storage Biz, One Bin at a Time »
+  picture:
+    file: '1.png'
+
+-
+  press:
+    id: 2
+    data:
+      timeline: JUNE 2, 2015
+      description: This Man Is Revolutionizing the Storage Biz, One Bin at a Time »
+  picture:
+    file: '2.png'
+
+-
+  press:
+    id: 3
+    data:
+      timeline: JUNE 2, 2015
+      description: This Man Is Revolutionizing the Storage Biz, One Bin at a Time »
+  picture:
+    file: '1.png'
+
+-
+  press:
+    id: 4
+    data:
+      timeline: JUNE 2, 2015
+      description: This Man Is Revolutionizing the Storage Biz, One Bin at a Time »
+  picture:
+    file: '2.png'
+
+-
+  press:
+    id: 5
+    data:
+      timeline: MAY 28, 2015
+      description: 5 Unique Things To Do Before You List Your Home »
+  picture:
+    file: '3.png'
+
+-
+  press:
+    id: 6
+    data:
+      timeline: MAY 28, 2015
+      description: 5 Unique Things To Do Before You List Your Home »
+  picture:
+    file: '4.png'
+
+-
+  press:
+    id: 7
+    data:
+      timeline: MAY 28, 2015
+      description: 5 Unique Things To Do Before You List Your Home »
+  picture:
+    file: '3.png'
+
+-
+  press:
+    id: 8
+    data:
+      timeline: MAY 28, 2015
+      description: 5 Unique Things To Do Before You List Your Home »
+  picture:
+    file: '4.png'

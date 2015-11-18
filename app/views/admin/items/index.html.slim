@@ -1,0 +1,3 @@
+h1
+  | List #{@type.underscore.gsub('item/', '').capitalize}
+= render partial: "#{@view_path}/index"

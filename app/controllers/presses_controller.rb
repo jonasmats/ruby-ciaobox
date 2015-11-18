@@ -1,0 +1,2 @@
+class PressesController < ApplicationController
+end
