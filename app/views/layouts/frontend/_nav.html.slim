@@ -8,12 +8,41 @@ nav
 .right
   .nav-2.clearfix
     ul
-      li
-        a[href="#"]
-          | EN
+      li.nav-item.has-location-dropdown.language_EN
+        p.nav-link.nav-city-selected.js-location-select
+          span.nav-city= t("locale.#{session[:locale]}")
+          span.nav-city-caret
+        ul.location-dropdown style=("display: none;")
+          li.dropdown-item.nav-chicago
+            = link_to set_language_en_path, class: "js-location-change"
+              = t("locale.en")
+              span.nav-city-caret.menu-nav-city-caret
+          li.dropdown-item.nav-chicago
+            = link_to set_language_it_path, class: "js-location-change"
+              = t("locale.it")
+              span.nav-city-caret.menu-nav-city-caret
+          li.dropdown-item.nav-chicago
+            = link_to set_language_fr_path, class: "js-location-change"
+              = t("locale.fr")
+              span.nav-city-caret.menu-nav-city-caret
+          li.dropdown-item.nav-nyc
+            = link_to t("locale.de"), set_language_de_path, class: "js-location-change"
+
   - if current_user.blank?
     = link_to new_user_session_path, class: "sign-in", title: "Sign In" do
       | Sign In
   - else
     = link_to destroy_user_session_path, class: "sign-in", title: "Sign Out", method: :delete do
       | Logout
+
+javascript:
+  $(document).ready(function(){
+    $(".has-location-dropdown").click(function(){
+      $(".location-dropdown").slideToggle();
+    });
+    $(".location-dropdown .dropdown-item a").click(function () {
+      var selectedText = $(this).text();
+      var selectedValue = $(".nav-city").text();
+      $(".nav-city").text(selectedText);
+    });
+  });
