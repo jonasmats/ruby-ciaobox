@@ -231,6 +231,17 @@
             = link_to new_admin_import_admin_path do
               i.fa.fa-upload
               = I18n.t("layouts.shared.sidebar.admin_import_employee")
+      li
+        a[href="javascript:;"]
+          i.fa.fa-thumb-tack
+          span.title
+            = I18n.t("layouts.shared.sidebar.log_action_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to admin_log_actions_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.log_action_list")
       / li.heading
       /   h3.uppercase
       /     | More

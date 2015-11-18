@@ -43,6 +43,8 @@ en:
         admin_list: *list
         admin_import_employee: " Import Employees"
         dashboard: "Dashboard"
+        log_action_label: Log Action
+        log_action_list: Log Action List
       dashboard:
         employee_feature: All features of Company Employee User
         blog_new: New Blog
