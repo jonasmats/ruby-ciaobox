@@ -4,47 +4,15 @@ section.section-2.about
       = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
     h1
       | Pricing
-section.pricing-item.clearfix
-  .container.pricing-item-inner
-    figure
-      = image_tag "images/pricing-item1.png", alt: "#"
-    article
-      h2
-        | MakeSpace Bin
-      span
-        | $6.25/mo per Bin
-      p
-        | Save time and money from buying cardboard boxes. We bring high-quality, durable MakeSpace bins that can hold up to 40 lbs right to your door.
-section.pricing-item.pricing-item-second.clearfix
-  .container.pricing-item-inner
-    article
-      h2
-        | Large Items
-      span
-        | $12.50/mo* per Item
-      p
-        | If one of our Uploaders can carry it out of your apartment, we’ll store it for $12.50 a month.
-    figure
-      = image_tag "images/price-item2.png", alt: "#"
-section.pricing-item.clearfix
-  .container.pricing-item-inner
-    figure
-      = image_tag "images/pricing-item1.png", alt: "#"
-    article
-      h2
-        | MakeSpace Bin
-      span
-        | $6.25/mo per Bin
-      p
-        | Save time and money from buying cardboard boxes. We bring high-quality, durable MakeSpace bins that can hold up to 40 lbs right to your door.
-section.pricing-item.pricing-item-second.clearfix
-  .container.pricing-item-inner
-    article
-      h2
-        | Large Items
-      span
-        | $12.50/mo* per Item
-      p
-        | If one of our Uploaders can carry it out of your apartment, we’ll store it for $12.50 a month.
-    figure
-      = image_tag "images/price-item2.png", alt: "#"
+- Item::Price.display_all.each do |price|
+  section.pricing-item.clearfix class=cycle("", "pricing-item-second")
+    .container.pricing-item-inner
+      figure
+        = image_tag price.item_picture.image.url, alt: "#"
+      article
+        h2
+          = price.heading
+        span
+          = price.money
+        p
+          = price.description

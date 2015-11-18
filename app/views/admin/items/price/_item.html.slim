@@ -1,0 +1,21 @@
+tr
+  td
+    = image_tag item.item_picture.image.url, class: "img-responsive"
+  td
+    = item.heading
+  td
+    = item.money
+  td
+    = item.description
+  td
+    = link_to admin_item_press_path(item), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+  td
+    = link_to edit_admin_item_press_path(item), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+  td
+    = link_to admin_item_press_path(item), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".price_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

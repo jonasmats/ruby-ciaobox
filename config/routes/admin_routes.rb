@@ -20,6 +20,14 @@ Rails.application.routes.draw do
     resources :import_admins, only: [:new, :create]
     resources :log_actions, only: [:index, :show]
 
+    resources :items
+    resources :item_members, controller: 'items', type: 'Item::Member'
+    resources :item_presses, controller: 'items', type: 'Item::Press'
+    resources :item_prices, controller: 'items', type: 'Item::Price'
+    resources :item_privacies, controller: 'items', type: 'Item::Privacy'
+    resources :item_key_points, controller: 'items', type: 'Item::KeyPoint'
+    resources :item_abouts, controller: 'items', type: 'Item::About'
+
     namespace :payment do
       resources :methods
       resources :infors

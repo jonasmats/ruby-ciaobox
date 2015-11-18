@@ -1,0 +1,5 @@
+= f.fields_for :data, OpenStruct.new(f.object.data) do |ff|
+  .form-group
+    label
+      | description
+    = ff.text_field :description, class: "form-control"

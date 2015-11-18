@@ -1,0 +1,12 @@
+.table-responsive
+  table.table
+    thead
+      tr
+        th
+          | heading
+        th
+          | description
+
+        th[colspan="3" width="30%"]
+    tbody
+      = render partial: "#{@view_path}/item", collection: @items
