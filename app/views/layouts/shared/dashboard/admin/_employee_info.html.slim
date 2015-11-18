@@ -85,33 +85,36 @@
                     .cont-col2
                       .desc
                         = link_to I18n.t("layouts.shared.dashboard.blog_list"), admin_employee_articles_path
-            li
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-info
-                      i.icon-plus
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.dashboard.customer_new"), new_admin_employee_user_path
-            li
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-info
-                      i.fa.fa-list-ol
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.dashboard.customer_list"), admin_employee_users_path
-            li
-              a[href="javascript:;"]
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.customer_new"), new_admin_employee_user_path
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.customer_list"), admin_employee_users_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
 
-              .col1
-                .cont
-                  .cont-col1
-                    .label.label-sm.label-info
-                      i.fa.fa-upload
-                  .cont-col2
-                    .desc
-                      = link_to I18n.t("layouts.shared.sidebar.customer_import_user"), new_admin_import_user_path
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-upload
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.sidebar.customer_import_user"), new_admin_import_user_path
 .clearfix
