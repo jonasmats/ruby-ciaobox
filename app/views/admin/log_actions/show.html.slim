@@ -34,7 +34,8 @@
           strong
             = LogAction.h :data
         td
-          = @log_action.try(:data)
+          - @log_action.data.each do |k,v|
+            li= "#{k}: #{v}"
       tr
         td
           strong
