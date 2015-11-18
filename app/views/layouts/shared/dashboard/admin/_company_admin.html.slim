@@ -1,0 +1,259 @@
+.row
+  .col-md-12.col-sm-12
+    .portlet.light
+      .portlet-title
+        .caption
+          i.icon-share.font-blue-steel.hide
+          span.caption-subject.font-blue-steel.bold.uppercase
+            = I18n.t("layouts.shared.dashboard.employee_feature")
+        .actions
+      .portlet-body
+        .scroller[style="height: 300px;" data-always-visible="1" data-rail-visible="0"]
+          ul.feeds
+            li
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-default
+                      i.icon-user
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.sidebar.account_profile"), admin_profile_index_path
+            li
+              a[href="javascript:;"]
+
+              .col1
+                .cont
+                  .cont-col1
+                    .label.label-sm.label-default
+                      i.fa.fa-cog
+                  .cont-col2
+                    .desc
+                      = link_to I18n.t("layouts.shared.sidebar.account_change_password"), new_admin_password_path
+            - if can? :index, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-success
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.blog_new"), new_admin_employee_article_path
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-success
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.blog_list"), admin_employee_articles_path
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.customer_new"), new_admin_employee_user_path
+            - if can? :new, Article.name
+              li
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.customer_list"), admin_employee_users_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-upload
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.sidebar.customer_import_user"), new_admin_import_user_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-danger
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.faq_category_new"), new_admin_faq_category_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-danger
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.faq_category_list"), admin_faq_categories_path
+
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-primary
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.faq_new"), new_admin_faq_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-primary
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.faq_list"), admin_faqs_path
+
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-warning
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.static_page_new"), new_admin_static_page_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-warning
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.static_page_list"), admin_static_pages_path
+
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-default
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.banner_new"), new_admin_banner_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-default
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.banner_list"), admin_banners_path
+
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.social_network_new"), new_admin_social_network_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-info
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.social_network_list"), admin_social_networks_path
+
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-danger
+                        i.icon-plus
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.admin_new"), new_admin_admin_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-danger
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.admin_list"), admin_admins_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-danger
+                        i.fa.fa-upload
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.admin_import"), new_admin_import_admin_path
+            - if can? :new, Article.name
+              li
+                a[href="javascript:;"]
+
+                .col1
+                  .cont
+                    .cont-col1
+                      .label.label-sm.label-primary
+                        i.fa.fa-list-ol
+                    .cont-col2
+                      .desc
+                        = link_to I18n.t("layouts.shared.dashboard.log_action_list"), admin_log_actions_path
+            
+.clearfix
