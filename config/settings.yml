@@ -8,3 +8,5 @@ action_mailer:
 
 devise:
   mailer_sender: rubydn.com@gmail.com
+
+list_locales: [["English", "en"], ["Italian", "it"], ["French", "fr"], ["German", "de"]]

@@ -12,6 +12,7 @@
 class Faq < ActiveRecord::Base
   acts_as_paranoid
   translates :question, :answer, fallbacks_for_empty_translations: true
+  accepts_nested_attributes_for :translations
 
   # 1. associations
   belongs_to :faq_category, class_name: Faq::Category.name

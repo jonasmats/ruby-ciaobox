@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $("ul.nav-tabs li").on "click", ->
+    tab_current = $(@).find("a").attr("href")
+    $(".tab-pane").each ->
+      $(@).addClass("hidden")
+      element_current = "#" + $(@).attr("id")
+      if element_current == tab_current
+        $(@).removeClass("hidden")
