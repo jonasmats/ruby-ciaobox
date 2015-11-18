@@ -11,6 +11,7 @@
 class Faq::Category < ActiveRecord::Base
   acts_as_paranoid
   translates :name, fallbacks_for_empty_translations: true
+  accepts_nested_attributes_for :translations
 
   # 1. associations
   has_many :faqs, dependent: :destroy, foreign_key: :faq_category_id

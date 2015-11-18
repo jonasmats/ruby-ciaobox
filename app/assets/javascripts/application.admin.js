@@ -55,6 +55,7 @@
 //= require jquery_ujs
 /* CK Editor*/
 //= require ckeditor/init
+//= require_tree ./admin
 
 function ActiveSideBarMenu(options) {
   var module = this;
@@ -89,7 +90,7 @@ function ActiveSideBarMenu(options) {
   }
 
   module.activeDefault = function() {
-    
+
   }
   module.init = function() {
     var isActiveAbsolue = module.activeAbsolute();

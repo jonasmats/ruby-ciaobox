@@ -12,6 +12,7 @@
 class Article < ActiveRecord::Base
   # acts_as_paranoid
   translates :title, :description, :content, fallbacks_for_empty_translations: true
+  accepts_nested_attributes_for :translations
 
   enum status: { un_publish: 0, publish: 1 }
   has_attached_file :cover,

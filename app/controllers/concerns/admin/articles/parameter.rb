@@ -4,7 +4,7 @@ module Admin::Articles::Parameter
   private
     def private_params
       if params[:article]
-        params.require(:article).permit(:cover, :title, :description, :content, :status)
+        params.require(:article).permit(:cover, :status, translations_attributes: [:id, :locale, :title, :description, :content])
       end
     end
 end
