@@ -231,6 +231,15 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+    log_actions:
+      index:
+        title: "List"
+        action: *action
+      show:
+        title: "Detail"
+        back: *back
+      log_action:
+        view: *view
     employee:
       users:
         index:

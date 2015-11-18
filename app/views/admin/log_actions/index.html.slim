@@ -1,0 +1,19 @@
+= render partial: "title", locals: {title: t(".title")}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = LogAction.h :owner
+          th
+            = LogAction.h :action_type
+          th
+            = LogAction.h :subject_type
+          th
+            = t(".option_label")
+      tbody
+      = render partial: 'log_action', collection: @log_actions
+
