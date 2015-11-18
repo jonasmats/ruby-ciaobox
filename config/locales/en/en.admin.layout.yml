@@ -51,3 +51,17 @@ en:
         blog_list: List Blogs
         customer_new: New Customer
         customer_list: List Customers
+        faq_category_new: New FAQ Category
+        faq_category_list: List FAQ Categories
+        faq_new: New FAQ
+        faq_list: List FAQs
+        static_page_new: New Static Page
+        static_page_list: List Static Pages
+        banner_new: New Banner
+        banner_list: List Banners
+        social_network_new: New Social Network
+        social_network_list: List Social Networks
+        admin_new: New Admin
+        admin_list: List Admins
+        admin_import: Import Admins
+        log_action_list: List Log Actions
