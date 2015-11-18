@@ -5,10 +5,11 @@ class Item < ActiveRecord::Base
   scope :privacies, -> { where(type: 'Item::Privacy')}
   scope :keypoints, -> { where(type: 'Item::KeyPoint')}
   scope :keypoints, -> { where(type: 'Item::About')}
+  scope :howitworks, -> { where(type: 'Item::HowItWork')}
 
   class << self
     def types
-      %w(Item::Member Item::Press Item::Price Item::Privacy Item::KeyPoint Item::About)
+      %w(Item::Member Item::Press Item::Price Item::Privacy Item::KeyPoint Item::About Item::HowItWork)
     end
   end
 end

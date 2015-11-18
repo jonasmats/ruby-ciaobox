@@ -1,0 +1,24 @@
+-
+  how_it_work:
+    id: 1
+    data:
+      heading: Deliver
+      description: Lorem ipsum dolor sit amet elit consectetur adipiscing
+  picture:
+    file: work-img-1.jpg
+-
+  how_it_work:
+    id: 1
+    data:
+      heading: Storage
+      description: Lorem ipsum dolor sit amet elit consectetur adipiscing
+  picture:
+    file: work-img-2.jpg
+-
+  how_it_work:
+    id: 1
+    data:
+      heading: Manage
+      description: Lorem ipsum dolor sit amet elit consectetur adipiscing
+  picture:
+    file: work-img-3.jpg

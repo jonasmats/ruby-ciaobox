@@ -6,27 +6,15 @@ section.section-1.clearfix
     h2
       | How it works
     .work-row.clearfix
-      .work-box
-        figure
-          = image_tag "images/work-img-1.jpg", class: "img-responsive", alt: "#"
-        h3
-          | Deliver
-        p
-          | Lorem ipsum dolor sit amet elit consectetur adipiscing
-      .work-box
-        figure
-          = image_tag "images/work-img-2.jpg", class: "img-responsive", alt: "#"
+      - Item::HowItWork.display_all.each do |how_it_work|
+        .work-box
+          figure
+            = image_tag how_it_work.item_picture.image.url, class: "img-responsive", alt: "#"
           h3
-            | Storage
-        p
-          | Lorem ipsum dolor sit amet elit consectetur adipiscing
-      .work-box
-        figure
-          = image_tag "images/work-img-3.jpg", class: "img-responsive", alt: "#"
-        h3
-          | Manage
-        p
-          | Lorem ipsum dolor sit amet elit consectetur adipiscing
+            = how_it_work.heading
+          p
+            = how_it_work.description
+
 section.section-2.section-home-2
   .container
     = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"

@@ -322,3 +322,6 @@ en:
       about:
         item:
           about_destroy: *question_destroy
+      how_it_work:
+        item:
+          how_it_work_destroy: *question_destroy

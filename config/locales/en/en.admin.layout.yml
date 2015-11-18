@@ -61,6 +61,9 @@ en:
         item_about_label: " Abouts"
         static_about_new: *new
         static_about_list: *list
+        item_how_it_work_label: " How it works"
+        static_how_it_work_new: *new
+        static_how_it_work_list: *list
         dashboard: "Dashboard"
         log_action_label: Log Action
         log_action_list: Log Action List
