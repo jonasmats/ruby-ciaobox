@@ -1,0 +1,44 @@
+= render partial: "title", locals: {title: t(".title")}
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_log_actions_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = LogAction.h :owner
+        td
+          = @log_action.admin.try(:full_name)
+      tr
+        td
+          strong
+            = LogAction.h :action_type
+        td
+          = @log_action.action_type
+      tr
+        td
+          strong
+            = LogAction.h :subject_type
+        td
+          = @log_action.subject_type
+      tr
+        td
+          strong
+            = LogAction.h :data
+        td
+          - @log_action.data.each do |k,v|
+            li= "#{k}: #{v}"
+      tr
+        td
+          strong
+            = LogAction.h :created_at
+        td
+          = @log_action.created_at.default_format

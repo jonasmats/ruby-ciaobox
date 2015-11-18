@@ -62,6 +62,8 @@ en:
         static_about_new: *new
         static_about_list: *list
         dashboard: "Dashboard"
+        log_action_label: Log Action
+        log_action_list: Log Action List
       dashboard:
         employee_feature: All features of Company Employee User
         blog_new: New Blog

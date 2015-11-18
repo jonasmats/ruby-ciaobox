@@ -57,3 +57,10 @@ en:
         title: "Title"
         description: "Description"
         content: "Content"
+      log_action:
+        owner: Owner
+        action_type: Action Type
+        subject_type: Subject Type
+        data: Data
+        created_at: Create At
+

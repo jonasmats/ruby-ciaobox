@@ -7,6 +7,6 @@ module CiaoboxUser::Associations
     has_many :users_roles, class_name: CiaoboxUser::UsersRole.name, foreign_key: :admin_id
     has_many :roles, through: :users_roles
 
-    has_many :log_actions,  foreign_key: :owner_id
+    has_many :log_actions, foreign_key: :owner_id
   end
 end

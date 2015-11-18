@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :users
     resources :import_users, only: [:new, :create]
     resources :import_admins, only: [:new, :create]
+    resources :log_actions, only: [:index, :show]
 
     resources :items
     resources :item_members, controller: 'items', type: 'Item::Member'
