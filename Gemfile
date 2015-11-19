@@ -102,6 +102,9 @@ gem 'versionist'
 # Gemfile
 gem "crummy", "~> 1.8.0"
 
+gem 'exception_notification'
+gem 'slack-notifier'
+
 group :deployment do
   gem 'capistrano', '~> 3.3.5'
   gem 'capistrano-rails', '~> 1.1.0'

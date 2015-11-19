@@ -10,3 +10,6 @@ devise:
   mailer_sender: rubydn.com@gmail.com
 
 list_locales: [["English", "en"], ["Italian", "it"], ["French", "fr"], ["German", "de"]]
+
+slack:
+  webhook_url: https://hooks.slack.com/services/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
