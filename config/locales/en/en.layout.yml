@@ -12,3 +12,18 @@ en:
         change_password: 'Change password'
       footer:
         blog: "Blog"
+  password:
+    new:
+      email: "Enter email"
+      submit: "Send email reset password"
+  auth:
+      passwords:
+        new:
+          placeholder:
+            email: "Enter email"
+            submit: "Send email reset password"
+        edit:
+          placeholder:
+            new: "Enter new password"
+            confirm: "Confirm password"
+            submit: "Change password"

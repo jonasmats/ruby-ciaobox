@@ -10,6 +10,7 @@ section.signin-main
   .container
     .signin-main-left
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "signin-form"}) do |f|
+        = render 'layouts/shared/flash/alert_devise'
         .signin-field
           = f.text_field :login, autofocus: true, placeholder: "Email or Username"
         .signin-field.signin-last

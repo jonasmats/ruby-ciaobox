@@ -1,22 +1,20 @@
-h2
-  | Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    br
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-      br
-    = f.password_field :password, autofocus: true, autocomplete: "off"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Change my password"
-= render "auth/shared/links"
+= render partial: "layouts/frontend/header.account"
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Change your password
+section.signin-main
+  .container
+    .signin-main-left
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = render "/layouts/shared/form_errors/dashboard", object: f.object
+        = f.hidden_field :reset_password_token
+        .signin-field
+          = f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "#{t('.placeholder.new')}"
+        .signin-field
+          = f.password_field :password_confirmation, autocomplete: "off", placeholder: "#{t('.placeholder.confirm')}"
+        .signin-submit
+          = f.submit "#{t('.placeholder.submit')}"
+      / # = render "auth/shared/links"
