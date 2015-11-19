@@ -7,6 +7,7 @@
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "login-form"}) do |f|
     h3.form-title
       | Sign In
+    = render 'layouts/shared/flash/alert_devise'
     .alert.alert-danger.display-hide
       button.close[data-close="alert"]
       span
@@ -22,8 +23,8 @@
     .form-actions
       button.btn.btn-success.uppercase[type="submit"]
         | Login
-      label.rememberme.check
-        input[type="checkbox" name="admin[remember_me]" value="1"]
-        | Remember 
+      / label.rememberme.check
+      /   input[type="checkbox" name="admin[remember_me]" value="1"]
+      /   | Remember 
 
     = link_to "Forgot Password?", '/admin/password/new', title: "Forgot Password?"
