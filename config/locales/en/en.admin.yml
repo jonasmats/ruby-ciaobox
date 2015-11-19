@@ -11,6 +11,11 @@ en:
           placeholder:
             email: "Enter email"
             submit: "Send email reset password"
+        edit:
+          placeholder:
+            new: "Enter new password"
+            confirm: "Confirm password"
+            submit: "Change password"
     profile:
       edit:
         placeholder:
