@@ -1,11 +1,17 @@
-h2
-  | Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    | Email
-    br
-    = f.email_field :email, autofocus: true
-  .actions
-    = f.submit "Send me reset password instructions"
-/ # = render "auth/shared/links"
+= render partial: "layouts/frontend/header.account"
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Forgot your password?
+section.signin-main
+  .container
+    .signin-main-left
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, }) do |f|
+        = devise_error_messages!
+        .signin-field
+          = f.email_field :email, autofocus: true, placeholder: "Enter email"
+        .signin-submit
+          = f.submit "Send me reset password instructions"
+      / # = render "auth/shared/links"
