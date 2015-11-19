@@ -18,14 +18,14 @@
       - else
         .form-group
           label.col-md-3.control-label
-            = User.h :username
-          .col-md-4
-            = f.text_field :username, class: "form-control", placeholder: "#{t('.placeholder.username')}", disabled: true
-        .form-group
-          label.col-md-3.control-label
             = User.h :email
           .col-md-4
             = f.text_field :email, class: "form-control", placeholder: "#{t('.placeholder.email')}", disabled: true
+        .form-group
+          label.col-md-3.control-label
+            = User.h :username
+          .col-md-4
+            = f.text_field :username, class: "form-control", placeholder: "#{t('.placeholder.username')}", disabled: true
 
       = f.fields_for :profile do |build|
         .form-group
