@@ -10,6 +10,8 @@ en:
         logout: 'Logout'
         profile: 'Profile'
         change_password: 'Change password'
+      footer:
+        blog: "Blog"
   password:
     new:
       email: "Enter email"
