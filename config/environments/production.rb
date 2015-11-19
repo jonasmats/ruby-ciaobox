@@ -77,14 +77,24 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'http://52.29.19.124' }
+  config.action_mailer.delivery_method = :smtp
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = true
+  # Don't care if the mailer can't send.
+  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default charset: "utf-8"
+
   # Default mailer url
   config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "rubydn.com@gmail.com",
-    :password  => "ZsXaafxYRDAp3QTRWmytbA", # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :address   => Settings.action_mailer.address,
+    :port      => Settings.action_mailer.port, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => Settings.action_mailer.enable_starttls_auto, # detects and uses STARTTLS
+    :user_name => Settings.action_mailer.user_name,
+    :password  => Settings.action_mailer.password, # SMTP password is any valid API key
+    :authentication => Settings.action_mailer.authentication, # Mandrill supports 'plain' or 'login'
     # :domain => 'example.com', # your domain to identify your server when connecting
   }
 end
