@@ -131,8 +131,11 @@ jQuery(document).ready(function() {
       data: { ids: ids_val }
     })
       .done(function( msg ) {
-        console.log(msg.code)
-        // $('.num_notification').html("0");
+        var num_val = $('.num_notification').html();
+        if (num_val != undefined){
+          console.log(msg.code)
+          $('.num_notification').html("");
+        }
       });
   });
 });
