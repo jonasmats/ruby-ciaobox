@@ -15,7 +15,7 @@
     /! BEGIN TOP NAVIGATION MENU
     .top-menu
       ul.nav.navbar-nav.pull-right
-        - if current_admin.type == CiaoboxUser::Super.name || current_admin.type == CiaoboxUser::Company.name
+        / - if current_admin.type == CiaoboxUser::Super.name || current_admin.type == CiaoboxUser::Company.name
             = render partial: "layouts/shared/header/notification_dropdown"
         / = render partial: "layouts/shared/header/inbox_dropdown"
         / = render partial: "layouts/shared/header/todo_dropdown"
