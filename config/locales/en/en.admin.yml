@@ -316,7 +316,7 @@ en:
       privacy:
         item:
           privacy_destroy: *question_destroy
-      keypoint:
+      key_point:
         item:
           keypoint_destroy: *question_destroy
       about:
