@@ -3,11 +3,11 @@ var link = "";
 var msg_alert = "";
 <% if @admin.active? %>
   link = "<%= admin_admin_path(@admin, 'ciaobox_user_employee[status]' => Admin.statuses.keys[0]) %>"
-  value = "un_active";
+  value = "Lock";
   msg_alert = "Change to active successfully"
 <% elsif @admin.un_active? %>
   link = "<%= admin_admin_path(@admin, 'ciaobox_user_employee[status]' => Admin.statuses.keys[1]) %>"
-  value = "active";
+  value = "Active";
   msg_alert = "Change to un active successfully"
 <% end %>
 
