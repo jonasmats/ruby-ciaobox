@@ -1,11 +1,13 @@
-h2
-  | Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    | Email
-    br
-    = f.email_field :email, autofocus: true
-  .actions
-    = f.submit "Send me reset password instructions"
-/ # = render "auth/shared/links"
+.menu-toggler.sidebar-toggler
+.logo
+  a[href="index.html"]
+    img[src="../../assets/admin/layout/img/logo-big.png" alt=""]
+.content
+  h3.form-title
+    | Forgot your password?
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = render "/layouts/shared/form_errors/admin", object: f.object
+    .form-group
+      = f.email_field :email, autofocus: true, class: "form-control form-control-solid,placeholder-no-fix", placeholder: "#{t('.placeholder.email')}"
+    .form-actions
+      = f.submit "#{t('.placeholder.submit')}", class: "btn btn-success uppercase"

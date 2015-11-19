@@ -6,6 +6,11 @@ en:
           placeholder:
             username: "Enter email or username"
             password: "Enter password"
+      passwords:
+        new:
+          placeholder:
+            email: "Enter email"
+            submit: "Send email reset password"
     profile:
       edit:
         placeholder:
@@ -18,6 +23,9 @@ en:
           current_password: "Enter current password"
           new_password: "Enter new password"
           confirm_password: "Re-enter new password"
+          forgot_password:
+            email: "Enter email"
+            submit: "Send email reset password"
     dictionary:
       new: &new "New"
       submit: &submit "Update"

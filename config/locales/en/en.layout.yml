@@ -10,3 +10,13 @@ en:
         logout: 'Logout'
         profile: 'Profile'
         change_password: 'Change password'
+  password:
+    new:
+      email: "Enter email"
+      submit: "Send email reset password"
+  auth:
+      passwords:
+        new:
+          placeholder:
+            email: "Enter email"
+            submit: "Send email reset password"
