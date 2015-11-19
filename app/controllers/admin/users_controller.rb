@@ -30,11 +30,6 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def create
     if @user.save
-      # LogActionsJob.perform_later({
-      #     owner_id: current_admin.id,
-      #     action_type: params[:action],
-      #     data: log_params
-      #   }, @user)
       active_job_log_action(log_params)
       redirect_to admin_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
@@ -48,11 +43,6 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
-      # LogActionsJob.perform_later({
-      #     owner_id: current_admin.id,
-      #     action_type: params[:action],
-      #     data: log_params
-      #   }, @user)
       active_job_log_action(log_params)
       respond_to do |format|
         format.html { redirect_to admin_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }
@@ -67,11 +57,6 @@ class Admin::UsersController < Admin::BaseAdminController
     msg =
       if @user.destroy
         active_job_log_action(params.extract!(:id))
-        # LogActionsJob.perform_later({
-        #     owner_id: current_admin.id,
-        #     action_type: params[:action],
-        #     data: params.extract!(:id)
-        #   }, @user)
         t('notice.admin.users.destroy.success')
       else
         t('notice.admin.users.destroy.error')

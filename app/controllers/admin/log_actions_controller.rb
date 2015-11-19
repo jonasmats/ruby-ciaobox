@@ -1,7 +1,7 @@
 class Admin::LogActionsController < Admin::BaseAdminController
   before_action :load_log_action, only: :show
   def index
-    @log_actions = LogAction.all.latest
+    @log_actions = LogAction.all.latest.includes(:admin)
   end
 
   def show

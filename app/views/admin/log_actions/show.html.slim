@@ -29,13 +29,13 @@
             = LogAction.h :subject_type
         td
           = @log_action.subject_type
-      tr
-        td
-          strong
-            = LogAction.h :data
-        td
-          - @log_action.data.each do |k,v|
-            li= "#{k}: #{v}"
+      / tr
+      /   td
+      /     strong
+      /       = LogAction.h :data
+      /   td
+      /     - @log_action.data.each do |k,v|
+      /       li= "#{k}: #{v}"
       tr
         td
           strong
