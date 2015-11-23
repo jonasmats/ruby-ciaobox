@@ -34,4 +34,4 @@ set :ssh_options, {
   forward_agent: true,
 }
 
-set :nginx_server_name, 'ciaobox.com'
+set :nginx_server_name, 'ciaobox.it ciaobox.org ciaobox.fr ciaobox.es ciaobox.de ciaobox.co.uk ciaobox.ch'
