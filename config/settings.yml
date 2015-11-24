@@ -2,8 +2,8 @@ action_mailer:
   address: smtp.mandrillapp.com
   port: 587
   enable_starttls_auto: true
-  user_name: rubydn.com@gmail.com
-  password: ZsXaafxYRDAp3QTRWmytbA
+  user_name: services@ciaobox.ch
+  password: zSwl_KnZhC84DNL80ck-YQ
   authentication: login
 
 devise:
@@ -13,3 +13,6 @@ list_locales: [["English", "en"], ["Italian", "it"], ["French", "fr"], ["German"
 
 slack:
   webhook_url: https://hooks.slack.com/services/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
+mailchimp:
+  api_key: "68dc34a74ca003511463b0472ac1d549-us12"
+  list_newsletter_id: "f7aea44a6e"
