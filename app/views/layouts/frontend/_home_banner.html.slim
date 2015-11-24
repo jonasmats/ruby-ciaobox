@@ -16,4 +16,25 @@ section.banner.home-banner.wrapper
           input.zip-bt[type="text" placeholder="Enter Zip Code" name="zip_code"]
           input.place-bt[type="button" value="Place order" name="submit" id="home_banner_submit"]
 
+#zip_code_modal.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4#exampleModalLabel.modal-title
+          = I18n.t('zipcode.modal.title')
+      .modal-body
+        form#zip_code_modal_form
+          .form-group
+            label.control-label for="recipient-name"
+              = I18n.t('zipcode.modal.summary')
+            input#recipient-name.form-control type="email" name="email" placeholder="Enter email address" /
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"
+          = I18n.t('zipcode.modal.close')
+        button.btn.btn-primary#zipcode_modal_submit type="button"
+          = I18n.t('zipcode.modal.submit')
+
+
 = javascript_include_tag 'shipping/zip_code'

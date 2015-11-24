@@ -1,58 +1,45 @@
 # driver_id code 11
 -
-  id: 1
   zip_code: 20139
   way: 0
   driver_id: 1
 -
-  id: 1
   zip_code: 20140
   way: 0
   driver_id: 1
 -
-  id: 1
   zip_code: 20141
   way: 0
   driver_id: 1
 -
-  id: 1
   zip_code: 20142
   way: 0
   driver_id: 1
-# driver_id code 12
 -
-  id: 1
   zip_code: 20163
   way: 0
   driver_id: 2
 -
-  id: 1
   zip_code: 20164
   way: 0
   driver_id: 2
 -
-  id: 1
   zip_code: 20165
   way: 0
   driver_id: 2
 -
-  id: 1
   zip_code: 20166
   way: 0
   driver_id: 2
 -
-  id: 1
   zip_code: 23220
   way: 0
   driver_id: 2
-# driver_id code 14
 -
-  id: 1
   zip_code: 20154
   way: 1
   driver_id: 4
 -
-  id: 1
   zip_code: 20311
   way: 1
   driver_id: 4
