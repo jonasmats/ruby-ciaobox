@@ -3,3 +3,9 @@ en:
     article:
       posted_on: "Posted on"
       created_by: "By"
+  zipcode:
+    modal:
+      close: 'Close'
+      submit: 'Submit'
+      title: 'Sorry but we still do not serve your area'
+      summary: 'Register your email to Join to  our newsletter'

@@ -10,6 +10,25 @@ $('#home_banner_submit').click ->
         else if result.data == "fly"
           window.location.href = "/shipping/fly";
       else if result.code == 200
+        $('#myModal').modal
+          backdrop: false
+          keyboard: true
+      else if result.code == 300
+        alert result.data
+
+    error: (response) ->
+      console.log response
+      alert(response.responseText)
+
+$('#zipcode_modal_submit').click ->
+  $.ajax
+    method: 'POST'
+    url: '/v1/newsletters'
+    data: $('#zip_code_modal').serialize()
+    success: (result, statusText, xhr) ->
+      if result.code == 100
+        $('#myModal').modal 'hide'
+      else if result.code == 200
         alert result.data
       else if result.code == 300
         alert result.data

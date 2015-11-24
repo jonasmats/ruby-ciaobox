@@ -6,7 +6,7 @@ class V1::NewslettersController < V1::BaseController
       if newsletter.present?
         render json: {code: 100, data: "Register successfully"}
       else
-        render json: {code: 200, data: "the ZIP code is not in my shipping list"}
+        render json: {code: 200, data: "Register not successfully"}
       end
     else
       render json: {code: 300, data: "Missing params email"}
