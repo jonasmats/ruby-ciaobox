@@ -8,6 +8,6 @@ module CiaoboxUser::Associations
     has_many :roles, through: :users_roles
 
     has_many :log_actions, foreign_key: :owner_id
-    has_many :date_off, as: :subject
+    has_many :date_offs, as: :subject
   end
 end
