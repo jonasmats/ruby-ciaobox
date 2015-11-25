@@ -15,3 +15,6 @@ require File.dirname(__FILE__) + '/seeds/item/price'
 require File.dirname(__FILE__) + '/seeds/item/press'
 require File.dirname(__FILE__) + '/seeds/item/key_point'
 require File.dirname(__FILE__) + '/seeds/item/how_it_work'
+
+require File.dirname(__FILE__) + '/seeds/slot_time'
+require File.dirname(__FILE__) + '/seeds/slot_schedule'

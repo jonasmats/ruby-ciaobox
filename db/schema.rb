@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125081540) do
+ActiveRecord::Schema.define(version: 20151125083034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,15 @@ ActiveRecord::Schema.define(version: 20151125081540) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "date_offs", force: :cascade do |t|
+    t.date     "start_at",     null: false
+    t.date     "end_at",       null: false
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "drivers", force: :cascade do |t|
     t.string   "code",       null: false
     t.string   "name",       null: false
@@ -175,6 +184,17 @@ ActiveRecord::Schema.define(version: 20151125081540) do
   end
 
   add_index "faqs", ["faq_category_id"], name: "index_faqs_on_faq_category_id", using: :btree
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "feedbacks", ["order_id"], name: "index_feedbacks_on_order_id", using: :btree
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -235,6 +255,18 @@ ActiveRecord::Schema.define(version: 20151125081540) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "order_detail_images", force: :cascade do |t|
+    t.integer  "order_item_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "order_detail_images", ["order_item_id"], name: "index_order_detail_images_on_order_item_id", using: :btree
+
   create_table "order_details", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "order_item_id"
@@ -275,7 +307,6 @@ ActiveRecord::Schema.define(version: 20151125081540) do
     t.integer  "user_id"
     t.integer  "shipping_id"
     t.integer  "pay_status"
-    t.datetime "order_at"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "amount"
@@ -344,6 +375,25 @@ ActiveRecord::Schema.define(version: 20151125081540) do
   end
 
   add_index "shippings", ["driver_id"], name: "index_shippings_on_driver_id", using: :btree
+
+  create_table "slot_schedules", force: :cascade do |t|
+    t.integer  "slot_time_id", null: false
+    t.integer  "driver_id",    null: false
+    t.integer  "limit",        null: false
+    t.integer  "slot_date",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "slot_schedules", ["driver_id"], name: "index_slot_schedules_on_driver_id", using: :btree
+  add_index "slot_schedules", ["slot_time_id"], name: "index_slot_schedules_on_slot_time_id", using: :btree
+
+  create_table "slot_times", force: :cascade do |t|
+    t.string   "start_at",   null: false
+    t.string   "end_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "social_networks", force: :cascade do |t|
     t.string   "name"
@@ -424,7 +474,10 @@ ActiveRecord::Schema.define(version: 20151125081540) do
   add_foreign_key "ciaobox_user_users_roles", "admins"
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
+  add_foreign_key "feedbacks", "orders"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "order_detail_images", "order_items"
   add_foreign_key "order_details", "order_items"
   add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "shippings"
@@ -432,5 +485,7 @@ ActiveRecord::Schema.define(version: 20151125081540) do
   add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
   add_foreign_key "shippings", "drivers"
+  add_foreign_key "slot_schedules", "drivers"
+  add_foreign_key "slot_schedules", "slot_times"
   add_foreign_key "user_profiles", "users"
 end
