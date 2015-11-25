@@ -109,7 +109,7 @@
               <h2>What would you like to store?</h2>
               <div class="month-cost">
                   Monthly Estimated Cost  
-                  <span>$0.00</span>
+                  <span>$<span class="month-total-cost">0.00</span></span>
               </div>
           </div>
      </section>
@@ -120,18 +120,59 @@
                <div class="store-box">
                     <div class="store-box-left">
                          <a title="" href="#"><figure><img alt="" src="images/bin-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-make-space store-box-first store-box-normal store-box-text">
                              <h4>MakeSpace Bin</h4>
-                             <span>$6.25/mo</span>
+                             <span>$<span class="store-cost">6.25</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="makespace" class="item-input" value="0" >
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <div class="store-box-right">
                          <a title="" href="#"><figure><img alt="" src="images/wardrob-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Wardrobe Box</h4>
-                             <span>$25/mo</span>
+                             <span>$<span class="store-cost">25</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="wardrobe" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
+               </div>
+               <div id="form-overhead" class="store-box form-expand">
+                  <p><strong>Always know what you're storing.</strong> Along with transcribing your
+                    labels, we can take overhead photos of your bins–for free.
+                  </p>
+                  <form id="overhead-photos">
+                    <div class="detail-radio-div checked">
+                      <input type="radio" name="photo_inventory" value="true" id="yes-photo" checked="">
+                      <label for="yes-photo">
+                        <strong>Yes,</strong> I want photos of my stuff<span class="hide-for-tablet hide-for-mobile"> so I always know what I'm storing</span>.
+                      </label>
+                    </div>
+                    <div class="detail-radio-div">
+                      <input type="radio" name="photo_inventory" value="false" id="no-photo">
+                      <label for="no-photo">
+                        <strong>No thanks,</strong> just transcribe my labels.
+                      </label>
+                    </div>
+                  </form>
                </div>
            </div>
            <div class="larger-item">
@@ -139,66 +180,156 @@
                 <div class="store-box">
                     <div class="store-box-left">
                          <a title="" href="#"><figure><img alt="" src="images/bike-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Bike</h4>
-                             <span>$25/mo</span>
+                             <span>$<span class="store-cost">25</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="bike" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <div class="store-box-right">
                          <a title="" href="#"><figure><img alt="" src="images/golf-club-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Golf Clubs</h4>
-                             <span>$12.50/mo</span>
+                             <span>$<span class="store-cost">12.50</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="gofl" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                </div>
                <div class="store-box">
                     <div class="store-box-left">
                          <a title="" href="#"><figure><img alt="" src="images/skis-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Skis/Snowboard</h4>
-                             <span>$12.50/mo</span>
+                             <span>$<span class="store-cost">12.50</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="skis" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <div class="store-box-right">
                          <a title="" href="#"><figure><img alt="" src="images/ac-unit-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>AC Unit</h4>
-                             <span>$18.75/mo</span>
+                             <span>$<span class="store-cost">12.50</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="unit" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                </div>
                <div class="store-box">
                     <div class="store-box-left">
                          <a title="" href="#"><figure><img alt="" src="images/small-language.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Small Luggage</h4>
-                             <span>$6.25/mo</span>
+                             <span>$<span class="store-cost">6.25</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="smallLuggage" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <div class="store-box-right">
                          <a title="" href="#"><figure><img alt="" src="images/large-language.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Large Luggage</h4>
-                             <span>$12.50/mo</span>
+                             <span>$<span class="store-cost">12.50</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="largeLuggage" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                </div>
                <div class="store-box">
                     <div class="store-box-left">
                          <a title="" href="#"><figure><img alt="" src="images/mini-fridge.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-first store-box-normal store-box-text">
                              <h4>Mini Fridge</h4>
-                             <span>$18.75/mo</span>
+                             <span>$<span class="store-cost">18.75</span>/mo</span>
                          </div>
+                          <div class="store-box-text input-copy-wrapper">
+                            <div class="input-copy">
+                              <div class="booking-icon-background-num js-nav-min">
+                                <span class="booking-icon js-nav icon-min"></span>
+                              </div>
+                              <input type="text" name="miniFridge" class="item-input" value="0">
+                              <div class="booking-icon-background-num js-nav-plus">
+                                <span class="booking-icon js-nav icon-plus"></span>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <div class="store-box-right">
                          <a title="" href="#"><figure><img alt="" src="images/question-ic.png"></figure></a>
-                         <div class="store-box-text">
+                         <div class="store-box-orther store-box-first store-box-normal store-box-text">
                              <h4>Other Items</h4>
                              <span>Surfboard, Guitar etc.</span>
                          </div>
                     </div>
+               </div>
+               <div id="form-overbottom" class="store-box-end form-expand ">
+                <p>Describe your item. We'll do our best to accomodate your needs.
+                  See <a href="/faq/" target="_blank">FAQ</a>.
+                </p>
+                <form id="other-items">
+                  <div id="input-other-item" class="group">
+                      <input type="text" class="inline-input js-other-item" placeholder="Surfboard etc." maxlength="50">
+                      <button type="submit" class="inline-button">Add Item</button>
+                  </div>
+                  <div id="other-item-tags">
+                  </div>
+                </form>
                </div>
            </div>
      </section>
@@ -244,7 +375,7 @@
               <a href="#" title="Update">Update</a>
               <div class="month-cost">
                   Monthly Estimated Cost  
-                  <span>$0.00</span>
+                  <span>$<span class="month-total-cost">0.00</span></span>
               </div>
           </div>
      </section>

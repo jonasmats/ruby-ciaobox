@@ -3186,3 +3186,256 @@ padding-top: 16px;
     height: 40px;
     padding:  9px 24px 13px 10px;
 }
+
+/************Edit schedule.html****************/
+.form-expand {
+    position: relative;
+    background: #d8d9db;
+    padding: 30px 0 30px 30px;
+    width: 100%;
+    overflow: visible;
+    display: none;
+}
+.form-expand p {
+    font-family: "montserrat";
+    color: #323335;
+    line-height: 28px;
+    font-size: 16px;
+    width: 84%;
+}
+.form-expand:before {
+    display: block;
+    position: absolute;
+    top: -35px;
+    border-left: 18px solid #F8FBFD;
+    border-right: 18px solid #F8FBFD;
+    border-top: 18px solid #F8FBFD;
+    border-bottom: 18px solid #D8D9DB;
+    left: 60px;
+    content: "";
+}
+#overhead-photos {
+    margin: 10px 0;
+}
+.detail-radio-div.checked, .detail-radio-div.checked:hover {
+    background: #3EAE5F;
+}
+.detail-radio-div {
+    background: white;
+    padding: 6px 20px;
+    border-radius: 25px;
+    margin: 15px 30px 10px 0;
+    display: flex;
+    cursor: pointer;
+}
+.detail-radio-div:hover {
+    background: #B8ECC8;
+}
+.detail-radio-div input[type="radio"] {
+    margin: 0;
+}
+input[type="radio"]+label {
+    display: inline-block;
+    margin-left: .44444rem;
+    margin-right: .88889rem;
+    margin-bottom: 0;
+    vertical-align: baseline;
+}
+.detail-radio-div input[type="radio"]+label {
+    display: inline-block;
+    color: #3e3e40;
+    width: calc(100% - 27px);
+    margin-right: 0;
+    font-size: 15px;
+    font-weight: normal;
+    cursor: pointer;
+}
+.detail-radio-div input[type="radio"]:checked+label {
+    color: white;
+}
+
+.store-box-orther {
+  display: block !important;
+}
+.store-box-text {
+  cursor: pointer;
+  display: none;
+}
+.store-box-normal.store-box-text {
+  display: block;
+}
+.overlay.store-box-text, .overlay-forever.store-box-text {
+    background: #0BA46A;
+}
+.overlay.store-box-text h4, .overlay.store-box-text span,
+.overlay-forever.store-box-text h4, .overlay-forever.store-box-text span {
+    color: #ffffff;
+}
+.input-copy-wrapper:after {
+  font-size: 0;
+}
+.input-copy-wrapper:before, .overlay.store-box-text:before, .overlay-forever.store-box-text:before {
+    border-left: 11px solid #F8FBFD;
+    border-right: 11px solid #3EAE5F;
+    border-top: 11px solid #F8FBFD;
+    border-bottom: 11px solid #F8FBFD;
+    background: transparent;
+    left: -22px;
+}
+.overlay.store-box-text:before, .overlay-forever.store-box-text:before {
+    border-right: 11px solid #0BA46A;
+}
+.input-copy-wrapper {
+    display: none;
+    background: #3EAE5F;
+    padding: 20px 31px 16px;
+}
+.input-copy {
+    height: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #d8d9db;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+.booking-icon-background-num {
+    float: left;
+    height: 50px;
+    width: 50px;
+    background-color: #d8d9db;
+    position: absolute;
+    cursor: pointer;
+}
+.js-nav-plus {
+  right: 0;
+}
+.icon-min {
+    width: 14px;
+    height: 2px;
+    background-position: -15px -1148px;
+}
+.booking-icon {
+    background-image: url(../images/icon.png);
+    background-repeat: no-repeat;
+    display: block;
+    transition: opacity .4s;
+    -webkit-transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    margin-top: 24px !important;
+    margin-left: 18px !important;
+}
+.icon-plus {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -1142px;
+    margin-top: 18px !important;
+}
+.input-copy>input[type="text"] {
+    float: left;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    border-radius: 0;
+    border: 0;
+    padding: 0;
+    font-weight: 900;
+    font-size: 20px;
+    box-shadow: none;
+    display: inline-block;
+    color: #333333;
+}
+.store-box-end {
+  clear: both;
+  margin: 46px auto 0;
+  max-width: 805px;
+  width: 100%;
+}
+.store-box-end:before {
+    right: 100px;
+    left: inherit;
+}
+.store-box-end>p {
+  margin-bottom: 25px;
+}
+.store-box-end a {
+  color: #3EAE5F;
+}
+#input-other-item {
+    position: relative;
+    margin: 0 30px 25px 0;
+    overflow: hidden;
+}
+#input-other-item .inline-input {
+    height: 60px;
+    float: left;
+    margin: 0;
+    border: 1px solid #a7a7a7;
+    width: 100%;
+    border-radius: 5px;
+    padding: 20px;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 24px;
+    outline: none;
+    overflow: visible;
+    text-transform: none;
+}
+#input-other-item .inline-input:focus {
+    border: 1px solid #3EAE5F;
+}
+#input-other-item .inline-button {
+    position: absolute;
+    height: 60px;
+    width: 140px;
+    border: 0;
+    right: 0;
+    top: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: .2px;
+    margin: 0;
+    outline: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #3EAE5F;
+    border-color: #5dc57c;
+    color: #FFF;
+    transition: background-color 300ms ease-out;
+}
+#input-other-item .inline-button:hover {
+  background: #53CA76;
+}
+.other-item {
+    background: #3EAE5F;
+    border-radius: 50px;
+    color: white;
+    display: inline-block;
+    position: relative;
+    padding: 6px 35px 6px 20px;
+    margin: 0 5px 10px 0;
+    font-size: 1rem;
+}
+.remove-item {
+    cursor: pointer;
+    color: white !important;
+    position: absolute;
+    right: 15px;
+    font-family: "biko";
+    font-size: 32px;
+    line-height: 17px;
+    width: 18px;
+    text-align: right;
+}
+.remove-item:hover {
+    color: #7A7474 !important;
+}
+.other-item span {
+    font-size: 16px;
+    max-width: 200px;
+    overflow: hidden;
+    display: inline-block;
+}
