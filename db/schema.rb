@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125073033) do
+ActiveRecord::Schema.define(version: 20151125083034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,15 @@ ActiveRecord::Schema.define(version: 20151125073033) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "date_offs", force: :cascade do |t|
+    t.date     "start_at",     null: false
+    t.date     "end_at",       null: false
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "drivers", force: :cascade do |t|
     t.string   "code",       null: false
     t.string   "name",       null: false
@@ -175,6 +184,17 @@ ActiveRecord::Schema.define(version: 20151125073033) do
   end
 
   add_index "faqs", ["faq_category_id"], name: "index_faqs_on_faq_category_id", using: :btree
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "feedbacks", ["order_id"], name: "index_feedbacks_on_order_id", using: :btree
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -234,6 +254,73 @@ ActiveRecord::Schema.define(version: 20151125073033) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "order_detail_images", force: :cascade do |t|
+    t.integer  "order_item_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "order_detail_images", ["order_item_id"], name: "index_order_detail_images_on_order_item_id", using: :btree
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "order_item_id"
+    t.integer  "price"
+    t.integer  "quantity"
+    t.string   "barcode"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "order_details", ["order_id"], name: "index_order_details_on_order_id", using: :btree
+  add_index "order_details", ["order_item_id"], name: "index_order_details_on_order_item_id", using: :btree
+
+  create_table "order_item_translations", force: :cascade do |t|
+    t.integer  "order_item_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "title"
+    t.text     "description"
+  end
+
+  add_index "order_item_translations", ["locale"], name: "index_order_item_translations_on_locale", using: :btree
+  add_index "order_item_translations", ["order_item_id"], name: "index_order_item_translations_on_order_item_id", using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "price"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "type"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "shipping_id"
+    t.integer  "pay_status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "amount"
+    t.string   "address"
+    t.string   "state"
+    t.boolean  "save_image"
+    t.integer  "status"
+    t.text     "additional"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "orders", ["shipping_id"], name: "index_orders_on_shipping_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payment_infors", force: :cascade do |t|
     t.integer  "owner_id",          null: false
@@ -387,7 +474,14 @@ ActiveRecord::Schema.define(version: 20151125073033) do
   add_foreign_key "ciaobox_user_users_roles", "admins"
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
+  add_foreign_key "feedbacks", "orders"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "order_detail_images", "order_items"
+  add_foreign_key "order_details", "order_items"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "shippings"
+  add_foreign_key "orders", "users"
   add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
   add_foreign_key "shippings", "drivers"
