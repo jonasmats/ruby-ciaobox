@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117030304) do
+ActiveRecord::Schema.define(version: 20151125075946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,6 +235,49 @@ ActiveRecord::Schema.define(version: 20151117030304) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "order_item_translations", force: :cascade do |t|
+    t.integer  "order_item_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "title"
+    t.text     "description"
+  end
+
+  add_index "order_item_translations", ["locale"], name: "index_order_item_translations_on_locale", using: :btree
+  add_index "order_item_translations", ["order_item_id"], name: "index_order_item_translations_on_order_item_id", using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "price"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "type"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "shipping_id"
+    t.integer  "pay_status"
+    t.datetime "order_at"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "amount"
+    t.string   "address"
+    t.string   "state"
+    t.boolean  "save_image"
+    t.integer  "status"
+    t.text     "additional"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "orders", ["shipping_id"], name: "index_orders_on_shipping_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
   create_table "payment_infors", force: :cascade do |t|
     t.integer  "owner_id",          null: false
     t.string   "owner_type",        null: false
@@ -369,6 +412,8 @@ ActiveRecord::Schema.define(version: 20151117030304) do
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
   add_foreign_key "notifications", "users"
+  add_foreign_key "orders", "shippings"
+  add_foreign_key "orders", "users"
   add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
   add_foreign_key "shippings", "drivers"

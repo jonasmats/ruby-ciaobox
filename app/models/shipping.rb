@@ -5,6 +5,7 @@ class Shipping < ActiveRecord::Base
 
   #1. associations
   belongs_to :driver
+  has_one :order
 
   # 4. validates
   validates :zip_code, :driver, presence: true
