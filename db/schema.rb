@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125075946) do
+ActiveRecord::Schema.define(version: 20151125081540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,6 +235,19 @@ ActiveRecord::Schema.define(version: 20151125075946) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "order_item_id"
+    t.integer  "price"
+    t.integer  "quantity"
+    t.string   "barcode"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "order_details", ["order_id"], name: "index_order_details_on_order_id", using: :btree
+  add_index "order_details", ["order_item_id"], name: "index_order_details_on_order_item_id", using: :btree
+
   create_table "order_item_translations", force: :cascade do |t|
     t.integer  "order_item_id", null: false
     t.string   "locale",        null: false
@@ -412,6 +425,8 @@ ActiveRecord::Schema.define(version: 20151125075946) do
   add_foreign_key "ciaobox_user_users_roles", "roles"
   add_foreign_key "faqs", "faq_categories"
   add_foreign_key "notifications", "users"
+  add_foreign_key "order_details", "order_items"
+  add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "shippings"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_infors", "payment_methods"
