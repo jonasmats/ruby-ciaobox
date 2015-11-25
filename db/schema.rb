@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117030304) do
+ActiveRecord::Schema.define(version: 20151125073033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,6 +289,25 @@ ActiveRecord::Schema.define(version: 20151117030304) do
 
   add_index "shippings", ["driver_id"], name: "index_shippings_on_driver_id", using: :btree
 
+  create_table "slot_schedules", force: :cascade do |t|
+    t.integer  "slot_time_id", null: false
+    t.integer  "driver_id",    null: false
+    t.integer  "limit",        null: false
+    t.integer  "slot_date",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "slot_schedules", ["driver_id"], name: "index_slot_schedules_on_driver_id", using: :btree
+  add_index "slot_schedules", ["slot_time_id"], name: "index_slot_schedules_on_slot_time_id", using: :btree
+
+  create_table "slot_times", force: :cascade do |t|
+    t.string   "start_at",   null: false
+    t.string   "end_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "social_networks", force: :cascade do |t|
     t.string   "name"
     t.string   "link"
@@ -372,5 +391,7 @@ ActiveRecord::Schema.define(version: 20151117030304) do
   add_foreign_key "payment_infors", "payment_methods"
   add_foreign_key "permissions", "roles"
   add_foreign_key "shippings", "drivers"
+  add_foreign_key "slot_schedules", "drivers"
+  add_foreign_key "slot_schedules", "slot_times"
   add_foreign_key "user_profiles", "users"
 end
