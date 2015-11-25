@@ -1,10 +1,9 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.references :user, index: true, foreign_key: true, unique: :true
-      t.references :shipping, index: true, foreign_key: true, unique: :true
+      t.references :user, index: true, foreign_key: true
+      t.references :shipping, index: true, foreign_key: true
       t.integer :pay_status
-      t.datetime :order_at
       t.datetime :start_date
       t.datetime :end_date
       t.integer :amount
