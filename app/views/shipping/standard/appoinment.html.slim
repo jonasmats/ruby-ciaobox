@@ -8,7 +8,7 @@ section.section-2.about
 
 section.schedule-question-title.clearfix
   figure
-    img alt="" src="" /
+    = image_tag "/master/schedule/top-arrow.png"
   .container.schedule-question-inner
     h2 What would you like to store?
     .month-cost
@@ -20,41 +20,9 @@ section.schedule-question-title.clearfix
 section.like-to-store.clearfix
   .container
     h3 Choose how many, we'll bring them to you.
-    .store-box
-      .store-box-left
-        a href="#" title="" 
-          figure
-            img alt="" src="images/bin-ic.png" /
-        .store-make-space.store-box-first.store-box-normal.store-box-text
-          h4 MakeSpace Bin
-          span
-            | $
-            span.store-cost> 6.25
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="makespace" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-      .store-box-right
-        a href="#" title="" 
-          figure
-            img alt="" src="images/wardrob-ic.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Wardrobe Box
-          span
-            | $
-            span.store-cost> 25
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="wardrobe" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
+    - @box_order_items.each_slice(2) do |items|
+      .store-box
+        = render partial: 'store_box', collection: items
     #form-overhead.store-box.form-expand
       p
         strong Always know what you're storing.
@@ -72,136 +40,42 @@ section.like-to-store.clearfix
           input#no-photo name="photo_inventory" type="radio" value="false" /
           label for="no-photo" 
             strong No thanks,
-            | just transcribe my labels.
+            / | just transcribe my labels.
   .larger-item
     h3 Would you like to store any larger items?
-    .store-box
-      .store-box-left
-        a href="#" title="" 
-          figure
-            img alt="" src="images/bike-ic.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Bike
-          span
-            | $
-            span.store-cost> 25
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="bike" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-      .store-box-right
-        a href="#" title="" 
-          figure
-            img alt="" src="images/golf-club-ic.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Golf Clubs
-          span
-            | $
-            span.store-cost> 12.50
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="gofl" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-    .store-box
-      .store-box-left
-        a href="#" title="" 
-          figure
-            img alt="" src="images/skis-ic.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Skis/Snowboard
-          span
-            | $
-            span.store-cost> 12.50
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="skis" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-      .store-box-right
-        a href="#" title="" 
-          figure
-            img alt="" src="images/ac-unit-ic.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 AC Unit
-          span
-            | $
-            span.store-cost> 12.50
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="unit" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-    .store-box
-      .store-box-left
-        a href="#" title="" 
-          figure
-            img alt="" src="images/small-language.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Small Luggage
-          span
-            | $
-            span.store-cost> 6.25
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="smallLuggage" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-      .store-box-right
-        a href="#" title="" 
-          figure
-            img alt="" src="images/large-language.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Large Luggage
-          span
-            | $
-            span.store-cost> 12.50
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="largeLuggage" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-    .store-box
-      .store-box-left
-        a href="#" title="" 
-          figure
-            img alt="" src="images/mini-fridge.png" /
-        .store-box-first.store-box-normal.store-box-text
-          h4 Mini Fridge
-          span
-            | $
-            span.store-cost> 18.75
-            | \/mo
-        .store-box-text.input-copy-wrapper
-          .input-copy
-            .booking-icon-background-num.js-nav-min
-              span.booking-icon.js-nav.icon-min
-            input.item-input name="miniFridge" type="text" value="0" /
-            .booking-icon-background-num.js-nav-plus
-              span.booking-icon.js-nav.icon-plus
-      .store-box-right
-        a href="#" title="" 
-          figure
-            img alt="" src="images/question-ic.png" /
-        .store-box-orther.store-box-first.store-box-normal.store-box-text
-          h4 Other Items
-          span Surfboard, Guitar etc.
+    - @normal_order_items.each_slice(2) do |items|
+      .store-box
+        = render partial: 'store_box', collection: items
+  section.schedule-question-title.schedule-question-padd.clearfix
+  .container.schedule-question-inner
+    h2 When should we swing by?
+
+  section.when-swing.clearfix
+  .container.when-swing-inner
+    .date-picker
+      input placeholder="Date" type="text" /
+      figure
+        = image_tag "/master/schedule/date-ic.png"
+    .time-picker
+      input placeholder="Time" type="text" /
+      figure
+        = image_tag "/master/schedule/time-ic.png"
+  section.schedule-question-title.schedule-question-padd.clearfix
+    .container.schedule-question-inner
+      h2 What address should we meet you at?
+  section.address-meet.clearfix
+    .container.address-meet-inner
+      .address-meet-top
+        input.in-addess placeholder="Address" type="text" /
+        input.app-state placeholder="Apt/State" type="text" /
+        input.app-num placeholder="zip code" value="#{params[:zip_code]}" type="text" readonly="" /
+      .address-meet-bottom
+        input placeholder=("Additional delivery instructions") type="text" /
+  section.schedule-question-title.schedule-question-btm.clearfix
+    .container.schedule-question-inner
+      a href="#" title="Update"  Update
+      .month-cost
+        | Monthly Estimated Cost
+        span
+          | $
+          span.month-total-cost 0.00
