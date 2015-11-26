@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :pay_status
       t.datetime :start_date
       t.datetime :end_date
-      t.integer :amount
+      t.float :amount
       t.string :address
       t.string :state
       t.boolean :save_image

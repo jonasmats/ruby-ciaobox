@@ -270,7 +270,7 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   create_table "order_details", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "order_item_id"
-    t.integer  "price"
+    t.float    "price"
     t.integer  "quantity"
     t.string   "barcode"
     t.datetime "created_at",    null: false
@@ -293,7 +293,7 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   add_index "order_item_translations", ["order_item_id"], name: "index_order_item_translations_on_order_item_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "price"
+    t.float    "price"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -309,7 +309,7 @@ ActiveRecord::Schema.define(version: 20151125083034) do
     t.integer  "pay_status"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "amount"
+    t.float    "amount"
     t.string   "address"
     t.string   "state"
     t.boolean  "save_image"
