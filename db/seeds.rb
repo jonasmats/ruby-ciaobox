@@ -18,3 +18,5 @@ require File.dirname(__FILE__) + '/seeds/item/how_it_work'
 
 require File.dirname(__FILE__) + '/seeds/slot_time'
 require File.dirname(__FILE__) + '/seeds/slot_schedule'
+require File.dirname(__FILE__) + '/seeds/order_item/box'
+require File.dirname(__FILE__) + '/seeds/order_item/normal'

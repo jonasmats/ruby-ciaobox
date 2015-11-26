@@ -1,0 +1,56 @@
+-
+  data:
+    title: Bike
+    price: 25
+    description: description description description
+  avatar:
+    file: bike-ic.png
+-
+  data:
+    title: Golf Clubs
+    price: 12.50
+    description: description description description
+  avatar:
+    file: golf-club-ic.png
+-
+  data:
+    title: Skis/Snowboard
+    price: 12.50
+    description: description description description
+  avatar:
+    file: skis-ic.png
+-
+  data:
+    title: AC Unit
+    price: 12.50
+    description: description description description
+  avatar:
+    file: ac-unit-ic.png
+-
+  data:
+    title: Small Luggage
+    price: 12.50
+    description: description description description
+  avatar:
+    file: small-language.png
+-
+  data:
+    title: Large Luggage
+    price: 12.50
+    description: description description description
+  avatar:
+    file: large-language.png
+-
+  data:
+    title: Mini Fridge
+    price: 12.50
+    description: description description description
+  avatar:
+    file: mini-fridge.png
+-
+  data:
+    title: Other Items
+    price: 12.50
+    description: description description description
+  avatar:
+    file: question-ic.png
