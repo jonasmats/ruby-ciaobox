@@ -117,3 +117,5 @@ group :deployment do
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
   gem 'capistrano-faster-assets', '~> 1.0'
 end
+# Form wizard
+gem 'wicked'

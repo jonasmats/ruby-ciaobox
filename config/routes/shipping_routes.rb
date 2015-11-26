@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :shipping do
-    resources :standard, only: :index
-    resources :fly, only: :index
+    resources :standard, only: :show
+    resources :fly, only: :show
   end
 end

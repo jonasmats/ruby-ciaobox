@@ -1,0 +1,11 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Schedule
+= render partial: "standard_step"
+p
+  | appoinment
+
+= link_to 'review', next_wizard_path

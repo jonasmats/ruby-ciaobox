@@ -361,6 +361,8 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    wicked (1.2.1)
+      railties (>= 3.0.7)
     yard (0.8.7.6)
 
 PLATFORMS
@@ -420,6 +422,7 @@ DEPENDENCIES
   versionist
   web-console (~> 2.0)
   whenever
+  wicked
 
 BUNDLED WITH
    1.10.6

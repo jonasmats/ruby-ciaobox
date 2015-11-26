@@ -1,5 +1,4 @@
 class Shipping::FlyController < ApplicationController
-  def index
-    render plain: "Shipping Fly"
-  end
+  include Wicked::Wizard
+  steps :appoinment, :review, :confirmation
 end
