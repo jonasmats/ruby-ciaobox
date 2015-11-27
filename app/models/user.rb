@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   has_many :notification, class_name: Notification.name, foreign_key: :user_id, dependent: :destroy
   has_many :user_notification, class_name: Notification::UserRegister.name, foreign_key: :user_id, dependent: :destroy
   has_many :schedule_notification, class_name: Notification::ScheduleCreate.name, foreign_key: :user_id, dependent: :destroy
+  has_many :orders
+  has_many :feedbacks
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
 
