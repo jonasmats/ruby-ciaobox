@@ -3280,7 +3280,7 @@ input[type="radio"]+label {
 .store-box-orther {
   display: block !important;
 }
-.store-box-text {
+.schedule-box.store-box-text {
   cursor: pointer;
   display: none;
 }
