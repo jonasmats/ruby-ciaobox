@@ -59,7 +59,7 @@ section.section-2.about
         .address-meet-top
           = f.text_field :address, class: "in-addess", placeholder: "Address"
           = f.text_field :state, class: "app-state", placeholder: "Apt/State"
-          = text_field_tag :zip_code, params[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
+          = text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
         .address-meet-bottom
           = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
     / section.schedule-question-title.schedule-question-btm.clearfix

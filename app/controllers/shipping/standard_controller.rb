@@ -24,7 +24,7 @@ class Shipping::StandardController < ApplicationController
 
     when :review
       @title = "Confirm Your Details"
-      @abc = "123"
+      create_instance
     when :confirmation
       @title = "Confirmation"
     end
@@ -38,6 +38,7 @@ class Shipping::StandardController < ApplicationController
       create_instance
       set_params
       @order.save
+      session[:order_id] = @order.id
     when :confirmation
     end
     render_wizard
@@ -49,10 +50,14 @@ class Shipping::StandardController < ApplicationController
   end
 
   def create_instance
-    @order = Order.new
-    @order.shipping = @shipping
-    @order.user = current_user
-    @order.pay_status = false
+    if session[:order_id].nil?
+      @order = Order.new
+      @order.shipping = @shipping
+      @order.user = current_user
+      @order.pay_status = false
+    else
+      @order = Order.find(session[:order_id])
+    end
   end
 
   def set_params
