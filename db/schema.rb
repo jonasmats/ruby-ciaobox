@@ -270,13 +270,14 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   create_table "order_details", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "order_item_id"
-    t.float    "price"
-    t.integer  "quantity"
-    t.string   "barcode"
+    t.float    "price",         null: false
+    t.integer  "quantity",      null: false
+    t.string   "barcode",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
+  add_index "order_details", ["barcode"], name: "index_order_details_on_barcode", using: :btree
   add_index "order_details", ["order_id"], name: "index_order_details_on_order_id", using: :btree
   add_index "order_details", ["order_item_id"], name: "index_order_details_on_order_item_id", using: :btree
 
@@ -306,19 +307,19 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "shipping_id"
-    t.integer  "pay_status"
-    t.string   "shipping_date"
-    t.string   "shipping_time"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.integer  "pay_status",                      null: false
+    t.string   "shipping_date",                   null: false
+    t.string   "shipping_time",                   null: false
+    t.datetime "start_date_keep"
+    t.datetime "end_date_keep"
     t.float    "amount"
     t.string   "address"
     t.string   "state"
-    t.boolean  "save_image"
-    t.integer  "status"
+    t.boolean  "save_image",      default: false, null: false
+    t.integer  "status",          default: 0
     t.text     "additional"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "orders", ["shipping_id"], name: "index_orders_on_shipping_id", using: :btree

@@ -17,6 +17,7 @@ function total_cost() {
     $TotalCost += 6.25 * ($("#other-item-tags .other-item:last-child()").index() + 1);
 
     $(".month-total-cost").text($TotalCost);
+    $(".month-total-cost").attr("value", $TotalCost)
 }
 /*--End function--*/
 

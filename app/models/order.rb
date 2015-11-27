@@ -4,4 +4,15 @@ class Order < ActiveRecord::Base
   has_many :order_details
   has_one :feedback
   accepts_nested_attributes_for :order_details
+  
+  enum status: {registering: 0, checking: 1, reject: 2, processing: 3, holding: 4, cancel: 5, returned: 6}
+
+  validates :user, :shipping, :pay_status, :shipping_date, :shipping_time, presence: true
+
+  #5. callbacks
+  # before_create :init_score
+
+  #6. instance methods
+  # def any_instance_method
+  # end
 end

@@ -33,8 +33,8 @@ div class="#{store_box.id.odd? ? "store-box-left" : "store-box-right"}"
         span.booking-icon.js-nav.icon-min
       / input.item-input name="bike" type="text" value="0" /
       = zone.text_field "[order_details_attributes][#{(store_box.id)-1}][quantity]", class: "item-input", value: "0"
-      = zone.text_field "[order_details_attributes][#{(store_box.id)-1}][order_item_id]", class: "item-id", value: store_box.id
       .booking-icon-background-num.js-nav-plus
         span.booking-icon.js-nav.icon-plus
+= zone.hidden_field "[order_details_attributes][#{(store_box.id)-1}][order_item_id]", class: "item-id", value: store_box.id
 / order[order_details][quantity]
 / order[order_details_attributes][3][quantity]
