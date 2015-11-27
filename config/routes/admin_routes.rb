@@ -35,5 +35,11 @@ Rails.application.routes.draw do
       resources :methods
       resources :infors
     end
+
+    resources :gifts
+    resources :coupons
+    resources :custom_coupons, controller: :coupons
+    resources :custom_gifts, controller: :coupons
+    resources :multiple_coupons, controller: :coupons
   end
 end

@@ -364,3 +364,33 @@ en:
         view: *view
       title:
         sub_title: "Order Items management"
+    gifts:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        cancel: *cancel
+        placeholder:
+          name: "Enter gift name"
+          description: "Enter gift description"
+      show:
+        back: *back
+      gift:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy
+    coupons:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        cancel: *cancel
+        blank: *blank
+        placeholder:
+          name: "Enter coupon name"
+      show:
+        back: *back
+      coupon:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy

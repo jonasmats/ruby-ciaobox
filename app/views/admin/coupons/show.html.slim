@@ -1,0 +1,64 @@
+= render partial: "title", locals: {title: "Detail"}
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_coupons_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Coupon.h :name
+        td
+          = @coupon.name
+      tr
+        td
+          strong
+            = Coupon.h :code
+        td
+          = @coupon.code
+      - if @coupon.class.name == CustomCoupon.name
+        tr
+          td
+            strong
+              = Coupon.h :start_date
+          td
+            = @coupon.start_date.default_format
+        tr
+          td
+            strong
+              = Coupon.h :end_date
+          td
+            = @coupon.end_date.default_format
+      - if @coupon.class.name == CustomGift.name
+        tr
+          td
+            strong
+              = Coupon.h :gift
+          td
+            = @coupon.gifts.first.name
+        tr
+          td
+            strong
+              = Coupon.h :amount
+          td
+            = @coupon.gifts_coupons.first.amount
+      - else
+        tr
+          td
+            strong
+              = Coupon.h :discount_type
+          td
+            = @coupon.discount_type
+        tr
+          td
+            strong
+              = Coupon.h :discount_value
+          td
+            = @coupon.discount_value

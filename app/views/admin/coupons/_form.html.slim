@@ -1,0 +1,66 @@
+.tabbable-line
+  ul.nav.nav-tabs
+    - Settings.list_locales.each do |lang, locale|
+      li class=("in active" if (locale.to_sym == I18n.locale))
+        a aria-expanded="false" data-toggle="tab" href="#tab_#{locale}"
+          = lang
+
+  .tab-content
+    .portlet.light.bg-inverse
+      .portlet-body.form
+        = form_for [:admin, @coupon], html: {class: "form-horizontal"} do |f|
+          = render "/layouts/shared/form_errors/admin", object: f.object
+          .form-group
+            label.col-md-3.control-label
+              = Coupon.h :code
+            .col-md-4
+              = f.text_field :code, class: "form-control"
+          - if @coupon.class.name == CustomCoupon.name
+            .form-group
+              label.col-md-3.control-label
+                = Coupon.h :start_date
+              .col-md-4
+                = f.text_field :start_date, type: "date", class: "form-control"
+            .form-group
+              label.col-md-3.control-label
+                = Coupon.h :end_date
+              .col-md-4
+                = f.text_field :end_date, type: "date", class: "form-control"
+          - if @coupon.class.name == CustomGift.name
+            = f.fields_for :gifts_coupons, @coupon.gifts_coupons.build do |ff|
+              .form-group
+                label.col-md-3.control-label
+                  = Coupon.h :gift
+                .col-md-4
+                  = ff.select :gift_id, options_for_select(Gift.all.map{|gift| [gift.name, gift.id]}, selected: @coupon.gifts_coupons.first.try(:gift_id)), { include_blank: t('.blank')}, {class: "form-control"}
+              .form-group
+                label.col-md-3.control-label
+                  = Coupon.h :amount
+                .col-md-4
+                  = ff.number_field :amount, value: @coupon.gifts_coupons.first.try(:amount), min: 0, class: "form-control"
+          - else
+            .form-group
+              label.col-md-3.control-label
+                = Coupon.h :discount_type
+              .col-md-4
+                = f.select :discount_type, options_for_select(Coupon.discount_types.map{|k, v| [t(".#{k}"), k]} , selected: @coupon.discount_type), { include_blank: t('.blank')}, {class: "form-control"}
+            .form-group
+              label.col-md-3.control-label
+                = Coupon.h :discount_value
+              .col-md-4
+                = f.text_field :discount_value, class: "form-control"
+
+          - Settings.list_locales.each do |lang, locale|
+            .tab-pane.fade class=("in active" if (locale.to_sym == I18n.locale) ) id="tab_#{locale}"
+              = f.globalize_fields_for locale.to_sym do |g|
+                .form-group
+                  label.col-md-3.control-label
+                    = Coupon.h :name
+                  .col-md-4
+                    = g.text_field :name, class: "form-control", placeholder: "#{t('.placeholder.name')}"
+              .form-actions
+                .row
+                  .col-md-offset-3.col-md-4
+                    = f.submit class: "btn green"
+                    = link_to admin_coupons_path, class: "btn default" do
+                      = t(".cancel")

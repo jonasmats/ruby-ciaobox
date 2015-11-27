@@ -1,0 +1,31 @@
+= render partial: "title", locals: {title: "Detail"}
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_gifts_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Gift.h :name
+        td
+          = @gift.name
+      tr
+        td
+          strong
+            = Gift.h :description
+        td
+          = @gift.description
+      tr
+        td
+          strong
+            = Gift.h :image
+        td
+          = image_tag @gift.image
