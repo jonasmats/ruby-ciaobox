@@ -1,7 +1,4 @@
-class Shipping::StandardController < ApplicationController
-  before_action :authenticate_user!
-
-  include Wicked::Wizard
+class Shipping::StandardController < ShippingController
   steps :appoinment, :review, :confirmation
 
   include ::Dashboard::Shipping::Standard::Parameter
@@ -46,11 +43,11 @@ class Shipping::StandardController < ApplicationController
 
   private
   def load_shipping
-    @shipping = Shipping.find_by(zip_code: params[:zip_code])
+    @shipping = Shipping.find_by(zip_code: session[:zip_code])
   end
 
   def create_instance
-    if session[:order_id].nil?
+    if session[:order_id].blank?
       @order = Order.new
       @order.shipping = @shipping
       @order.user = current_user
