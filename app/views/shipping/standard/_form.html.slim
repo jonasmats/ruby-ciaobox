@@ -1,3 +1,15 @@
+section.schedule-question-title.clearfix
+  figure
+    = image_tag "/master/schedule/top-arrow.png"
+  .container.schedule-question-inner
+    h2 
+      = @title
+    .month-cost
+      | Monthly Estimated Cost
+      span
+        | $
+        span.month-total-cost 
+         = @order.amount.present? ? @order.amount : "0.0"
 = form_for @order, url: next_wizard_path, method: :put do |f|
   / - if @user.errors.any?
   /   .error_messages
@@ -21,5 +33,6 @@
         | Monthly Estimated Cost
         span
           | $
-          span.month-total-cost 0.00
+          span.month-total-cost
+            = @order.amount.present? ? @order.amount : "0.0"
       = f.hidden_field :amount, class: "month-total-cost"

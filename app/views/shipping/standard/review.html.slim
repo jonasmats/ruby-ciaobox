@@ -5,11 +5,5 @@ section.section-2.about
     h1
       | Schedule
 = render partial: "standard_step"
-p
-  | review
-br
-= @abc
-br
-= link_to 'appoinment', previous_wizard_path
-br
-= link_to 'confirmation', next_wizard_path
+
+= render layout: 'form' do |f|

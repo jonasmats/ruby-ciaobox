@@ -6,16 +6,6 @@ section.section-2.about
       | Schedule
 = render partial: "standard_step"
 
-section.schedule-question-title.clearfix
-  figure
-    = image_tag "/master/schedule/top-arrow.png"
-  .container.schedule-question-inner
-    h2 What would you like to store?
-    .month-cost
-      | Monthly Estimated Cost
-      span
-        | $
-        span.month-total-cost 0.00
 = render layout: 'form' do |f|
   section.like-to-store.clearfix
 

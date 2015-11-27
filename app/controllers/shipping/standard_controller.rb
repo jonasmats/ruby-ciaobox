@@ -1,5 +1,5 @@
 class Shipping::StandardController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   include Wicked::Wizard
   steps :appoinment, :review, :confirmation
@@ -11,6 +11,7 @@ class Shipping::StandardController < ApplicationController
   def show
     case step
     when :appoinment
+      @title = "What would you like to store?"
       @box_order_items = OrderItem::Box.all.includes(:translations)
       @normal_order_items = OrderItem::Normal.all.includes(:translations)
       
@@ -22,8 +23,10 @@ class Shipping::StandardController < ApplicationController
       end
 
     when :review
+      @title = "Confirm Your Details"
       @abc = "123"
     when :confirmation
+      @title = "Confirmation"
     end
     render_wizard
   end
@@ -34,6 +37,7 @@ class Shipping::StandardController < ApplicationController
       load_shipping
       create_instance
       set_params
+      @order.save
     when :confirmation
     end
     render_wizard
@@ -47,7 +51,7 @@ class Shipping::StandardController < ApplicationController
   def create_instance
     @order = Order.new
     @order.shipping = @shipping
-    @order.user = User.first
+    @order.user = current_user
     @order.pay_status = false
   end
 
