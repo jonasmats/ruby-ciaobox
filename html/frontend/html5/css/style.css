@@ -1107,6 +1107,9 @@ nav ul li a:hover, nav ul li a:focus, nav ul li.active a {
 .in {
   background: url("../images/instagram-icon.png") no-repeat left;
 }
+.collapse.in{
+  background: transparent;
+}
 .google-plus {
   background: url("../images/google-plus-ic.png") no-repeat left;
 }
@@ -1900,12 +1903,32 @@ padding-top: 16px;
   border: 1px solid #eaeef0;
   padding: 15px 22px;
   width: 100%;
+  cursor: pointer;
 }
 .date-picker {
   float: left;
   padding-right: 20px;
   position: relative;
   width: 50%;
+}
+.date-picker:hover{
+  cursor: pointer;
+}
+.date-picker .input-group-addon{
+  position: absolute;
+  right: 38px;
+  top: 14px;
+  width: 35px;
+  background: none;
+  border: 0;
+}
+.bootstrap-datetimepicker-widget,.dropdown-menu{
+  top: 75px!important;
+  bottom: auto!important;
+  opacity: 1!important;
+}
+.date-picker .glyphicon-calendar:before{
+  font-size: 0;
 }
 .time-picker {
   float: right;
@@ -3434,8 +3457,79 @@ input[type="radio"]+label {
     color: #7A7474 !important;
 }
 .other-item span {
-    font-size: 16px;
-    max-width: 200px;
-    overflow: hidden;
-    display: inline-block;
+  font-size: 16px;
+  max-width: 200px;
+  overflow: hidden;
+  display: inline-block;
+}
+.when-swing .glyphicon-time{
+  font-size: 0;
+}
+.time-picker figure:hover{
+  cursor: pointer;
+}
+.cs-options{
+  display: none;
+  background: rgba(62,174,95,0.95);
+  color: white;
+  border-radius: 5px;
+  padding: 30px 0;
+  margin-top: 30px;
+  position: absolute;
+  right: 0;
+  min-width: 288px;
+  z-index: 9999;
+}
+.cs-options:before {
+  display: block;
+  position: absolute;
+  top: -30px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid #3EAE5F;
+  right: 20px;
+  content: "";
+}
+.cs-options ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.cs-options ul li{
+  margin: 5px 0;
+  padding: 0px 20px;
+}
+.cs-options ul li span {
+  padding: 7px 0 7px 20px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  vertical-align: baseline;
+  font-family: "Avenir W01",Helvetica,Roboto,Arial,sans-serif;
+  font-size: 18px;
+  line-height: 1.56;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+}
+.cs-options ul li:hover span {
+  background: #2b9b4d;
+  border-radius: 40px;
+  width: 100%;
+}
+.cs-selected span {
+  background: white;
+  color: #3EAE5F;
+  border-radius: 40px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cs-options ul li.cs-selected:hover span{
+  background: white;
+  color: #3EAE5F;  
 }

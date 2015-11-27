@@ -14,6 +14,8 @@
         <link rel="icon" type="image/gif" sizes="16x16" href="favicon.png">
         <link rel="shortcut icon" type="image/gif" sizes="16x16" href="favicon.png">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker-standalone.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/responsive.css">   
         <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
@@ -27,7 +29,11 @@
 		    
         
         <script src="js/1.11.2jquery.min.js"></script> 
-        <script type="text/javascript" src="js/bootstrap.js"></script>	
+        <script type="text/javascript" src="js/moment.js"></script>
+        <script type="text/javascript" src="js/transition.js"></script>
+        <script type="text/javascript" src="js/collapse.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>	
         <script type="text/javascript" src="js/owl.carousel.min.js"></script>
         <script type="text/javascript" src="js/slidebars.min.js"></script>
         <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
@@ -340,13 +346,37 @@
      </section>
      <section class="when-swing clearfix">
           <div class="container when-swing-inner">
-               <div class="date-picker">
-                   <input type="text" placeholder="Date">
-                   <figure><img src="images/date-ic.png" alt=""></figure>
+                <div class="date-picker input-group date">
+                  <input type="text" placeholder="Date">
+                  <figure><img src="images/date-ic.png" alt=""></figure>      
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar">
+                      </span>
+                  </span>             
                </div>
+
                <div class="time-picker">
-                   <input type="text" placeholder="Time">
-                   <figure><img src="images/time-ic.png" alt=""></figure>
+                   <input type="text" placeholder="Time" value="">
+                   <figure><img src="images/time-ic.png" id="time-picker-img" alt=""></figure>
+                    <div class="cs-options">
+                        <ul>
+                            <li data-option="" data-value="2015-12-12T08:00:00-05:00//2015-12-12T10:00:00-05:00" class="">
+                                <span>8AM - 10AM</span>
+                            </li>
+                            <li data-option="" data-value="2015-12-12T10:00:00-05:00//2015-12-12T12:00:00-05:00" class="">
+                                <span>10AM - 12PM</span>
+                            </li>
+                            <li data-option="" data-value="2015-12-12T13:00:00-05:00//2015-12-12T15:00:00-05:00">
+                                <span>1PM - 3PM</span>
+                            </li>
+                            <li data-option="" data-value="2015-12-12T15:00:00-05:00//2015-12-12T17:00:00-05:00">
+                                <span>3PM - 5PM</span>
+                            </li>
+                            <li data-option="" data-value="2015-12-12T17:00:00-05:00//2015-12-12T19:00:00-05:00">
+                                <span>5PM - 7PM</span>
+                            </li>
+                        </ul>
+                    </div>
                </div>
           </div>
      </section>
@@ -430,6 +460,32 @@
         <li><a href="contact.html">Contact</a></li>
     </ul>
 </div>
+     <script type="text/javascript">
+        $(".date-picker").click(function () {
+            $('.date-picker').datetimepicker({
+                daysOfWeekDisabled: [0, 6],
+                format: 'DD/MM/YYYY'
+            });
+        });
+        $('html').click(function() {
+            $(".cs-options").hide();
+        });
+        $('.time-picker').click(function(e){
+             e.stopPropagation();
+        });
+        $(".time-picker figure img").click(function(){
+          $(".cs-options").toggle();
+        });
+        $('.time-picker li').each(function() {
+          $(this).on("click", function(){
+            $('.time-picker li').removeClass("cs-selected");
+            $(this).addClass('cs-selected');
+            var datavalue = $(this).children("span").text();
+            $('.time-picker input').attr('value',datavalue);
+            $(".cs-options").toggle();
+          });
+        })
+    </script>
         <script>
           (function($) {
             $(document).ready(function() {
