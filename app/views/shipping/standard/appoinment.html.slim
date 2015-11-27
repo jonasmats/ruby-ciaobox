@@ -16,66 +16,68 @@ section.schedule-question-title.clearfix
       span
         | $
         span.month-total-cost 0.00
+= render layout: 'form' do |f|
+  section.like-to-store.clearfix
 
-section.like-to-store.clearfix
-  .container
-    h3 Choose how many, we'll bring them to you.
-    - @box_order_items.each_slice(2) do |items|
-      .store-box
-        = render partial: 'store_box', collection: items
-    #form-overhead.store-box.form-expand
-      p
-        strong Always know what you're storing.
-        | Along with transcribing your
-        | labels, we can take overhead photos of your bins–for free.
-      form#overhead-photos
-        .detail-radio-div.checked
-          input#yes-photo checked="" name="photo_inventory" type="radio" value="true" /
-          label for="yes-photo" 
-            strong Yes,
-            | I want photos of my stuff
-            span.hide-for-tablet.hide-for-mobile> so I always know what I'm storing
-            | \.
-        .detail-radio-div
-          input#no-photo name="photo_inventory" type="radio" value="false" /
-          label for="no-photo" 
-            strong No thanks,
-            / | just transcribe my labels.
-  .larger-item
-    h3 Would you like to store any larger items?
-    - @normal_order_items.each_slice(2) do |items|
-      .store-box
-        = render partial: 'store_box', collection: items
-  section.schedule-question-title.schedule-question-padd.clearfix
-  .container.schedule-question-inner
-    h2 When should we swing by?
+    .container
+      h3 Choose how many, we'll bring them to you.
+      - @box_order_items.each_slice(2) do |items|
+        .store-box
+          = render partial: 'store_box', collection: items, locals: {zone: f}
+      / #form-overhead.store-box.form-expand
+      /   p
+      /     strong Always know what you're storing.
+      /     | Along with transcribing your
+      /     | labels, we can take overhead photos of your bins–for free.
+      /   form#overhead-photos
+      /     .detail-radio-div.checked
+      /       input#yes-photo checked="" name="photo_inventory" type="radio" value="true" /
+      /       label for="yes-photo" 
+      /         strong Yes,
+      /         | I want photos of my stuff
+      /         span.hide-for-tablet.hide-for-mobile> so I always know what I'm storing
+      /         | \.
+      /     .detail-radio-div
+      /       input#no-photo name="photo_inventory" type="radio" value="false" /
+      /       label for="no-photo" 
+      /         strong No thanks,
+    .larger-item
+      h3 Would you like to store any larger items?
+      - @normal_order_items.each_slice(2) do |items|
+        .store-box
+          = render partial: 'store_box', collection: items, locals: {zone: f}
 
-  section.when-swing.clearfix
-  .container.when-swing-inner
-    .date-picker
-      input placeholder="Date" type="text" /
-      figure
-        = image_tag "/master/schedule/date-ic.png"
-    .time-picker
-      input placeholder="Time" type="text" /
-      figure
-        = image_tag "/master/schedule/time-ic.png"
-  section.schedule-question-title.schedule-question-padd.clearfix
+    section.schedule-question-title.schedule-question-padd.clearfix
     .container.schedule-question-inner
-      h2 What address should we meet you at?
-  section.address-meet.clearfix
-    .container.address-meet-inner
-      .address-meet-top
-        input.in-addess placeholder="Address" type="text" /
-        input.app-state placeholder="Apt/State" type="text" /
-        input.app-num placeholder="zip code" value="#{params[:zip_code]}" type="text" readonly="" /
-      .address-meet-bottom
-        input placeholder=("Additional delivery instructions") type="text" /
-  section.schedule-question-title.schedule-question-btm.clearfix
-    .container.schedule-question-inner
-      a href="#" title="Update"  Update
-      .month-cost
-        | Monthly Estimated Cost
-        span
-          | $
-          span.month-total-cost 0.00
+      h2 When should we swing by?
+
+    section.when-swing.clearfix
+    .container.when-swing-inner
+      .date-picker
+        = f.text_field :shipping_date, placeholder: "Date"
+        figure
+          = image_tag "/master/schedule/date-ic.png"
+      .time-picker
+        = f.text_field :shipping_time, placeholder: "Time"
+        figure
+          = image_tag "/master/schedule/time-ic.png"
+    section.schedule-question-title.schedule-question-padd.clearfix
+      .container.schedule-question-inner
+        h2 What address should we meet you at?
+    section.address-meet.clearfix
+      .container.address-meet-inner
+        .address-meet-top
+          = f.text_field :address, class: "in-addess", placeholder: "Address"
+          = f.text_field :state, class: "app-state", placeholder: "Apt/State"
+          = f.text_field :address, class: "app-num", placeholder: "zip code", value: "#{params[:zip_code]}", readonly: true
+        .address-meet-bottom
+          = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
+    / section.schedule-question-title.schedule-question-btm.clearfix
+    /   .container.schedule-question-inner
+    /     a href="#" title="Update"  Update
+    /     .month-cost
+    /       | Monthly Estimated Cost
+    /       span
+    /         | $
+    /         span.month-total-cost 0.00
+    /     = f.hidden_field :amount, class: "month-total-cost"

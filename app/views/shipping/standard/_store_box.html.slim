@@ -1,10 +1,27 @@
+/ div class="#{store_box.id.odd? ? "store-box-left" : "store-box-right"}"
+/   a href="#" title="" 
+/     figure
+/       = image_tag store_box.avatar, alt: store_box.title
+/   .store-make-space.store-box-first.store-box-normal.store-box-text
+/     h4
+/       = store_box.title
+/     span
+/       | $
+/       span.store-cost>
+/         = "#{store_box.price}/mo"
+/   .store-box-text.input-copy-wrapper
+/     .input-copy
+/       .booking-icon-background-num.js-nav-min
+/         span.booking-icon.js-nav.icon-min
+/       input.item-input name="makespace" type="text" value="0" /
+/       .booking-icon-background-num.js-nav-plus
+/         span.booking-icon.js-nav.icon-plus
 div class="#{store_box.id.odd? ? "store-box-left" : "store-box-right"}"
-  a href="#" title="" 
+  a.icon-item href="#" title="" 
     figure
-      / img alt="" src="images/bin-ic.png" /
       = image_tag store_box.avatar, alt: store_box.title
-  .store-make-space.store-box-first.store-box-normal.store-box-text
-    h4
+  .store-box-first.store-box-normal.store-box-text
+    h4 
       = store_box.title
     span
       | $
@@ -14,6 +31,10 @@ div class="#{store_box.id.odd? ? "store-box-left" : "store-box-right"}"
     .input-copy
       .booking-icon-background-num.js-nav-min
         span.booking-icon.js-nav.icon-min
-      input.item-input name="makespace" type="text" value="0" /
+      / input.item-input name="bike" type="text" value="0" /
+      = zone.text_field "[order_details_attributes][#{(store_box.id)-1}][quantity]", class: "item-input", value: "0"
+      = zone.text_field "[order_details_attributes][#{(store_box.id)-1}][order_item_id]", class: "item-id", value: store_box.id
       .booking-icon-background-num.js-nav-plus
         span.booking-icon.js-nav.icon-plus
+/ order[order_details][quantity]
+/ order[order_details_attributes][3][quantity]

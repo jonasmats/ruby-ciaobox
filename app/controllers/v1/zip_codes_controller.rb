@@ -4,7 +4,7 @@ class V1::ZipCodesController < V1::BaseController
     if params[:zip_code].present?
       shipping =  Shipping.find_by(zip_code: params[:zip_code])
       if shipping.present?
-        render json: {code: 100, data: shipping.way}
+        render json: {code: 100, data: shipping.way, zip_code: params[:zip_code]}
       else
         render json: {code: 200, data: "the ZIP code is not in my shipping list"}
       end

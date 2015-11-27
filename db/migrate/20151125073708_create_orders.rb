@@ -4,6 +4,8 @@ class CreateOrders < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
       t.references :shipping, index: true, foreign_key: true
       t.integer :pay_status
+      t.string :shipping_date
+      t.string :shipping_time
       t.datetime :start_date
       t.datetime :end_date
       t.float :amount

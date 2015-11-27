@@ -307,6 +307,8 @@ ActiveRecord::Schema.define(version: 20151125083034) do
     t.integer  "user_id"
     t.integer  "shipping_id"
     t.integer  "pay_status"
+    t.string   "shipping_date"
+    t.string   "shipping_time"
     t.datetime "start_date"
     t.datetime "end_date"
     t.float    "amount"
@@ -315,8 +317,8 @@ ActiveRecord::Schema.define(version: 20151125083034) do
     t.boolean  "save_image"
     t.integer  "status"
     t.text     "additional"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "orders", ["shipping_id"], name: "index_orders_on_shipping_id", using: :btree
