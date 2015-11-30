@@ -1,0 +1,18 @@
+= render partial: "title", locals: {title: t(".title")}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = OrderItem.h :title
+          th
+            = OrderItem.h :price
+          th
+            = OrderItem.h :avatar
+          th
+            = t(".action")
+      tbody
+      = render partial: 'order_item', collection: @order_items

@@ -338,3 +338,29 @@ en:
       how_it_work:
         item:
           how_it_work_destroy: *question_destroy
+    order_items:
+      index:
+        title: "List"
+        action: *action
+      show:
+        title: Detail
+        back: *back
+      edit:
+        title: "Edit"
+      new:
+        title: New
+      form:
+        submit: *submit
+        blank: *blank
+        placeholder:
+          title: Enter title
+          price: Enter price
+          avatar: choice avatar
+          description: Enter description
+      order_item:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy
+        view: *view
+      title:
+        sub_title: "Order Items management"
