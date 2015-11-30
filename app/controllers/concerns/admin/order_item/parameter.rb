@@ -4,7 +4,7 @@ module Admin::OrderItem::Parameter
   private
     def private_params
       if params[:order_item]
-        params.require(:order_item).permit(:title, :avatar, :price, translations_attributes: [:id, :locale, :title, :description])
+        params.require(:order_item).permit(:title, :avatar, :price, :type, translations_attributes: [:id, :locale, :title, :description])
       end
     end
 end
