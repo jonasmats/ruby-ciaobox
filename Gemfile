@@ -119,3 +119,4 @@ group :deployment do
 end
 # Form wizard
 gem 'wicked'
+gem 'geocoder'

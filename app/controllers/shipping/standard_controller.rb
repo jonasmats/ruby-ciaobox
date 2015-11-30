@@ -6,6 +6,7 @@ class Shipping::StandardController < ShippingController
   # before_action :set_params, only: :update
   before_action :title_form, only: [:show, :update]
   def show
+
     case step
     when :appoinment
       @box_order_items = OrderItem::Box.all.includes(:translations)
@@ -13,6 +14,14 @@ class Shipping::StandardController < ShippingController
 
       load_shipping
       create_instance
+
+      # get address/state
+      geocode = Geocoder.coordinates(session[:zip_code])
+      result = Geocoder.search(geocode).first
+      if result.present?
+        @state = result.state
+        @address = result.address
+      end
 
       if @order.persisted?
         if @order.checking?

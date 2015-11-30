@@ -145,6 +145,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    geocoder (1.2.12)
     gibbon (2.1.1)
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
@@ -390,6 +391,7 @@ DEPENDENCIES
   dotenv-rails
   exception_notification
   friendly_id (~> 5.1.0)
+  geocoder
   gibbon (~> 2.1)
   globalize (~> 5.0.0)
   hirb-unicode
