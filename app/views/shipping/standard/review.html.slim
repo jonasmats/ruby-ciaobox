@@ -7,3 +7,12 @@ section.section-2.about
 = render partial: "standard_step"
 
 = render layout: 'form' do |f|
+  section.like-to-store.clearfix
+    .container
+      h3 Items
+      .store-box.review-box
+        = render partial: 'shipping/standard/review/store_box', collection: @items
+    = render partial: 'shipping/standard/review/personal_info', locals: {order: @order}
+    = render partial: 'shipping/standard/review/contact_info', locals: {order: @order}
+    = render partial: 'shipping/standard/review/billing_info', locals: {order: @order}
+    = render partial: 'shipping/standard/review/hear_about', locals: {order: @order}

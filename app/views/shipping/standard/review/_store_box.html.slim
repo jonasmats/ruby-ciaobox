@@ -1,0 +1,19 @@
+.store-box-left
+  a href="#" title="" 
+    figure
+      = image_tag store_box.order_item.avatar, alt: store_box.order_item.title
+  .store-box-first.store-box-normal.store-box-text
+    h4
+      = store_box.order_item.title
+    .review-right-price
+      span
+        = store_box.quantity
+      span
+        | X
+      span
+        = store_box.price
+      / .review-ic
+      /   figure
+      /     img alt="" src="images/edit-ic.png" /
+      /   figure
+      /     img alt="" src="images/delete-ic.png" /

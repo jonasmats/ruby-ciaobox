@@ -22,8 +22,22 @@ class Shipping::StandardController < ShippingController
     when :review
       @title = "Confirm Your Details"
       create_instance
+      if @order.persisted?
+        if @order.checking?
+          redirect_to shipping_standard_path(:confirmation) and return
+        end
+      else
+        redirect_to shipping_standard_path(:appoinment) and return
+      end
+      @items = @order.order_details.includes(:order_item)
     when :confirmation
       @title = "Confirmation"
+      create_instance
+      if @order.persisted? && @order.registering?
+        redirect_to shipping_standard_path(:review) and return
+      else
+        redirect_to shipping_standard_path(:appoinment) and return
+      end
     end
     render_wizard
   end
@@ -37,6 +51,9 @@ class Shipping::StandardController < ShippingController
       @order.save
       session[:order_id] = @order.id
     when :confirmation
+      create_instance
+      @order.status = Order.statuses[:checking]
+      @order.save
     end
     render_wizard
   end
