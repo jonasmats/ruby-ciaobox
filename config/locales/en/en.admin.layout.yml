@@ -64,6 +64,9 @@ en:
         item_how_it_work_label: " How it works"
         static_how_it_work_new: *new
         static_how_it_work_list: *list
+        order_item_label: "Order Items management"
+        order_item_new: *new
+        order_item_list: *list
         dashboard: "Dashboard"
         log_action_label: Log Action
         log_action_list: Log Action List
@@ -89,3 +92,5 @@ en:
         admin_list: List Admins
         admin_import: Import Admins
         log_action_list: List Log Actions
+        order_item_new: "New Order Item"
+        order_item_list: "List Order Items"

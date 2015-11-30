@@ -1,0 +1,37 @@
+= render partial: "title", locals: {title: "Detail"}
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_order_items_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = OrderItem.h :title
+        td
+          = @order_item.title
+      tr
+        td
+          strong
+            = OrderItem.h :price
+        td
+          = @order_item.price
+      tr
+        td
+          strong
+            = OrderItem.h :avatar
+        td
+          = image_tag @order_item.avatar, style: 'background: gray'
+      tr
+        td
+          strong
+            = OrderItem.h :description
+        td
+          = @order_item.description
