@@ -1,0 +1,5 @@
+en:
+  shipping:
+    finish: "You finish order, can't go back"
+    not_finish_step_1: "You must finish step appoinment before"
+    not_finish_step_2: "You must finish step review before"
