@@ -8,6 +8,10 @@ en:
       user: "Customer"
       article: "Article"
       social_network: "SocialNetwork"
+      coupon: "Coupon"
+      custom_gift: "Coupon Custom Gift"
+      custom_coupon: "Custom Coupon"
+      multiple_coupon: "Multiple Coupon"
 
     attributes:
       faq:
@@ -63,4 +67,15 @@ en:
         subject_type: Subject Type
         data: Data
         created_at: Create At
-
+      coupon:
+        start_date: "Start date"
+        end_date: "End date"
+        code: "Code"
+        discount_type: "Discount Type"
+        discount_value: "Discount Value"
+        gift: "Gift Name"
+        amount: "Gift Amount"
+        type: "Coupon type"
+  errors:
+    messages:
+      not_blank: "can't be blank"

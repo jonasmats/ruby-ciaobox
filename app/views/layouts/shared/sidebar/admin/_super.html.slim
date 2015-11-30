@@ -258,7 +258,45 @@
       /     li
       /       a[href="maps_vector.html"]
       /         |  Vector Maps
+      li
+        a[href="javascript:;"]
+          i.fa.fa-scissors
+          span.title
+            = I18n.t("layouts.shared.sidebar.coupon_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_custom_coupon_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.custom_coupon_new")
 
+          li
+            = link_to new_admin_multiple_coupon_path do
+              i.fa.icon-plus
+              = I18n.t("layouts.shared.sidebar.multiple_coupon_new")
+          li
+            = link_to new_admin_custom_gift_path do
+              i.fa.icon-plus
+              = I18n.t("layouts.shared.sidebar.gift_coupon_new")
+          li
+            = link_to admin_coupons_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.coupon_list")
+      li
+        a[href="javascript:;"]
+          i.fa.fa-gift
+          span.title
+            = I18n.t("layouts.shared.sidebar.gift_label")
+          span.arrow
+        ul.sub-menu
+          li
+            = link_to new_admin_gift_path do
+              i.icon-plus
+              = I18n.t("layouts.shared.sidebar.gift_new")
+          li
+            = link_to admin_gifts_path do
+              i.fa.fa-list-ol
+              = I18n.t("layouts.shared.sidebar.gift_list")
 
       li
         a[href="javascript:;"]

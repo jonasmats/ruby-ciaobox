@@ -70,6 +70,14 @@ en:
         dashboard: "Dashboard"
         log_action_label: Log Action
         log_action_list: Log Action List
+        gift_label: "Gift management"
+        gift_new: *new
+        gift_list: *list
+        coupon_label: "Coupon Management"
+        custom_coupon_new: "Custom Coupon New"
+        multiple_coupon_new: "Multiple Coupon New"
+        gift_coupon_new: "Gift Coupon New"
+        coupon_list: *list
       dashboard:
         employee_feature: All features of Company Employee User
         company_feature: All features of Company Admin
