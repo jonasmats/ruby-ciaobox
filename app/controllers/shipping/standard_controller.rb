@@ -1,14 +1,13 @@
 class Shipping::StandardController < ShippingController
   steps :appoinment, :review, :confirmation
-
   include ::Dashboard::Shipping::Standard::Parameter
   before_action :title_form, only: [:show, :update]
 
   def show
     case step
     when :appoinment
-      @box_order_items = OrderItem::Box.all.includes(:translations)
-      @normal_order_items = OrderItem::Normal.all.includes(:translations)
+      load_box_order_items
+      load_normal_order_items
 
       load_shipping
       create_instance
@@ -20,9 +19,7 @@ class Shipping::StandardController < ShippingController
         end
       end
 
-      OrderItem.all.count(:id).times do
-        @order.order_details.build
-      end
+      build_order_details
 
     when :review
       create_instance
@@ -60,8 +57,12 @@ class Shipping::StandardController < ShippingController
       create_instance
       set_params
       if session[:order_id].blank?
-        @order.save
-        session[:order_id] = @order.id
+        if @order.save
+          session[:order_id] = @order.id
+        else
+          redirect_to shipping_standard_path(:appoinment), 
+            alert: @order.errors.full_messages and return
+        end
       end
       build_feed_back
       load_order_details
@@ -112,5 +113,19 @@ class Shipping::StandardController < ShippingController
       when :confirmation
         "Confirmation"
       end
+  end
+
+  def load_box_order_items
+    @box_order_items = OrderItem::Box.all.includes(:translations)
+  end
+
+  def load_normal_order_items
+    @normal_order_items = OrderItem::Normal.all.includes(:translations)
+  end
+
+  def build_order_details
+    OrderItem.all.count(:id).times do
+      @order.order_details.build
+    end
   end
 end
