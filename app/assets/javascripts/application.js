@@ -19,6 +19,10 @@
 //= require js/custom
 //= require js/jquery.placeholder.min
 //= require underscore-min
+//= require js/moment
+//= require js/collapse
+//= require js/transition
+//= require js/bootstrap-datetimepicker.min
 /* OTHER  */
 //= require jquery_ujs
 

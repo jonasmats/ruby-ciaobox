@@ -13,7 +13,7 @@ section.section-2.about
       h3 Choose how many, we'll bring them to you.
       - @box_order_items.each_slice(2) do |items|
         .store-box
-          = render partial: 'store_box', collection: items, locals: {zone: f}
+          = render partial: 'store_box', collection: items, locals: {form: f}
       / #form-overhead.store-box.form-expand
       /   p
       /     strong Always know what you're storing.
@@ -35,22 +35,19 @@ section.section-2.about
       h3 Would you like to store any larger items?
       - @normal_order_items.each_slice(2) do |items|
         .store-box
-          = render partial: 'store_box', collection: items, locals: {zone: f}
+          = render partial: 'store_box', collection: items, locals: {form: f}
 
-    section.schedule-question-title.schedule-question-padd.clearfix
-    .container.schedule-question-inner
-      h2 When should we swing by?
-
-    section.when-swing.clearfix
-    .container.when-swing-inner
-      .date-picker
-        = f.text_field :shipping_date, placeholder: "Date"
-        figure
-          = image_tag "/master/schedule/date-ic.png"
-      .time-picker
-        = f.text_field :shipping_time, placeholder: "Time"
-        figure
-          = image_tag "/master/schedule/time-ic.png"
+    = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
+    / section.when-swing.clearfix
+    / .container.when-swing-inner
+    /   .date-picker
+    /     = f.text_field :shipping_date, placeholder: "Date"
+    /     figure
+    /       = image_tag "/master/schedule/date-ic.png"
+    /   .time-picker
+    /     = f.text_field :shipping_time, placeholder: "Time"
+    /     figure
+    /       = image_tag "/master/schedule/time-ic.png"
     section.schedule-question-title.schedule-question-padd.clearfix
       .container.schedule-question-inner
         h2 What address should we meet you at?
