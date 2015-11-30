@@ -4,23 +4,27 @@ class Shipping::StandardController < ShippingController
   include ::Dashboard::Shipping::Standard::Parameter
   # before_action :create_instance, only: [:show, :update]
   # before_action :set_params, only: :update
-
+  before_action :title_form, only: [:show, :update]
   def show
     case step
     when :appoinment
-      @title = "What would you like to store?"
       @box_order_items = OrderItem::Box.all.includes(:translations)
       @normal_order_items = OrderItem::Normal.all.includes(:translations)
-      
+
       load_shipping
       create_instance
+
+      if @order.persisted?
+        if @order.checking?
+          redirect_to shipping_standard_path(:confirmation) and return
+        end
+      end
 
       OrderItem.all.count(:id).times do
         @order.order_details.build
       end
 
     when :review
-      @title = "Confirm Your Details"
       create_instance
       if @order.persisted?
         if @order.checking?
@@ -29,12 +33,15 @@ class Shipping::StandardController < ShippingController
       else
         redirect_to shipping_standard_path(:appoinment) and return
       end
-      @items = @order.order_details.includes(:order_item)
+      build_feed_back
+      load_order_details
+
     when :confirmation
-      @title = "Confirmation"
       create_instance
-      if @order.persisted? && @order.registering?
-        redirect_to shipping_standard_path(:review) and return
+      if @order.persisted?
+        if @order.registering?
+          redirect_to shipping_standard_path(:review) and return
+        end
       else
         redirect_to shipping_standard_path(:appoinment) and return
       end
@@ -48,10 +55,15 @@ class Shipping::StandardController < ShippingController
       load_shipping
       create_instance
       set_params
-      @order.save
-      session[:order_id] = @order.id
+      if session[:order_id].blank?
+        @order.save
+        session[:order_id] = @order.id
+      end
+      build_feed_back
+      load_order_details
     when :confirmation
       create_instance
+      set_params
       @order.status = Order.statuses[:checking]
       @order.save
     end
@@ -76,5 +88,25 @@ class Shipping::StandardController < ShippingController
 
   def set_params
     @order.assign_attributes filter_params
+  end
+
+  def load_order_details
+    @items = @order.order_details.includes(:order_item)
+  end
+
+  def build_feed_back
+     @order.build_feedback
+  end
+
+  def title_form
+    @title =
+      case step
+      when :appoinment
+        "What would you like to store?"
+      when :review
+        "Confirm Your Details"
+      when :confirmation
+        "Confirmation"
+      end
   end
 end

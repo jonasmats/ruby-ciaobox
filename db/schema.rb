@@ -315,9 +315,12 @@ ActiveRecord::Schema.define(version: 20151125083034) do
     t.float    "amount"
     t.string   "address"
     t.string   "state"
+    t.text     "additional"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "contact_phone"
     t.boolean  "save_image",      default: false, null: false
     t.integer  "status",          default: 0
-    t.text     "additional"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

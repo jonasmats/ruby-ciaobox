@@ -21,9 +21,10 @@
             a href="#" title="" 
               = image_tag "images/edit-ic.png", alt: "date and time"
             .text-person-btm
-              span Friday, October 9, 2015
+              span 
+                = DateTime.parse(order.shipping_date).to_date.strftime("%A, %B %d, %Y")
               p
-                | 1PM - 3PM
+                = order.shipping_time
                 br/
                 | Our drivers will wait up to 20 minutes while you pack.
         .personal-info-rgt
@@ -38,3 +39,5 @@
             .text-person-btm
               p
                 = order.address
+              span
+                = order.state

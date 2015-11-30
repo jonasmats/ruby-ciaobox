@@ -12,8 +12,8 @@
         | X
       span
         = store_box.price
-      / .review-ic
-      /   figure
-      /     img alt="" src="images/edit-ic.png" /
-      /   figure
-      /     img alt="" src="images/delete-ic.png" /
+      .review-ic
+        figure
+          = image_tag "images/edit-ic.png", alt: "date and time"
+        figure
+          = image_tag "images/delete-ic.png", alt: "date and time"

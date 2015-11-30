@@ -6,13 +6,16 @@ module Dashboard::Shipping::Standard::Parameter
       if params[:order]
         params.require(:order).permit(:shipping_date, :shipping_time,
           :address, :state, :additional, :amount,
-          order_details_attributes: [:id, :quantity, :order_item_id]
+          :contact_name, :contact_email, :contact_email,
+          order_details_attributes: [:id, :quantity, :order_item_id],
+          feedback_attributes: [:id, :content]
         )
       end
     end
     
     def filter_params
     filted = private_params.clone
+    return filted if filted[:order_details_attributes].nil?
     filted[:order_details_attributes].each do |k, v|
       # v = {"quantity"=>"2", "order_item_id"=>"2"}
       if v[:quantity].to_i == 0

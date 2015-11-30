@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   has_many :order_details, dependent: :destroy
   has_one :feedback, dependent: :destroy
   accepts_nested_attributes_for :order_details
+  accepts_nested_attributes_for :feedback
   
   enum status: {registering: 0, checking: 1, reject: 2, processing: 3, holding: 4, cancel: 5, returned: 6}
 

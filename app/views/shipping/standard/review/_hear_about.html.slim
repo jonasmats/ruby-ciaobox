@@ -5,7 +5,8 @@ section.schedule-question-title.schedule-question-padd.clearfix
 section.address-meet.clearfix
   .container.address-meet-inner
     .address-meet-top
-      textarea placeholder=("I saw you on the subway!") 
+      = form.fields_for :feedback do |build|
+        = build.text_area :content, class: "item-input"
       p
         | By confirming this appointment, you are agreeing to the Terms of Service and
         span Storage Rules

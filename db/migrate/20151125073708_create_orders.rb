@@ -9,11 +9,17 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :start_date_keep
       t.datetime :end_date_keep
       t.float :amount
+      # Adress
       t.string :address
       t.string :state
+      t.text :additional
+      # Contact
+      t.string :contact_name
+      t.string :contact_email
+      t.string :contact_phone
+
       t.boolean :save_image, default: false, null: false
       t.integer :status, default: 0
-      t.text :additional
 
       t.timestamps null: false
     end
