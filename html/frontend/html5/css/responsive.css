@@ -328,7 +328,19 @@
 }
 
 }
-
+@media (max-width: 860px) { 
+	.section-review .review-box .store-box-text {
+	    margin-left: 0%;
+	    width: 100%;
+	}
+	.section-review .store-box a {
+	    margin: 0 auto 10px;
+	    float: none;
+	}
+	.section-review .store-box-text:before {
+		display: none;
+	}
+}
 
 @media (max-width: 767px) { /* 480 screen */
 	.logo {
