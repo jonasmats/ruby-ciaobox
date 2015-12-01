@@ -5,7 +5,6 @@
       .personal-info-name
         .person-info
           figure
-          / # - binding.pry
             = image_tag current_user.avatar.url(:thumb), alt: current_user.full_name
           span
             = current_user.full_name.present? ? current_user.full_name : current_user.email
