@@ -64,9 +64,20 @@ en:
         item_how_it_work_label: " How it works"
         static_how_it_work_new: *new
         static_how_it_work_list: *list
+        order_item_label: "Order Items management"
+        order_item_new: *new
+        order_item_list: *list
         dashboard: "Dashboard"
         log_action_label: Log Action
         log_action_list: Log Action List
+        gift_label: "Gift management"
+        gift_new: *new
+        gift_list: *list
+        coupon_label: "Coupon Management"
+        custom_coupon_new: "Custom Coupon New"
+        multiple_coupon_new: "Multiple Coupon New"
+        gift_coupon_new: "Gift Coupon New"
+        coupon_list: *list
       dashboard:
         employee_feature: All features of Company Employee User
         company_feature: All features of Company Admin
@@ -89,3 +100,5 @@ en:
         admin_list: List Admins
         admin_import: Import Admins
         log_action_list: List Log Actions
+        order_item_new: "New Order Item"
+        order_item_list: "List Order Items"

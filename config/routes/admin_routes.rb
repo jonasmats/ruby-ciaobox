@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :import_admins, only: [:new, :create]
     resources :log_actions, only: [:index, :show]
 
+    resources :order_items 
+
     resources :items
     resources :item_members, controller: 'items', type: 'Item::Member'
     resources :item_presses, controller: 'items', type: 'Item::Press'
@@ -33,5 +35,11 @@ Rails.application.routes.draw do
       resources :methods
       resources :infors
     end
+
+    resources :gifts
+    resources :coupons
+    resources :custom_coupons, controller: :coupons
+    resources :custom_gifts, controller: :coupons
+    resources :multiple_coupons, controller: :coupons
   end
 end

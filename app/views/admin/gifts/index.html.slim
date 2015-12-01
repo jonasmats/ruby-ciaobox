@@ -1,0 +1,16 @@
+= render partial: "title", locals: {title: "List"}
+.portlet.box.green
+  .portlet-title
+
+  .portlet-body.flip-scroll
+    table.table.table-bordered.table-striped.table-condensed.flip-content
+      thead.flip-content
+        tr
+          th
+            = Gift.h :name
+          th
+            = Gift.h :description
+          th
+            = t(".action")
+      tbody
+      = render partial: 'gift', collection: @gifts

@@ -7,7 +7,10 @@ function cost($quatity, $price) {
 function total_cost() {
     $TotalCost = 0;
     $(".store-box-text input").each(function(){
-        $quantity = $(this).val();
+        if ($(this).parents(".like-to-store").hasClass("section-review") && $(this).parents(".store-box-text").prev().css("display") == "block" ) {
+            $quantity = $(this).parents(".store-box-text").prev().find(".re-quantity").text();
+        } else $quantity = $(this).val();
+        
         if ( $.isNumeric($quantity) ) {
             $store_cost = parseFloat( $(this).parent().parent().parent().find("span .store-cost").text() );
             cost($quantity, $store_cost);
@@ -75,7 +78,7 @@ $(document).ready(function(){
     });
 
     /*when click store-box*/
-    $(".store-box-normal").click(function(){
+    $(".section-schedule .store-box-normal").click(function(){
 
         if ( $(this).hasClass("store-box-orther") ) {
             $(this).addClass("overlay-forever");
@@ -90,7 +93,6 @@ $(document).ready(function(){
         };
 
         $(this).removeClass("store-box-normal");
-
         /*--caculate total cost--*/
         total_cost();
 
@@ -141,6 +143,26 @@ $(document).ready(function(){
         };
     }); 
 
+    /************* Edit review.html 30/11/2015 *****************/
+
+    $(".section-review .re-remove").click(function(e){
+        $(this).parent().parent().parent().parent().remove();
+        /*--caculate total cost--*/
+        total_cost();
+    }); 
+
+    $(".section-review .re-edit").click(function(e){
+        
+        $(this).parent().parent().parent().next().addClass("store-box-normal");
+        $re_quantity = $(this).parent().parent().parent().find(".re-quantity").text();
+        if ($.isNumeric($re_quantity)) {
+            $(this).parent().parent().parent().next().find("input").val($re_quantity);
+        }
+
+        $(this).parent().parent().parent().removeClass("store-box-normal");
+
+    }); 
+
 });/*--End---*/
 
 /*remove orther item dynamically*/
@@ -149,4 +171,3 @@ $(document).on('click', 'a.remove-item', function(){
     /*--caculate total cost--*/
     total_cost();
 });
-

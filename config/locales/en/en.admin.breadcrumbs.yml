@@ -21,3 +21,6 @@ en:
       import:
         user: Import User
         admin: Import Employees
+      order_item: Order Items
+      gift: Gift 
+      coupon: Coupon
