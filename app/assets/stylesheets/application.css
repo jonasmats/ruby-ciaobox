@@ -13,6 +13,8 @@
  */
 
 @import "css/bootstrap.min.css";
+@import "css/bootstrap-datetimepicker-standalone.css";
+@import "css/bootstrap-datetimepicker.min.css";
 @import "css/style.css";
 @import "css/responsive.css";
 @import "css/owl.carousel.css";

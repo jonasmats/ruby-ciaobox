@@ -1,0 +1,12 @@
+section.schedule-question-title.schedule-question-padd.clearfix
+  .container.schedule-question-inner
+    h2 
+      | How did you hear about us?
+section.address-meet.clearfix
+  .container.address-meet-inner
+    .address-meet-top
+      = form.fields_for :feedback do |build|
+        = build.text_area :content, class: "item-input"
+      p
+        | By confirming this appointment, you are agreeing to the Terms of Service and
+        span Storage Rules

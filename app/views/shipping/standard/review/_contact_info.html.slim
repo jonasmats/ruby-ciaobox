@@ -1,0 +1,12 @@
+section.schedule-question-title.schedule-question-padd.clearfix
+  .container.schedule-question-inner
+    h2 
+      | Contact Information
+section.when-swing.clearfix
+  .container.when-swing-inner
+    .john-input
+      = form.text_field :contact_name, placeholder: "Please enter fullname"
+    .date-picker
+      = form.text_field :contact_email, placeholder: "Please enter email"
+    .time-picker.time-bg
+      = form.text_field :contact_phone, placeholder: "Please enter phone"

@@ -1,0 +1,42 @@
+.larger-item
+  h3 Personal Information
+  .container
+    .personal-info-main
+      .personal-info-name
+        .person-info
+          figure
+            = image_tag current_user.avatar.url(:thumb), alt: current_user.full_name
+          span
+            = current_user.full_name.present? ? current_user.full_name : current_user.email
+        = mail_to current_user.email, current_user.email 
+      .personal-info-bottom
+        .personal-info-lft
+          a href="#" title="" 
+            figure
+              = image_tag "images/dt-ic.png", alt: "date and time"
+          .text-person
+            h4 
+              | Date and time
+            a href="#" title="" 
+              = image_tag "images/edit-ic.png", alt: "date and time"
+            .text-person-btm
+              span 
+                = DateTime.parse(order.shipping_date).to_date.strftime("%A, %B %d, %Y")
+              p
+                = order.shipping_time
+                br/
+                | Our drivers will wait up to 20 minutes while you pack.
+        .personal-info-rgt
+          a href="#" title="" 
+            figure
+              = image_tag "images/loc-ic.png", alt: "Location"
+          .text-person
+            h4 
+              | Location
+            a href="#" title="" 
+              = image_tag "images/edit-ic.png", alt: "date and time"
+            .text-person-btm
+              p
+                = order.address
+              span
+                = order.state

@@ -145,6 +145,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    geocoder (1.2.12)
     gibbon (2.1.1)
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
@@ -361,6 +362,8 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    wicked (1.2.1)
+      railties (>= 3.0.7)
     yard (0.8.7.6)
 
 PLATFORMS
@@ -388,6 +391,7 @@ DEPENDENCIES
   dotenv-rails
   exception_notification
   friendly_id (~> 5.1.0)
+  geocoder
   gibbon (~> 2.1)
   globalize (~> 5.0.0)
   hirb-unicode
@@ -420,6 +424,7 @@ DEPENDENCIES
   versionist
   web-console (~> 2.0)
   whenever
+  wicked
 
 BUNDLED WITH
    1.10.6

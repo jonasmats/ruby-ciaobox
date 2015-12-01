@@ -1,0 +1,14 @@
+section.schedule-process.clearfix
+  .container.schedule-process-inner
+    div class="process-flow #{@step == :review || @step == :confirmation ? "active" : ""}"
+      div class="process-flow-inner #{@step == :appoinment ? "active" : ""}"
+        = link_to "", wizard_path(:appoinment), class: "glyph-icon flaticon-clock118", style: "text-decoration:none;"
+      span Appoinment
+    div class="process-flow #{@step == :confirmation ? "active" : ""}"
+      div class="process-flow-inner #{@step == :review ? "active" : ""}"
+        = link_to "", wizard_path(:review), class: "glyph-icon flaticon-check47", style: "text-decoration:none;"
+      span Review
+    .process-flow.process-flow-last
+      div class="process-flow-inner #{@step == :confirmation ? "active" : ""}"
+        = link_to "", wizard_path(:confirmation), class: "glyph-icon flaticon-confirm1", style: "text-decoration:none;"
+      span Confirmation

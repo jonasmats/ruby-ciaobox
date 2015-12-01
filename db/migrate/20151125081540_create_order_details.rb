@@ -3,9 +3,9 @@ class CreateOrderDetails < ActiveRecord::Migration
     create_table :order_details do |t|
       t.references :order, index: true, foreign_key: true
       t.references :order_item, index: true, foreign_key: true
-      t.float :price
-      t.integer :quantity
-      t.string :barcode
+      t.float :price, null: false
+      t.integer :quantity, null: false
+      t.string :barcode, null: false, uniqe: true, index: true
 
       t.timestamps null: false
     end

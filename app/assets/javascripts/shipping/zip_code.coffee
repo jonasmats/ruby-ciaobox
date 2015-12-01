@@ -6,9 +6,9 @@ $('#home_banner_submit').click ->
     success: (result, statusText, xhr) ->
       if result.code == 100
         if result.data == "standard"
-          window.location.href = "/shipping/standard";
+          window.location.href = "/shipping/standard/appoinment";
         else if result.data == "fly"
-          window.location.href = "/shipping/fly";
+          window.location.href = "/shipping/fly/appoinment";
       else if result.code == 200
         $('#zip_code_modal').modal
           backdrop: false
