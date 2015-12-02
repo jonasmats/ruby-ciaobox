@@ -6,6 +6,7 @@ class CreateOrderDetails < ActiveRecord::Migration
       t.float :price, null: false
       t.integer :quantity, null: false
       t.string :barcode, null: false, uniqe: true, index: true
+      t.datetime :deleted_at
 
       t.timestamps null: false
     end

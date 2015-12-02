@@ -12,7 +12,7 @@
 
 class Role < ActiveRecord::Base
   acts_as_paranoid
-  ALL_ENTITY = %w(Admin User Article Faq Faq::Category SocialNetwork OrderItem Gift Coupon)
+  ALL_ENTITY = %w(Admin User Article Faq Faq::Category SocialNetwork OrderItem Gift Coupon Order)
 
   # 1. associations
   has_many :permissions, dependent: :destroy

@@ -1,0 +1,16 @@
+tr
+  td
+    = order.id
+  td
+    = order.user_full_name
+  td
+    = order.contact_name
+  td
+    = order.created_at.default_format
+  td
+    = link_to admin_order_path(order.id), class: "btn default btn-xs purple" do
+      i.fa.fa-view
+      = t(".view")
+    = link_to admin_order_path(order.id), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

@@ -1,0 +1,18 @@
+table.table.table-bordered.table-striped.table-condensed.flip-content
+  thead.flip-content
+    tr
+      th
+        = OrderDetail.h :title
+      th
+        = OrderDetail.h :quantity
+      th
+        = OrderDetail.h :price
+  tbody
+    - @order.order_details.includes(:order_item).each do |order_detail|
+      tr
+        td
+          = order_detail.order_item.title
+        td
+          = order_detail.quantity
+        td
+          = order_detail.price
