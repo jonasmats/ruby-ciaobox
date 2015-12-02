@@ -78,6 +78,9 @@ en:
         multiple_coupon_new: "Multiple Coupon New"
         gift_coupon_new: "Gift Coupon New"
         coupon_list: *list
+        order_label: "Order Management"
+        order_new: *new
+        order_list: *list
       dashboard:
         employee_feature: All features of Company Employee User
         company_feature: All features of Company Admin

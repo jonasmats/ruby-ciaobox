@@ -22,5 +22,6 @@ en:
         user: Import User
         admin: Import Employees
       order_item: Order Items
-      gift: Gift 
+      gift: Gift
       coupon: Coupon
+      order: Orders

@@ -1,4 +1,5 @@
 class OrderItem < ActiveRecord::Base
+  acts_as_paranoid
   translates :title, :description, fallbacks_for_empty_translations: true
   accepts_nested_attributes_for :translations
   has_one :order_detail

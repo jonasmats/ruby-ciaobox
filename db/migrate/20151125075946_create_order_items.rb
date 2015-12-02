@@ -4,6 +4,7 @@ class CreateOrderItems < ActiveRecord::Migration
       t.float :price
       t.attachment :avatar
       t.string :type
+      t.datetime :deleted_at
 
       t.timestamps null: false
     end
