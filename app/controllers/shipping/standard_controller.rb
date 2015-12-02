@@ -77,6 +77,7 @@ class Shipping::StandardController < ShippingController
       load_order_details
     when :confirmation
       create_instance
+      delete_order_details
       set_params
       @order.status = Order.statuses[:checking]
       @order.save
@@ -136,5 +137,9 @@ class Shipping::StandardController < ShippingController
     OrderItem.all.count(:id).times do
       @order.order_details.build
     end
+  end
+
+  def delete_order_details
+    @order.order_details.destroy_all
   end
 end
