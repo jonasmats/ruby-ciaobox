@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125083034) do
+ActiveRecord::Schema.define(version: 20151126084344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,36 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "coupon_histories", force: :cascade do |t|
+    t.integer  "sender_id",   null: false
+    t.integer  "receiver_id"
+    t.integer  "coupon_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "coupon_translations", force: :cascade do |t|
+    t.integer  "coupon_id",  null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  add_index "coupon_translations", ["coupon_id"], name: "index_coupon_translations_on_coupon_id", using: :btree
+  add_index "coupon_translations", ["locale"], name: "index_coupon_translations_on_locale", using: :btree
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "type"
+    t.integer  "discount_type"
+    t.string   "discount_value"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "date_offs", force: :cascade do |t|
     t.date     "start_at",     null: false
     t.date     "end_at",       null: false
@@ -208,6 +238,38 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "gift_translations", force: :cascade do |t|
+    t.integer  "gift_id",     null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "gift_translations", ["gift_id"], name: "index_gift_translations_on_gift_id", using: :btree
+  add_index "gift_translations", ["locale"], name: "index_gift_translations_on_locale", using: :btree
+
+  create_table "gifts", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "gifts_coupons", force: :cascade do |t|
+    t.integer  "gift_id"
+    t.integer  "custom_gift_id"
+    t.integer  "amount",         null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "gifts_coupons", ["custom_gift_id"], name: "index_gifts_coupons_on_custom_gift_id", using: :btree
+  add_index "gifts_coupons", ["gift_id"], name: "index_gifts_coupons_on_gift_id", using: :btree
 
   create_table "item_pictures", force: :cascade do |t|
     t.string   "image_file_name"
@@ -468,6 +530,7 @@ ActiveRecord::Schema.define(version: 20151125083034) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "coupon_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -482,6 +545,7 @@ ActiveRecord::Schema.define(version: 20151125083034) do
   add_foreign_key "faqs", "faq_categories"
   add_foreign_key "feedbacks", "orders"
   add_foreign_key "feedbacks", "users"
+  add_foreign_key "gifts_coupons", "gifts"
   add_foreign_key "notifications", "users"
   add_foreign_key "order_detail_images", "order_items"
   add_foreign_key "order_details", "order_items"

@@ -17,9 +17,21 @@ class Order < ActiveRecord::Base
     :shipping_date, :shipping_time,
     :address, :state,
     presence: true
+
+  # 2. scope
+  scope :registering, -> { where(status: statuses[:registering]) }
+  #5. callbacks
   # 5. callbacks
   # before_create :init_score
+  after_create :set_amount
 
   #6. instance methods
+  # def any_instance_method
+  # end
+  private
+  def set_amount
+    self.update(amount: self.order_details.sum(:price))
+  end
+end
   delegate :full_name, to: :user, prefix: true
 end

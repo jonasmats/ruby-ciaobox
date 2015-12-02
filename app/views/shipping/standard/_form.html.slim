@@ -13,23 +13,10 @@ section.schedule-question-title.clearfix
         span.month-total-cost 
          = @order.amount.present? ? @order.amount : "0.0"
 = form_for @order, url: next_wizard_path, method: :put do |f|
-  / - if @user.errors.any?
-  /   .error_messages
-  /     h2
-  /       = pluralize(@user.errors.count, "error")
-  /       |  prohibited this user from being saved:
-  /     ul
-  /       - @user.errors.full_messages.each do |msg|
-  /         li
-  /           = msg
   = yield f
   .actions
-    / # = f.submit "Continue"
-    / |  or 
-    / # = link_to "skip this step", next_wizard_path
   section.schedule-question-title.schedule-question-btm.clearfix
     .container.schedule-question-inner
-      / a href="#" title="Continuetinue"  Continue
       = f.submit "Continue", class: "btn btn-primary"
       .month-cost
         | Monthly Estimated Cost
@@ -37,4 +24,3 @@ section.schedule-question-title.clearfix
           | $
           span.month-total-cost
             = @order.amount.present? ? @order.amount : "0.0"
-      = f.hidden_field :amount, class: "month-total-cost"

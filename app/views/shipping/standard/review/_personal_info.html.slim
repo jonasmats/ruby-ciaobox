@@ -18,7 +18,8 @@
             h4 
               | Date and time
             a href="#" title="" 
-              = image_tag "images/edit-ic.png", alt: "date and time"
+              = link_to shipping_standard_path(:appoinment) do
+                = image_tag "images/edit-ic.png", alt: "date and time"
             .text-person-btm
               span 
                 = DateTime.parse(order.shipping_date).to_date.strftime("%A, %B %d, %Y")
@@ -34,7 +35,8 @@
             h4 
               | Location
             a href="#" title="" 
-              = image_tag "images/edit-ic.png", alt: "date and time"
+              = link_to shipping_standard_path(:appoinment) do
+                = image_tag "images/edit-ic.png", alt: "date and time"
             .text-person-btm
               p
                 = order.address

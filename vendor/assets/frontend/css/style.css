@@ -3533,3 +3533,14 @@ input[type="radio"]+label {
   background: white;
   color: #3EAE5F;  
 }
+/*reviewPge*/
+.section-review .review-box .store-box-text {
+    margin-left: 3%;
+    width: 85.8%;
+}
+.section-review .review-box .input-copy-wrapper {
+    padding: 20px 31px 16px;
+}
+.section-review .store-box-text h4 span {
+    font-family: "montserrat";
+}
