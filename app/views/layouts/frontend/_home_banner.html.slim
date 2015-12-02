@@ -14,7 +14,7 @@ section.banner.home-banner.wrapper
       .clearfix
         = form_tag "/v1/zip_codes", id: "home_banner_form"
           input.zip-bt[type="text" placeholder="Enter Zip Code" name="zip_code"]
-          input.place-bt[type="button" value="Place order" name="submit" id="home_banner_submit"]
+          input.place-bt[type="submit" value="Place order" name="submit" id="home_banner_submit"]
 
 #zip_code_modal.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
   .modal-dialog role="document" 

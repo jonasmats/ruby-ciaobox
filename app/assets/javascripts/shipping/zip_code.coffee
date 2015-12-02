@@ -1,4 +1,4 @@
-$('#home_banner_submit').click ->
+$('#home_banner_form').submit ->
   $.ajax
     method: 'POST'
     url: $('#home_banner_form').attr 'action'
