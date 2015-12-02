@@ -12,6 +12,7 @@ class Shipping::StandardController < ShippingController
 
       load_shipping
       create_instance
+      list_order_items_in_order_details
 
       # get address/state
       geocode = Geocoder.coordinates(session[:zip_code])
@@ -28,7 +29,9 @@ class Shipping::StandardController < ShippingController
         end
       end
 
-      build_order_details
+      if @order.order_details.empty?
+        build_order_details
+      end
 
     when :review
       create_instance
@@ -64,15 +67,16 @@ class Shipping::StandardController < ShippingController
     when :review
       load_shipping
       create_instance
+      delete_order_details
       set_params
-      if session[:order_id].blank?
-        if @order.save
-          session[:order_id] = @order.id
-        else
-          redirect_to shipping_standard_path(:appoinment), 
-            alert: @order.errors.full_messages and return
-        end
+      # if session[:order_id].blank?
+      if @order.save
+        session[:order_id] = @order.id
+      else
+        redirect_to shipping_standard_path(:appoinment), 
+          alert: @order.errors.full_messages and return
       end
+      # end
       build_feed_back
       load_order_details
     when :confirmation
@@ -80,7 +84,7 @@ class Shipping::StandardController < ShippingController
       delete_order_details
       set_params
       @order.status = Order.statuses[:checking]
-      @order.save
+      @order.save!
     end
     render_wizard
   end
@@ -141,5 +145,13 @@ class Shipping::StandardController < ShippingController
 
   def delete_order_details
     @order.order_details.destroy_all
+  end
+
+  def list_order_items_in_order_details
+    @item_oders = {}
+    @order.order_details.select("order_item_id", "quantity").each do |item|
+      @item_oders[item.order_item_id] = item.quantity 
+    end
+    @item_oders
   end
 end

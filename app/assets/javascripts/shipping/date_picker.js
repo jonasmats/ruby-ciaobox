@@ -6,7 +6,7 @@ $(".date-picker").click(function () {
     $('.date-picker').datetimepicker({
         minDate: new Date(currentYear, currentMonth, currentDate),
         daysOfWeekDisabled: [0, 6],
-        format: 'DD/MM/YYYY'
+        format: 'MM/DD/YYYY'
     });
 });
 $('html').click(function() {
