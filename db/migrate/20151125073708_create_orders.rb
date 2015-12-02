@@ -20,6 +20,7 @@ class CreateOrders < ActiveRecord::Migration
 
       t.boolean :save_image, default: false, null: false
       t.integer :status, default: 0
+      t.datetime :deleted_at
 
       t.timestamps null: false
     end

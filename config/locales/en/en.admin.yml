@@ -394,3 +394,18 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+    orders:
+      index:
+        action: *action
+      form:
+        submit: *submit
+        cancel: *cancel
+        blank: *blank
+        placeholder:
+          name: "Enter coupon name"
+      show:
+        back: *back
+      order:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy

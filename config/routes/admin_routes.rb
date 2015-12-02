@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :import_admins, only: [:new, :create]
     resources :log_actions, only: [:index, :show]
 
-    resources :order_items 
+    resources :order_items
 
     resources :items
     resources :item_members, controller: 'items', type: 'Item::Member'
@@ -41,5 +41,7 @@ Rails.application.routes.draw do
     resources :custom_coupons, controller: :coupons
     resources :custom_gifts, controller: :coupons
     resources :multiple_coupons, controller: :coupons
+
+    resources :orders
   end
 end

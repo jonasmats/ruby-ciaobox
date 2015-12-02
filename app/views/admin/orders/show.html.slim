@@ -1,0 +1,67 @@
+= render partial: "title", locals: {title: "Detail"}
+
+.table-scrollable
+  table.table.table-bordered.table-striped.table-condensed.flip-content
+    thead.flip-content
+      tr
+        th[width="25%"]
+          = link_to admin_orders_path, class: "default" do
+            i.fa.fa-arrow-left
+            = t(".back")
+        th
+          |
+    tbody
+      tr
+        td
+          strong
+            = Order.h :customer_name
+        td
+          = @order.user_full_name
+      tr
+        td
+          strong
+            = Order.h :contact_name
+        td
+          = @order.contact_name
+      tr
+        td
+          strong
+            = Order.h :address
+        td
+          = @order.address
+      tr
+        td
+          strong
+            = Order.h :state
+        td
+          = @order.state
+      tr
+        td
+          strong
+            = Order.h :contact_name
+        td
+          = @order.contact_name
+      tr
+        td
+          strong
+            = Order.h :contact_email
+        td
+          = @order.contact_email
+      tr
+        td
+          strong
+            = Order.h :contact_phone
+        td
+          = @order.contact_phone
+      tr
+        td
+          strong
+            = Order.h :shipping_date
+        td
+          = "#{@order.shipping_date} #{@order.shipping_time}"
+      tr
+        td
+          strong
+            = Order.h :order_details
+        td
+          = render partial: 'order_details'
