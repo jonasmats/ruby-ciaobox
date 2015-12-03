@@ -94,7 +94,7 @@ $(document).ready(function(){
         $(this).next().find("input").val("1");
 
         if ( $(this).hasClass("store-make-space")) {
-            $(this).next().find("input").val("4");
+            $(this).next().find("input").val("1");
             $("#form-overhead").slideDown();
         };
 
