@@ -36,7 +36,6 @@ section.section-2.about
       - @normal_order_items.each_slice(2) do |items|
         .store-box
           = render partial: 'store_box', collection: items, locals: {form: f}
-
     = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
     / section.when-swing.clearfix
     / .container.when-swing-inner

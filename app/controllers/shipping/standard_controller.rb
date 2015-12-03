@@ -9,7 +9,8 @@ class Shipping::StandardController < ShippingController
     when :appoinment
       load_box_order_items
       load_normal_order_items
-
+      load_other_order_items
+      
       load_shipping
       create_instance
       list_order_items_in_order_details
@@ -141,6 +142,10 @@ class Shipping::StandardController < ShippingController
 
   def load_normal_order_items
     @normal_order_items = OrderItem::Normal.all.includes(:translations)
+  end
+
+  def load_other_order_items
+    @other_order_items = OrderItem::Other.all.includes(:translations)
   end
 
   def build_order_details
