@@ -36,17 +36,12 @@ section.section-2.about
       - @normal_order_items.each_slice(2) do |items|
         .store-box
           = render partial: 'store_box', collection: items, locals: {form: f}
+    .larger-item
+      h3 Other items?
+      .store-box
+        = render partial: 'store_box_other', collection: @other_order_items
+    
     = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
-    / section.when-swing.clearfix
-    / .container.when-swing-inner
-    /   .date-picker
-    /     = f.text_field :shipping_date, placeholder: "Date"
-    /     figure
-    /       = image_tag "/master/schedule/date-ic.png"
-    /   .time-picker
-    /     = f.text_field :shipping_time, placeholder: "Time"
-    /     figure
-    /       = image_tag "/master/schedule/time-ic.png"
     section.schedule-question-title.schedule-question-padd.clearfix
       .container.schedule-question-inner
         h2 What address should we meet you at?
@@ -58,12 +53,3 @@ section.section-2.about
           = text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
         .address-meet-bottom
           = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
-    / section.schedule-question-title.schedule-question-btm.clearfix
-    /   .container.schedule-question-inner
-    /     a href="#" title="Update"  Update
-    /     .month-cost
-    /       | Monthly Estimated Cost
-    /       span
-    /         | $
-    /         span.month-total-cost 0.00
-    /     = f.hidden_field :amount, class: "month-total-cost"
