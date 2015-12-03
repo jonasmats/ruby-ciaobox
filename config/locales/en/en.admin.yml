@@ -48,6 +48,8 @@ en:
       un_active: &un_active "Lock"
     faq:
       categories:
+        title:
+          sub_title: FAQ categories management
         index:
           action: *action
         form:
@@ -60,6 +62,8 @@ en:
           delete: *delete
           question_destroy: *question_destroy
     faqs:
+      title:
+        sub_title: FAQs management
       index:
         action: *action
       form:
@@ -73,6 +77,8 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     articles:
+      title:
+        sub_title: "Blog management"
       index:
         action: *action
       show:
@@ -96,6 +102,8 @@ en:
         un_publish: *un_publish
         publish: *publish
     static_pages:
+      title:
+        sub_title: Static management
       index:
         action: *action
       show:
@@ -111,6 +119,8 @@ en:
         question_destroy: *question_destroy
         view: *view
     admins:
+      title:
+        sub_title: "Admin management"
       index:
         action: *action
         download_tools: "Download Tools"
@@ -138,6 +148,8 @@ en:
         active: *active
         un_active: *un_active
     users:
+      title:
+        sub_title: Customers management
       index:
         action: *action
         download_tools: "Download Tools"
@@ -171,6 +183,8 @@ en:
         active: *active
         un_active: *un_active
     banners:
+      title:
+        sub_title: Banner management
       index:
         action: *action
       show:
@@ -188,6 +202,8 @@ en:
         un_publish: *un_publish
         publish: *publish
     roles:
+      title:
+        sub_title: Roles management
       index:
         title: "List"
         action: *action
@@ -206,6 +222,8 @@ en:
         question_destroy: *question_destroy
     payment:
       methods:
+        title:
+          sub_title: Payment method
         index:
           action: *action
           new: *new
@@ -218,6 +236,8 @@ en:
           delete: *delete
           question_destroy: *question_destroy
       infors:
+        title:
+          sub_title: Payment method
         index:
           action: *action
           new: *new
@@ -230,6 +250,8 @@ en:
           delete: *delete
           question_destroy: *question_destroy
     social_networks:
+      title:
+        sub_title: Social Network
       index:
         action: *action
       form:
@@ -257,6 +279,8 @@ en:
         sub_title: "Log Actions"
     employee:
       users:
+        title:
+            sub_title: Customer management
         index:
           action: *action
           download_tools: "Download Tools"
@@ -365,6 +389,8 @@ en:
       title:
         sub_title: "Order Items management"
     gifts:
+      title:
+        sub_title: Gift management
       index:
         action: *action
       form:
@@ -380,6 +406,8 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     coupons:
+      title:
+        sub_title: Coupon management
       index:
         action: *action
       form:
@@ -395,6 +423,8 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     orders:
+      title:
+        sub_title: Orders management
       index:
         action: *action
       form:

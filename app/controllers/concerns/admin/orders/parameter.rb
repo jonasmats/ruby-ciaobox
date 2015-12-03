@@ -4,7 +4,7 @@ module Admin::Orders::Parameter
   private
     def private_params
       if params[:order]
-        params.require(:order).permit(:order_category_id])
+        params.require(:order).permit(:order_category_id)
       end
     end
 end

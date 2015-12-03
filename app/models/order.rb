@@ -32,6 +32,5 @@ class Order < ActiveRecord::Base
   def set_amount
     self.update(amount: self.order_details.sum(:price))
   end
-end
   delegate :full_name, to: :user, prefix: true
 end
