@@ -1,5 +1,6 @@
 = render partial: 'layouts/shared/flash/notice'
 = render partial: 'layouts/shared/flash/error'
+- total_amount = @order.order_details.sum(:price)
 section.schedule-question-title.clearfix
   figure
     = image_tag "/master/schedule/top-arrow.png"
@@ -11,7 +12,7 @@ section.schedule-question-title.clearfix
       span
         | $
         span.month-total-cost 
-         = @order.amount.present? ? @order.amount : "0.0"
+         = total_amount
 = form_for @order, url: next_wizard_path, method: :put do |f|
   = yield f
   .actions
@@ -23,4 +24,4 @@ section.schedule-question-title.clearfix
         span
           | $
           span.month-total-cost
-            = @order.amount.present? ? @order.amount : "0.0"
+            = total_amount

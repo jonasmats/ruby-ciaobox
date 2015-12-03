@@ -81,10 +81,16 @@ class Shipping::StandardController < ShippingController
       load_order_details
     when :confirmation
       create_instance
-      delete_order_details
       set_params
-      @order.status = Order.statuses[:checking]
-      @order.save!
+      if @order.valid?
+        delete_order_details
+        set_params
+        @order.status = Order.statuses[:amount_confirm]
+        @order.save
+      else
+        redirect_to shipping_standard_path(:review), 
+          alert: @order.errors.full_messages and return
+      end
     end
     render_wizard
   end

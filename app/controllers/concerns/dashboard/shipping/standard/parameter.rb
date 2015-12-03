@@ -6,7 +6,7 @@ module Dashboard::Shipping::Standard::Parameter
       if params[:order]
         params.require(:order).permit(:shipping_date, :shipping_time,
           :address, :state, :additional,
-          :contact_name, :contact_email, :contact_email,
+          :contact_name, :contact_email, :contact_phone,
           order_details_attributes: [:id, :quantity, :order_item_id],
           feedback_attributes: [:id, :content]
         )

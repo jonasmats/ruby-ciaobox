@@ -22,7 +22,8 @@
                 = image_tag "images/edit-ic.png", alt: "date and time"
             .text-person-btm
               span 
-                = DateTime.parse(order.shipping_date).to_date.strftime("%A, %B %d, %Y")
+                / # = DateTime.parse(order.shipping_date).to_date.strftime("%A, %B %d, %Y")
+                = order.shipping_date
               p
                 = order.shipping_time
                 br/

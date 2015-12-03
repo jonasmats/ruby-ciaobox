@@ -39,6 +39,7 @@ group :development, :test do
   gem 'hirb-unicode'  # Unicode support for hirb
   gem 'awesome_print' # Pretty print your Ruby objects with style
   gem 'pry-byebug'    # Pry navigation commands via byebug
+  gem 'quiet_assets'
 end
 
 group :development do
