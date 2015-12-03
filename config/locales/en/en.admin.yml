@@ -37,7 +37,7 @@ en:
       cancel: &cancel "Cancel"
       action: &action "Action"
       edit: &edit "Edit"
-      edit: &view "View"
+      view: &view "View"
       delete: &delete "Delete"
       blank: &blank "--Please choose--"
       question_destroy: &question_destroy "Are you sure?"
@@ -46,9 +46,20 @@ en:
       back: &back " Back"
       active: &active "Active"
       un_active: &un_active "Lock"
+      list: &list "List"
+      detail: &detail "Detail"
     faq:
       categories:
+        edit:
+          title: *edit
+        show:
+          title: *detail
+        new:
+          title: *new
+        title:
+          sub_title: FAQ categories management
         index:
+          title: *list
           action: *action
         form:
           submit: *submit
@@ -60,7 +71,16 @@ en:
           delete: *delete
           question_destroy: *question_destroy
     faqs:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: FAQs management
       index:
+        title: *list
         action: *action
       form:
         submit: *submit
@@ -73,9 +93,13 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     articles:
+      title:
+        sub_title: "Blog management"
       index:
+        title: *list
         action: *action
       show:
+        title: *detail
         back: *back
         un_publish: *un_publish
         publish: *publish
@@ -95,8 +119,21 @@ en:
         view: *view
         un_publish: *un_publish
         publish: *publish
+      new:
+        title: *new
+      edit:
+        title: *edit
     static_pages:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: Static management
       index:
+        title: *list
         action: *action
       show:
         back: *back
@@ -111,7 +148,10 @@ en:
         question_destroy: *question_destroy
         view: *view
     admins:
+      title:
+        sub_title: "Admin management"
       index:
+        title: *list
         action: *action
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
@@ -137,8 +177,23 @@ en:
         view: *view
         active: *active
         un_active: *un_active
+      edit:
+        title: *edit
+      new:
+        title: *new
+      show:
+        title: *detail
     users:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: Customers management
       index:
+        title: *list
         action: *action
         download_tools: "Download Tools"
         download_csv: "Download to CSV"
@@ -171,7 +226,16 @@ en:
         active: *active
         un_active: *un_active
     banners:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: Banner management
       index:
+        title: *list
         action: *action
       show:
         back: *back
@@ -188,6 +252,8 @@ en:
         un_publish: *un_publish
         publish: *publish
     roles:
+      title:
+        sub_title: Roles management
       index:
         title: "List"
         action: *action
@@ -206,6 +272,8 @@ en:
         question_destroy: *question_destroy
     payment:
       methods:
+        title:
+          sub_title: Payment method
         index:
           action: *action
           new: *new
@@ -218,6 +286,8 @@ en:
           delete: *delete
           question_destroy: *question_destroy
       infors:
+        title:
+          sub_title: Payment method
         index:
           action: *action
           new: *new
@@ -230,7 +300,16 @@ en:
           delete: *delete
           question_destroy: *question_destroy
     social_networks:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: Social Network
       index:
+        title: *list
         action: *action
       form:
         submit: *submit
@@ -257,6 +336,8 @@ en:
         sub_title: "Log Actions"
     employee:
       users:
+        title:
+            sub_title: Customer management
         index:
           action: *action
           download_tools: "Download Tools"
@@ -291,17 +372,17 @@ en:
           un_active: *un_active
       articles:
         index:
-          title: "List"
+          title: *list
           action: *action
         show:
-          title: Detail
+          title: *detail
           back: *back
           un_publish: *un_publish
           publish: *publish
         edit:
-          title: "Edit"
+          title: *edit
         new:
-          title: New
+          title: *new
         form:
           submit: *submit
           blank: *blank
@@ -365,7 +446,16 @@ en:
       title:
         sub_title: "Order Items management"
     gifts:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: Gift management
       index:
+        title: *list
         action: *action
       form:
         submit: *submit
@@ -380,7 +470,16 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     coupons:
+      edit:
+        title: *edit
+      show:
+        title: *detail
+      new:
+        title: *new
+      title:
+        sub_title: Coupon management
       index:
+        title: *list
         action: *action
       form:
         submit: *submit
@@ -395,7 +494,10 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     orders:
+      title:
+        sub_title: Orders management
       index:
+        title: *list
         action: *action
       form:
         submit: *submit
@@ -404,6 +506,7 @@ en:
         placeholder:
           name: "Enter coupon name"
       show:
+        title: *list
         back: *back
       order:
         edit: *edit

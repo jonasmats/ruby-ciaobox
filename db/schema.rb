@@ -323,6 +323,7 @@ ActiveRecord::Schema.define(version: 20151126084344) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.datetime "deleted_at"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(version: 20151126084344) do
     t.float    "price",         null: false
     t.integer  "quantity",      null: false
     t.string   "barcode",       null: false
+    t.datetime "deleted_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -362,6 +364,7 @@ ActiveRecord::Schema.define(version: 20151126084344) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "type"
+    t.datetime "deleted_at"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
@@ -383,6 +386,7 @@ ActiveRecord::Schema.define(version: 20151126084344) do
     t.string   "contact_phone"
     t.boolean  "save_image",      default: false, null: false
     t.integer  "status",          default: 0
+    t.datetime "deleted_at"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
