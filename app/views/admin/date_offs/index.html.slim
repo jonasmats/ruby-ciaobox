@@ -11,6 +11,8 @@
           th
             = DateOff.h :end_date
           th
+            = DateOff.h :date_off_type
+          th
             = t(".action")
       tbody
       = render partial: 'date_off', collection: @date_offs

@@ -1,7 +1,7 @@
 class DateOff < ActiveRecord::Base
   belongs_to :subject, polymorphic: true
 
-  validates :start_at, :end_at, presence: true
+  validates :start_at, :end_at, :date_off_type, presence: true
 
-  scope :company, -> { where('subject_type is null') }
+  enum date_off_type: { comapny: 0, driver: 1 }
 end

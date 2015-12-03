@@ -1,0 +1,14 @@
+tr
+  td
+    = date_off.start_at
+  td
+    = date_off.end_at
+  td
+    = date_off.date_off_type
+  td
+    = link_to edit_admin_date_off_path(date_off), class: "btn default btn-xs purple" do
+      i.fa.fa-edit
+      = t(".edit")
+    = link_to admin_date_off_path(date_off), class: "btn default btn-xs black" , method: :delete, data: {confirm: t(".question_destroy")} do
+      i.fa.fa-trash-o
+      = t(".delete")

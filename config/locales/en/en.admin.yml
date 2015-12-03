@@ -516,7 +516,7 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
-    date_off_of_companies:
+    date_offs:
       edit:
         title: *edit
       new:

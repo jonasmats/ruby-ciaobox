@@ -1,6 +1,6 @@
 .portlet.light.bg-inverse
   .portlet-body.form
-    = form_for [:admin, @date_off], html: {class: "form-horizontal"}, url: (@date_off.new_record?  ? admin_date_off_of_companies_path : admin_date_off_of_company_path) do |f|
+    = form_for [:admin, @date_off], html: {class: "form-horizontal"} do |f|
       = render "/layouts/shared/form_errors/admin", object: f.object
       .form-body
         .form-group
@@ -13,11 +13,16 @@
             = DateOff.h :end_at
           .col-md-4
             = f.text_field :end_at, class: "form-control daterange", id: 'feature_end_date'
+        .form-group.last
+          label.col-md-3.control-label
+            = DateOff.h :date_off_type
+          .col-md-4
+            = f.select :date_off_type, options_for_select(DateOff.date_off_types.map{|k, v| [t(".#{k}"), k]} , selected: @date_off.date_off_type), { include_blank: t('.blank')}, {class: "form-control"}
       .form-actions
         .row
           .col-md-offset-3.col-md-4
             = f.submit class: "btn green"
-            = link_to admin_date_off_of_companies_path, class: "btn default" do
+            = link_to admin_date_offs_path, class: "btn default" do
               = t(".cancel")
 
 javascript:
