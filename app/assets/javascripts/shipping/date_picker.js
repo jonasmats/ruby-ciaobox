@@ -1,4 +1,16 @@
-$(".date-picker").click(function () {
+// $(".date-picker").click(function () {
+//     var date = new Date();
+//     var currentMonth = date.getMonth();
+//     var currentDate = date.getDate();
+//     var currentYear = date.getFullYear();
+//     $('.date-picker').datetimepicker({
+//         minDate: new Date(currentYear, currentMonth, currentDate),
+//         daysOfWeekDisabled: [0, 6],
+//         format: 'MM/DD/YYYY'
+//     });
+// });
+
+$(function () {
     var date = new Date();
     var currentMonth = date.getMonth();
     var currentDate = date.getDate();
@@ -9,6 +21,7 @@ $(".date-picker").click(function () {
         format: 'MM/DD/YYYY'
     });
 });
+
 $('html').click(function() {
     $(".cs-options").hide();
 });

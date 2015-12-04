@@ -85,22 +85,25 @@ $(document).ready(function(){
 
     /*when click store-box*/
     $(".section-schedule .store-box-normal").click(function(){
+        if ( $(this).hasClass("store-box-first") ) {
 
-        if ( $(this).hasClass("store-box-orther") ) {
-            $(this).addClass("overlay-forever");
-            $("#form-overbottom").slideDown();
-        };
-        $(this).next().addClass("store-box-normal");
-        $(this).next().find("input").val("1");
-
-        if ( $(this).hasClass("store-make-space")) {
+            if ( $(this).hasClass("store-box-orther") ) {
+                $(this).addClass("overlay-forever");
+                $("#form-overbottom").slideDown();
+            };
+            $(this).next().addClass("store-box-normal");
             $(this).next().find("input").val("1");
-            $("#form-overhead").slideDown();
-        };
 
-        $(this).removeClass("store-box-normal");
-        /*--caculate total cost--*/
-        total_cost();
+            if ( $(this).hasClass("store-make-space")) {
+                $(this).next().find("input").val("1");
+                $("#form-overhead").slideDown();
+            };
+
+            $(this).removeClass("store-box-normal");
+            /*--caculate total cost--*/
+            total_cost();
+
+        }
 
     });
 

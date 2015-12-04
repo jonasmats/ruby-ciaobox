@@ -36,10 +36,10 @@ section.section-2.about
       - @normal_order_items.each_slice(2) do |items|
         .store-box
           = render partial: 'store_box', collection: items, locals: {form: f}
-    .larger-item
-      h3 Other items?
-      .store-box
-        = render partial: 'store_box_other', collection: @other_order_items
+    / .larger-item
+      / h3 Other items?
+      / .store-box
+        / # = render partial: 'store_box_other', collection: @other_order_items
     
     = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
     section.schedule-question-title.schedule-question-padd.clearfix
