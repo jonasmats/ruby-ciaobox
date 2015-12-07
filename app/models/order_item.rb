@@ -7,4 +7,10 @@ class OrderItem < ActiveRecord::Base
   has_attached_file :avatar, url: "/images/:class/:attachment/:basename-:hash.:extension",
     hash_secret: "@CiaoboxSecretSocialIcont@" # decode with base64
   validates_attachment :avatar, content_type: { content_type: /\Aimage\/.*\Z/ }
+
+  scope :box_and_bin, -> { where(type: [OrderItem::Box.name, OrderItem::Bin.name]) }
+  scope :order_bin_box, -> { order(type: :asc) }
+
+  scope :normal_and_other, -> { where(type: [OrderItem::Normal.name, OrderItem::Other.name]) }
+  scope :order_normal_other, -> { order(type: :asc) }
 end

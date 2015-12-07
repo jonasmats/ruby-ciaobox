@@ -11,36 +11,41 @@ section.section-2.about
   section.like-to-store.section-schedule.clearfix
     .container
       h3 Choose how many, we'll bring them to you.
-      - @box_order_items.each_slice(2) do |items|
+      - @box_and_bin_order_items.each_slice(2) do |items|
         .store-box
-          = render partial: 'store_box', collection: items, locals: {form: f}
-      / #form-overhead.store-box.form-expand
-      /   p
-      /     strong Always know what you're storing.
-      /     | Along with transcribing your
-      /     | labels, we can take overhead photos of your bins–for free.
-      /   form#overhead-photos
-      /     .detail-radio-div.checked
-      /       input#yes-photo checked="" name="photo_inventory" type="radio" value="true" /
-      /       label for="yes-photo" 
-      /         strong Yes,
-      /         | I want photos of my stuff
-      /         span.hide-for-tablet.hide-for-mobile> so I always know what I'm storing
-      /         | \.
-      /     .detail-radio-div
-      /       input#no-photo name="photo_inventory" type="radio" value="false" /
-      /       label for="no-photo" 
-      /         strong No thanks,
+          = render partial: 'shipping/standard/appoinment/store_box', collection: items, locals: {form: f}
+      #form-overhead.store-box.form-expand
+        p
+          strong Always know what you're storing.
+          | Along with transcribing your
+          | labels, we can take overhead photos of your bins–for free.
+        #overhead-photos
+          .detail-radio-div
+            = f.radio_button :save_image, true
+            label for="yes-photo" 
+              strong Yes,
+              | I want photos of my stuff
+              span.hide-for-tablet.hide-for-mobile> so I always know what I'm storing
+          .detail-radio-div.checked
+            = f.radio_button :save_image, false
+            label for="no-photo" 
+              strong No thanks,
     .larger-item
       h3 Would you like to store any larger items?
-      - @normal_order_items.each_slice(2) do |items|
+      - @normal_and_other_order_items.each_slice(2) do |items|
         .store-box
-          = render partial: 'store_box', collection: items, locals: {form: f}
-    / .larger-item
-      / h3 Other items?
-      / .store-box
-        / # = render partial: 'store_box_other', collection: @other_order_items
-    
+          = render partial: 'shipping/standard/appoinment/store_box', collection: items, locals: {form: f}
+      #form-overbottom.store-box-end.form-expand  
+        p
+          | Describe your item. We'll do our best to accomodate your needs.
+          | See
+          = link_to "/" do
+            a href="/faq/" target="_blank"  FAQ
+        #other-items
+          #input-other-item.group
+            input.inline-input.js-other-item maxlength="50" placeholder=("Surfboard etc.") type="text" /
+            button.inline-button type="submit"  Add Item
+          #other-item-tags
     = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
     section.schedule-question-title.schedule-question-padd.clearfix
       .container.schedule-question-inner

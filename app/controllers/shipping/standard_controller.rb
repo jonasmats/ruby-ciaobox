@@ -7,9 +7,8 @@ class Shipping::StandardController < ShippingController
 
     case step
     when :appoinment
-      load_box_order_items
-      load_normal_order_items
-      load_other_order_items
+      load_box_and_bin_order_items
+      load_normal_and_other_order_items
       
       load_shipping
       create_instance
@@ -136,17 +135,17 @@ class Shipping::StandardController < ShippingController
       end
   end
 
-  def load_box_order_items
-    @box_order_items = OrderItem::Box.all.includes(:translations)
+  def load_box_and_bin_order_items
+    @box_and_bin_order_items = OrderItem.box_and_bin.order_bin_box.includes(:translations)
   end
 
-  def load_normal_order_items
-    @normal_order_items = OrderItem::Normal.all.includes(:translations)
+  def load_normal_and_other_order_items
+    @normal_and_other_order_items = OrderItem.normal_and_other.order_normal_other.includes(:translations)
   end
 
-  def load_other_order_items
-    @other_order_items = OrderItem::Other.all.includes(:translations)
-  end
+  # def load_other_order_items
+  #   @other_order_items = OrderItem::Other.all.includes(:translations)
+  # end
 
   def build_order_details
     OrderItem.all.count(:id).times do

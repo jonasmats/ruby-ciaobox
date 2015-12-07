@@ -70,41 +70,11 @@ $(document).ready(function(){
         total_cost();
     });
 
-    /*for checkbox */
-    $(".detail-radio-div").click(function(){
-        $(this).parent().find(".detail-radio-div").removeClass("checked");
-        $(this).addClass("checked");
-    });
-
     /*when hover store-box*/
     $(".store-box-text").hover(function(){
         $(this).addClass("overlay");
     }, function(){
         $(this).removeClass("overlay");
-    });
-
-    /*when click store-box*/
-    $(".section-schedule .store-box-normal").click(function(){
-        if ( $(this).hasClass("store-box-first") ) {
-
-            if ( $(this).hasClass("store-box-orther") ) {
-                $(this).addClass("overlay-forever");
-                $("#form-overbottom").slideDown();
-            };
-            $(this).next().addClass("store-box-normal");
-            $(this).next().find("input").val("1");
-
-            if ( $(this).hasClass("store-make-space")) {
-                $(this).next().find("input").val("1");
-                $("#form-overhead").slideDown();
-            };
-
-            $(this).removeClass("store-box-normal");
-            /*--caculate total cost--*/
-            total_cost();
-
-        }
-
     });
 
     /*when click plus*/
@@ -200,6 +170,38 @@ $(document).on('click', 'a.remove-item', function(){
     $(this).parent().remove();
     /*--caculate total cost--*/
     total_cost();
+});
+ /*for checkbox */
+$(document).on('click', '.detail-radio-div', function(){
+    $(this).parent().find(".detail-radio-div").removeClass("checked");
+    $(this).parent().find(".detail-radio-div input").prop("checked", "false");
+    $(this).addClass("checked");
+    $(this).find("input").prop("checked", "checked");
+});
+
+/*when click store-box dynamically*/
+$(document).on('click', '.section-schedule .store-box-normal', function(){
+
+    if ( $(this).hasClass("store-box-first") ) {
+
+        if ( $(this).hasClass("store-box-orther") ) {
+            $(this).addClass("overlay-forever");
+            $("#form-overbottom").slideDown();
+        };
+        $(this).next().addClass("store-box-normal");
+        $(this).next().find("input").val("1");
+
+        if ( $(this).hasClass("store-make-space")) {
+            $(this).next().find("input").val("1");
+            $("#form-overhead").slideDown();
+        };
+
+        $(this).removeClass("store-box-normal");
+        /*--caculate total cost--*/
+        total_cost();
+
+    }
+
 });
 
 // $('a.icon-item').on('click', function(){
