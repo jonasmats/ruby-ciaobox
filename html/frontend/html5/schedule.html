@@ -346,7 +346,7 @@
      </section>
      <section class="when-swing clearfix">
           <div class="container when-swing-inner">
-                <div class="date-picker input-group date">
+                <div class="date-picker input-group date ">
                   <input type="text" placeholder="Date">
                   <figure><img src="images/date-ic.png" alt=""></figure>      
                   <span class="input-group-addon">
@@ -461,12 +461,16 @@
     </ul>
 </div>
      <script type="text/javascript">
-        $(".date-picker").click(function () {
+        $(function () {
+            var minDay = (moment().add(1, 'days').startOf('isoDay'));
+            var maxDay = (moment().add(20, 'days').startOf('isoDay'));
             $('.date-picker').datetimepicker({
-                daysOfWeekDisabled: [0, 6],
-                format: 'DD/MM/YYYY'
+                format: 'DD/MM/YYYY',
+                minDate: minDay,
+                maxDate: maxDay
             });
         });
+
         $('html').click(function() {
             $(".cs-options").hide();
         });
