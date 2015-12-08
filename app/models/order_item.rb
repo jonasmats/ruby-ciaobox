@@ -8,6 +8,8 @@ class OrderItem < ActiveRecord::Base
     hash_secret: "@CiaoboxSecretSocialIcont@" # decode with base64
   validates_attachment :avatar, content_type: { content_type: /\Aimage\/.*\Z/ }
 
+  scope :bin, -> { where(type: OrderItem::Bin.name) }
+
   scope :box_and_bin, -> { where(type: [OrderItem::Box.name, OrderItem::Bin.name]) }
   scope :order_bin_box, -> { order(type: :asc) }
 

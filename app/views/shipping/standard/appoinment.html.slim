@@ -14,7 +14,7 @@ section.section-2.about
       - @box_and_bin_order_items.each_slice(2) do |items|
         .store-box
           = render partial: 'shipping/standard/appoinment/store_box', collection: items, locals: {form: f}
-      #form-overhead.store-box.form-expand
+      #form-overhead.store-box.form-expand style="#{(@item_oders.keys & OrderItem::Bin.all.pluck(:id)).blank? ? "" : "display: block;"}"
         p
           strong Always know what you're storing.
           | Along with transcribing your

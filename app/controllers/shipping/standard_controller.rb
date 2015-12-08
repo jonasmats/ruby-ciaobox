@@ -136,11 +136,11 @@ class Shipping::StandardController < ShippingController
   end
 
   def load_box_and_bin_order_items
-    @box_and_bin_order_items = OrderItem.box_and_bin.order_bin_box.includes(:translations)
+    @box_and_bin_order_items = OrderItem.box_and_bin.includes(:translations)
   end
 
   def load_normal_and_other_order_items
-    @normal_and_other_order_items = OrderItem.normal_and_other.order_normal_other.includes(:translations)
+    @normal_and_other_order_items = OrderItem.normal_and_other.includes(:translations)
   end
 
   # def load_other_order_items

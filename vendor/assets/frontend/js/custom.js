@@ -134,7 +134,10 @@ $(document).ready(function(){
         e.preventDefault();
         $nameItem = $("#input-other-item input").val();
         if ( !$nameItem.match(/^\s*$/) ) {
-            $("#other-item-tags").append("<div class='other-item'><a class='remove-item'>×</a><span>"+$nameItem+"</span></div>");
+            id_num = new Date().getTime();
+            input = "<input value='"+$nameItem+"' type='hidden' name='order_items_user[]''>";
+            $("#other-item-tags").append("<div class='other-item' id='"+id_num+"'><a class='remove-item'>×</a><span>"+$nameItem+"</span></div>");
+            $("#"+id_num).append(input);
             $("#input-other-item input").val('');
             /*--caculate total cost--*/
             total_cost();
