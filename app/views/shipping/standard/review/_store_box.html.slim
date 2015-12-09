@@ -34,16 +34,17 @@
         | $
         span.store-cost 
           = store_box.order_item.price
-      .review-ic
-        figure.re-edit
-          = image_tag "images/edit-ic.png", alt: "date and time"
-        figure.re-remove
-          = image_tag "images/delete-ic.png", alt: "date and time"
+      - unless store_box.order_item.type == OrderItem::Customer.name
+        .review-ic
+          figure.re-edit
+            = image_tag "images/edit-ic.png", alt: "date and time"
+          figure.re-remove
+            = image_tag "images/delete-ic.png", alt: "date and time"
   .schedule-box.store-box-text.input-copy-wrapper
     .input-copy
       .booking-icon-background-num.js-nav-min
         span.booking-icon.js-nav.icon-min
       = form.text_field "[order_details_attributes][#{store_box.id}][quantity]", class: "item-input", value: store_box.quantity
-      = form.hidden_field "[order_details_attributes][#{store_box.id}][order_item_id]", value: store_box.order_item_id
       .booking-icon-background-num.js-nav-plus
         span.booking-icon.js-nav.icon-plus
+= form.hidden_field "[order_details_attributes][#{store_box.id}][order_item_id]", value: store_box.order_item_id

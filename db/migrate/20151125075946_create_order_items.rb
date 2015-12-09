@@ -5,7 +5,7 @@ class CreateOrderItems < ActiveRecord::Migration
       t.attachment :avatar
       t.string :type
       t.datetime :deleted_at
-
+      t.references :user, index: true, foreign_key: true, null: true
       t.timestamps null: false
     end
     OrderItem.create_translation_table! title: :string, description: :text

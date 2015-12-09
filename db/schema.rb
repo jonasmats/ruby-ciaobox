@@ -365,9 +365,12 @@ ActiveRecord::Schema.define(version: 20151126084344) do
     t.datetime "avatar_updated_at"
     t.string   "type"
     t.datetime "deleted_at"
+    t.integer  "user_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
+
+  add_index "order_items", ["user_id"], name: "index_order_items_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -554,6 +557,7 @@ ActiveRecord::Schema.define(version: 20151126084344) do
   add_foreign_key "order_detail_images", "order_items"
   add_foreign_key "order_details", "order_items"
   add_foreign_key "order_details", "orders"
+  add_foreign_key "order_items", "users"
   add_foreign_key "orders", "shippings"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_infors", "payment_methods"

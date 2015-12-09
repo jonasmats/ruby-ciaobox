@@ -1918,7 +1918,7 @@ padding-top: 16px;
   position: absolute;
   right: 38px;
   top: 14px;
-  width: 35px;
+  width: 85%;
   background: none;
   border: 0;
 }
@@ -2141,7 +2141,13 @@ padding-top: 16px;
 .person-info > figure {
   display: inline-block;
   vertical-align: middle;
+  width: 50px;
+  height: 50px;
 }
+.person-info > figure > img {
+  width: 100%;
+}
+
 .personal-info-name a {
   color: #3d3d3d;
   float: right;
@@ -3254,6 +3260,12 @@ padding-top: 16px;
 .detail-radio-div:hover {
     background: #B8ECC8;
 }
+.detail-radio-div label {
+    color: #3e3e40;
+}
+.detail-radio-div.checked label {
+    color: white;
+}
 .detail-radio-div input[type="radio"] {
     margin: 0;
 }
@@ -3266,15 +3278,11 @@ input[type="radio"]+label {
 }
 .detail-radio-div input[type="radio"]+label {
     display: inline-block;
-    color: #3e3e40;
     width: calc(100% - 27px);
     margin-right: 0;
     font-size: 15px;
     font-weight: normal;
     cursor: pointer;
-}
-.detail-radio-div input[type="radio"]:checked+label {
-    color: white;
 }
 
 .store-box-orther {
@@ -3284,7 +3292,7 @@ input[type="radio"]+label {
   cursor: pointer;
   display: none;
 }
-.store-box-normal.store-box-text {
+.schedule-box.store-box-normal.store-box-text {
   display: block;
 }
 .overlay.store-box-text, .overlay-forever.store-box-text {

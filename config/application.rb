@@ -35,5 +35,8 @@ module Ciaobox
     config.assets.paths << Rails.root.join("metronic")
     config.assets.paths << Rails.root.join("frontend")
     config.assets.precompile += %w( *.css *.js *.png *.jpg)
+
+    #Quite assets
+    config.quiet_assets = true
   end
 end

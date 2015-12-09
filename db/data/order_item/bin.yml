@@ -1,7 +1,7 @@
 -
   data:
-    title: Wardrobe Box
-    price: 25
+    title: MakeSpace Bin
+    price: 6.25
     description: description description description
   avatar:
-    file: wardrob-ic.png
+    file: bin-ic.png

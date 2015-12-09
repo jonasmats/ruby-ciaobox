@@ -47,10 +47,3 @@
     description: description description description
   avatar:
     file: mini-fridge.png
--
-  data:
-    title: Other Items
-    price: 12.50
-    description: description description description
-  avatar:
-    file: question-ic.png

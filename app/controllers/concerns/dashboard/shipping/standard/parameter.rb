@@ -5,8 +5,8 @@ module Dashboard::Shipping::Standard::Parameter
     def private_params
       if params[:order]
         params.require(:order).permit(:shipping_date, :shipping_time,
-          :address, :state, :additional,
-          :contact_name, :contact_email, :contact_email,
+          :address, :state, :additional, :save_image,
+          :contact_name, :contact_email, :contact_phone,
           order_details_attributes: [:id, :quantity, :order_item_id],
           feedback_attributes: [:id, :content]
         )
@@ -23,5 +23,11 @@ module Dashboard::Shipping::Standard::Parameter
       end
     end
     filted
+  end
+
+  def order_item_user_params
+    if params.keys.include? "order_items_user"
+      params.require(:order_items_user)
+    end
   end
 end

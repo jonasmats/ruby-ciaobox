@@ -1,7 +1,7 @@
 -
   data:
-    title: Wardrobe Box
-    price: 25
+    title: Other Items
+    price: 12.50
     description: description description description
   avatar:
-    file: wardrob-ic.png
+    file: question-ic.png

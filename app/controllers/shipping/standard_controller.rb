@@ -7,13 +7,12 @@ class Shipping::StandardController < ShippingController
 
     case step
     when :appoinment
-      load_box_order_items
-      load_normal_order_items
-
+      load_box_and_bin_order_items
+      load_normal_and_other_order_items
+      
       load_shipping
       create_instance
       list_order_items_in_order_details
-
       # get address/state
       geocode = Geocoder.coordinates(session[:zip_code])
       result = Geocoder.search(geocode).first
@@ -67,11 +66,15 @@ class Shipping::StandardController < ShippingController
     when :review
       load_shipping
       create_instance
+      delete_order_item_customer_in_order_detail
       delete_order_details
       set_params
       # if session[:order_id].blank?
       if @order.save
         session[:order_id] = @order.id
+        if order_item_user_params.present?
+          create_order_item_user
+        end
       else
         redirect_to shipping_standard_path(:appoinment), 
           alert: @order.errors.full_messages and return
@@ -81,10 +84,16 @@ class Shipping::StandardController < ShippingController
       load_order_details
     when :confirmation
       create_instance
-      delete_order_details
       set_params
-      @order.status = Order.statuses[:checking]
-      @order.save!
+      if @order.valid?
+        delete_order_details
+        set_params
+        @order.status = Order.statuses[:amount_confirm]
+        @order.save
+      else
+        redirect_to shipping_standard_path(:review), 
+          alert: @order.errors.full_messages and return
+      end
     end
     render_wizard
   end
@@ -129,13 +138,17 @@ class Shipping::StandardController < ShippingController
       end
   end
 
-  def load_box_order_items
-    @box_order_items = OrderItem::Box.all.includes(:translations)
+  def load_box_and_bin_order_items
+    @box_and_bin_order_items = OrderItem.box_and_bin.includes(:translations)
   end
 
-  def load_normal_order_items
-    @normal_order_items = OrderItem::Normal.all.includes(:translations)
+  def load_normal_and_other_order_items
+    @normal_and_other_order_items = OrderItem.normal_and_other.includes(:translations)
   end
+
+  # def load_other_order_items
+  #   @other_order_items = OrderItem::Other.all.includes(:translations)
+  # end
 
   def build_order_details
     OrderItem.all.count(:id).times do
@@ -147,11 +160,36 @@ class Shipping::StandardController < ShippingController
     @order.order_details.destroy_all
   end
 
+  def delete_order_item_customer_in_order_detail
+    list_order_items_in_order_details
+    order_item_customer_in_order_detail_id = (@item_oders.keys & current_user.order_items.pluck(:id))
+    if order_item_customer_in_order_detail_id.present?
+      order_item_customer_in_order_detail_id.each do |id|
+        OrderItem::Customer.find(id).destroy
+      end
+    end
+  end
+
   def list_order_items_in_order_details
     @item_oders = {}
     @order.order_details.select("order_item_id", "quantity").each do |item|
       @item_oders[item.order_item_id] = item.quantity 
     end
     @item_oders
+  end
+
+  def create_order_item_user
+    order_item_user_params.each do |title|
+      order_item_user = OrderItem::Customer.new
+      order_item_user.title = title
+      order_item_user.price = 6.25
+      order_item_user.user = current_user
+      order_item_user.avatar = File.new(Rails.public_path.join("master/order_items/other/question-ic.png"))
+      order_item_user.save
+      @order.order_details.create(
+        order_item: order_item_user,
+        quantity: 1
+      )
+    end
   end
 end
