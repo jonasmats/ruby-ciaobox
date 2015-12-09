@@ -1,0 +1,44 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Schedule
+= render partial: "fly_step"
+
+= render layout: 'form' do |f|
+
+  section.like-to-store.section-schedule.clearfix
+    .container
+      h3 Choose how many, we'll bring them to you.
+      - @bin_order_items.each_slice(2) do |items|
+        .store-box
+          = render partial: 'shipping/fly/appoinment/store_box', collection: items, locals: {form: f}
+      #form-overhead.store-box.form-expand style="#{(@item_oders.keys & OrderItem::Bin.all.pluck(:id)).blank? ? "" : "display: block;"}"
+        p
+          strong Always know what you're storing.
+          | Along with transcribing your
+          | labels, we can take overhead photos of your bins–for free.
+        #overhead-photos
+          .detail-radio-div
+            = f.radio_button :save_image, true
+            label for="yes-photo" 
+              strong Yes,
+              | I want photos of my stuff
+              span.hide-for-tablet.hide-for-mobile> so I always know what I'm storing
+          .detail-radio-div.checked
+            = f.radio_button :save_image, false
+            label for="no-photo" 
+              strong No thanks,
+    = render partial: 'shipping/fly/appoinment/date_time', locals: {form: f}
+    section.schedule-question-title.schedule-question-padd.clearfix
+      .container.schedule-question-inner
+        h2 What address should we meet you at?
+    section.address-meet.clearfix
+      .container.address-meet-inner
+        .address-meet-top
+          = f.text_field :address, class: "in-addess", placeholder: "Address", value: @address
+          = f.text_field :state, class: "app-state", placeholder: "Apt/State", value: @state
+          = text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
+        .address-meet-bottom
+          = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
