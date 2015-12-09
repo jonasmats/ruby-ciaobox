@@ -24,4 +24,10 @@ module Dashboard::Shipping::Standard::Parameter
     end
     filted
   end
+
+  def order_item_user_params
+    if params.keys.include? "order_items_user"
+      params.require(:order_items_user)
+    end
+  end
 end

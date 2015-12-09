@@ -2,6 +2,7 @@ class OrderItem < ActiveRecord::Base
   acts_as_paranoid
   translates :title, :description, fallbacks_for_empty_translations: true
   accepts_nested_attributes_for :translations
+  belongs_to :user
   has_one :order_detail
   has_many :order_detail_images
   has_attached_file :avatar, url: "/images/:class/:attachment/:basename-:hash.:extension",

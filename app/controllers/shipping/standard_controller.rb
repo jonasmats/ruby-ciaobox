@@ -13,7 +13,6 @@ class Shipping::StandardController < ShippingController
       load_shipping
       create_instance
       list_order_items_in_order_details
-
       # get address/state
       geocode = Geocoder.coordinates(session[:zip_code])
       result = Geocoder.search(geocode).first
@@ -72,6 +71,9 @@ class Shipping::StandardController < ShippingController
       # if session[:order_id].blank?
       if @order.save
         session[:order_id] = @order.id
+        if order_item_user_params.present?
+          create_order_item_user
+        end
       else
         redirect_to shipping_standard_path(:appoinment), 
           alert: @order.errors.full_messages and return
@@ -163,5 +165,20 @@ class Shipping::StandardController < ShippingController
       @item_oders[item.order_item_id] = item.quantity 
     end
     @item_oders
+  end
+
+  def create_order_item_user
+    order_item_user_params.each do |title|
+      order_item_user = OrderItem::Customer.new
+      order_item_user.title = title
+      order_item_user.price = 6.25
+      order_item_user.user = current_user
+      order_item_user.avatar = File.new(Rails.public_path.join("master/order_items/other/question-ic.png"))
+      order_item_user.save
+      @order.order_details.create(
+        order_item: order_item_user,
+        quantity: 1
+      )
+    end
   end
 end

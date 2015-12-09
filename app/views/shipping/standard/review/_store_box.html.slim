@@ -34,11 +34,12 @@
         | $
         span.store-cost 
           = store_box.order_item.price
-      .review-ic
-        figure.re-edit
-          = image_tag "images/edit-ic.png", alt: "date and time"
-        figure.re-remove
-          = image_tag "images/delete-ic.png", alt: "date and time"
+      - unless store_box.order_item.type == OrderItem::Customer.name
+        .review-ic
+          figure.re-edit
+            = image_tag "images/edit-ic.png", alt: "date and time"
+          figure.re-remove
+            = image_tag "images/delete-ic.png", alt: "date and time"
   .schedule-box.store-box-text.input-copy-wrapper
     .input-copy
       .booking-icon-background-num.js-nav-min
