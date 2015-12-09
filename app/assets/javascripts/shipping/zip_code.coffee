@@ -1,8 +1,8 @@
-$('#home_banner_form').submit ->
+$('#home_banner_submit').click ->
   $.ajax
     method: 'POST'
-    url: $('#home_banner_form').attr 'action'
-    data: $('#home_banner_form').serialize()
+    url: $('#home_banner_url').val()
+    data: {zip_code: $('#home_banner_zip_code').val()}
     success: (result, statusText, xhr) ->
       if result.code == 100
         if result.data == "standard"
