@@ -35,7 +35,7 @@ section.section-2.about
       - @normal_and_other_order_items.each_slice(2) do |items|
         .store-box
           = render partial: 'shipping/standard/appoinment/store_box', collection: items, locals: {form: f}
-      #form-overbottom.store-box-end.form-expand  
+      #form-overbottom.store-box-end.form-expand style="#{(@item_oders.keys & current_user.order_items.pluck(:id)).blank? ? "" : "display: block;"}"
         p
           | Describe your item. We'll do our best to accomodate your needs.
           | See
