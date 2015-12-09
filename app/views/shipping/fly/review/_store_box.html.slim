@@ -1,0 +1,28 @@
+.store-box-left id = "#{store_box.id}"
+  a href="#" title="" 
+    figure
+      = image_tag store_box.order_item.avatar, alt: store_box.order_item.title
+  .store-box-first.store-box-normal.schedule-box.store-box-text
+    h4
+      span.re-quantity
+        = store_box.quantity
+      |    
+      = store_box.order_item.title
+    .review-right-price
+      span
+        | $
+        span.store-cost 
+          = store_box.order_item.price
+      .review-ic
+        figure.re-edit
+          = image_tag "images/edit-ic.png", alt: "date and time"
+        figure.re-remove
+          = image_tag "images/delete-ic.png", alt: "date and time"
+  .schedule-box.store-box-text.input-copy-wrapper
+    .input-copy
+      .booking-icon-background-num.js-nav-min
+        span.booking-icon.js-nav.icon-min
+      = form.text_field "[order_details_attributes][#{store_box.id}][quantity]", class: "item-input", value: store_box.quantity
+      .booking-icon-background-num.js-nav-plus
+        span.booking-icon.js-nav.icon-plus
+= form.hidden_field "[order_details_attributes][#{store_box.id}][order_item_id]", value: store_box.order_item_id

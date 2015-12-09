@@ -1,0 +1,18 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Schedule
+= render partial: "fly_step"
+
+= render layout: 'form' do |f|
+  section.like-to-store.section-review.clearfix
+    .container
+      h3 Items
+      .store-box.review-box
+        = render partial: 'shipping/fly/review/store_box', collection: @items, locals: {form: f}
+    = render partial: 'shipping/fly/review/personal_info', locals: {order: @order}
+    = render partial: 'shipping/fly/review/contact_info', locals: {form: f}
+    = render partial: 'shipping/fly/review/billing_info', locals: {order: @order}
+    = render partial: 'shipping/fly/review/hear_about', locals: {form: f}

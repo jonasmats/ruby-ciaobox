@@ -1,0 +1,19 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Schedule
+= render partial: "fly_step"
+= render partial: 'layouts/shared/flash/notice'
+= render partial: 'layouts/shared/flash/error'
+section.confirm-btm.clearfix
+  .container
+    p
+      | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    = link_to "Go to home", root_path

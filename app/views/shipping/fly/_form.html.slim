@@ -1,0 +1,27 @@
+= render partial: 'layouts/shared/flash/notice'
+= render partial: 'layouts/shared/flash/error'
+- total_amount = @order.order_details.sum(:price)
+section.schedule-question-title.clearfix
+  figure
+    = image_tag "/master/schedule/top-arrow.png"
+  .container.schedule-question-inner
+    h2 
+      = @title
+    .month-cost
+      | Monthly Estimated Cost
+      span
+        | $
+        span.month-total-cost 
+         = total_amount
+= form_for @order, url: next_wizard_path, method: :put do |f|
+  = yield f
+  .actions
+  section.schedule-question-title.schedule-question-btm.clearfix
+    .container.schedule-question-inner
+      = f.submit "Continue", class: "btn btn-primary"
+      .month-cost
+        | Monthly Estimated Cost
+        span
+          | $
+          span.month-total-cost
+            = total_amount
