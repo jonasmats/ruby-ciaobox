@@ -46,6 +46,8 @@ section.section-2.about
             input.inline-input.js-other-item maxlength="50" placeholder=("Surfboard etc.") type="text" /
             button.inline-button type="submit"  Add Item
           #other-item-tags
+            - if (@item_oders.keys & current_user.order_items.pluck(:id)).present?
+              = render partial: 'shipping/standard/appoinment/store_box_customer', collection: (@order.order_items & current_user.order_items)
     = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
     section.schedule-question-title.schedule-question-padd.clearfix
       .container.schedule-question-inner

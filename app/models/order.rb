@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :shipping
   has_many :order_details, dependent: :destroy
+  has_many :order_items, through: :order_details
   has_one :feedback, dependent: :destroy
   accepts_nested_attributes_for :order_details
   accepts_nested_attributes_for :feedback
@@ -44,6 +45,6 @@ class Order < ActiveRecord::Base
   end
 
   def validate_step_2?
-    self.persisted?
+    self.persisted? && self.order_details.first.persisted?
   end
 end

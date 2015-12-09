@@ -66,6 +66,7 @@ class Shipping::StandardController < ShippingController
     when :review
       load_shipping
       create_instance
+      delete_order_item_customer_in_order_detail
       delete_order_details
       set_params
       # if session[:order_id].blank?
@@ -157,6 +158,16 @@ class Shipping::StandardController < ShippingController
 
   def delete_order_details
     @order.order_details.destroy_all
+  end
+
+  def delete_order_item_customer_in_order_detail
+    list_order_items_in_order_details
+    order_item_customer_in_order_detail_id = (@item_oders.keys & current_user.order_items.pluck(:id))
+    if order_item_customer_in_order_detail_id.present?
+      order_item_customer_in_order_detail_id.each do |id|
+        OrderItem::Customer.find(id).destroy
+      end
+    end
   end
 
   def list_order_items_in_order_details
