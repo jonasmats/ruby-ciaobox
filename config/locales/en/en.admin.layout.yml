@@ -16,6 +16,7 @@ en:
         role_new: *new
         role_list: *list
         account_profile: " Change Profile"
+        root_path: " Home"
         account_change_password: " Change Password"
         banner_label: "Banner management"
         banner_new: *new
