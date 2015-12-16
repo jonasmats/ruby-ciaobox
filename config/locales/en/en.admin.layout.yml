@@ -81,6 +81,9 @@ en:
         order_label: "Order Management"
         order_new: *new
         order_list: *list
+        date_off_label: "Date Offs Management"
+        date_off_new: *new
+        date_off_list: *list
       dashboard:
         employee_feature: All features of Company Employee User
         company_feature: All features of Company Admin
@@ -105,3 +108,5 @@ en:
         log_action_list: List Log Actions
         order_item_new: "New Order Item"
         order_item_list: "List Order Items"
+        date_off_new: "New Date Off"
+        date_off_list: "List New Date Offs"

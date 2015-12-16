@@ -1,0 +1,49 @@
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_for [:admin, @date_off], html: {class: "form-horizontal"} do |f|
+      = render "/layouts/shared/form_errors/admin", object: f.object
+      .form-body
+        .form-group
+          label.col-md-3.control-label
+            = DateOff.h :start_at
+          .col-md-4
+            = f.text_field :start_at, class: "form-control", id: 'feature_start_date'
+        .form-group.last
+          label.col-md-3.control-label
+            = DateOff.h :end_at
+          .col-md-4
+            = f.text_field :end_at, class: "form-control daterange", id: 'feature_end_date'
+        .form-group.last
+          label.col-md-3.control-label
+            = DateOff.h :date_off_type
+          .col-md-4
+            = f.select :date_off_type, options_for_select(DateOff.date_off_types.map{|k, v| [t(".#{k}"), k]} , selected: @date_off.date_off_type), { include_blank: t('.blank')}, {class: "form-control"}
+      .form-actions
+        .row
+          .col-md-offset-3.col-md-4
+            = f.submit class: "btn green"
+            = link_to admin_date_offs_path, class: "btn default" do
+              = t(".cancel")
+
+javascript:
+  jQuery(function(){
+   jQuery('#feature_start_date').datetimepicker({
+    format:'Y/m/d',
+    onShow:function( ct ){
+     this.setOptions({
+      minDate: 0,
+      maxDate:jQuery('#feature_end_date').val()?jQuery('#feature_end_date').val():false
+     })
+    },
+    timepicker:false
+   });
+   jQuery('#feature_end_date').datetimepicker({
+    format:'Y/m/d',
+    onShow:function( ct ){
+     this.setOptions({
+      minDate:jQuery('#feature_start_date').val()?jQuery('#feature_start_date').val():false
+     })
+    },
+    timepicker:false
+   });
+  });

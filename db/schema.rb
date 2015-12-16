@@ -162,12 +162,11 @@ ActiveRecord::Schema.define(version: 20151126084344) do
   end
 
   create_table "date_offs", force: :cascade do |t|
-    t.date     "start_at",     null: false
-    t.date     "end_at",       null: false
-    t.integer  "subject_id"
-    t.string   "subject_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.date     "start_at",      null: false
+    t.date     "end_at",        null: false
+    t.integer  "date_off_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "drivers", force: :cascade do |t|

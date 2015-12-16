@@ -53,6 +53,7 @@
 
 /* OTHER  */
 //= require jquery_ujs
+//= require jquery.datetimepicker
 /* CK Editor*/
 //= require ckeditor/init
 //= require_tree ./admin

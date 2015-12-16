@@ -494,6 +494,10 @@ en:
         delete: *delete
         question_destroy: *question_destroy
     orders:
+      edit:
+        title: *edit
+      new:
+        title: *new
       title:
         sub_title: Orders management
       index:
@@ -506,9 +510,32 @@ en:
         placeholder:
           name: "Enter coupon name"
       show:
-        title: *list
+        title: *detail
         back: *back
       order:
+        edit: *edit
+        delete: *delete
+        question_destroy: *question_destroy
+    date_offs:
+      edit:
+        title: *edit
+      new:
+        title: *new
+      title:
+        sub_title: Date Off Of Companies management
+      index:
+        title: *list
+        action: *action
+      form:
+        submit: *submit
+        cancel: *cancel
+        blank: *blank
+        placeholder:
+          name: "Enter coupon name"
+      show:
+        title: *detail
+        back: *back
+      date_off:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy

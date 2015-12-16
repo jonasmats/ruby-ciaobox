@@ -121,3 +121,6 @@ end
 # Form wizard
 gem 'wicked'
 gem 'geocoder'
+
+# Select day by datepicker
+gem 'jquery-datetimepicker-rails'

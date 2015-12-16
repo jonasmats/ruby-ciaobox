@@ -43,5 +43,6 @@ Rails.application.routes.draw do
     resources :multiple_coupons, controller: :coupons
 
     resources :orders
+    resources :date_offs, except: :show
   end
 end
