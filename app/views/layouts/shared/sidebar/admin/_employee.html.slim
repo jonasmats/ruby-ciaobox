@@ -3,7 +3,10 @@
     ul.page-sidebar-menu[data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"]
       li.sidebar-toggler-wrapper
         .sidebar-toggler
-
+      li
+        = link_to root_path, target: "_blank" do
+          i.icon-paper-plane
+          = I18n.t("layouts.shared.sidebar.root_path")
       li
         = link_to admin_root_path do
           i.icon-home

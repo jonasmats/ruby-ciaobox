@@ -34,6 +34,10 @@
       /         i.icon-graph
       /         |  New Dashboard #2
       li
+        = link_to root_path, target: "_blank" do
+          i.icon-paper-plane
+          = I18n.t("layouts.shared.sidebar.root_path")
+      li
         a[href="javascript:;"]
           i.fa.fa-group
           span.title
