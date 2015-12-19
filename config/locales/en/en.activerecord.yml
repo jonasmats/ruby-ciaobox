@@ -76,6 +76,8 @@ en:
         gift: "Gift Name"
         amount: "Gift Amount"
         type: "Coupon type"
+      social_network:
+        is_external_link: "External Link"
   errors:
     messages:
       not_blank: "can't be blank"

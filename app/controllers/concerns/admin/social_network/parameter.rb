@@ -5,7 +5,7 @@ module Admin::SocialNetwork::Parameter
 
   def private_params
     if params[:social_network]
-      params.require(:social_network).permit(:name, :link, :icon)
+      params.require(:social_network).permit(:name, :link, :icon, :is_external_link)
     end
   end
 end

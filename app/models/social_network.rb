@@ -24,7 +24,7 @@ class SocialNetwork < ActiveRecord::Base
 
   # 4. validates
   validates :name, :link, presence: true
-  has_attached_file :icon,
+  has_attached_file :icon, styles: { thumb: '32x32#', small: "64x64#", medium: '128x128#' },
     default_url: "assets/images/facebook-icon.png",
     url: "/images/:class/:attachment/:basename-:hash.:extension",
     hash_secret: "@CiaoboxSecretSocialIcont@" # decode with base64
