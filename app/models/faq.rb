@@ -18,6 +18,7 @@ class Faq < ActiveRecord::Base
   belongs_to :faq_category, class_name: Faq::Category.name
   # 2. scopes
   default_scope -> { includes(:translations) }
+  scope :order_by_id_desc, -> { order("id DESC") }
   # 3. class methods
 
   # 4. validates
