@@ -17,6 +17,7 @@ class Faq::Category < ActiveRecord::Base
   has_many :faqs, dependent: :destroy, foreign_key: :faq_category_id
   # 2. scopes
   default_scope -> { includes(:translations) }
+  scope :order_by_id_desc, -> { order("id DESC") }
 
   # 3. class methods
 
