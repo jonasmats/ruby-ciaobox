@@ -13,6 +13,8 @@
           th
             = LogAction.h :subject_type
           th
+            = LogAction.h :summary
+          th
             = t(".option_label")
       tbody
       = render partial: 'log_action', collection: @log_actions

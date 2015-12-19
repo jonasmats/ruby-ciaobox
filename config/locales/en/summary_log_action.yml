@@ -1,0 +1,7 @@
+en:
+  summary:
+    admin:
+      users:
+        create: '%{name} is created'
+        delete: '%{name} is deleted'
+        update: '%{name} is updated'
