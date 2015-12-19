@@ -16,3 +16,6 @@ slack:
 mailchimp:
   api_key: "68dc34a74ca003511463b0472ac1d549-us12"
   list_newsletter_id: "f7aea44a6e"
+
+per_page:
+  blog: 10

@@ -12,6 +12,7 @@ en:
         change_password: 'Change password'
       footer:
         blog: "Blog"
+        faq: "FAQ"
   password:
     new:
       email: "Enter email"

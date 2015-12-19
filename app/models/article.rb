@@ -25,6 +25,7 @@ class Article < ActiveRecord::Base
   # 2. scope
   scope :article_status, -> (status)  {where(status: statuses[status])}
   scope :live, ->{ where status: statuses[:publish] }
+  scope :newest, ->{ order("created_at DESC") }
 
   delegate :full_name, :avatar, to: :admin, prefix: true
   # 4. validates
