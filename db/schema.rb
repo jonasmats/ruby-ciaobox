@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(version: 20151126084344) do
     t.string   "action_type"
     t.integer  "subject_id"
     t.string   "subject_type"
+    t.text     "summary"
     t.hstore   "data"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

@@ -30,7 +30,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def create
     if @user.save
-      active_job_log_action(log_params)
+      active_job_log_action(log_params, t('summary.admin.users.create', name: @user.full_name))
       redirect_to admin_user_path(@user), notice: t('notice.admin.created', model: User.human_name)
     else
       render :new
@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def update
     if @user.save
-      active_job_log_action(log_params)
+      active_job_log_action(log_params, t('summary.admin.users.update', name: @user.full_name))
       respond_to do |format|
         format.html { redirect_to admin_user_path(@user), notice: t('notice.admin.updated', model: User.human_name) }
         format.js
@@ -55,8 +55,9 @@ class Admin::UsersController < Admin::BaseAdminController
 
   def destroy
     msg =
+    full_name = @user.full_name
       if @user.destroy
-        active_job_log_action(params.extract!(:id))
+        active_job_log_action(params.extract!(:id), t('summary.admin.users.update', name: full_name))
         t('notice.admin.users.destroy.success')
       else
         t('notice.admin.users.destroy.error')
@@ -77,10 +78,11 @@ class Admin::UsersController < Admin::BaseAdminController
     @user.assign_attributes private_params
   end
 
-  def active_job_log_action(data)
+  def active_job_log_action(data, summary)
     LogActionsJob.perform_later({
       owner_id: current_admin.id,
       action_type: params[:action],
+      summary: summary,
       data: data
     }, @user)
   end

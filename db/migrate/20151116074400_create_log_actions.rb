@@ -5,6 +5,7 @@ class CreateLogActions < ActiveRecord::Migration
       t.string :action_type
       t.integer :subject_id
       t.string :subject_type
+      t.text :summary
       t.hstore :data
 
       t.timestamps null: false
