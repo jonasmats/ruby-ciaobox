@@ -13,6 +13,15 @@
             = SocialNetwork.h :link
           .col-md-4
             = f.text_field :link, class: "form-control", placeholder: "#{t('.placeholder.link')}"
+        .form-group
+          label.col-md-3.control-label
+            = SocialNetwork.h :is_external_link
+          .col-md-4
+            - is_checked = @social_network.new_record? || @social_network.is_external_link?
+            = f.radio_button :is_external_link, true, checked: is_checked
+            = f.label :true, "YES"
+            = f.radio_button :is_external_link, false, checked: !is_checked
+            = f.label :false, "NO"
         .form-group.last
           label.col-md-3.control-label
             = SocialNetwork.h :icon

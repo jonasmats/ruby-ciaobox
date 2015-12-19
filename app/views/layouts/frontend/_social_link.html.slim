@@ -3,7 +3,7 @@
 .social-icon.social-icon-second#js-area-icon-second
 
 script#js-social-netwok-template[type="text/template"]
-  | <a href="<%= link %>" style="background: url('<%= icon_url %>') no-repeat left;" target="_blank"><%= name %></a>
+  | <a href="<%= link %>" style="background: url('<%= icon_url %>') no-repeat left;" target= "<%= is_external_link ? '_blank' : '' %>"><%= name %></a>
 
 javascript:
   var SOCIAL_LINK = function(options) {
