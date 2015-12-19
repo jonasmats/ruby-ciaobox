@@ -37,7 +37,7 @@ en:
       cancel: &cancel "Cancel"
       action: &action "Action"
       edit: &edit "Edit"
-      view: &view "View"
+      view: &view "Detail"
       delete: &delete "Delete"
       blank: &blank "--Please choose--"
       question_destroy: &question_destroy "Are you sure?"
