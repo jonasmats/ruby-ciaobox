@@ -7,60 +7,11 @@ h3.page-title
   - when CiaoboxUser::Employee.name
       = render partial: "layouts/shared/dashboard/admin/employee_info"
   - when CiaoboxUser::Company.name
+      = render partial: "layouts/shared/dashboard/admin/statistics"
       = render partial: "layouts/shared/dashboard/admin/company_admin"
   - when CiaoboxUser::Super.name
+      = render partial: "layouts/shared/dashboard/admin/statistics"
       = render partial: "layouts/shared/dashboard/admin/super_admin"
-
-/ .row
-/   .col-lg-3.col-md-3.col-sm-6.col-xs-12
-/     .dashboard-stat.blue-madison
-/       .visual
-/         i.fa.fa-comments
-/       .details
-/         .number
-/           |  1349 
-/         .desc
-/           |  New Feedbacks 
-/       a.more[href="javascript:;"]
-/         |  View more 
-/         i.m-icon-swapright.m-icon-white
-/   .col-lg-3.col-md-3.col-sm-6.col-xs-12
-/     .dashboard-stat.red-intense
-/       .visual
-/         i.fa.fa-bar-chart-o
-/       .details
-/         .number
-/           |  12,5M$ 
-/         .desc
-/           |  Total Profit 
-/       a.more[href="javascript:;"]
-/         |  View more 
-/         i.m-icon-swapright.m-icon-white
-/   .col-lg-3.col-md-3.col-sm-6.col-xs-12
-/     .dashboard-stat.green-haze
-/       .visual
-/         i.fa.fa-shopping-cart
-/       .details
-/         .number
-/           |  549 
-/         .desc
-/           |  New Orders 
-/       a.more[href="javascript:;"]
-/         |  View more 
-/         i.m-icon-swapright.m-icon-white
-/   .col-lg-3.col-md-3.col-sm-6.col-xs-12
-/     .dashboard-stat.purple-plum
-/       .visual
-/         i.fa.fa-globe
-/       .details
-/         .number
-/           |  +89% 
-/         .desc
-/           |  Brand Popularity 
-/       a.more[href="javascript:;"]
-/         |  View more 
-/         i.m-icon-swapright.m-icon-white
-/ .clearfix
 
 / .row
 /   .col-md-6.col-sm-6
