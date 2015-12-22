@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   after_create :create_instance_profile, unless: :check_has_param_profile?
   after_create :create_instance_address, unless: :check_has_param_address?
   after_create :create_instance_notification
+  after_create :send_notification_for_admin
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true
   enum status: { un_active: 0, active: 1 }
@@ -97,5 +98,9 @@ class User < ActiveRecord::Base
     else
       where(conditions.to_hash).first
     end
+  end
+
+  def send_notification_for_admin
+    NotificationMailer.delay.new_user(self)
   end
 end
