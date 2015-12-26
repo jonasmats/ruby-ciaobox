@@ -9,3 +9,7 @@ en:
       submit: 'Submit'
       title: 'Sorry but we still do not serve your area'
       summary: 'Register your email to Join to  our newsletter'
+  light-box:
+    modal:
+      title: "LIMITED TIME OFFER"
+      summary: "Get 75$ of Free Storage!"
