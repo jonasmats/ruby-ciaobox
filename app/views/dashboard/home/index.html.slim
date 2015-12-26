@@ -13,3 +13,27 @@ br
 = link_to I18n.t("layouts.frontend.links.change_password"), new_dashboard_password_path
 br
 = link_to I18n.t("layouts.frontend.links.logout"), destroy_user_session_path, method: :delete
+
+#light-box.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"
+        h4#exampleModalLabel.modal-title.text-center
+          b= I18n.t('light-box.modal.title')
+      .modal-body
+        form#light_box_modal_form
+          .form-group
+            h5 for="recipient-name"
+              .text-center= I18n.t('light-box.modal.summary')
+            input#recipient-name.form-control type="email" name="email" placeholder="coupon code" /
+      .modal-footer
+        / button.btn.btn-default data-dismiss="modal" type="button"
+        /   = I18n.t('zipcode.modal.close')
+        / button.btn.btn-primary#zipcode_modal_submit type="button"
+        /   = I18n.t('zipcode.modal.submit')
+
+javascript:
+  setTimeout(function(){
+      $('#light-box').modal({backdrop: false});
+  }, 100);
