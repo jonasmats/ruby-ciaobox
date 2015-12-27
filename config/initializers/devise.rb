@@ -266,7 +266,5 @@ Devise.setup do |config|
     image_size: :large
 
   config.omniauth :google_oauth2, Settings.devise.GG_APP_ID, 
-    Settings.devise.GG_APP_SECRET,
-    skip_jwt: true,
-    {access_type: 'online', approval_prompt: ''}
+    Settings.devise.GG_APP_SECRET, {access_type: 'online', approval_prompt: '', skip_jwt: 'true'}
 end
