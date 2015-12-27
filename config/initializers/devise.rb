@@ -265,5 +265,7 @@ Devise.setup do |config|
     info_fields: 'email, name, first_name, last_name',
     image_size: :large
 
-  config.omniauth :google_oauth2, Settings.devise.GG_APP_ID, Settings.devise.GG_APP_SECRET
+  config.omniauth :google_oauth2, Settings.devise.GG_APP_ID, 
+    Settings.devise.GG_APP_SECRET,
+    {access_type: 'online', approval_prompt: ''}
 end
