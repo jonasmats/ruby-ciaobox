@@ -124,3 +124,6 @@ gem 'geocoder'
 
 # Select day by datepicker
 gem 'jquery-datetimepicker-rails'
+
+# backup
+gem 'backup'
