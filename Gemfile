@@ -114,7 +114,6 @@ group :deployment do
   gem 'unicorn'
   gem 'capistrano-rvm'
   gem "bower-rails", "~> 0.9.2"
-  gem 'whenever', require: false
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
   gem 'capistrano-faster-assets', '~> 1.0'
 end
@@ -128,3 +127,4 @@ gem 'jquery-datetimepicker-rails'
 # backup
 gem 'dropbox-sdk'
 gem 'backup'
+gem 'whenever', :require => false
