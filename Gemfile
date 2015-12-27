@@ -126,4 +126,5 @@ gem 'geocoder'
 gem 'jquery-datetimepicker-rails'
 
 # backup
+gem 'dropbox-sdk'
 gem 'backup'

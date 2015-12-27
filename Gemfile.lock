@@ -139,6 +139,8 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
+    dropbox-sdk (1.6.5)
+      json
     erubis (2.7.0)
     exception_notification (4.1.1)
       actionmailer (>= 3.0.4)
@@ -397,6 +399,7 @@ DEPENDENCIES
   devise
   devise-async
   dotenv-rails
+  dropbox-sdk
   exception_notification
   friendly_id (~> 5.1.0)
   geocoder
