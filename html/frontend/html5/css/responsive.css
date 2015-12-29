@@ -713,6 +713,9 @@
 .language_EN.nav-item.has-location-dropdown{
 	background: url(../images/language-arrow.png)  no-repeat scroll right center;
 }
+.slide-detail .item img{
+	height: 300px;
+}
 }
 
 @media (max-width: 643px) {
@@ -803,7 +806,14 @@ body .social-icon {
   margin-top: 13px;
 }
 }
-
+@media (max-width: 600px) {
+	.cnt-top-dt,.datetime-details,.cancel-dt{
+		width: 100%;
+		text-align: center;
+		border: 0;
+		padding: 5px 15px;
+	}
+}
 @media (max-width: 480px) {
 	.tabing .nav-tabs > li {
   float: none;
@@ -1018,6 +1028,9 @@ body .social-icon {
 body .social-icon {
   float: left;
   margin-top: 12px;
+}
+.slide-detail .item img{
+	height: 200px;
 }
 }
 
