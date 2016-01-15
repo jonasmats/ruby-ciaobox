@@ -35,7 +35,7 @@ section.section-2.about
       - @normal_and_other_order_items.each_slice(2) do |items|
         .store-box
           = render partial: 'shipping/standard/appoinment/store_box', collection: items, locals: {form: f}
-      #form-overbottom.store-box-end.form-expand style="#{(@item_oders.keys & current_user.order_items.pluck(:id)).blank? ? "" : "display: block;"}"
+      #form-overbottom.store-box-end.form-expand style="#{(current_user.blank? || (@item_oders.keys & current_user.order_items.pluck(:id)).blank?) ? "" : "display: block;"}"
         p
           | Describe your item. We'll do our best to accomodate your needs.
           | See
@@ -46,7 +46,7 @@ section.section-2.about
             input.inline-input.js-other-item maxlength="50" placeholder=("Surfboard etc.") type="text" /
             button.inline-button type="submit"  Add Item
           #other-item-tags
-            - if (@item_oders.keys & current_user.order_items.pluck(:id)).present?
+            - if current_user.present? && (@item_oders.keys & current_user.order_items.pluck(:id)).present?
               = render partial: 'shipping/standard/appoinment/store_box_customer', collection: (@order.order_items & current_user.order_items)
     = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
     section.schedule-question-title.schedule-question-padd.clearfix
