@@ -1,0 +1,34 @@
+.modal-dialog {
+    width: 480px;
+}
+
+.modal-content {
+    width: 480px;
+}
+
+.modal .modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 5px 15px 15px 15px
+}
+
+.modal-body {
+    padding: 0px 15px 15px 15px;
+}
+
+h4.modal-title {
+    color: #08a46c;
+}
+
+.dropdown>.dropdown-menu:before {
+    left: auto;
+    right: 93px;
+}
+
+.dropdown>.dropdown-menu:after {
+    left: auto;
+    right: 95px;
+}
