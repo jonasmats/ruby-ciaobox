@@ -45,6 +45,6 @@ class Order < ActiveRecord::Base
   end
 
   def validate_step_2?
-    self.persisted? && self.order_details.first.persisted?
+    self.persisted? && self.order_details.first.present? && self.order_details.first.persisted?
   end
 end
