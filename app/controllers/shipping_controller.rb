@@ -1,6 +1,6 @@
 class ShippingController < ActionController::Base
   layout 'application'
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   include Wicked::Wizard
 
   before_action :check_zip_code
