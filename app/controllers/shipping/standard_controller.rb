@@ -33,6 +33,7 @@ class Shipping::StandardController < ShippingController
       end
 
     when :review
+      authenticate_user!
       create_instance
       if @order.persisted?
         if @order.checking?
@@ -47,6 +48,7 @@ class Shipping::StandardController < ShippingController
       load_order_details
 
     when :confirmation
+      authenticate_user!
       create_instance
       if @order.persisted?
         if @order.registering?
@@ -64,6 +66,7 @@ class Shipping::StandardController < ShippingController
   def update
     case step
     when :review
+      authenticate_user!
       load_shipping
       create_instance
       delete_order_item_customer_in_order_detail
@@ -83,8 +86,10 @@ class Shipping::StandardController < ShippingController
       build_feed_back
       load_order_details
     when :confirmation
+      authenticate_user!
       create_instance
       set_params
+      puts @order
       if @order.valid?
         delete_order_details
         set_params
