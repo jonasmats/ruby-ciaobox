@@ -5,35 +5,52 @@ nav
     span
     span
     span
+- color_val = (current_page?root_path) ? '#fff' : '#000'
+- avatar_path = (current_user.present? && current_user.profile.avatar.present?) ? current_user.profile.avatar.url(:medium) : 'images/missing_avatar.png'
 .right
   .nav-2.clearfix
     ul
       li.nav-item.has-location-dropdown.language_EN
-        p.nav-link.nav-city-selected.js-location-select
+        p.nav-link.nav-city-selected.js-location-select style=("color: #{color_val}")
           span.nav-city= t("locale.#{session[:locale]}")
           span.nav-city-caret
-        ul.location-dropdown style=("display: none;")
-          li.dropdown-item.nav-chicago
-            = link_to set_language_en_path, class: "js-location-change"
-              = t("locale.en")
-              span.nav-city-caret.menu-nav-city-caret
-          li.dropdown-item.nav-chicago
-            = link_to set_language_it_path, class: "js-location-change"
-              = t("locale.it")
-              span.nav-city-caret.menu-nav-city-caret
-          li.dropdown-item.nav-chicago
-            = link_to set_language_fr_path, class: "js-location-change"
-              = t("locale.fr")
-              span.nav-city-caret.menu-nav-city-caret
-          li.dropdown-item.nav-nyc
-            = link_to t("locale.de"), set_language_de_path, class: "js-location-change"
+          ul.location-dropdown style=("display: none;")
+            li.dropdown-item.nav-chicago
+              = link_to set_language_en_path, class: "js-location-change"
+                = t("locale.en")
+                span.nav-city-caret.menu-nav-city-caret
+            li.dropdown-item.nav-chicago
+              = link_to set_language_it_path, class: "js-location-change"
+                = t("locale.it")
+                span.nav-city-caret.menu-nav-city-caret
+            li.dropdown-item.nav-chicago
+              = link_to set_language_fr_path, class: "js-location-change"
+                = t("locale.fr")
+                span.nav-city-caret.menu-nav-city-caret
+            li.dropdown-item.nav-nyc
+              = link_to t("locale.de"), set_language_de_path, class: "js-location-change"
+
+      - if current_user.present?
+        li style=("margin-top: 32px; margin-left: 25px; background: url('');")
+          = image_tag avatar_path, height: '32', width: '32', class: "img-responsive"
+        li.dropdown style=("margin-top: 32px; margin-left: -18px;")
+          = link_to '#', class: "dropdown-toggle", title: "User Name", :'style' => 'padding: 5px 0px 5px 9px', :'data-toggle' => 'dropdown', :'role' => 'button', :'data-target' => '#', :'aria-expanded' => 'true' do
+            | #{current_user.username}
+          ul.dropdown-menu role="menu" style=("margin-top: -38px; margin-left: -40px;")
+            li role="presentation" style=("background: url(''); width: 112%;")
+              = link_to I18n.t("layouts.frontend.links.profile"), dashboard_profile_index_path, class: "js-location-change", :'style' => 'padding: 7px 0px 7px 15px; color: #000;', :'role' => 'menuitem'
+            li role="presentation" style=("background: url(''); width: 112%")
+              = link_to I18n.t("layouts.frontend.links.change_password"), new_dashboard_password_path, class: "js-location-change", :'style' => 'padding: 7px 0px 7px 15px; color: #000;', :'role' => 'menuitem'
+            li.divider role="presentation" style=("width: 100%; margin: 5px 0;")
+            li role="presentation" style=("background: url(''); width: 112%")
+              = link_to I18n.t("layouts.frontend.links.logout"), destroy_user_session_path, class: "js-location-change", :'style' => 'padding: 7px 0px 7px 15px; color: #000;', method: :delete
+
 
   - if current_user.blank?
     = link_to new_user_session_path, class: "sign-in", title: "Sign In" do
       | Sign In
-  - else
-    = link_to destroy_user_session_path, class: "sign-in", title: "Sign Out", method: :delete do
-      | Logout
+
+
 
 javascript:
   $(document).ready(function(){
