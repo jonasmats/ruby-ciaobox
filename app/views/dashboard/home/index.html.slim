@@ -40,7 +40,7 @@ section.section-3.detail-content
               | Cancel
     .detail-bottom
       h3
-        | You have 5 Items In Storage:
+        | You have 1 Item In Storage:
       .cnt-detail
         .row
           .col-sm-4.item-detail
@@ -59,9 +59,13 @@ section.section-3.detail-content
                   span.glyphicon.glyphicon-chevron-right aria-hidden="true"
               = link_to "#", class: "download-detail"
                 = image_tag "images/icon_download.png"
-            =link_to "STORED", "#", class: "stored"
+            = link_to "STORED", "#", class: "stored"
             .cnt-slide-dt
               | Winter clothes, sheets...
+            .cnt-slide-ext
+              = link_to "B0003", "#", class: "barcode"
+              span.stored_dt
+                | Stored 17.01.2016
 
 
 #light-box.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
