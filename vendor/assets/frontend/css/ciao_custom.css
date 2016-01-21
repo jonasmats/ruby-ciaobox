@@ -119,7 +119,7 @@ li> a.item {
     text-align: center;
 }
 .social-referral-icon {
-    background-image: url('https://cdn.makespace.com/s/img/icons/referral-social-icons.png');
+    background-image: url('../images/referral-social-icons.png');
     display: block;
 }
 .modal-referral-icon {
