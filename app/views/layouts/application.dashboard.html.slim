@@ -7,7 +7,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    #sb-site.sb-slide
+    #sb-site.sb-slide-details
       - if current_page?root_path
         = render partial: "layouts/frontend/header"
       - else

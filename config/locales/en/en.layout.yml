@@ -10,6 +10,9 @@ en:
         logout: 'Logout'
         profile: 'Profile'
         change_password: 'Change password'
+        mystuff: 'My Stuff'
+        invite_friends: 'Invite Friends'
+        schedule_pickup: 'Schedule a Pickup'
       footer:
         blog: "Blog"
         faq: "FAQ"

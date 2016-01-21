@@ -4,15 +4,65 @@ section.section-2.about
       = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
     h1
       | Dashboard
-p
-  | Welcome
-- if current_user.avatar.present?
-  = image_tag current_user.profile.avatar.url(:medium), class: "img-responsive"
-= link_to I18n.t("layouts.frontend.links.profile"), dashboard_profile_index_path
-br
-= link_to I18n.t("layouts.frontend.links.change_password"), new_dashboard_password_path
-br
-= link_to I18n.t("layouts.frontend.links.logout"), destroy_user_session_path, method: :delete
+
+
+section.section-3.detail-content
+  .container
+    .row
+      article.dashboard-header-intro
+        h3
+          | Welcome
+    .detail-top
+      .row
+        .datetime-details.col-sm-2.col-xs-2
+          span.month-dt
+            | Auguest
+          span.date-dt
+            | 19
+          span.time-dt
+            | 8-10AM
+        .col-sm-8.col-xs-8.cnt-top-dt
+          h4
+            | You Have an Upcoming Appointment:
+          p.address-dt
+            | 35 Diamond Street, Apt. BR
+            br
+              | Brooklyn, NY 1122
+          p.dropoff
+            | Dropoff
+          p.trash-dt
+            = image_tag "images/icon_trash.png"
+            | 2 MakeSpace Bins
+        .col-sm-2.col-xs-2.cancel-dt
+          = link_to "#"
+            = image_tag "images/icon_cancel.png"
+            span
+              | Cancel
+    .detail-bottom
+      h3
+        | You have 5 Items In Storage:
+      .cnt-detail
+        .row
+          .col-sm-4.item-detail
+            .slide-detail
+              #carousel-example-generic1.carousel.slide data-ride="carousel"
+                .carousel-inner role="listbox"
+                  .item.active
+                    = image_tag "images/1.jpg"
+                  .item
+                    = image_tag "images/2.jpg"
+                  .item
+                    = image_tag "images/3.jpg"
+                = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                  span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                  span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+              = link_to "#", class: "download-detail"
+                = image_tag "images/icon_download.png"
+            =link_to "STORED", "#", class: "stored"
+            .cnt-slide-dt
+              | Winter clothes, sheets...
+
 
 #light-box.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
   .modal-dialog role="document"
@@ -26,8 +76,18 @@ br
           .form-group
             h5 for="recipient-name"
               .text-center= I18n.t('light-box.modal.summary')
-            input#recipient-name.form-control type="email" name="email" placeholder="coupon code" /
+            .referral-link-wrapper.referral-link-wrapper-modal
+                input#recipient-name.referral-link-field name="email" placeholder="coupon code" readonly="true"
+                span.social-referral-icon.link-referral-icon
       .modal-footer
+        .modal-referral-icons
+          = link_to "#", class: "modal-referral-icon"
+            = image_tag "images/fb-modal-ic.png", height: '36', width: '36'
+          = link_to "#", class: "modal-referral-icon"
+            = image_tag "images/tw-modal-ic.png", height: '36', width: '36'
+          = link_to "#", class: "modal-referral-icon"
+            = image_tag "images/eml-modal-ic.png", height: '36', width: '36'
+
         / button.btn.btn-default data-dismiss="modal" type="button"
         /   = I18n.t('zipcode.modal.close')
         / button.btn.btn-primary#zipcode_modal_submit type="button"

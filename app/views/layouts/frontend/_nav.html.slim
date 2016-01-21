@@ -32,18 +32,26 @@ nav
 
       - if current_user.present?
         li style=("margin-top: 32px; margin-left: 25px; background: url('');")
-          = image_tag avatar_path, height: '32', width: '32', class: "img-responsive"
+          = image_tag avatar_path, height: '32', width: '32', class: "img-photo-profile"
         li.dropdown style=("margin-top: 32px; margin-left: -18px;")
-          = link_to '#', class: "dropdown-toggle", title: "User Name", :'style' => 'padding: 5px 0px 5px 9px', :'data-toggle' => 'dropdown', :'role' => 'button', :'data-target' => '#', :'aria-expanded' => 'true' do
+          = link_to '#', class: "dropdown-toggle", title: "", :'style' => 'padding: 5px 0px 5px 9px', :'data-toggle' => 'dropdown', :'role' => 'button', :'data-target' => '#', :'aria-expanded' => 'true' do
             | #{current_user.username}
-          ul.dropdown-menu role="menu" style=("margin-top: -38px; margin-left: -40px;")
-            li role="presentation" style=("background: url(''); width: 112%;")
-              = link_to I18n.t("layouts.frontend.links.profile"), dashboard_profile_index_path, class: "js-location-change", :'style' => 'padding: 7px 0px 7px 15px; color: #000;', :'role' => 'menuitem'
-            li role="presentation" style=("background: url(''); width: 112%")
-              = link_to I18n.t("layouts.frontend.links.change_password"), new_dashboard_password_path, class: "js-location-change", :'style' => 'padding: 7px 0px 7px 15px; color: #000;', :'role' => 'menuitem'
-            li.divider role="presentation" style=("width: 100%; margin: 5px 0;")
-            li role="presentation" style=("background: url(''); width: 112%")
-              = link_to I18n.t("layouts.frontend.links.logout"), destroy_user_session_path, class: "js-location-change", :'style' => 'padding: 7px 0px 7px 15px; color: #000;', method: :delete
+          ul.dropdown-menu.personal-menu role="menu"
+            li.personal-menu-item role="presentation"
+              = link_to I18n.t("layouts.frontend.links.mystuff"), "#", class: "js-location-change item", :'role' => 'menuitem'
+            li.divider role="presentation"
+            li.personal-menu-item role="presentation"
+              = link_to I18n.t("layouts.frontend.links.schedule_pickup"), "#", class: "js-location-change item", :'role' => 'menuitem'
+            li.personal-menu-item role="presentation"
+              = link_to I18n.t("layouts.frontend.links.invite_friends"), "#", class: "js-location-change item", :'role' => 'menuitem'
+            li.divider role="presentation"
+            li.personal-menu-item role="presentation"
+              = link_to I18n.t("layouts.frontend.links.profile"), dashboard_profile_index_path, class: "js-location-change item", :'role' => 'menuitem'
+            li.personal-menu-item role="presentation"
+              = link_to I18n.t("layouts.frontend.links.change_password"), new_dashboard_password_path, class: "js-location-change item", :'role' => 'menuitem'
+            li.divider role="presentation"
+            li.personal-menu-item role="presentation"
+              = link_to I18n.t("layouts.frontend.links.logout"), destroy_user_session_path, class: "js-location-change item", method: :delete
 
 
   - if current_user.blank?
@@ -62,4 +70,24 @@ javascript:
       var selectedValue = $(".nav-city").text();
       $(".nav-city").text(selectedText);
     });
+
+
+    $('.dropdown-toggle').mouseover(function () {
+      $('.dropdown-menu').show();
+    });
+
+
+    $('.dropdown-toggle').mouseout(function () {
+      var t = setTimeout(function () {
+        $('.dropdown-menu').hide();
+      }, 100);
+
+      $('.dropdown-menu').on('mouseenter', function () {
+        $('.dropdown-menu').show();
+        clearTimeout(t);
+      }).on('mouseleave', function () {
+        $('.dropdown-menu').hide();
+      })
+    });
+
   });

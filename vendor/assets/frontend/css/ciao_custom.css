@@ -1,26 +1,42 @@
+/* ignore some style of component.min.css */
 .modal-dialog {
     width: 480px;
 }
 
 .modal-content {
     width: 480px;
+    border-radius: 6px!important;
 }
 
 .modal .modal-header {
     border-bottom: none;
+    padding: 20px 0 5px 0;
 }
 
 .modal-footer {
     border-top: none;
-    padding: 5px 15px 15px 15px
+    padding: 0px 15px 20px 15px
 }
 
 .modal-body {
-    padding: 0px 15px 15px 15px;
+    padding: 0 40px 0 40px;
 }
 
 h4.modal-title {
     color: #08a46c;
+    font-size: 19px;
+}
+
+.btn-group>.dropdown-menu:before, .dropdown-toggle>.dropdown-menu:before, .dropdown>.dropdown-menu:before {
+    position: absolute;
+    top: -8px;
+    left: 9px;
+    right: auto;
+    display: inline-block!important;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #e0e0e0;
+    border-left: 8px solid transparent;
+    content: '';
 }
 
 .dropdown>.dropdown-menu:before {
@@ -31,4 +47,98 @@ h4.modal-title {
 .dropdown>.dropdown-menu:after {
     left: auto;
     right: 95px;
+}
+
+.personal-menu {
+    margin-top: -38px!important;
+    margin-left: -40px!important;
+}
+
+.personal-menu-item {
+    background: url('');
+    width: 112%!important;
+}
+
+li> a.item {
+    padding: 7px 0px 7px 15px!important;
+    color: #000!important;
+}
+
+.dropdown-menu .divider {
+    width: 100%;
+    margin: 5px 0;
+    background: url("");
+    background-color: #e5e5e5;
+}
+
+.home-head .nav-2 ul.dropdown-menu li.divider {
+    width: 100%;
+    margin: 5px 0;
+    background: url("");
+    background-color: #e5e5e5;
+}
+
+/*dashboard article top title */
+.dashboard-header-intro {
+    position:relative;
+    padding:0 0 10px 14px;
+    text-align: left;
+}
+
+.dashboard-header-intro h3 {
+    color:#33435a;
+}
+
+/* profile photo */
+.img-photo-profile {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%!important;
+}
+
+/* referral link area styles */
+.referral-link-wrapper-modal {
+    margin: 15px auto;
+    max-width: 398px;
+}
+.referral-link-wrapper {
+    width: 100%;
+    position: relative;
+}
+.link-referral-icon {
+    position: absolute;
+    background-position: -58px -2px;
+    width: 16px;
+    height: 16px;
+    z-index: 1;
+    left: 15px;
+    top: 13px;
+}
+.modal-referral-icons {
+    text-align: center;
+}
+.social-referral-icon {
+    background-image: url('https://cdn.makespace.com/s/img/icons/referral-social-icons.png');
+    display: block;
+}
+.modal-referral-icon {
+    margin: 0 8px;
+    display: inline-block;
+    cursor: pointer;
+}
+input.referral-link-field[readonly] {
+    border-radius: 4px!important;
+    background: #fafafa;
+    margin-bottom: 0;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ebebeb;
+    padding: 0 0 0 43px;
+    color: #89888a;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+input.referral-link-field[readonly]:hover {
+    background: #ebebed;
 }
