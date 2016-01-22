@@ -117,11 +117,13 @@ section.map-section.wrapper
     | Our coverage area
   p
     | We're just getting started
-  figure
+  div#map-container
 
   h3
     | Ready to order now?
-  input.place-bt-2[type="button" value="Place Order"]
+  = link_to v1_zip_codes_path, class: "place-order", title: "Place Order" do
+    | Place Order
+  /input.place-bt-2[type="button" value="Place Order"]
 
 -home_banner = Banner.current_home_banner
 -if home_banner

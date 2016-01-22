@@ -1,5 +1,8 @@
 class V1::ZipCodesController < V1::BaseController
 
+  def index
+  end
+
   def create
     if params[:zip_code].present?
       shipping =  Shipping.find_by(zip_code: params[:zip_code])

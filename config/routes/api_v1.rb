@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   api_version(:module => "V1", :path => {:value => "v1"}) do
-    resources :zip_codes, only: :create
+    resources :zip_codes, only: [:create, :index]
     resources :newsletters, only: :create
     resources :notification, only: :create
     resources :faqs, only: :index

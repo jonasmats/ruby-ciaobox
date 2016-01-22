@@ -1,0 +1,35 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Get Started
+
+section.section-3.zipcode-content
+  .container
+    .zipcode-area-header-text
+      h2
+        | We deliver prominent storage solution in one click
+      h4
+        | Schedule your appointment and we will take care of the rest.
+
+    .clearfix
+      input.zip-bt.zip-bt-border[type="text" placeholder="Enter Zip Code" name="zip_code" id="home_banner_zip_code"]
+      input.zip-bt.zip-bt-border[type="hidden" value="/v1/zip_codes" id="home_banner_url"]
+      input.place-bt[type="button" value="Place order" id="home_banner_submit"]
+
+    .zipcode-area-footer-text
+      h4
+        | How it works
+
+      .work-row.clearfix
+        - Item::HowItWork.display_all.each do |how_it_work|
+          .work-box
+            figure
+              = image_tag how_it_work.item_picture.image.url, class: "img-responsive", alt: "#"
+            h3
+              = how_it_work.heading
+            p
+              = how_it_work.description
+
+= javascript_include_tag 'shipping/zip_code'

@@ -570,6 +570,23 @@ nav ul li a:hover, nav ul li a:focus, nav ul li.active a {
   transition: all 0.2s ease-in;
   float: right;
 }
+
+.place-order {
+    font-family: "Bikobold";
+    font-size: 17px;
+    color: #fff;
+    width: 118px;
+    height: 39px;
+    text-align: center;
+    padding: 9px;
+    background: #08a46c;
+    border: none;
+    border-radius: 3px;
+    margin-top: 29px;
+    transition: all 0.2s ease-in;
+    text-decoration: none !important;
+}
+
 .sign-in:hover, .place-bt:hover, .place-bt-2:hover, 
 .signin-submit input[type="submit"]:hover, 
 .ans-inner-btn a:hover, .privacy-inner-txt a:hover, .confirm-btm a:hover {
@@ -678,6 +695,12 @@ nav ul li a:hover, nav ul li a:focus, nav ul li.active a {
   line-height: 20px;
 }
 
+.zip-bt-border {
+  /*border: 2px solid #5eb97a;*/
+  border: 2px solid #ece8ee;
+  background: #f0f0f0;
+  color: #000;
+}
 
 .place-bt {
   width: 140px;
@@ -1226,6 +1249,9 @@ body .owl-theme .owl-controls.clickable {
   background: url("../images/map-img.png") no-repeat center center; 
   background-size: cover;
   height: 419px;
+}
+.map-section div#map-container {
+    height: 419px;
 }
 .ciao-block figure img {
   width: 100%;
@@ -3736,4 +3762,35 @@ input[type="radio"]+label {
     display: inline-block;
     font-weight: bold;
     padding: 0 0 0 10px;
+}
+
+/* zip code content */
+.zipcode-content {
+    background: #FFFFFF;
+    padding: 28px 0 36px 0;
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.zipcode-area-header-text {
+    margin-bottom: 65px;
+}
+
+.zipcode-area-header-text h2 {
+    color: #4e4e4e;
+    margin-bottom: 15px;
+}
+
+.zipcode-area-header-text h4 {
+    color: #9c9c9c;
+}
+
+.zipcode-area-footer-text {
+    margin-top: 80px;
+}
+
+.zipcode-area-footer-text h4 {
+    margin-bottom: 40px;
+    font-weight: bold;
 }
