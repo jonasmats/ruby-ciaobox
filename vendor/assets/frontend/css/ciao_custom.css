@@ -10,7 +10,7 @@
 
 .modal .modal-header {
     border-bottom: none;
-    padding: 20px 0 5px 0;
+    padding: 15px 12px 5px 0;
 }
 
 .modal-footer {
@@ -25,6 +25,8 @@
 h4.modal-title {
     color: #08a46c;
     font-size: 19px;
+    margin-left: 12px;
+    padding-top: 5px;
 }
 
 .btn-group>.dropdown-menu:before, .dropdown-toggle>.dropdown-menu:before, .dropdown>.dropdown-menu:before {

@@ -7,13 +7,14 @@ footer.footer-part.wrapper.clearfix
       .link
         ul
           li
-            a[href="index.html"]
-              | Home
+            = link_to root_path do
+              = t('.home')
           li
-            a[href="about.html"]
-              | About
+            = link_to abouts_path do
+              = t('.about')
           li
-            = link_to t(".blog"), articles_path
+            = link_to articles_path do
+              = t('.blog')
       .link
         ul
           li
@@ -31,10 +32,11 @@ footer.footer-part.wrapper.clearfix
             a[href="#"]
               | Storage Rules
           li
-            a[href="prices.html"]
-              | Prices
+            = link_to prices_path do
+              = t('.prices')
           li
-            = link_to t(".faq"), faqs_path
+            = link_to faqs_path do
+              = t('.faq')
       .Contact
         a.mail[href="mailto: support@ciaobox.com"]
           | support@ciaobox.com

@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
 
   def send_notification_for_admin
-    NotificationMailer.delay.new_user(self).deliver
+    NotificationMailer.new_user(self).deliver
   end
 
 end

@@ -46,7 +46,9 @@ section.tabing.clearfix
             | Delivers high quality eco-friendly plastic bins
           p
             | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt ipsa rem explicabo.
-          input.pricing-bt[type="button" value="Get Pricing"]
+          /input.pricing-bt[type="button" value="Get Pricing"]
+          = link_to v1_zip_codes_path, class: "pricing-bt", title: "Get Pricing" do
+            | Get Pricing
         .tabpanel-right
           .p-1
             | On-Demand
@@ -131,3 +133,6 @@ section.map-section.wrapper
     .banner {
       background: url("#{home_banner.try(:image).url}") no-repeat center center;
     }
+
+= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'
+= javascript_include_tag 'application.map'

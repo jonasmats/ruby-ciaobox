@@ -578,13 +578,16 @@ nav ul li a:hover, nav ul li a:focus, nav ul li.active a {
     width: 118px;
     height: 39px;
     text-align: center;
-    padding: 9px;
+    padding: 12px 25px;
     background: #08a46c;
     border: none;
     border-radius: 3px;
     margin-top: 29px;
     transition: all 0.2s ease-in;
     text-decoration: none !important;
+}
+.place-order:hover {
+    color: #fff;
 }
 
 .sign-in:hover, .place-bt:hover, .place-bt-2:hover, 
@@ -871,6 +874,20 @@ nav ul li a:hover, nav ul li a:focus, nav ul li.active a {
   transition: all 0.2s ease-in;
   border: none;
   border-radius: 3px;
+}
+a.pricing-bt {
+    font-family: "Bikobold";
+    font-size: 18px;
+    color: #fff;
+    background: #00afef;
+    width: 164px;
+    height: 49px;
+    text-align: center;
+    transition: all 0.2s ease-in;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 30px;
+    text-decoration: none;
 }
 .pricing-bt:hover {
   background: #00a0e0;
