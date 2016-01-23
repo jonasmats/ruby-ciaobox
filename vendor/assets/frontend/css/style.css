@@ -1256,11 +1256,13 @@ body .owl-theme .owl-controls.clickable {
   margin-right: 2px;
 }
 .slide-image {
-  background: url("../images/slide-image.jpg") no-repeat center center; 
-  background-size: cover;
-  height: 285px;
+    height: 285px;
+    padding: 0 3px;
 }
-
+.slide-item {
+    display: inline-block;
+    padding: 10px 3px;
+}
 
 .map-section figure {
   background: url("../images/map-img.png") no-repeat center center; 

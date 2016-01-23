@@ -25,6 +25,8 @@
 //= require js/bootstrap-datetimepicker.min
 /* OTHER  */
 //= require jquery_ujs
+//= require js/jquery-migrate-1.2.1.min.js
+//= require js/slick.min.js
 
 
 (function($) {
@@ -76,4 +78,23 @@ $(document).ready(function (n) {
     }), n(".responsive-menu-content ul li a").click(function () {
         n(".responsive-menu-content").removeClass("show-canvas")
     })
+});
+
+//slick slider on homepage
+$(document).ready(function() {
+    var slider = $('.slide-image');
+    if (slider != undefined && slider != null) {
+        slider.slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            adaptiveHeight: true,
+            mobileFirst: true,
+            variableWidth: true,
+            centerMode: true,
+            nextArrow: '<a class="right noback-carousel-control" role="button" data-slide="next" style="display:block; z-index:99999;"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>',
+            prevArrow: '<a class="left noback-carousel-control" role="button" data-slide="prev" style="display:block; z-index:99999;"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>',
+        });
+    }
 });
