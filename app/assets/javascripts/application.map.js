@@ -3,14 +3,14 @@ google.maps.event.addDomListener(window, 'load', function() {
     var opts = {
         zoom: 11,
         //center: new google.maps.LatLng(46.1420653, 8.9959221),
-        center: new google.maps.LatLng(46.1046609262044,9.018402099609375),
+        center: new google.maps.LatLng(46.066084877475234, 8.928451538085938),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
         zoomControl: true,
         mapTypeControl: false,
         scaleControl: false,
         streetViewControl: false,
-        rotateControl: false
+        rotateControl: true
     };
 
     var gMap = new google.maps.Map(document.getElementById('map-container'), opts);
