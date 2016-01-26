@@ -26,4 +26,19 @@ section.when-swing.clearfix
                 span 3PM - 5PM
               li data-option="" data-value="2015-12-12T17:00:00-05:00//2015-12-12T19:00:00-05:00" 
                 span 5PM - 7PM
+
+      #form-over-swing.store-box.form-expand style="display: none;"
+        p
+          strong After you're done packing, when should we pick up your stuff?
+        #overhead-photos
+          .detail-radio-div
+            = form.radio_button :pickup_rightaway, true
+            label for="rightaway"
+              strong Right away,
+              | &nbsp; Our driver will wait up to 20 minutes while you pack.
+          .detail-radio-div.checked
+            = form.radio_button :pickup_rightaway, false
+            label for="no-rightaway"
+              | I need more time. I'll schedule a separate pickup within 2 weeks.
+
 = javascript_include_tag 'shipping/date_picker'

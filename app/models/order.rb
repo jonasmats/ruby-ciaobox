@@ -44,6 +44,15 @@ class Order < ActiveRecord::Base
     self.amount_confirm?
   end
 
+  public def check_amount?
+    total_amount = self.order_details.sum(:price);
+    if total_amount >= 25
+      return true;
+    else
+      return false;
+    end
+  end
+
   def validate_step_2?
     self.persisted? && self.order_details.first.present? && self.order_details.first.persisted?
   end

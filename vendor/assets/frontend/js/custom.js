@@ -162,8 +162,19 @@ $(document).ready(function(){
 
         $(this).parent().parent().parent().removeClass("store-box-normal");
 
-    }); 
+    });
 
+    $("#time_picker_value").on("change", function() {
+
+        var date = $(this).parent().parent().find(".date-picker input").val();
+        var time = $(this).val();
+        if (date != undefined && time != undefined) {
+            var display = $("#form-over-swing").css("display");
+            if (display == "none")
+                $("#form-over-swing").slideDown();
+        }
+
+    });
 });/*--End---*/
 
 
@@ -209,4 +220,4 @@ $(document).on('click', '.section-schedule .store-box-normal', function(){
 
 // $('a.icon-item').on('click', function(){
 //   return false;
-// })
+// }

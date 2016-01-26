@@ -78,6 +78,11 @@ class Shipping::StandardController < ShippingController
         if order_item_user_params.present?
           create_order_item_user
         end
+        #redirect back to appointment step if total amount is less than 25 CHF
+        if !@order.check_amount?
+          redirect_to shipping_standard_path(:appoinment),
+            alert: "Remember that the minimum monthly fee is 25.00 CHF" and return;
+        end
       else
         redirect_to shipping_standard_path(:appoinment), 
           alert: @order.errors.full_messages and return
@@ -114,6 +119,7 @@ class Shipping::StandardController < ShippingController
       @order.shipping = @shipping
       @order.user = current_user
       @order.pay_status = false
+      @order.pickup_rightaway = false
     else
       @order = Order.find(session[:order_id])
     end

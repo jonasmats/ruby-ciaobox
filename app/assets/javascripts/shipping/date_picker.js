@@ -45,5 +45,6 @@ $('.time-picker li').each(function() {
     var datavalue = $(this).children("span").text();
     $('#time_picker_value').attr('value',datavalue);
     $(".cs-options").toggle();
+    $('#time_picker_value').change();
   });
 })
