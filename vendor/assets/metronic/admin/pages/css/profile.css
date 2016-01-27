@@ -11,6 +11,11 @@ New Profile Page
   margin-right: 20px;
 }
 
+.profile-sidebar-right {
+  margin-right: 10px;
+  overflow: hidden;
+}
+
 .profile-content {
   overflow: hidden;
 }
@@ -165,4 +170,30 @@ New Profile Page
   .profile-content {
     overflow: visible;
   }
+}
+
+.minh {
+  min-height: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+div.min2h {
+  min-height: 40px;
+}
+
+.sub-group {
+  display: block;
+  padding: 0 10px 2px 50px;
+  min-height: 33px;
+}
+
+.profile-area-left {
+  width: 50%;
+  float: left;
+}
+
+.profile-are-right {
+  width: 50%
+  overflow: hidden;
 }

@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
   after_create :send_notification_for_admin
 
   delegate :full_name, :avatar, to: :profile, allow_nil: true
-  enum status: { un_active: 0, active: 1 }
+  #enum status: { un_active: 0, active: 1 }
+  enum status: {inactive: 0, active: 1, active_but_problematic: 2}
+  enum preferred_language: {en: 0, it: 1, fr: 2, de: 3}
 
   # 1. associations
   has_one :profile, class_name: User::Profile.name, foreign_key: :user_id, dependent: :destroy
@@ -55,7 +57,9 @@ class User < ActiveRecord::Base
   # 4 validates
   validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
   validates :status, presence: true
-  # 5
+  # 5 callbacks
+  after_save :set_customer_code, if: :set_customer_code?
+
   private
   def create_instance_profile
     self.create_profile
@@ -104,4 +108,11 @@ class User < ActiveRecord::Base
     NotificationMailer.new_user(self).deliver
   end
 
+  def set_customer_code?
+    self.customer_code.blank?
+  end
+
+  def set_customer_code
+    self.update!(customer_code: "CST#{(Time.now.to_f * 1000).to_i}")
+  end
 end

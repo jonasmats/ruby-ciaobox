@@ -7,6 +7,11 @@
       - if @user.new_record?
         .form-group
           label.col-md-3.control-label
+            = User.h :customer_code
+          .col-md-4
+            = f.text_field :customer_code, class: "form-control", placeholder: "", disabled: true
+        .form-group
+          label.col-md-3.control-label
             = User.h :email
           .col-md-4
             = f.text_field :email, class: "form-control", placeholder: "#{t('.placeholder.email')}"
@@ -16,6 +21,11 @@
           .col-md-4
             = f.password_field :password, class: "form-control", placeholder: "#{t('.placeholder.password')}", autocomplete: "off"
       - else
+        .form-group
+          label.col-md-3.control-label
+            = User.h :customer_code
+          .col-md-4
+            = f.text_field :customer_code, class: "form-control", placeholder: "", disabled: true
         .form-group
           label.col-md-3.control-label
             = User.h :email
@@ -70,7 +80,13 @@
             = Address.h :country
           .col-md-4
             = fff.text_field :country, class: "form-control", placeholder: "#{t('.placeholder.country')}"
-        
+        .form-group
+          label.col-md-3.control-label
+            = User::Profile.h :preferred_language
+          .col-md-4
+            = f.select :preferred_language, options_for_select(User.preferred_languages.map{|k, v| [t("locale.#{k}"), k]} , selected: @user.preferred_language), {}, {class: "form-control"}
+
+
       = render "note", f: f
 
       .form-group

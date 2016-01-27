@@ -23,6 +23,9 @@ class Admin::UsersController < Admin::BaseAdminController
   end
 
   def new
+    #Generate Customer Code Automatically
+    @user.customer_code = "CST#{(Time.now.to_f * 1000).to_i}"
+
     add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_user_path
     @user.build_profile
     @user.build_address

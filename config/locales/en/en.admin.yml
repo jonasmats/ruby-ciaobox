@@ -46,6 +46,8 @@ en:
       back: &back " Back"
       active: &active "Active"
       un_active: &un_active "Lock"
+      inactive: &inactive "Inactive"
+      active_but_problematic: &active_but_problematic "Active but problematic"
       list: &list "List"
       detail: &detail "Detail"
     faq:
@@ -163,6 +165,8 @@ en:
         blank: *blank
         active: *active
         un_active: *un_active
+        inactive: *inactive
+        active_but_problematic: *active_but_problematic
         placeholder:
           email: "Enter email"
           password: "Enter password"
@@ -177,6 +181,8 @@ en:
         view: *view
         active: *active
         un_active: *un_active
+        inactive: *inactive
+        active_but_problematic: *active_but_problematic
       edit:
         title: *edit
       new:
@@ -205,6 +211,8 @@ en:
         blank: *blank
         active: *active
         un_active: *un_active
+        inactive: *inactive
+        active_but_problematic: *active_but_problematic
         placeholder:
           email: "Enter email"
           password: "Enter password"
@@ -225,6 +233,8 @@ en:
         view: *view
         active: *active
         un_active: *un_active
+        inactive: *inactive
+        active_but_problematic: *active_but_problematic
     banners:
       edit:
         title: *edit
@@ -350,6 +360,8 @@ en:
           blank: *blank
           active: *active
           un_active: *un_active
+          inactive: *inactive
+          active_but_problematic: *active_but_problematic
           placeholder:
             email: "Enter email"
             password: "Enter password"
@@ -370,6 +382,8 @@ en:
           view: *view
           active: *active
           un_active: *un_active
+          inactive: *inactive
+          active_but_problematic: *active_but_problematic
       articles:
         index:
           title: *list
