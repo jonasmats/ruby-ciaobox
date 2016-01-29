@@ -223,17 +223,22 @@ class Shipping::FlyController < ShippingController
   end
 
   def generate_postfinance_fields
-    keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "ACCEPTURL", "EXCEPTIONURL", "TP", "SHASIGN"]
+    keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "ACCEPTURL", "EXCEPTIONURL", "TP", "ALIAS", "ALIASUSAGE", "SHASIGN"]
     #keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "EXCEPTIONURL", "TP", "SHASIGN"]
+    curr_time = "#{(Time.now.to_f * 1000).to_i}"
+
     @hidden_f = {}
     @hidden_f["PSPID"] = Settings.postfinance.PSP
-    @hidden_f["ORDERID"] = "CB%08d" % @order.id
+    #@hidden_f["ORDERID"] = "CB%08d" % @order.id
+    @hidden_f["ORDERID"] = "CBO#{curr_time}"
     @hidden_f["AMOUNT"] = (@order.amount * 100).to_i.to_s
     @hidden_f["CURRENCY"] = "CHF"
     @hidden_f["OPERATION"] = "SAL"
     @hidden_f["LANGUAGE"] = "en_US"
     @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/standard/confirmation"
     @hidden_f["EXCEPTIONURL"] = "http://www.ciaobox.it/shipping/standard/review"
+    @hidden_f["ALIAS"] = "ALIS#{curr_time}"
+    @hidden_f["ALIASUSAGE"] = "Validtion of payable status"
     @hidden_f["TP"] = Settings.postfinance.TP
 
     shasign = ""
