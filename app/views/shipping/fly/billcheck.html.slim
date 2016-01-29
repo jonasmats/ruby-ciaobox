@@ -1,0 +1,20 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Thank you for your order
+
+section.schedule-process.clearfix
+  .container.schedule-process-inner
+    h3
+      | Please wait a moment...
+
+= form_tag Settings.postfinance.ACTION_URL, {method: "post", id: "pf_form"}
+  - @hidden_f.each do |k, v|
+    = hidden_field_tag k, v
+
+javascript:
+  $(document).ready(function() {
+    $("#pf_form").submit();
+  });

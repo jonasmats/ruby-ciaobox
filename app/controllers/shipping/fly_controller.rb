@@ -1,5 +1,5 @@
 class Shipping::FlyController < ShippingController
-  steps :appoinment, :review, :confirmation
+  steps :appoinment, :review, :billcheck, :confirmation
   include ::Dashboard::Shipping::Fly::Parameter
   before_action :title_form, only: [:show, :update]
 
@@ -45,6 +45,21 @@ class Shipping::FlyController < ShippingController
       build_feed_back
       load_order_details
 
+    when :billcheck
+      authenticate_user!
+      create_instance
+      set_params
+      if @order.persisted?
+        if @order.registering?
+          redirect_to shipping_standard_path(:review),
+           alert: I18n.t('shipping.not_finish_step_2') and return
+        end
+      else
+        redirect_to shipping_standard_path(:appoinment),
+         alert: I18n.t('shipping.not_finish_step_1') and return
+      end
+      generate_postfinance_fields
+
     when :confirmation
       create_instance
       if @order.persisted?
@@ -87,6 +102,23 @@ class Shipping::FlyController < ShippingController
       # end
       build_feed_back
       load_order_details
+
+    when :billcheck
+      authenticate_user!
+      create_instance
+      set_params
+      puts @order
+      if @order.valid?
+        delete_order_details
+        set_params
+        @order.status = Order.statuses[:amount_confirm]
+        @order.save
+      else
+        redirect_to shipping_standard_path(:review),
+         alert: @order.errors.full_messages and return
+      end
+      generate_postfinance_fields
+
     when :confirmation
       create_instance
       set_params
@@ -188,5 +220,29 @@ class Shipping::FlyController < ShippingController
         quantity: 1
       )
     end
+  end
+
+  def generate_postfinance_fields
+    keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "ACCEPTURL", "EXCEPTIONURL", "TP", "SHASIGN"]
+    #keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "EXCEPTIONURL", "TP", "SHASIGN"]
+    @hidden_f = {}
+    @hidden_f["PSPID"] = Settings.postfinance.PSP
+    @hidden_f["ORDERID"] = "CB%08d" % @order.id
+    @hidden_f["AMOUNT"] = (@order.amount * 100).to_i.to_s
+    @hidden_f["CURRENCY"] = "CHF"
+    @hidden_f["OPERATION"] = "SAL"
+    @hidden_f["LANGUAGE"] = "en_US"
+    @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/standard/confirmation"
+    @hidden_f["EXCEPTIONURL"] = "http://www.ciaobox.it/shipping/standard/review"
+    @hidden_f["TP"] = Settings.postfinance.TP
+
+    shasign = ""
+    keys.each do |k|
+      shasign = shasign + k + "=" + @hidden_f[k].to_s + Settings.postfinance.HASHSEED
+    end
+
+    @hidden_f["SHASIGN"] = Digest::SHA1.hexdigest(shasign).upcase
+
+    logger.debug "HASPMAP HIDDEN Fields => #{@hidden_f}"
   end
 end

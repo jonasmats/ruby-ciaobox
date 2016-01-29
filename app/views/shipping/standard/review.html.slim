@@ -14,5 +14,5 @@ section.section-2.about
         = render partial: 'shipping/standard/review/store_box', collection: @items, locals: {form: f}
     = render partial: 'shipping/standard/review/personal_info', locals: {order: @order}
     = render partial: 'shipping/standard/review/contact_info', locals: {form: f}
-    = render partial: 'shipping/standard/review/billing_info', locals: {order: @order}
+    /= render partial: 'shipping/standard/review/billing_info', locals: {order: @order}
     = render partial: 'shipping/standard/review/hear_about', locals: {form: f}

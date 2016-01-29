@@ -3,3 +3,9 @@ devise:
   FB_APP_SECRET: b0781dc049e43bf88bc93a10c8f1fca8
   GG_APP_ID: '630017564342-bepruna5tsrmq9ojkvokknlt08sebu3a.apps.googleusercontent.com'
   GG_APP_SECRET: 'tAXClscei57RbFamLojWdRMM'
+
+postfinance:
+  ACTION_URL: 'https://e-payment.postfinance.ch/ncol/test/orderstandard.asp'
+  PSP: 'ciaoboxDEMO'
+  HASHSEED: '123456.Cbx'
+  TP: 'http://www.ciaobox.it/epayment.html'
