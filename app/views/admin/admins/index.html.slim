@@ -37,15 +37,17 @@ br
     table.table.table-bordered.table-striped.table-condensed.flip-content
       thead.flip-content
         tr
-          th
+          th.center
+            = Admin.h :employee_code
+          th.center
             = Admin.h :username
-          th
+          th.center
             = Admin.h :email
-          th
+          th.center
             = Admin.h :role
-          th
+          th.center
             = Admin.h :status
-          th
+          th.center
             = t(".action")
       tbody
       = render partial: 'admin', collection: @admins

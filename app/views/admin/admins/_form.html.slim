@@ -6,6 +6,11 @@
       - if @admin.new_record?
         .form-group
           label.col-md-3.control-label
+            = Admin.h :employee_code
+          .col-md-4
+            = f.text_field :employee_code, class: "form-control", readonly: true
+        .form-group
+          label.col-md-3.control-label
             = Admin.h :email
           .col-md-4
             = f.text_field :email, class: "form-control", placeholder: "#{t('.placeholder.email')}"

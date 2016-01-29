@@ -6,13 +6,15 @@
     table.table.table-bordered.table-striped.table-condensed.flip-content
       thead.flip-content
         tr
-          th
+          th.center
+            | Sort ID
+          th.center
             = Faq::Category.h :name
-          th
+          th.center
             = Faq.h :question
-          th
+          th.center
             = Faq.h :answer
-          th
+          th.center
             = t(".action")
       tbody
       = render partial: 'faq', collection: @faqs

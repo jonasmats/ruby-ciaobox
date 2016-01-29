@@ -24,6 +24,9 @@ class Admin::AdminsController < Admin::BaseAdminController
   end
 
   def new
+    #Generate Customer Code Automatically
+    @admin.employee_code = "EMP#{(Time.now.to_f * 1000).to_i}"
+
     add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_admin_path
     @admin.build_profile
   end
