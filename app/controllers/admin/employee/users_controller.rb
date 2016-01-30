@@ -24,6 +24,9 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   end
 
   def new
+    #Generate Customer Code Automatically
+    @user.customer_code = "CST#{(Time.now.to_f * 1000).to_i}"
+
     add_crumb I18n.t('admins.breadcrumbs.new'), new_admin_employee_user_path
     @user.build_profile
     @user.build_address
@@ -39,10 +42,14 @@ class Admin::Employee::UsersController < Admin::BaseAdminController
   end
 
   def edit
+    #logger.debug "SELECTED USER INFO #{@user.orders.where("status = ?", 2).select(:id, :shipping_date, :shipping_time, :pay_status).order(:shipping_date).inspect}"
+    @user.orders = @user.orders.where("status = ?", 1).order(:shipping_date)
+
     add_crumb @user.full_name, edit_admin_employee_user_path(@user)
   end
 
   def update
+    logger.debug "SELECTED USER INFO #{params}"
     if @user.save
       active_job_log_action(log_params)
       respond_to do |format|

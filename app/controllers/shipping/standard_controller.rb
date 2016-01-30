@@ -60,7 +60,18 @@ class Shipping::StandardController < ShippingController
         redirect_to shipping_standard_path(:appoinment),
                     alert: I18n.t('shipping.not_finish_step_1') and return
       end
-      generate_postfinance_fields
+      #generate_postfinance_fields
+      if @order.valid?
+        delete_order_details
+        set_params
+        @order.status = Order.statuses[:amount_confirm]
+        @order.save
+        redirect_to shipping_standard_path(:confirmation),
+          notice: "Thank you for your order" and return
+      else
+        redirect_to shipping_standard_path(:review),
+          alert: @order.errors.full_messages and return
+      end
 
     when :confirmation
       authenticate_user!
@@ -250,7 +261,7 @@ class Shipping::StandardController < ShippingController
     @hidden_f["CURRENCY"] = "CHF"
     @hidden_f["OPERATION"] = "SAL"
     @hidden_f["LANGUAGE"] = "en_US"
-    @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/standard/confirmation"
+    @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/standard/billcheck"
     @hidden_f["EXCEPTIONURL"] = "http://www.ciaobox.it/shipping/standard/review"
     @hidden_f["ALIAS"] = "ALIS#{curr_time}"
     @hidden_f["ALIASUSAGE"] = "Validtion of payable status"
