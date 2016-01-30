@@ -37,21 +37,21 @@ br
     table.table.table-bordered.table-striped.table-condensed.flip-content
       thead.flip-content
         tr
-          th
+          th.center
             = User.h :username
-          th
+          th.center
             = User.h :email
-          th
+          th.center
             = User.h :status
-          th
+          th.center
             = User.h :cap
-          th
+          th.center
             = User::Profile.h :telephone
-          th
+          th.center
             = Address.h :city
-          th
+          th.center
             = Address.h :country
-          th
+          th.center
             = t(".action")
       tbody
       = render partial: 'user', collection: @users

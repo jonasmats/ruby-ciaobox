@@ -7,89 +7,115 @@
         .profile-usertitle
           .profile-usertitle-name
             = @user.full_name
-    .profile-content
+    .profile-sidebar-right
       .row
-        .form-body.form-horizontal
-          .form-group
+        .sub-group
+          label.control-label.col-md-4
+            | Creation Date Of Customer:
+          p.form-control-static.minh
+            = @user.created_at.to_date
+        .sub-group
+          label.control-label.col-md-4
+            | Date Of The First Order:
+          p.form-control-static.minh
+            = @user.orders.order(:created_at).pluck(:created_at).first
+        .sub-group
+          label.control-label.col-md-4
+            | Date Of The First Delivery:
+          p.form-control-static.minh
+            = @user.orders.order(:shipping_date).pluck(:shipping_date).first
+        .sub-group
+          label.control-label.col-md-4
+            | Days From The Last Delivery:
+          p.form-control-static.minh
+            = @user.orders.where(:pay_status => 1).order(shipping_date: :desc).pluck(:shipping_date).first
+        .sub-group
+          label.control-label.col-md-4
+            | Days Of Late to Pay Invoice:
+          p.form-control-static.minh
+            = @user.orders.order(:created_at).pluck(:created_at).first
+        .sub-group
+          label.control-label.col-md-4
+            | Days Of The First Invoice:
+          p.form-control-static.minh
+            = @user.orders.order(:created_at).pluck(:created_at).first
+
+
+    .col-md-12.margin-top-20
+      .profile-area-left
+        .row
+          .sub-group.min2h
             label.control-label.col-md-3
               = User::Profile.h :first_name
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.profile.try(:first_name)
-          .form-group
+            p.form-control-static.minh
+              = @user.profile.try(:first_name)
+          .sub-group.min2h
             label.control-label.col-md-3
               = User.h :last_name
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.profile.try(:last_name)
-          .form-group
+            p.form-control-static.minh
+              = @user.profile.try(:last_name)
+          .sub-group.min2h
             label.control-label.col-md-3
               = User::Profile.h :telephone
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.profile.try(:telephone)
-          .form-group
+            p.form-control-static.minh
+              = @user.profile.try(:telephone)
+          .sub-group.min2h
             label.control-label.col-md-3
               = User::Profile.h :username
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.username
-          .form-group
+            p.form-control-static.minh
+              = @user.username
+          .sub-group.min2h
             label.control-label.col-md-3
               = User.h :email
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.email
-          .form-group
+            p.form-control-static.minh
+              = @user.email
+          .sub-group.min2h
             label.control-label.col-md-3
               = Address.h :cap
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.address.try(:cap)
-          .form-group
+            p.form-control-static.minh
+              = @user.address.try(:cap)
+
+      .profile-area-right
+        .row
+          .sub-group.min2h
             label.control-label.col-md-3
               = Address.h :address_name
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.address.try(:address_name)
-          .form-group
+            p.form-control-static.minh
+              = @user.address.try(:address_name)
+          .sub-group.min2h
             label.control-label.col-md-3
               = Address.h :city
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.address.try(:city)
-          .form-group
+            p.form-control-static.minh
+              = @user.address.try(:city)
+          .sub-group.min2h
             label.control-label.col-md-3
               = Address.h :country
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.address.try(:country)
-          .form-group
+            p.form-control-static.minh
+              = @user.address.try(:country)
+          .sub-group.min2h
             label.control-label.col-md-3
               = User.h :status
               | :
-            .col-md-4
-              p.form-control-static
-                = @user.status
-          .form-group
+            p.form-control-static.minh
+              = @user.status
+          .sub-group.min2h
             label.control-label.col-md-3
               = User.h :note
               | :
-            .col-md-4
-              p.form-control-static
-                - if @user.note.present?
-                  - @user.note.each do |k,v|
-                    -if v.present?
-                      li= v
+            p.form-control-static.minh
+              - if @user.note.present?
+                - @user.note.each do |k,v|
+                  -if v.present?
+                    li= v
           .form-actions
             .row
               .col-md-offset-3.col-md-4
