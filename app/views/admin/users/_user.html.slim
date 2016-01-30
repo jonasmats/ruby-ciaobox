@@ -17,7 +17,7 @@ tr
     = user.profile.try(:telephone)
   td
     = user.address.try(:city)
-    td
+  td
     = user.address.try(:country)
   td
     = link_to admin_user_path(user), class: "btn default btn-xs purple" do
