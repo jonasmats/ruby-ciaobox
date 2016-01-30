@@ -90,7 +90,7 @@ Page Header
   float: left;
 }
 .page-header.navbar .page-logo .logo-default {
-  margin: 16px 0 0 0;
+  margin: 12px 0 0 0;
 }
 .page-header.navbar .page-logo .logo-mini {
   display: none;
@@ -1171,6 +1171,7 @@ Page sidebar
   width: 30px;
   height: 27px;
   margin-top: 15px;
+  margin-bottom: 15px;
   margin-right: 19px;
   float: right;
   -webkit-border-radius: 4px;
@@ -2133,6 +2134,7 @@ Page content
 }
 .page-bar .page-breadcrumb > li {
   display: inline-block;
+  margin-right: 6px;
 }
 .ie8 .page-bar .page-breadcrumb > li {
   margin-right: 1px;
