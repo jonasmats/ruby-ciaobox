@@ -45,11 +45,12 @@ class User < ActiveRecord::Base
   has_many :notification, class_name: Notification.name, foreign_key: :user_id, dependent: :destroy
   has_many :user_notification, class_name: Notification::UserRegister.name, foreign_key: :user_id, dependent: :destroy
   has_many :schedule_notification, class_name: Notification::ScheduleCreate.name, foreign_key: :user_id, dependent: :destroy
-  has_many :orders
+  has_many :orders, foreign_key: :user_id, dependent: :destroy
   has_many :order_items
   has_many :feedbacks
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :orders, allow_destroy: true, reject_if: :reject_orders
 
   has_many :log_actions, as: :subject
   # 2. scopes
@@ -114,5 +115,12 @@ class User < ActiveRecord::Base
 
   def set_customer_code
     self.update!(customer_code: "CST#{(Time.now.to_f * 1000).to_i}")
+  end
+
+  def reject_orders(attributed)
+    ret = (self.new_record? || attributed['id'].blank?) ? true : false
+    #logger.debug "REJECT ORDERS 1 #{self.new_record?}"
+    #logger.debug "REJECT ORDERS 2 #{attributed['id'].blank?}"
+    return ret
   end
 end

@@ -1,11 +1,18 @@
 class Order < ActiveRecord::Base
   acts_as_paranoid
-  enum status: {registering: 0,
-   amount_confirm: 1, checking: 2, reject: 3, processing: 4, holding: 5,
-   cancel: 6, returned: 7}
+  enum status: {
+    registering: 0,
+    amount_confirm: 1,
+    checking: 2,
+    reject: 3,
+    processing: 4,
+    holding: 5,
+    cancel: 6,
+    returned: 7
+  }
 
   # 1. association
-  belongs_to :user
+  belongs_to :user, class_name: User.name, foreign_key: :user_id
   belongs_to :shipping
   has_many :order_details, dependent: :destroy
   has_many :order_items, through: :order_details
