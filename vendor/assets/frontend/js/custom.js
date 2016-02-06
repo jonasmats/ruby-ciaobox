@@ -218,6 +218,32 @@ $(document).on('click', '.section-schedule .store-box-normal', function(){
 
 });
 
+$(document).on('click', '#edt-address-img', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+
+$(document).on('click', '#edt-state-img', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-name-img', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-date-img', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-time-img', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
 // $('a.icon-item').on('click', function(){
 //   return false;
 // }

@@ -91,6 +91,10 @@ p {
   margin: 0px;
   font-weight: 300;
 }
+p.login-alert {
+  font-size: 17px;
+  margin-bottom: 1mm;
+}
 img {
   border: 0;
   max-width: 100%;
@@ -126,6 +130,7 @@ input {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
 }
+
 input:hover,
 input:focus,
 textarea:hover, 
@@ -141,6 +146,17 @@ button:hover
     outline:0px !important;
     -webkit-appearance:none;
     box-shadow: none!important;
+}
+
+input:focus,
+textarea:active,
+input[type=text]:active,
+textarea:focus,
+input[type=text]:focus
+{
+    border-color: rgba(8, 164, 108, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 164, 108, 0.6) !important;
+    outline: 0 none !important;
 }
 
 input[type="checkbox"],
@@ -2045,6 +2061,8 @@ padding-top: 16px;
   height: 61px;
   line-height: 20px;
   padding: 15px 22px;
+  width: 100%;
+  padding: 15px 35px 15px 22px;
 }
 .address-meet-top {
   float: left;
@@ -2053,17 +2071,49 @@ padding-top: 16px;
 .address-meet-top .in-addess {
   float: left;
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
+  position: relative;
 }
-.address-meet-top .app-state, .address-meet-top .app-num {
-  margin-left: 5%;
-  max-width: 140px;
+.address-meet-top .app-state {
+  margin-left: 3%;
+  max-width: 180px;
   width: 100%;
+  display: inline-block;
+  position: relative;
 }
 .address-meet-top .app-num {
+    margin-left: 3%;
+    max-width: 112px;
+    width: 100%;
+    display: inline-block;
+}
+.address-meet-top .input-app-num {
   background: transparent;
 }
-
+.email-input {
+  float: left;
+  padding-right: 20px;
+  position: relative;
+  width: 50%;
+}
+.phone-input {
+  float: right;
+  padding-left: 20px;
+  position: relative;
+  width: 50%;
+}
+.email-input figure {
+    position: absolute;
+    right: 35px;
+    cursor: pointer;
+    top: 22px;
+}
+.in-addess figure, .app-state figure, .john-input figure, .phone-input figure {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    top: 22px;
+}
 .address-meet input[type="text"]::-moz-placeholder {
   opacity: 1;
   color: #3d3d3d;
@@ -2306,6 +2356,7 @@ padding-top: 16px;
   float: left;
   margin-bottom: 13px;
   width: 100%;
+  position: relative;
 }
 .address-meet-inner .app-num-bg {
  background: #fff;

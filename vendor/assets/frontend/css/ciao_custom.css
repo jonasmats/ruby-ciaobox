@@ -56,7 +56,7 @@ h4.modal-title {
     margin-left: -40px!important;
 }
 
-.personal-menu-item {
+.personal-menu-item, .nav-2 ul li.personal-menu-item {
     background: url('');
     width: 112%!important;
 }
@@ -180,4 +180,42 @@ input.referral-link-field[readonly]:hover {
     margin-top: -10px;
     z-index: 5;
     display: inline-block;
+}
+
+.alert-center {
+    text-align: center;
+    font-size: 16px;
+}
+
+.color-red {
+    color: red;
+}
+
+/* Social share button style */
+.social-share-button-twitter {
+    margin: 0 8px;
+    display: inline-block;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    background: url("../images/tw-modal-ic.png") no-repeat;
+    background-size: cover;
+}
+.social-share-button-facebook {
+    margin: 0 8px;
+    display: inline-block;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    background: url("../images/fb-modal-ic.png") no-repeat;
+    background-size: cover;
+}
+.social-share-button-email {
+    margin: 0 8px;
+    display: inline-block;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    background: url("../images/eml-modal-ic.png") no-repeat;
+    background-size: cover;
 }
