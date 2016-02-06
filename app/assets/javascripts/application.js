@@ -27,7 +27,7 @@
 //= require jquery_ujs
 //= require js/jquery-migrate-1.2.1.min.js
 //= require js/slick.min.js
-//= require social-share-button
+/*//= require social-share-button*/
 
 
 (function($) {
