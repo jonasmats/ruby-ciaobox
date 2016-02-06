@@ -19,7 +19,9 @@ class Admin::UsersController < Admin::BaseAdminController
   end
 
   def show
-    add_crumb @user.full_name, admin_user_path(@user)
+    user_alt_name = (@user.profile.first_name.blank? || @user.profile.last_name.blank?) ? @user.username : @user.profile.first_name + ' ' + @user.profile.last_name
+    user_full_name = (@user.full_name.blank?) ? user_alt_name : @user.full_name
+    add_crumb user_full_name, admin_user_path(@user)
   end
 
   def new
@@ -41,7 +43,9 @@ class Admin::UsersController < Admin::BaseAdminController
   end
 
   def edit
-    add_crumb @user.full_name, edit_admin_user_path(@user)
+    user_alt_name = (@user.profile.first_name.blank? || @user.profile.last_name.blank?) ? @user.username : @user.profile.first_name + ' ' + @user.profile.last_name
+    user_full_name = (@user.full_name.blank?) ? user_alt_name : @user.full_name
+    add_crumb user_full_name, edit_admin_user_path(@user)
   end
 
   def update

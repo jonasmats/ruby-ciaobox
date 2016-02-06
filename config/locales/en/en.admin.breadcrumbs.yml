@@ -26,3 +26,5 @@ en:
       coupon: Coupon
       order: Orders
       date_off: Date Offs
+      sys_setting: System Setting
+      backup_db: Backup Databse

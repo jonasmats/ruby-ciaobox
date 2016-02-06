@@ -553,3 +553,15 @@ en:
         edit: *edit
         delete: *delete
         question_destroy: *question_destroy
+    sys_settings:
+      title:
+        sub_title: System Setting
+      index:
+        title: *list
+        action: *action
+    backup_dbs:
+      title:
+        sub_title: Backup Database
+      index:
+        title: *list
+        action: *action

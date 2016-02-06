@@ -1,0 +1,16 @@
+= render partial: "title", locals: {title: t(".title")}
+.portlet.light.bg-inverse
+  .portlet-body.form
+    = form_tag admin_backup_db_path(@backup_db), html: {class: "form-horizontal form-row-sepe"} do
+      .row
+        .col-md-12
+          /= link_to admin_backup_db_path(@backup_db), class: "btn btn-primary", method: :put do
+          input[type="hidden" value="#{admin_backup_dbs_path}" id="backup_db_url"]
+          button.btn.btn-primary.pull-right[type="button" id="btn-backup-db"]
+            i.icon-social-dropbox
+            | &nbsp;Backup Database
+
+      .form-body
+        = text_area_tag "backup_log", @backup_db[:output], rows: 20, class: "col-md-12"
+
+= javascript_include_tag 'admin/backup_dbs/backup_db'

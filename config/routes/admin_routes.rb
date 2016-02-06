@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :categories
     end
 
+    resources :sys_settings, only: [:index, :update]
+    resources :backup_dbs, only: [:index, :update, :create]
     resources :faqs
     resources :profile, only: [:index, :edit, :update]
     resources :social_networks
@@ -39,7 +41,8 @@ Rails.application.routes.draw do
     resources :gifts
     resources :coupons
     resources :custom_coupons, controller: :coupons
-    resources :custom_gifts, controller: :coupons
+    #resources :custom_gifts, controller: :coupons
+    resources :referral_coupons, controller: :coupons
     resources :multiple_coupons, controller: :coupons
 
     resources :orders

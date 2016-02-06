@@ -1,0 +1,45 @@
+= render partial: "title", locals: {title: t(".title")}
+.portlet.box.blue
+  .portlet-title
+    .caption
+      i.fa.fa-gift
+      | Setting
+    .tools
+      a.collapse[href="javascript:;"]
+      a.reload[href="javascript:;"]
+  .portlet-body.form
+    = form_for [:admin, @sys_setting], url: admin_sys_setting_path(@sys_setting), html: {class: "form-horizontal form-row-sepe"} do |f|
+      = render "/layouts/shared/form_errors/admin", object: f.object
+      .form-body
+        h4.form-section
+          | Currency
+        .form-group
+          label.control-label.col-md-3
+          /  | Select Currency
+          .col-md-4
+            = f.select :currency, options_for_select(SysSetting.sys_currencies.map { |k, v| [k, v] }, selected: @sys_setting.currency), {}, {class: "form-control"}
+        h4.form-section
+          | Payment Method
+        .form-group
+          label.control-label.col-md-3
+          /  | Select Payment Method
+          .col-md-4
+            = f.select :payment_method, options_for_select(SysSetting.pay_methods.map { |k, v| [k, v] }, selected: @sys_setting.payment_method), {}, {class: "form-control"}
+        h4.form-section
+          | Language
+        .form-group
+          label.control-label.col-md-3
+          /  | Select Language
+          .col-md-4
+            = f.select :system_language, options_for_select(SysSetting.sys_languages.map { |k, v| [k.upcase, v] }, selected: @sys_setting.system_language), {}, {class: "form-control"}
+        h4.form-section
+          | TimeZone
+        .form-group
+          label.control-label.col-md-3
+          /  | TimeZone
+          .col-md-4
+            = f.time_zone_select :timezone, ActiveSupport::TimeZone.us_zones, {include_blank: false, selected: @sys_setting.timezone}, {class: "form-control"}
+      .form-actions
+        .row
+          .col-md-offset-3.col-md-9
+            = f.submit class: "btn green", value: "Update"

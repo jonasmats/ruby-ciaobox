@@ -5,6 +5,9 @@ en:
       list: &list " List"
     shared:
       sidebar:
+        system_label: "System Management"
+        system_setting_label: " Setting"
+        system_backup_db: " Backup DB"
         faq_label: "FAQs management"
         faqs_label: " FAQs"
         faq_category_label: " Categories"
@@ -74,10 +77,12 @@ en:
         gift_label: "Gift management"
         gift_new: *new
         gift_list: *list
+        coupon_new: *new
         coupon_label: "Coupon Management"
-        custom_coupon_new: "Custom Coupon New"
-        multiple_coupon_new: "Multiple Coupon New"
-        gift_coupon_new: "Gift Coupon New"
+        custom_coupon_new: " Custom Coupon"
+        multiple_coupon_new: " Multiple Coupon"
+        gift_coupon_new: " Gift Coupon"
+        referral_coupon_new: " Referral Coupon"
         coupon_list: *list
         order_label: "Order Management"
         order_new: *new
