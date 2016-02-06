@@ -37,10 +37,11 @@ class Admin::BackupDbsController < Admin::BaseAdminController
     @backup_db[:output] = ""
 
     if params[:executable].present? && params[:executable] == '1'
-      cmd = "backup perform -t db_backup"
+      cmd = "su - ubuntu -c 'backup perform -t db_backup'"
       Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
         #@backup_db[:output] = @backup_db[:output] + "\n" + stdout.read
-        render json: {code: 100, data: stdout.read}
+        strin = stdout.read + " Error => " + stderr.read
+        render json: {code: 100, data: strin}
       end
     end
 
