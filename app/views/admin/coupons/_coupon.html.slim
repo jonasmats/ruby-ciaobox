@@ -1,11 +1,20 @@
 tr
-  td
+  td.center
     = coupon.code
-  td
-    = coupon.name
-  td
+  td.center
     = coupon.class.human_name
-  td
+  td.center
+    - if coupon.class.name == 'ReferralCoupon'
+      = Settings.invitation.URL + coupon.code
+    - else
+      | N/A
+  td.center
+    = coupon.discount_value
+  td.center
+    = coupon.end_date
+  td.center
+    | NA
+  td.center
     = link_to admin_coupon_path(coupon), class: "btn default btn-xs purple" do
       i.fa.fa-view
       = t(".view")

@@ -1,4 +1,4 @@
-class MultipleCoupon < Coupon
+class ReferralCoupon < Coupon
   # 1. associations
 
   # 2. scopes

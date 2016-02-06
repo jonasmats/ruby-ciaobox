@@ -1,18 +1,28 @@
 = render partial: "title", locals: {title: t(".title")}
 .portlet.box.green
   .portlet-title
+    .caption
+      i.fa.fa-cogs
+      | Coupons List
 
   .portlet-body.flip-scroll
-    table.table.table-bordered.table-striped.table-condensed.flip-content
-      thead.flip-content
-        tr
-          th
-            = Coupon.h :code
-          th
-            = Coupon.h :name
-          th
-            = Coupon.h :type
-          th
-            = t(".action")
-      tbody
-      = render partial: 'coupon', collection: @coupons
+    .table-responsive
+      table.table.table-bordered.table-striped.table-condensed.flip-content
+        thead.flip-content
+          tr
+            th.center
+              = Coupon.h :code
+            th.center
+              = Coupon.h :type
+            th.center
+              | Link
+            th.center
+              | Value
+            th.center
+              | Exp Date
+            th.center
+              | Assoc Emails
+            th.center
+              = t(".action")
+        tbody
+        = render partial: 'coupon', collection: @coupons

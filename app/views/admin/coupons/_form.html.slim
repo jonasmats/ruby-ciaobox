@@ -14,19 +14,38 @@
             label.col-md-3.control-label
               = Coupon.h :code
             .col-md-4
-              = f.text_field :code, class: "form-control"
-          - if @coupon.class.name == CustomCoupon.name
+              .input-group.left
+                = f.text_field :code, class: "form-control"
+                span.input-group-btn
+                  button.btn.btn-primary[id="btnCodeGenerator" onclick="return false;"]
+                    i.fa.fa-check
+                    | Generate
+          /- if @coupon.class.name == CustomCoupon.name || @coupon.class.name == ReferralCoupon.name
+          .form-group
+            label.col-md-3.control-label
+              = Coupon.h :start_date
+            .col-md-4
+              = f.text_field :start_date, type: "date", class: "form-control"
+          .form-group
+            label.col-md-3.control-label
+              = Coupon.h :end_date
+            .col-md-4
+              = f.text_field :end_date, type: "date", class: "form-control"
+
+          - if @coupon.class.name == ReferralCoupon.name
+            = f.hidden_field :discount_type, :value => "price"
             .form-group
               label.col-md-3.control-label
-                = Coupon.h :start_date
+                = Coupon.h :discount_value
               .col-md-4
-                = f.text_field :start_date, type: "date", class: "form-control"
+                = f.text_field :discount_value, class: "form-control"
             .form-group
               label.col-md-3.control-label
-                = Coupon.h :end_date
+                | Link
               .col-md-4
-                = f.text_field :end_date, type: "date", class: "form-control"
-          - if @coupon.class.name == CustomGift.name
+                input.form-control[type="text" id="txtInviteLink" value="#{Settings.invitation.URL}" disabled]
+
+          /- if @coupon.class.name == CustomGift.name
             = f.fields_for :gifts_coupons, @coupon.gifts_coupons.build do |ff|
               .form-group
                 label.col-md-3.control-label
@@ -52,7 +71,7 @@
 
           - Settings.list_locales.each do |lang, locale|
             .tab-pane.fade class=("in active" if (locale.to_sym == I18n.locale) ) id="tab_#{locale}"
-              = f.globalize_fields_for locale.to_sym do |g|
+              /= f.globalize_fields_for locale.to_sym do |g|
                 .form-group
                   label.col-md-3.control-label
                     = Coupon.h :name
@@ -64,3 +83,25 @@
                     = f.submit class: "btn green"
                     = link_to admin_coupons_path, class: "btn default" do
                       = t(".cancel")
+
+javascript:
+  $('#referral_coupon_code').on('input', function(e) {
+      $('#txtInviteLink').val("#{Settings.invitation.URL}" + $(this).val());
+  });
+
+  $('#referral_coupon_code').change(function() {
+    $('#txtInviteLink').val("#{Settings.invitation.URL}" + $(this).val());
+  });
+
+
+  $('#btnCodeGenerator').click(function() {
+    var result = '';
+    var length = 8;
+    var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (var i = length; i > 0; --i)
+      result += chars[Math.round(Math.random() * (chars.length - 1))];
+
+    //$('#referral_coupon_code').val(result);
+    $(this).parent().parent().find('input').val(result);
+    //$('#referral_coupon_code').change();
+  });

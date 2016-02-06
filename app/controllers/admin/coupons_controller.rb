@@ -3,7 +3,7 @@ class Admin::CouponsController < Admin::BaseAdminController
   include ::Admin::Coupons::Parameter
   include ::Admin::Coupons::Finder
 
-  add_crumb(I18n.t('admins.breadcrumbs.coupons')) { |instance| instance.send :admin_coupons_path }
+  add_crumb(I18n.t('admins.breadcrumbs.coupon')) { |instance| instance.send :admin_coupons_path }
 
   before_action :coupon_class
   before_action :load_instance, only: [:show, :edit, :update, :destroy]
@@ -11,7 +11,8 @@ class Admin::CouponsController < Admin::BaseAdminController
   before_action :set_params, only: [:create, :update]
 
   def index
-    @coupons = load_coupons
+    #@coupons = load_coupons
+    @coupons = Coupon.all
     # .paginate(page: params[:page], per_page: Settings.per_page.admin.product)
   end
 

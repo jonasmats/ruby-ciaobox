@@ -12,6 +12,7 @@ en:
       custom_gift: "Coupon Custom Gift"
       custom_coupon: "Custom Coupon"
       multiple_coupon: "Multiple Coupon"
+      referral_coupon: "Referral Coupon"
 
     attributes:
       faq:

@@ -12,6 +12,8 @@ class Coupon < ActiveRecord::Base
 
   # 4. validates
   validates :code, presence: true
+  validates_uniqueness_of :code
+
   # 5. callbacks
 
   # 6. instance methods

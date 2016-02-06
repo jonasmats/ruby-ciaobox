@@ -9,3 +9,6 @@ postfinance:
   PSP: 'ciaoboxDEMO'
   HASHSEED: '123456.Cbx'
   TP: 'http://www.ciaobox.it/epayment.html'
+
+invitation:
+  URL: 'http://localhost:3000/invite/'
