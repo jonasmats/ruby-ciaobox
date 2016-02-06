@@ -100,12 +100,6 @@ class Shipping::FlyController < ShippingController
         if order_item_user_params.present?
           create_order_item_user
         end
-
-        #redirect back to appointment step if total amount is less than 25 CHF
-        if !@order.check_amount?
-          redirect_to shipping_fly_path(:appoinment),
-           alert: "Remember that the minimum monthly fee is 25.00 CHF" and return;
-        end
       else
         redirect_to shipping_fly_path(:appoinment), 
           alert: @order.errors.full_messages and return
@@ -120,6 +114,12 @@ class Shipping::FlyController < ShippingController
       set_params
       puts @order
       if @order.valid?
+        #redirect back to appointment step if total amount is less than 25 CHF
+        if !@order.check_amount?
+          redirect_to shipping_standard_path(:review),
+            alert: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
+        end
+
         delete_order_details
         set_params
         @order.status = Order.statuses[:amount_confirm]
