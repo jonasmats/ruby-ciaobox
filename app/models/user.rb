@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def set_customer_code?
-    self.customer_code.blank?
+    self.customer_code.blank? && self.profile.first_name.present? && self.profile.last_name.present?
   end
 
   def set_customer_code

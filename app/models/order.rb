@@ -22,6 +22,13 @@ class Order < ActiveRecord::Base
 
   # 2. scope
   scope :registering, -> { where(status: statuses[:registering]) }
+  scope :upcoming, -> {
+    includes(:order_details).
+    where(:status => [statuses[:amount_confirm], statuses[:processing], statuses[:holding]]).
+    where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
+    order("to_date(shipping_date, 'MM/DD/YYYY')")
+    #limit(1)
+  }
   # 4. validation
   validates :user, :shipping, :pay_status,
     :shipping_date, :shipping_time,
@@ -62,5 +69,10 @@ class Order < ActiveRecord::Base
 
   def validate_step_2?
     self.persisted? && self.order_details.first.present? && self.order_details.first.persisted?
+  end
+
+  public
+  def self.months_to_case
+    ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'Auguest', 'September', 'October', 'November','December']
   end
 end

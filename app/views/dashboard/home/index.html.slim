@@ -5,33 +5,35 @@ section.section-2.about
     h1
       | Dashboard
 
-
 section.section-3.detail-content
   .container
     .row
       article.dashboard-header-intro
         h3
-          | Welcome
+          | Welcome &nbsp;
+          = current_user.profile.first_name
     .detail-top
       .row
         .datetime-details.col-sm-2.col-xs-2
           span.month-dt
-            | Auguest
+            - inx = current_user.orders.upcoming[0][:shipping_date].split('/')[0].to_i - 1
+            = Order.months_to_case[inx]
           span.date-dt
-            | 19
+            = current_user.orders.upcoming[0][:shipping_date].split('/')[1]
           span.time-dt
-            | 8-10AM
+            = current_user.orders.upcoming[0][:shipping_time]
         .col-sm-8.col-xs-8.cnt-top-dt
           h4
             | You Have an Upcoming Appointment:
           p.address-dt
-            | 35 Diamond Street, Apt. BR
+            = current_user.orders.upcoming[0][:address]
             br
-              | Brooklyn, NY 1122
+              = current_user.orders.upcoming[0][:state]
           p.dropoff
             | Dropoff
           p.trash-dt
             = image_tag "images/icon_trash.png"
+            | &nbsp;
             | 2 MakeSpace Bins
         .col-sm-2.col-xs-2.cancel-dt
           = link_to "#"
@@ -40,33 +42,93 @@ section.section-3.detail-content
               | Cancel
     .detail-bottom
       h3
-        | You have 1 Item In Storage:
+        | You have &nbsp;
+        = current_user.orders.upcoming[0].order_details.count
+        | &nbsp; Item In Storage:
       .cnt-detail
-        .row
-          .col-sm-4.item-detail
-            .slide-detail
-              #carousel-example-generic1.carousel.slide data-ride="carousel"
-                .carousel-inner role="listbox"
-                  .item.active
-                    = image_tag "images/1.jpg"
-                  .item
-                    = image_tag "images/2.jpg"
-                  .item
-                    = image_tag "images/3.jpg"
-                = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                  span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                  span.glyphicon.glyphicon-chevron-right aria-hidden="true"
-              = link_to "#", class: "download-detail"
-                = image_tag "images/icon_download.png"
-            = link_to "STORED", "#", class: "stored"
-            .cnt-slide-dt
-              | Winter clothes, sheets...
-            .cnt-slide-ext
-              = link_to "B0003", "#", class: "barcode"
-              span.stored_dt
-                | Stored 17.01.2016
+        - size = (current_user.orders.upcoming[0].order_details.count / 3).ceil * 3
+        - for i in (0..size).step(3)
+          .row
+            - one_detail = current_user.orders.upcoming[0].order_details[i]
+            - if one_detail.present?
+              .col-sm-4.item-detail
+                .slide-detail
+                  #carousel-example-generic1.carousel.slide data-ride="carousel"
+                    .carousel-inner role="listbox"
+                      .item.active
+                        = image_tag "images/1.jpg"
+                      .item
+                        = image_tag "images/2.jpg"
+                      .item
+                        = image_tag "images/3.jpg"
+                    = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                      span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                    = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                      span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+                  = link_to "#", class: "download-detail"
+                    = image_tag "images/icon_download.png"
+                = link_to "STORED", "#", class: "stored"
+                .cnt-slide-dt
+                  | Winter clothes, sheets...
+                .cnt-slide-ext
+                  = link_to one_detail[:barcode], "#", class: "barcode"
+                  span.stored_dt
+                    | Stored &nbsp;
+                    = one_detail[:created_at].strftime('%m/%d/%Y')
 
+            - one_detail = current_user.orders.upcoming[0].order_details[i + 1]
+            - if one_detail.present?
+              .col-sm-4.item-detail
+                .slide-detail
+                  #carousel-example-generic1.carousel.slide data-ride="carousel"
+                    .carousel-inner role="listbox"
+                      .item.active
+                        = image_tag "images/1.jpg"
+                      .item
+                        = image_tag "images/2.jpg"
+                      .item
+                        = image_tag "images/3.jpg"
+                    = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                      span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                    = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                      span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+                  = link_to "#", class: "download-detail"
+                    = image_tag "images/icon_download.png"
+                = link_to "STORED", "#", class: "stored"
+                .cnt-slide-dt
+                  | Winter clothes, sheets...
+                .cnt-slide-ext
+                  = link_to one_detail[:barcode], "#", class: "barcode"
+                  span.stored_dt
+                    | Stored &nbsp;
+                    = one_detail[:created_at].strftime('%m/%d/%Y')
+
+            - one_detail = current_user.orders.upcoming[0].order_details[i + 2]
+            - if one_detail.present?
+              .col-sm-4.item-detail
+                .slide-detail
+                  #carousel-example-generic1.carousel.slide data-ride="carousel"
+                    .carousel-inner role="listbox"
+                      .item.active
+                        = image_tag "images/1.jpg"
+                      .item
+                        = image_tag "images/2.jpg"
+                      .item
+                        = image_tag "images/3.jpg"
+                    = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                      span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                    = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                      span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+                  = link_to "#", class: "download-detail"
+                    = image_tag "images/icon_download.png"
+                = link_to "STORED", "#", class: "stored"
+                .cnt-slide-dt
+                  | Winter clothes, sheets...
+                .cnt-slide-ext
+                  = link_to one_detail[:barcode], "#", class: "barcode"
+                  span.stored_dt
+                    | Stored &nbsp;
+                    = one_detail[:created_at].strftime('%m/%d/%Y')
 
 #light-box.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
   .modal-dialog role="document"
@@ -78,18 +140,19 @@ section.section-3.detail-content
       .modal-body
         form#light_box_modal_form
           .form-group
-            h5 for="recipient-name"
+            h5 for="referral_link"
               .text-center= I18n.t('light-box.modal.summary')
             .referral-link-wrapper.referral-link-wrapper-modal
-                input#recipient-name.referral-link-field name="email" placeholder="coupon code" readonly="true"
+                input#referral_link.referral-link-field name="referral_link" placeholder="coupon code" readonly="true" value="#{Settings.invitation.URL + @coupon.code}"
                 span.social-referral-icon.link-referral-icon
       .modal-footer
         .modal-referral-icons
-          = link_to "#", class: "modal-referral-icon"
+          = social_share_button_tag I18n.t('light-box.modal.summary'), :url => "#{Settings.invitation.URL + @coupon.code}"
+          /= link_to "#", class: "modal-referral-icon"
             = image_tag "images/fb-modal-ic.png", height: '36', width: '36'
-          = link_to "#", class: "modal-referral-icon"
+          /= link_to "#", class: "modal-referral-icon"
             = image_tag "images/tw-modal-ic.png", height: '36', width: '36'
-          = link_to "#", class: "modal-referral-icon"
+          /= link_to "#", class: "modal-referral-icon"
             = image_tag "images/eml-modal-ic.png", height: '36', width: '36'
 
         / button.btn.btn-default data-dismiss="modal" type="button"
