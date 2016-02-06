@@ -5,8 +5,14 @@ section.schedule-question-title.schedule-question-padd.clearfix
 section.when-swing.clearfix
   .container.when-swing-inner
     .john-input
-      = form.text_field :contact_name, placeholder: "Please enter fullname"
-    .date-picker
-      = form.text_field :contact_email, placeholder: "Please enter email"
-    .time-picker.time-bg
-      = form.text_field :contact_phone, placeholder: "Please enter phone"
+      = form.text_field :contact_name, placeholder: "Please enter fullname", value: "#{current_user.profile.first_name + ' ' + current_user.profile.last_name}", readonly: true
+      figure
+        = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-name-img"
+    .email-input
+      = form.text_field :contact_email, placeholder: "Please enter email", value: "#{current_user.email}", readonly: true
+      figure
+        = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-date-img"
+    .phone-input
+      = form.text_field :contact_phone, placeholder: "Please enter phone", value: "#{current_user.profile.telephone}", readonly: true
+      figure
+        = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-time-img"

@@ -3,7 +3,7 @@ section.section-2.about
     figure
       = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
     h1
-      | Schedule
+      | Appointment
 = render partial: "standard_step"
 
 = render layout: 'form' do |f|
@@ -55,8 +55,18 @@ section.section-2.about
     section.address-meet.clearfix
       .container.address-meet-inner
         .address-meet-top
-          = f.text_field :address, class: "in-addess", placeholder: "Address", value: @address
-          = f.text_field :state, class: "app-state", placeholder: "Apt/State", value: @state
-          = text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
+          .in-addess
+            = f.text_field :address, placeholder: "Address", value: @address, readonly: true
+            figure
+              = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-address-img"
+          .app-state
+            = f.text_field :state, placeholder: "Apt/State", value: @state, readonly: true
+            figure
+              = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-state-img"
+          .app-num
+            = text_field_tag :zip_code, session[:zip_code], class: "input-app-num", placeholder: "zip code", readonly: true
+          /= f.text_field :address, class: "in-addess", placeholder: "Address", value: @address
+          /= f.text_field :state, class: "app-state", placeholder: "Apt/State", value: @state
+          /= text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
         .address-meet-bottom
           = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"

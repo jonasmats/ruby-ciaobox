@@ -1,10 +1,13 @@
 - if flash[:alert].present?
   - if flash[:alert].is_a?(Array)
-    ul style=("color: red;")
+    /ul style=("color: red;")
       - flash[:alert].each do |msg|
         li
           = msg
+    .alert.alert-info.alert-center.color-red
+      a.close aria-label="close" data-dismiss="alert" href="#" title="close"  ×
+      = flash[:alert][0]
   - else
-    .alert.alert-info
+    .alert.alert-info.alert-center
       a.close aria-label="close" data-dismiss="alert" href="#" title="close"  ×
       = flash[:alert]

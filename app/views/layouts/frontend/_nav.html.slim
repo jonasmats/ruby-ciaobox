@@ -35,7 +35,8 @@ nav
           = image_tag avatar_path, height: '32', width: '32', class: "img-photo-profile"
         li.dropdown style=("margin-top: 32px; margin-left: -18px;")
           = link_to '#', class: "dropdown-toggle", title: "", :'style' => 'padding: 5px 0px 5px 9px', :'data-toggle' => 'dropdown', :'role' => 'button', :'data-target' => '#', :'aria-expanded' => 'true' do
-            | #{current_user.username}
+            = (current_user.profile.first_name.blank?) ? current_user.username : current_user.profile.first_name
+
           ul.dropdown-menu.personal-menu role="menu"
             li.personal-menu-item role="presentation"
               = link_to I18n.t("layouts.frontend.links.mystuff"), "#", class: "js-location-change item", :'role' => 'menuitem'
