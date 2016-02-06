@@ -128,3 +128,6 @@ gem 'jquery-datetimepicker-rails'
 gem 'dropbox-sdk'
 gem 'backup'
 gem 'whenever', :require => false
+
+#social-media-button
+gem 'social-share-button'
