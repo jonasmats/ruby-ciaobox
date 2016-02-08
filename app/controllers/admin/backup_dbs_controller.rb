@@ -38,9 +38,10 @@ class Admin::BackupDbsController < Admin::BaseAdminController
 
     if params[:executable].present? && params[:executable] == '1'
       #cmd = "su - ubuntu -c 'backup perform -t db_backup'"
-      cmd = "backup perform -t db_backup"
+      #cmd = "backup perform -t db_backup"
       #cmd = "sudo -u ubuntu backup perform -t db_backup"
       #cmd = "backup dependencies --install dropbox-sdk"
+      cmd = "/work/backupdb.sh"
       Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
         #@backup_db[:output] = @backup_db[:output] + "\n" + stdout.read
         strin = stdout.read + " Error => " + stderr.read
