@@ -12,3 +12,8 @@ postfinance:
 
 invitation:
   URL: 'http://ciaobox.it/invite/'
+
+zoho:
+  auth_token: 8191b6c216e8d6c3fd3a55965535495b
+  organ_id: '135368668'
+  hostedpage_redirect: 'http://ciaobox.it/shipping/standard/confirmation'

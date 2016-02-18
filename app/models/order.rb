@@ -17,6 +17,7 @@ class Order < ActiveRecord::Base
   has_many :order_details, dependent: :destroy
   has_many :order_items, through: :order_details
   has_one :feedback, dependent: :destroy
+  has_one :payment_subscription, :class_name => 'Payment::Subscription', dependent: :destroy
   accepts_nested_attributes_for :order_details
   accepts_nested_attributes_for :feedback
 
@@ -24,7 +25,7 @@ class Order < ActiveRecord::Base
   scope :registering, -> { where(status: statuses[:registering]) }
   scope :upcoming, -> {
     includes(:order_details).
-    where(:status => [statuses[:amount_confirm], statuses[:processing], statuses[:holding]]).
+    where(:status => [statuses[:checking], statuses[:processing], statuses[:holding]]).
     where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
     order("to_date(shipping_date, 'MM/DD/YYYY')")
     #limit(1)

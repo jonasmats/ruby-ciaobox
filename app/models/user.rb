@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   has_many :orders, foreign_key: :user_id, dependent: :destroy
   has_many :order_items
   has_many :feedbacks
+  has_many :payment_subscriptions, :class_name => 'Payment::Subscription', foreign_key: :user_id, dependent: :destroy
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :orders, allow_destroy: true, reject_if: :reject_orders

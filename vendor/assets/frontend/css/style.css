@@ -2108,7 +2108,7 @@ padding-top: 16px;
     cursor: pointer;
     top: 22px;
 }
-.in-addess figure, .app-state figure, .john-input figure, .phone-input figure {
+.in-addess figure, .app-state figure, .john-input figure, .phone-input figure, .address-meet-top-btm figure {
     position: absolute;
     right: 15px;
     cursor: pointer;
@@ -2365,6 +2365,7 @@ padding-top: 16px;
   float: left;
   width: 100%;
   margin-top: 13px;
+  position: relative;
 }
 .address-meet-top textarea {
   border: 1px solid #eaeef0;
@@ -2394,7 +2395,32 @@ padding-top: 16px;
   width: 100%;
 }
 
-
+.address-meet-top-btm .credit-city {
+    float: left;
+    width: 100%;
+    max-width: 580px;
+    position: relative;
+}
+.address-meet-top-btm .credit-zip {
+    margin-left: 3%;
+    float: left;
+    width: 100%;
+    max-width: 200px;
+    position: relative;
+}
+.address-meet-top-btm .credit-country {
+    float: left;
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+}
+.address-meet-top-btm .promo-code {
+    margin-left: 3%;
+    float: left;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+}
 /*---Invitepage css---*/
 
 .invite-banner {

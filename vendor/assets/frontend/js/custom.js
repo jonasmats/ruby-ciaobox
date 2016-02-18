@@ -244,6 +244,36 @@ $(document).on('click', '#edt-time-img', function() {
     $(this).parent().parent().find("input").focus();
 
 });
+$(document).on('click', '#edt-credit-surname', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-credit-name', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-credit-street', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-credit-city', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-credit-zip', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
+$(document).on('click', '#edt-credit-country', function() {
+    $(this).parent().parent().find("input").prop('readonly', false);
+    $(this).parent().parent().find("input").focus();
+
+});
 // $('a.icon-item').on('click', function(){
 //   return false;
 // }

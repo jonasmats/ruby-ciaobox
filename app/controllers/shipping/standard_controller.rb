@@ -1,6 +1,8 @@
 class Shipping::StandardController < ShippingController
-  steps :appoinment, :review, :billcheck, :confirmation
+  # steps :appoinment, :review, :billcheck, :confirmation
+  steps :appoinment, :review, :confirmation
   include ::Dashboard::Shipping::Standard::Parameter
+
   before_action :title_form, only: [:show, :update]
 
   def show
@@ -47,6 +49,7 @@ class Shipping::StandardController < ShippingController
       build_feed_back
       load_order_details
 
+=begin
     when :billcheck
       authenticate_user!
       create_instance
@@ -54,11 +57,11 @@ class Shipping::StandardController < ShippingController
       if @order.persisted?
         if @order.registering?
           redirect_to shipping_standard_path(:review),
-                      alert: I18n.t('shipping.not_finish_step_2') and return
+            alert: I18n.t('shipping.not_finish_step_2') and return
         end
       else
         redirect_to shipping_standard_path(:appoinment),
-                    alert: I18n.t('shipping.not_finish_step_1') and return
+          alert: I18n.t('shipping.not_finish_step_1') and return
       end
       #generate_postfinance_fields
       if @order.valid?
@@ -72,6 +75,7 @@ class Shipping::StandardController < ShippingController
         redirect_to shipping_standard_path(:review),
           alert: @order.errors.full_messages and return
       end
+=end
 
     when :confirmation
       authenticate_user!
@@ -86,6 +90,23 @@ class Shipping::StandardController < ShippingController
         redirect_to shipping_standard_path(:appoinment), 
           alert: I18n.t('shipping.not_finish_step_1') and return
       end
+
+      #Retrieve the subscription to retrieve Card Number etc again
+      logger.debug("Session Subscription ID:: #{session[:subscription_id]}")
+      subscription_id = session[:subscription_id]
+      subscription = Shipping::Zoho.retrieve_subscription subscription_id
+      subscription = JSON.parse subscription
+      logger.debug("Retreive SUBSCRIPTION INFO:: #{subscription}")
+
+      #Update a subscription
+      subscription_record = Payment::Subscription.find_by_subscription_id(subscription_id)
+      subscription_record.update!(
+          card_id: subscription["subscription"]["card"]["card_id"],
+          order_id: @order.id
+      )
+
+      #Update this Order record
+      @order.update!(card_number: "XXXXXXXXXXXXX" + subscription["subscription"]["card"]["last_four_digits"])
     end
     render_wizard
   end
@@ -107,6 +128,7 @@ class Shipping::StandardController < ShippingController
         if order_item_user_params.present?
           create_order_item_user
         end
+
       else
         redirect_to shipping_standard_path(:appoinment), 
           alert: @order.errors.full_messages and return
@@ -115,6 +137,7 @@ class Shipping::StandardController < ShippingController
       build_feed_back
       load_order_details
 
+=begin
     when :billcheck
       authenticate_user!
       create_instance
@@ -136,17 +159,101 @@ class Shipping::StandardController < ShippingController
          alert: @order.errors.full_messages and return
       end
       generate_postfinance_fields
+=end
 
     when :confirmation
       authenticate_user!
       create_instance
       set_params
-      puts @order
+
       if @order.valid?
+        #redirect back to appointment step if total amount is less than 25 CHF
+        if !@order.check_amount?
+          redirect_to shipping_standard_path(:review),
+            alert: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
+        end
+
         delete_order_details
         set_params
         @order.status = Order.statuses[:amount_confirm]
         @order.save
+
+        #check if current user has already customer id for zoho
+        addrs = @order.address.split(%r{,\s*})
+        addr = {
+            "street": addrs[0],
+            "city": addrs[1],
+            "state": @order.state,
+            "zip": session[:zip_code],
+            "country": addrs[3]
+        }
+
+        customer = Shipping::Zoho.retrieve_customer(current_user.customer_code)
+        if customer.blank?
+
+          result = Shipping::Zoho.create_customer @order.contact_name, @order.contact_email, current_user.profile.first_name,
+            current_user.profile.last_name, @order.contact_phone, addr, addr,
+            (SysSetting.first.currency == SysSetting.sys_currencies[:CHF]) ? 'CHF' : 'EUR'
+          json = JSON.parse result
+          customer_code = json["customer"]["customer_id"]
+
+          @user = User.find(current_user.id)
+          @user.customer_code = customer_code
+          @user.save
+        else
+          json = JSON.parse customer
+          if json["code"].to_i != 0
+            result = Shipping::Zoho.create_customer @order.contact_name, @order.contact_email, current_user.profile.first_name,
+              current_user.profile.last_name, @order.contact_phone, addr, addr,
+              (SysSetting.first.currency == SysSetting.sys_currencies[:CHF]) ? 'CHF' : 'EUR'
+            json = JSON.parse result
+            customer_code = json["customer"]["customer_id"]
+
+            @user = User.find(current_user.id)
+            @user.customer_code = customer_code
+            @user.save
+          else
+            result = Shipping::Zoho.update_customer current_user.customer_code, @order.contact_name, @order.contact_email, current_user.profile.first_name,
+              current_user.profile.last_name, @order.contact_phone, addr, addr,
+              (SysSetting.first.currency == SysSetting.sys_currencies[:CHF]) ? 'CHF' : 'EUR'
+            json = JSON.parse result
+            customer_code = json["customer"]["customer_id"]
+          end
+        end
+
+        #Create a new subscription
+        plan_code = Shipping::Zoho.plans[:standard]
+        starts_at = Date.strptime(@order.shipping_date, "%m/%d/%Y") + 40
+        starts_at = starts_at.strftime("%Y-%m-%d")
+        addons = []
+        @order.order_details.all.each do |v|
+          addon = {"addon_code": Shipping::Zoho.addons[v.order_item_id.to_s], "quantity": v.quantity}
+          addons << addon
+        end
+        subscription = Shipping::Zoho.create_subscription customer_code, plan_code, addons, nil, starts_at
+        subscription = JSON.parse subscription
+        subscription_id = subscription["subscription"]["subscription_id"]
+
+        #Check if the credit card already checked
+        is_checked_credit = (current_user.payment_subscriptions.all.count >= 1) ? true : false
+
+        if !is_checked_credit
+          #Create a Hosted page to checkout credit card for new subscription
+          result = Shipping::Zoho.update_card_hostedpage subscription_id, Settings.zoho.hostedpage_redirect
+          result = JSON.parse result
+          logger.debug("HOSTED PAGE:: #{result}, #{customer_code}, DBCODE:: #{current_user.customer_code}")
+          if result["code"].to_i == 0
+            create_subscription(subscription_id)
+            redirect_to result["hostedpage"]["url"]
+            return
+          else
+            redirect_to shipping_standard_path(:review),
+              alert: "Error occured while processing your request, Please try it again" and return
+          end
+        else
+          create_subscription(subscription_id)
+        end
+
       else
         redirect_to shipping_standard_path(:review), 
           alert: @order.errors.full_messages and return
@@ -167,6 +274,8 @@ class Shipping::StandardController < ShippingController
       @order.user = current_user
       @order.pay_status = false
       @order.pickup_rightaway = false
+      #Get the latest used credit card number
+      @order.card_number = current_user.orders.where.not('card_number' => nil).order('created_at DESC').pluck(:card_number).first
     else
       @order = Order.find(session[:order_id])
     end
@@ -248,6 +357,15 @@ class Shipping::StandardController < ShippingController
         order_item: order_item_user,
         quantity: 1
       )
+    end
+  end
+
+  def create_subscription(subscription_id)
+    subscription_record = Payment::Subscription.new
+    subscription_record.subscription_id = subscription_id
+    subscription_record.user_id = current_user.id
+    if subscription_record.save
+      session[:subscription_id] = subscription_id
     end
   end
 

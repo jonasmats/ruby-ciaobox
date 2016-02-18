@@ -23,6 +23,9 @@ class ApplicationController < ActionController::Base
       session.delete(:order_id)
       session.delete(:zip_code)
     end
+    if session[:subscription_id].present?
+      session.delete(:subscription_id)
+    end
   end
 
   private
@@ -52,4 +55,5 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
 end
