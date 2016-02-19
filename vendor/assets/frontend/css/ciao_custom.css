@@ -219,3 +219,114 @@ input.referral-link-field[readonly]:hover {
     background: url("../images/eml-modal-ic.png") no-repeat;
     background-size: cover;
 }
+
+/* dashboard styles */
+.plus-appointment-icon, .dashboard-icon-calendar, .dashboard-icon-plus {
+    background-image: url('../images/icons-dashboard-nov.png');
+    background-repeat: no-repeat;
+    display: block;
+}
+.dashboard-addstorage-btn {
+    position: absolute;
+    bottom: -31px;
+    right: 10px;
+}
+.plus-appointment-icon {
+    width: 63px;
+    height: 63px;
+    background-position: -5px -70px;
+}
+.dashboard-icon-calendar {
+    background-position: -41px -5px;
+    width: 56px;
+    height: 56px;
+    margin: auto;
+}
+.dashboard-header-intro .tooltip {
+    min-width: 120px;
+}
+.dashboard-appointments {
+    padding-bottom: 25px;
+    /*border-bottom: 1px solid #d6d5dc;*/
+}
+.dashboard-empty-appointment {
+    border: 1px solid #d6d5dc;
+    border-radius: 4px;
+    text-align: center;
+    padding: 39px;
+}
+.appointment-prompt-header {
+    font-family: Biko;
+    color: #33435a;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 12px 0 5px;
+}
+.appointment-prompt-text {
+    font-family: Biko;
+    color: #89888e;
+    font-size: 16px;
+    margin-top: 15px;
+}
+.row-border {
+    border-top: 2px solid #e5e5e7;
+    min-height: 48px;
+    /*margin: 0 10px;*/
+}
+.border-none {
+    border-top: none!important;
+}
+.detail-bottom-schedule-pickup {
+    margin: 20px 0 20px;
+    text-align: center;
+}
+.dashboard-makespace-bin {
+    background-image: url('../images/pricing-item1.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: block;
+    width: 167px;
+    height: 135px;
+    margin: 30px auto;
+}
+.dashboard-empty-storage-header {
+    font-family: Biko;
+    color: #89888e;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 20px auto 7px;
+}
+.dashboard-empty-storage-text {
+    font-family: Biko;
+    color: #89888e;
+    font-size: 18px;
+    margin: 29px auto 7px;
+    max-width: 372px;
+}
+.dashboard-empty-storage-btn {
+    margin-top: 30px;
+}
+.btn-schedule-pickup {
+    font-family: "Bikobold";
+    font-size: 17px;
+    color: #fff;
+    width: 138px;
+    height: 35px;
+    text-align: center;
+    padding: 12px 40px 12px 25px;
+    background: #08a46c;
+    border: none;
+    border-radius: 3px !important;
+    transition: all 0.2s ease-in;
+    text-decoration: none !important;
+    position: relative;
+}
+.dashboard-icon-plus {
+    background-position: -162px -72px;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+

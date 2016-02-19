@@ -6,6 +6,12 @@ section.address-meet.clearfix
   .container.address-meet-inner
     -if current_user.payment_subscriptions.all.count < 1
       .address-meet-top
+        .check-input
+          input[type="checkbox" checked]
+        .card-image
+          figure
+            = image_tag "images/visa-mastercard-amex.png", height: '32', width: '147', class: "img-responsive"
+      .address-meet-top-btm
         .email-input
           = form.text_field :card_surname, placeholder: "Surname on Card", readonly: true
           figure

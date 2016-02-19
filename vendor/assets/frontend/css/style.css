@@ -2108,6 +2108,23 @@ padding-top: 16px;
     cursor: pointer;
     top: 22px;
 }
+.check-input {
+    float: left;
+    padding-right: 10px;
+    position: relative;
+    min-height: 32px;
+    min-width: 25px;
+}
+.check-input input[type="checkbox"] {
+    top: 20%;
+    left: 20%;
+    position: absolute;
+}
+.card-image {
+    float: left;
+    position: relative;
+}
+
 .in-addess figure, .app-state figure, .john-input figure, .phone-input figure, .address-meet-top-btm figure {
     position: absolute;
     right: 15px;
@@ -2395,6 +2412,9 @@ padding-top: 16px;
   width: 100%;
 }
 
+.address-meet-top-btm .email-input figure {
+    right: 35px;
+}
 .address-meet-top-btm .credit-city {
     float: left;
     width: 100%;

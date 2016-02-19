@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
   scope :registering, -> { where(status: statuses[:registering]) }
   scope :upcoming, -> {
     includes(:order_details).
-    where(:status => [statuses[:checking], statuses[:processing], statuses[:holding]]).
+    where(:status => [statuses[:processing], statuses[:holding]]).
     where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
     order("to_date(shipping_date, 'MM/DD/YYYY')")
     #limit(1)

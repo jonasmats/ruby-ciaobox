@@ -1,0 +1,84 @@
+.cnt-detail
+  - size = (current_user.orders.upcoming[0].order_details.count / 3).ceil * 3
+  - for i in (0..size).step(3)
+    .row
+      - one_detail = current_user.orders.upcoming[0].order_details[i]
+      - if one_detail.present?
+        .col-sm-4.item-detail
+          .slide-detail
+            #carousel-example-generic1.carousel.slide data-ride="carousel"
+              .carousel-inner role="listbox"
+                .item.active
+                  = image_tag "images/1.jpg"
+                .item
+                  = image_tag "images/2.jpg"
+                .item
+                  = image_tag "images/3.jpg"
+              = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+              = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+            = link_to "#", class: "download-detail"
+              = image_tag "images/icon_download.png"
+          = link_to "STORED", "#", class: "stored"
+          .cnt-slide-dt
+            | Winter clothes, sheets...
+          .cnt-slide-ext
+            = link_to one_detail[:barcode], "#", class: "barcode"
+            span.stored_dt
+              | Stored &nbsp;
+              = one_detail[:created_at].strftime('%m/%d/%Y')
+
+      - one_detail = current_user.orders.upcoming[0].order_details[i + 1]
+      - if one_detail.present?
+        .col-sm-4.item-detail
+          .slide-detail
+            #carousel-example-generic1.carousel.slide data-ride="carousel"
+              .carousel-inner role="listbox"
+                .item.active
+                  = image_tag "images/1.jpg"
+                .item
+                  = image_tag "images/2.jpg"
+                .item
+                  = image_tag "images/3.jpg"
+              = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+              = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+            = link_to "#", class: "download-detail"
+              = image_tag "images/icon_download.png"
+          = link_to "STORED", "#", class: "stored"
+          .cnt-slide-dt
+            | Winter clothes, sheets...
+          .cnt-slide-ext
+            = link_to one_detail[:barcode], "#", class: "barcode"
+            span.stored_dt
+              | Stored &nbsp;
+              = one_detail[:created_at].strftime('%m/%d/%Y')
+
+      - one_detail = current_user.orders.upcoming[0].order_details[i + 2]
+      - if one_detail.present?
+        .col-sm-4.item-detail
+          .slide-detail
+            #carousel-example-generic1.carousel.slide data-ride="carousel"
+              .carousel-inner role="listbox"
+                .item.active
+                  = image_tag "images/1.jpg"
+                .item
+                  = image_tag "images/2.jpg"
+                .item
+                  = image_tag "images/3.jpg"
+              = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+              = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+            = link_to "#", class: "download-detail"
+              = image_tag "images/icon_download.png"
+          = link_to "STORED", "#", class: "stored"
+          .cnt-slide-dt
+            | Winter clothes, sheets...
+          .cnt-slide-ext
+            = link_to one_detail[:barcode], "#", class: "barcode"
+            span.stored_dt
+              | Stored &nbsp;
+              = one_detail[:created_at].strftime('%m/%d/%Y')
