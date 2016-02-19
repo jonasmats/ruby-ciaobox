@@ -2545,7 +2545,7 @@ padding-top: 16px;
 }
 .or-separate span {
   background: #08a46c;
-  border-radius: 100%;
+  border-radius: 100% !important;
   color: #ffffff;
   display: inline-block;
   font-size: 38px;

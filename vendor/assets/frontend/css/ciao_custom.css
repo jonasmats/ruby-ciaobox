@@ -100,6 +100,19 @@ li> a.item {
 }
 
 /* referral link area styles */
+.dashboard-referral-link-title {
+    float: left;
+    max-width: 160px;
+}
+.dashboard-referral-link-title span {
+    line-height: 40px;
+}
+.dashboard-referral-link-wrapper {
+    float: left;
+    width: 320px;
+    max-width: 100%;
+    position: relative;
+}
 .referral-link-wrapper-modal {
     margin: 15px auto;
     max-width: 398px;

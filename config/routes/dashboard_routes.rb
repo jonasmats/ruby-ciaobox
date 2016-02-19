@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :profile, only: [:index, :edit, :update]
     resources :password, only: [:new, :create]
     resources :mystuff, only: [:index]
+    resources :invite_friend, only: [:index]
   end
 end

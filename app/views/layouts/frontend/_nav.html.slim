@@ -44,7 +44,7 @@ nav
             li.personal-menu-item role="presentation"
               = link_to I18n.t("layouts.frontend.links.schedule_pickup"), shipping_standard_path(:appoinment), class: "js-location-change item", :'role' => 'menuitem'
             li.personal-menu-item role="presentation"
-              = link_to I18n.t("layouts.frontend.links.invite_friends"), "#", class: "js-location-change item", :'role' => 'menuitem'
+              = link_to I18n.t("layouts.frontend.links.invite_friends"), dashboard_invite_friend_index_path, class: "js-location-change item", :'role' => 'menuitem'
             li.divider role="presentation"
             li.personal-menu-item role="presentation"
               = link_to I18n.t("layouts.frontend.links.profile"), dashboard_profile_index_path, class: "js-location-change item", :'role' => 'menuitem'

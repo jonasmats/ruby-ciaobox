@@ -1,0 +1,73 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Gift Some Space To Your Friends
+
+section.invite-banner
+  .container
+    p
+      | Be a good friend and get CiaoBox credit for it, too.
+      br
+        | You’ll both earn $75 in credit when your friend completes their first pickup.
+
+section.invite-banner-middle
+  .container
+    .invite-banner-middleleft
+      .invite-box
+        h3
+          | Total Shares
+        p
+          | 10
+      .invite-box
+        h3
+          | Successful Referrals
+        p
+          | 8
+      .invite-box
+        h3
+          | Total Credits Earned
+        p
+          | $600.00
+      .invite-box
+        h3
+          | Pending Credits
+        p
+          | $250.00
+    .invite-banner-middleright
+      .invite-link
+        .dashboard-referral-link-title
+          span
+            | Your Invite Link:
+        .dashboard-referral-link-wrapper
+          input.referral-link-field type="text" value="#{Settings.invitation.URL + @coupon.code}" readonly="true"
+          span.social-referral-icon.link-referral-icon
+      .or-separate
+        span
+          | or
+      .social-invite data-title="#{I18n.t('light-box.modal.summary')}" data-url="#{Settings.invitation.URL + @coupon.code}"
+        a.share-fb rel="nofollow" data-site="facebook" title="Share to Facebook" onclick="return SocialShareButton.share(this);"
+          i.fa.fa-facebook
+          span
+            | Share
+        a.share-twit rel="nofollow" data-site="twitter" title="Share to Twitter" onclick="return SocialShareButton.share(this);"
+          i.fa.fa-twitter
+          span
+            | Tweet
+        a.share-mail rel="nofollow" data-site="email" title="Share to Email" onclick="return SocialShareButton.share(this);"
+          figure
+            = image_tag "images/email-ic.png"
+          span
+            | Email
+
+section.look-empty.clearfix
+  .container.clearfix
+    p
+      | Looks a little empty in here. Invite some friends and earn credit!
+
+
+css:
+  .social-invite a {
+    border-radius: 5px !important;
+  }
