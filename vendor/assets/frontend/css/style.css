@@ -2905,8 +2905,6 @@ padding-top: 16px;
   width: 100%;
 }
 
-
-
 .mystuff-bottom {
   background: #f8fbfd;
   padding-bottom: 71px;
@@ -2925,7 +2923,7 @@ padding-top: 16px;
 .stuff-box a {
   width: 54px;
   height: 54px;
-  border-radius: 100%;
+  border-radius: 100% !important;
   text-align: center;
   display: table;
   table-layout: fixed;
