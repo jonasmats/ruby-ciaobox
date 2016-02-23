@@ -17,3 +17,9 @@ zoho:
   auth_token: 8191b6c216e8d6c3fd3a55965535495b
   organ_id: '89033694'
   hostedpage_redirect: 'http://localhost:3000/shipping/standard/confirmation'
+
+detrack:
+  api_key: 'ec5f7d4e6a0b508f3450cdfc942d946bf3c6f5acecd378ed'
+  notify_email: 'sales@ciaobox.ch'
+  collection_notify_url: 'http://localhost:3000/detrack/collection_notify'
+  delivery_notify_url: 'http://localhost:3000/detrack/delivery_notify'

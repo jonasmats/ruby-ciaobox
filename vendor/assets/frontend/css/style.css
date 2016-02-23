@@ -3802,7 +3802,7 @@ input[type="radio"]+label {
 }
 .stored{
     position: absolute;
-    z-index: 9999999;
+    /*z-index: 9999999;*/
     display: inline-block;
     padding: 5px 15px;
     background: #41c371;
@@ -3816,6 +3816,17 @@ input[type="radio"]+label {
     background: #3db15e;
     color: #fff;
     cursor: pointer;
+}
+.withyou {
+    position: absolute;
+    display: inline-block;
+    padding: 5px 15px;
+    background: #00b0dd;
+    border-radius: 3px!important;
+    color: #fff;
+    top: 20px;
+    left: 30px;
+    font-weight: bold;
 }
 .download-detail{
     position: absolute;

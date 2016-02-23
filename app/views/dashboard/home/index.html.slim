@@ -12,8 +12,11 @@ section.section-3.detail-content
         h3
           | Welcome &nbsp;
           = current_user.profile.first_name
-    .detail-top
-      - if current_user.orders.upcoming.present?
+          a.dashboard-addstorage-btn data-toggle="tooltip" data-placement="top" title="Add more storage" href="#{v1_zip_codes_path}"
+            span.plus-appointment-icon
+    .row.row-border
+    - if current_user.orders.upcoming.present?
+      .detail-top
         .row
           .datetime-details.col-sm-2.col-xs-2
             span.month-dt
@@ -35,109 +38,36 @@ section.section-3.detail-content
             p.trash-dt
               = image_tag "images/icon_trash.png"
               | &nbsp;
-              | 2 MakeSpace Bins
+              = @sub_notify_title
           .col-sm-2.col-xs-2.cancel-dt
             = link_to "#"
               = image_tag "images/icon_cancel.png"
               span
                 | Cancel
-      - else
-        .row
-          h3 style="margin-top: 30px"
-            | You have no upcoming appointment
+    - else
+      = render partial: 'dashboard/home/empty_appointment'
+
     .detail-bottom
-      - if current_user.orders.upcoming.blank?
+      - if current_user.orders.allitems.blank?
         h3
           | You have no Item
       - else
         h3
           | You have &nbsp;
-          = current_user.orders.upcoming[0].order_details.count
-          | &nbsp; Item In Storage:
-        .cnt-detail
-          - size = (current_user.orders.upcoming[0].order_details.count / 3).ceil * 3
-          - for i in (0..size).step(3)
-            .row
-              - one_detail = current_user.orders.upcoming[0].order_details[i]
-              - if one_detail.present?
-                .col-sm-4.item-detail
-                  .slide-detail
-                    #carousel-example-generic1.carousel.slide data-ride="carousel"
-                      .carousel-inner role="listbox"
-                        .item.active
-                          = image_tag "images/1.jpg"
-                        .item
-                          = image_tag "images/2.jpg"
-                        .item
-                          = image_tag "images/3.jpg"
-                      = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                        span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                      = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                        span.glyphicon.glyphicon-chevron-right aria-hidden="true"
-                    = link_to "#", class: "download-detail"
-                      = image_tag "images/icon_download.png"
-                  = link_to "STORED", "#", class: "stored"
-                  .cnt-slide-dt
-                    | Winter clothes, sheets...
-                  .cnt-slide-ext
-                    = link_to one_detail[:barcode], "#", class: "barcode"
-                    span.stored_dt
-                      | Stored &nbsp;
-                      = one_detail[:created_at].strftime('%m/%d/%Y')
+          = @count_items_in_storage
+          | &nbsp; Items In Storage:
+        = render partial: 'dashboard/home/detail_appointment'
 
-              - one_detail = current_user.orders.upcoming[0].order_details[i + 1]
-              - if one_detail.present?
-                .col-sm-4.item-detail
-                  .slide-detail
-                    #carousel-example-generic1.carousel.slide data-ride="carousel"
-                      .carousel-inner role="listbox"
-                        .item.active
-                          = image_tag "images/1.jpg"
-                        .item
-                          = image_tag "images/2.jpg"
-                        .item
-                          = image_tag "images/3.jpg"
-                      = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                        span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                      = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                        span.glyphicon.glyphicon-chevron-right aria-hidden="true"
-                    = link_to "#", class: "download-detail"
-                      = image_tag "images/icon_download.png"
-                  = link_to "STORED", "#", class: "stored"
-                  .cnt-slide-dt
-                    | Winter clothes, sheets...
-                  .cnt-slide-ext
-                    = link_to one_detail[:barcode], "#", class: "barcode"
-                    span.stored_dt
-                      | Stored &nbsp;
-                      = one_detail[:created_at].strftime('%m/%d/%Y')
-
-              - one_detail = current_user.orders.upcoming[0].order_details[i + 2]
-              - if one_detail.present?
-                .col-sm-4.item-detail
-                  .slide-detail
-                    #carousel-example-generic1.carousel.slide data-ride="carousel"
-                      .carousel-inner role="listbox"
-                        .item.active
-                          = image_tag "images/1.jpg"
-                        .item
-                          = image_tag "images/2.jpg"
-                        .item
-                          = image_tag "images/3.jpg"
-                      = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                        span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                      = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                        span.glyphicon.glyphicon-chevron-right aria-hidden="true"
-                    = link_to "#", class: "download-detail"
-                      = image_tag "images/icon_download.png"
-                  = link_to "STORED", "#", class: "stored"
-                  .cnt-slide-dt
-                    | Winter clothes, sheets...
-                  .cnt-slide-ext
-                    = link_to one_detail[:barcode], "#", class: "barcode"
-                    span.stored_dt
-                      | Stored &nbsp;
-                      = one_detail[:created_at].strftime('%m/%d/%Y')
+    .detail-bottom-schedule-pickup
+      span.dashboard-makespace-bin
+      p.dashboard-empty-storage-header
+        | Come Live the Spacious Life
+      p.dashboard-empty-storage-text
+        | Clear some of your clutter today and let MakeSpace do the work for you.
+      .dashboard-empty-storage-btn
+        a.btn-schedule-pickup href="#{shipping_standard_path(:appoinment)}"
+          | Schedule a pickup
+          span.dashboard-icon-plus
 
 #light-box.modal.fade aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
   .modal-dialog role="document"
@@ -170,6 +100,10 @@ section.section-3.detail-content
         /   = I18n.t('zipcode.modal.submit')
 
 javascript:
+  $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
   setTimeout(function(){
       $('#light-box').modal({backdrop: false});
   }, 7000);

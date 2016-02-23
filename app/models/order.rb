@@ -5,10 +5,11 @@ class Order < ActiveRecord::Base
     amount_confirm: 1,
     checking: 2,
     reject: 3,
-    processing: 4,
-    holding: 5,
-    cancel: 6,
-    returned: 7
+    pickup_scheduled: 4,
+    stored: 5,
+    holding: 6,
+    cancel: 7,
+    returned: 8
   }
 
   # 1. association
@@ -25,10 +26,25 @@ class Order < ActiveRecord::Base
   scope :registering, -> { where(status: statuses[:registering]) }
   scope :upcoming, -> {
     includes(:order_details).
-    where(:status => [statuses[:processing], statuses[:holding]]).
+    #where(:status => [statuses[:checking]]).
+    where(status: statuses[:checking]).
     where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
     order("to_date(shipping_date, 'MM/DD/YYYY')")
     #limit(1)
+  }
+  scope :pickup_scheduled, -> {
+    includes(:order_details).
+    where(status: statuses[:pickup_scheduled]).
+    where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
+    order("to_date(shipping_date, 'MM/DD/YYYY')")
+  }
+  scope :stored, -> {
+    includes(:order_details).
+    where(status: statuses[:stored])
+  }
+  scope :allitems, -> {
+    includes(:order_details).
+    where(:status => [statuses[:checking], statuses[:pickup_scheduled], statuses[:stored]])
   }
   # 4. validation
   validates :user, :shipping, :pay_status,
@@ -76,4 +92,5 @@ class Order < ActiveRecord::Base
   def self.months_to_case
     ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'Auguest', 'September', 'October', 'November','December']
   end
+
 end

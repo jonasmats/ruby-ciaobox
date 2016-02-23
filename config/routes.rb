@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   draw :public_routes
   draw :devise_routes
   draw :shipping_routes
+  draw :detrack_routes
 
   draw :api_v1
 end

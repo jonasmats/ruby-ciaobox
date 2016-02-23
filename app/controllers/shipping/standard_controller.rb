@@ -49,33 +49,6 @@ class Shipping::StandardController < ShippingController
       build_feed_back
       load_order_details
 
-=begin
-    when :billcheck
-      authenticate_user!
-      create_instance
-      set_params
-      if @order.persisted?
-        if @order.registering?
-          redirect_to shipping_standard_path(:review),
-            alert: I18n.t('shipping.not_finish_step_2') and return
-        end
-      else
-        redirect_to shipping_standard_path(:appoinment),
-          alert: I18n.t('shipping.not_finish_step_1') and return
-      end
-      #generate_postfinance_fields
-      if @order.valid?
-        delete_order_details
-        set_params
-        @order.status = Order.statuses[:amount_confirm]
-        @order.save
-        redirect_to shipping_standard_path(:confirmation),
-          notice: "Thank you for your order" and return
-      else
-        redirect_to shipping_standard_path(:review),
-          alert: @order.errors.full_messages and return
-      end
-=end
 
     when :confirmation
       authenticate_user!
@@ -137,29 +110,6 @@ class Shipping::StandardController < ShippingController
       build_feed_back
       load_order_details
 
-=begin
-    when :billcheck
-      authenticate_user!
-      create_instance
-      set_params
-      puts @order
-      if @order.valid?
-        #redirect back to appointment step if total amount is less than 25 CHF
-        if !@order.check_amount?
-          redirect_to shipping_standard_path(:review),
-            alert: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
-        end
-
-        delete_order_details
-        set_params
-        @order.status = Order.statuses[:amount_confirm]
-        @order.save
-      else
-        redirect_to shipping_standard_path(:review),
-         alert: @order.errors.full_messages and return
-      end
-      generate_postfinance_fields
-=end
 
     when :confirmation
       authenticate_user!
@@ -226,11 +176,12 @@ class Shipping::StandardController < ShippingController
         starts_at = Date.strptime(@order.shipping_date, "%m/%d/%Y") + 40
         starts_at = starts_at.strftime("%Y-%m-%d")
         addons = []
-        @order.order_details.all.each do |v|
-          addon = {"addon_code": Shipping::Zoho.addons[v.order_item_id.to_s], "quantity": v.quantity}
+        @order.order_details.select("order_item_id, count(quantity) as qty").group("order_item_id").each do |v|
+          addon = {"addon_code": Shipping::Zoho.addons[v.order_item_id.to_s], "quantity": v.qty}
           addons << addon
         end
         subscription = Shipping::Zoho.create_subscription customer_code, plan_code, addons, nil, starts_at
+        #logger.debug("CREATE SUBSCRIPTION:: #{subscription.inspect}, #{addons.inspect}")
         subscription = JSON.parse subscription
         subscription_id = subscription["subscription"]["subscription_id"]
 

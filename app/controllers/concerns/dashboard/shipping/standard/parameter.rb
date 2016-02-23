@@ -16,12 +16,34 @@ module Dashboard::Shipping::Standard::Parameter
     def filter_params
     filted = private_params.clone
     return filted if filted[:order_details_attributes].nil?
+
+    filted_temp = Hash.new
+
     filted[:order_details_attributes].each do |k, v|
       # v = {"quantity"=>"2", "order_item_id"=>"2"}
       if v[:quantity].to_i == 0
         filted[:order_details_attributes].delete(k)
       end
+
+      item_id = v[:order_item_id]
+      qty = v[:quantity].to_i
+      if qty > 0
+        filted[:order_details_attributes].delete(k)
+      end
+
+      (1..qty).each do |i|
+        one_order_detail = Hash.new
+        one_order_detail[:quantity] = "1"
+        one_order_detail[:order_item_id] = item_id
+        kk = k + '_' + i.to_s
+        filted_temp[kk] = one_order_detail
+      end
     end
+
+    filted_temp.each do |k, v|
+      filted[:order_details_attributes][k] = v
+    end
+    #logger.debug("STANDARD FILTERED:: #{filted.inspect}")
     filted
   end
 
