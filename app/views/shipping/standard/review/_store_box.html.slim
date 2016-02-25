@@ -19,7 +19,8 @@
 /           = image_tag "images/edit-ic.png", alt: "date and time"
 /         figure
 /           = image_tag "images/delete-ic.png", alt: "date and time"
-.store-box-left id = "#{store_box.id}"
+/.store-box-left id = "#{store_box.id}"
+.store-box-left
   a href="#" title="" 
     figure
       = image_tag store_box.order_item.avatar, alt: store_box.order_item.title
@@ -44,7 +45,9 @@
     .input-copy
       .booking-icon-background-num.js-nav-min
         span.booking-icon.js-nav.icon-min
-      = form.text_field "[order_details_attributes][#{store_box.id}][quantity]", class: "item-input", value: store_box.quantity
+      /= form.text_field "[order_details_attributes][#{store_box.id}][quantity]", class: "item-input", value: store_box.quantity
+      = form.text_field "[order_details_attributes][#{store_box.order_item_id}][quantity]", class: "item-input", value: store_box.quantity
       .booking-icon-background-num.js-nav-plus
         span.booking-icon.js-nav.icon-plus
-= form.hidden_field "[order_details_attributes][#{store_box.id}][order_item_id]", value: store_box.order_item_id
+/= form.hidden_field "[order_details_attributes][#{store_box.id}][order_item_id]", value: store_box.order_item_id
+= form.hidden_field "[order_details_attributes][#{store_box.order_item_id}][order_item_id]", value: store_box.order_item_id

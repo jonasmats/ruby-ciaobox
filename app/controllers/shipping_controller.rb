@@ -8,7 +8,8 @@ class ShippingController < ActionController::Base
   private
   def check_zip_code
     unless session[:zip_code].present?
-      redirect_to root_path, notice: "Please enter zipcode"
+      #redirect_to root_path, notice: "Please enter zipcode"
+      redirect_to root_path
     end
   end
 end

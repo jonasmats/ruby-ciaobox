@@ -1,0 +1,30 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Appointment
+= render partial: "standard_step"
+
+= render layout: 'form' do |f|
+
+  section.like-to-store.section-schedule.clearfix
+    = render partial: 'shipping/schedule/collection/appointment/date_time', locals: {form: f}
+    section.schedule-question-title.schedule-question-padd.clearfix
+      .container.schedule-question-inner
+        h2 What address should we meet you at?
+    section.address-meet.clearfix
+      .container.address-meet-inner
+        .address-meet-top
+          .in-addess
+            = f.text_field :address, placeholder: "Address", value: @order_for_view[:address], readonly: true
+            figure
+              = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-address-img"
+          .app-state
+            = f.text_field :state, placeholder: "Apt/State", value: @order_for_view[:state], readonly: true
+            figure
+              = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-state-img"
+          .app-num
+            = text_field_tag :zip_code, session[:zip_code], class: "input-app-num", placeholder: "zip code", readonly: true
+        .address-meet-bottom
+          = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"

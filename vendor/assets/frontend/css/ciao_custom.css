@@ -334,6 +334,44 @@ input.referral-link-field[readonly]:hover {
     text-decoration: none !important;
     position: relative;
 }
+.btn-schedule-delivery {
+    font-family: "Bikobold";
+    font-size: 17px;
+    color: #fff;
+    width: 138px;
+    height: 35px;
+    text-align: center;
+    padding: 12px 40px 12px 25px;
+    background: #08a46c;
+    border: none;
+    border-radius: 3px !important;
+    transition: all 0.2s ease-in;
+    text-decoration: none !important;
+    position: relative;
+}
+.btn-schedule-delivery > .badge {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 300;
+    top: 30%;
+    right: 8px;
+    padding: 3px 6px 3px 6px;
+    color: white;
+    text-shadow: none;
+    border-width: 0;
+    border-style: solid;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.badge-success {
+    background-color: #009055;
+    background-image: none;
+}
+
 .dashboard-icon-plus {
     background-position: -162px -72px;
     width: 14px;

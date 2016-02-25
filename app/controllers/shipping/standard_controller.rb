@@ -238,6 +238,7 @@ class Shipping::StandardController < ShippingController
 
   def load_order_details
     @items = @order.order_details.includes(:order_item)
+    @items_for_view = @order.order_details.select("order_item_id, count(quantity) as quantity").group("order_item_id")
   end
 
   def build_feed_back

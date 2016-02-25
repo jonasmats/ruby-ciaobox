@@ -9,10 +9,16 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
     @items_in_storage = []
 
     current_user.orders.allitems.each do |item|
-      @items_in_storage = @items_in_storage + item.order_details
+      @items_in_storage = @items_in_storage + item.order_details.includes(:order)
       @count_items_in_storage = @count_items_in_storage + item.order_details.count
     end
 
+    if current_user.orders.upcoming.blank?
+      return
+    end
+
+    @sub_notify_title = ''
+    comma = ''
     current_user.orders.upcoming[0].order_details.select("order_item_id, count(quantity) as qty").group("order_item_id").order("order_item_id").each do |item|
       if item.order_item[:type] == OrderItem::Bin.name
         suffix = (item.qty <= 1) ? " Ciaobox Bin" : " Ciaobox Bins"
@@ -35,7 +41,19 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
       end
     end
 
-    logger.debug("ITEMS IN STORAGE:: #{@sub_notify_title}")
+    #logger.debug("ITEMS IN STORAGE:: #{@sub_notify_title}")
+  end
+
+  def update
+    if params[:id] == "dropoff"
+      Order.where("id = ?", params[:order_id]).update_all(status: Order.statuses[:dropoff])
+      redirect_to dashboard_root_path
+    end
+
+    if params[:id] == "cancel"
+      Order.where("id = ?", params[:order_id]).update_all(status: Order.statuses[:cancel])
+      redirect_to dashboard_root_path
+    end
   end
 
   private

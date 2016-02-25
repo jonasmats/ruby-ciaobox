@@ -1,0 +1,14 @@
+section.section-2.about
+  .container
+    figure
+      = image_tag "images/green-arrow.png", class: "g-arrow", alt: "#"
+    h1
+      | Review
+= render partial: "standard_step"
+
+= render layout: 'form' do |f|
+  section.like-to-store.section-review.clearfix
+    .container
+      h3 Items
+    = render partial: 'shipping/schedule/collection/review/personal_info', locals: {order: @order_for_view}
+    = render partial: 'shipping/schedule/collection/review/contact_info', locals: {form: f}

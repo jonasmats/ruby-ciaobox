@@ -3,7 +3,6 @@
     .row
       - one_detail = @items_in_storage[i]
       - if one_detail.present?
-        /- if one_detail.order[:status] == Order.statuses[:checking] || one_detail.order[:status] == Order.statuses[:pickup_scheduled]
         - if [Order.statuses[:checking], Order.statuses[:dropoff], Order.statuses[:pickup_scheduled]].include? one_detail.order[:status]
           .col-sm-4.item-detail order_detail_id = "#{one_detail.id}"
             .slide-detail

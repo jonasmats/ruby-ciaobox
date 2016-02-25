@@ -3793,8 +3793,24 @@ input[type="radio"]+label {
     color: #000000;
     margin: 0;
 }
+.detail-bottom-top-area {
+    position: relative;
+    min-height: 60px;
+}
+.detail-bottom-title-area {
+    width: 60%;
+    float: left;
+    min-height: 60px;
+}
+.detail-bottom-btn-area {
+    width: 40%;
+    text-align: right;
+    float: left;
+    position: relative;
+    line-height: 60px;
+}
 .cnt-detail{
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .item-detail{
     position: relative;
@@ -3828,6 +3844,17 @@ input[type="radio"]+label {
     left: 30px;
     font-weight: bold;
 }
+.processing {
+    position: absolute;
+    display: inline-block;
+    padding: 5px 15px;
+    background: #ffc100;
+    border-radius: 3px!important;
+    color: #fff;
+    top: 20px;
+    left: 30px;
+    font-weight: bold;
+}
 .download-detail{
     position: absolute;
     border-radius: 50%!important;
@@ -3839,6 +3866,11 @@ input[type="radio"]+label {
 }
 .download-detail img{
     margin-top: 3px;
+}
+.item-delivery {
+    position: absolute;
+    bottom: 78px;
+    right: 30px;
 }
 .slide-detail{
     border-top-left-radius: 3px!important;

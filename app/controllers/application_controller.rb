@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :delete_session_order, if: :delete_session_order?
+  before_action :delete_session_order_detail_ids, if: :delete_session_order_detail_ids?
   before_filter :set_locale
 
   protected
@@ -15,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def delete_session_order?
-    (!['v1/social_networks', 'shipping'].include? params[:controller]) && (session[:order_id].present? || session[:zip_code].present?)
+    (!['v1/social_networks', 'shipping', 'shipping/schedule/delivery'].include? params[:controller]) && (session[:order_id].present? || session[:zip_code].present?)
   end
 
   def delete_session_order
@@ -25,6 +26,16 @@ class ApplicationController < ActionController::Base
     end
     if session[:subscription_id].present?
       session.delete(:subscription_id)
+    end
+  end
+
+  def delete_session_order_detail_ids?
+    (!['v1/zip_codes', 'v1/social_networks', 'shipping/schedule/delivery'].include? params[:controller]) && (session[:order_detail_ids].present?)
+  end
+
+  def delete_session_order_detail_ids
+    if session[:order_detail_ids].present?
+      session.delete(:order_detail_ids)
     end
   end
 

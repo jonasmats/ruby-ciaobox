@@ -1,0 +1,14 @@
+= render partial: 'layouts/shared/flash/notice'
+= render partial: 'layouts/shared/flash/error'
+section.schedule-question-title.clearfix
+  figure
+    = image_tag "/master/schedule/top-arrow.png"
+  .container.schedule-question-inner
+    h2
+      = @title
+= form_for @order_detail_for_view, url: next_wizard_path, method: :put do |f|
+  = yield f
+  .actions
+  section.schedule-question-title.schedule-question-btm.clearfix
+    .container.schedule-question-inner
+      = f.submit "Continue", class: "btn btn-primary"

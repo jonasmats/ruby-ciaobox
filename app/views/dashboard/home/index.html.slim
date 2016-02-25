@@ -34,28 +34,37 @@ section.section-3.detail-content
               br
                 = current_user.orders.upcoming[0][:state]
             p.dropoff
-              | Dropoff
+              = link_to dashboard_home_path(:dropoff, "order_id" => current_user.orders.upcoming[0][:id]), method: :put do
+                | Dropoff
             p.trash-dt
               = image_tag "images/icon_trash.png"
               | &nbsp;
               = @sub_notify_title
           .col-sm-2.col-xs-2.cancel-dt
-            = link_to "#"
+            = link_to dashboard_home_path(:cancel, "order_id" => current_user.orders.upcoming[0][:id]), method: :put do
               = image_tag "images/icon_cancel.png"
               span
                 | Cancel
     - else
       = render partial: 'dashboard/home/empty_appointment'
 
-    .detail-bottom
-      - if current_user.orders.allitems.blank?
-        h3
-          | You have no Item
-      - else
-        h3
-          | You have &nbsp;
-          = @count_items_in_storage
-          | &nbsp; Items In Storage:
+    = form_tag shipping_schedule_delivery_index_path(:appointment), method: :post, class: "aform" do
+      .detail-bottom
+        .detail-bottom-top-area
+          .detail-bottom-title-area
+            - if current_user.orders.allitems.blank?
+              h3
+                | You have no Item
+            - else
+              h3
+                | You have &nbsp;
+                = @count_items_in_storage
+                | &nbsp; Items In Storage:
+          .detail-bottom-btn-area
+            = link_to "#", class: "btn-schedule-delivery", :onclick => "$('.aform').submit()" do
+              | Schedule Delivery
+              span.badge.badge-success
+                | 0
         = render partial: 'dashboard/home/detail_appointment'
 
     .detail-bottom-schedule-pickup
@@ -65,7 +74,7 @@ section.section-3.detail-content
       p.dashboard-empty-storage-text
         | Clear some of your clutter today and let MakeSpace do the work for you.
       .dashboard-empty-storage-btn
-        a.btn-schedule-pickup href="#{shipping_standard_path(:appoinment)}"
+        a.btn-schedule-pickup href="#{shipping_schedule_collection_path(:appointment)}"
           | Schedule a pickup
           span.dashboard-icon-plus
 

@@ -277,3 +277,33 @@ $(document).on('click', '#edt-credit-country', function() {
 // $('a.icon-item').on('click', function(){
 //   return false;
 // }
+
+//dashboard page
+$(document).on('click', '.item-delivery', function() {
+   var wrapper = $(this).parent().parent();
+   var spanBadge = $('.btn-schedule-delivery').find("span");
+   var order_detail_id = wrapper.attr("order_detail_id");
+   var src = $(this).find("img").attr("src");
+
+   if (src != undefined && src.indexOf('icon_item_download') > -1) {
+       $(this).find("img").remove();
+       $(this).append("<img width='45' height='45' src='assets/images/icon_item_checked.png' />");
+
+       var hidden = "<input type=hidden name='order_details[id][]' value='" + order_detail_id + "'>";
+       wrapper.append(hidden);
+
+       var count = parseInt(spanBadge.text()) + 1;
+       spanBadge.text(count);
+   }
+   else {
+       $(this).find("img").remove();
+       $(this).append("<img width='45' height='45' src='assets/images/icon_item_download.png' />");
+
+       wrapper.find("input[type='hidden'][name='order_details[id][]']").remove();
+
+       var count = parseInt(spanBadge.text()) - 1;
+       if (count < 0) count = 0;
+       spanBadge.text(count);
+   }
+});
+
