@@ -13,6 +13,31 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
       @count_items_in_storage = @count_items_in_storage + item.order_details.count
     end
 
+    # Order Detail Image Management
+    img_dir_path = Settings.detrack.photo_dir_path
+
+    @item_photos = Hash.new
+    logger.debug("ITEMS IN STORAGE:: #{@items_in_storage.inspect}\n")
+    @items_in_storage.each do |item|
+      @item_photos[item[:id]] = []
+
+      img_path = img_dir_path + item[:barcode] + '.jpg'
+      if File.exist?(img_path)
+        logger.debug("IMAGE PATH1:: #{img_path.inspect}\n")
+        @item_photos[item[:id]] << Settings.detrack.photo_uri_path + item[:barcode] + '.jpg'
+      else
+        (0..9).each do |inx|
+          img_path = img_dir_path + item[:barcode] + '_' + inx.to_s + '.jpg'
+          #img_path = img_dir_path + inx.to_s + '.jpg'
+          if File.exist?(img_path)
+            @item_photos[item[:id]] << Settings.detrack.photo_uri_path + item[:barcode] + '_' + inx.to_s + '.jpg'
+            #@item_photos[item[:id]] << Settings.detrack.photo_uri_path + inx.to_s + '.jpg'
+            logger.debug("IMAGE PATH2:: #{img_path.inspect} => #{item[:id]}\n")
+          end
+        end
+      end
+    end
+
     if current_user.orders.upcoming.blank?
       return
     end

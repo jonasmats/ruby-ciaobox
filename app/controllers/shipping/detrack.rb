@@ -3,6 +3,7 @@ class Shipping::Detrack
   require 'net/http'
   require 'json'
 
+
   ############################### Collection #####################################
 
   # return type {'info': {}, 'result': []}
@@ -14,8 +15,11 @@ class Shipping::Detrack
     uri = URI('https://app.detrack.com/api/v1/collections/create.json')
     res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       req = Net::HTTP::Post.new(uri)
+      #req['Content-Type'] = 'application/x-www-form-urlencoded'
 
+      req_hash = Hash.new
       params = Hash.new
+
       params["date"] = collection_date
       params["do"] = order_no
       params["address"] = collection_address
@@ -28,12 +32,16 @@ class Shipping::Detrack
       params["instructions"] = instructions if instructions.present?
       params["zone"] = zone if zone.present?
       params["items"] = items if items.present?
-
-      req_hash = Hash.new
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
+      Rails.logger.debug("DEtraCK Params:: #{req.body}")
 
       http.request(req)
     end
@@ -50,7 +58,9 @@ class Shipping::Detrack
     res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       req = Net::HTTP::Post.new(uri)
 
+      req_hash = Hash.new
       params = Hash.new
+
       params["date"] = collection_date
       params["do"] = order_no
       params["address"] = collection_address
@@ -64,11 +74,15 @@ class Shipping::Detrack
       params["zone"] = zone if zone.present?
       params["items"] = items if items.present?
 
-      req_hash = Hash.new
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end
@@ -81,15 +95,20 @@ class Shipping::Detrack
     res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       req = Net::HTTP::Post.new(uri)
 
+      req_hash = Hash.new
       params = Hash.new
+
       params["date"] = collection_date
       params["do"] = order_no
-
-      req_hash = Hash.new
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end
@@ -102,15 +121,19 @@ class Shipping::Detrack
     res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       req = Net::HTTP::Post.new(uri)
 
+      req_hash = Hash.new
       params = Hash.new
       params["date"] = collection_date
       params["do"] = order_no
-
-      req_hash = Hash.new
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end
@@ -148,7 +171,12 @@ class Shipping::Detrack
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end
@@ -183,7 +211,12 @@ class Shipping::Detrack
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end
@@ -204,7 +237,12 @@ class Shipping::Detrack
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end
@@ -225,7 +263,12 @@ class Shipping::Detrack
       req_hash["key"] = Settings.detrack.api_key
       req_hash["json"] = []
       req_hash["json"] << params
-      req.body = req_hash.to_json
+
+      req.body = URI.encode_www_form(req_hash)
+      req.body.gsub! '%3D%3E', '%3A'
+      req.body.gsub! 'json=', 'json=%5B'
+      req.body = req.body + '%5D'
+      req.content_type = 'application/x-www-form-urlencoded'
 
       http.request(req)
     end

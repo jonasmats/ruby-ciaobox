@@ -10,31 +10,41 @@
               #carousel-example-generic1.carousel.slide data-ride="carousel"
                 .carousel-inner role="listbox"
                   .item.active
-                    = image_tag "images/empty.png"
+                    = image_tag "images/default.jpg"
             - if one_detail.order[:status] == Order.statuses[:dropoff]
               = link_to "WITH YOU", "javascript:;", class: "withyou"
             - else
               = link_to "PROCESSING", "javascript:;", class: "processing"
             .cnt-slide-dt
-              | Untitled Bin
+              = Shipping::Zoho.addons_desc[one_detail[:order_item_id].to_s]
+              | ...
 
         - if one_detail.order[:status] == Order.statuses[:stored]
           .col-sm-4.item-detail order_detail_id = "#{one_detail.id}"
             .slide-detail
               #carousel-example-generic1.carousel.slide data-ride="carousel"
                 .carousel-inner role="listbox"
-                  .item.active
-                    = image_tag "images/1.jpg"
-                  .item
-                    = image_tag "images/2.jpg"
-                  .item
-                    = image_tag "images/3.jpg"
-                = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                  span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                  span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+                  - if @item_photos.present? && @item_photos.key?(one_detail.id) && @item_photos[one_detail.id].size > 0
+                    - b_active = true
+                    - @item_photos[one_detail.id].each do |photo|
+                      - if b_active
+                        - b_active = false
+                        .item.active
+                          = image_tag photo
+                      - else
+                        .item
+                          = image_tag photo
+                  - else
+                    .item.active
+                      = image_tag "images/default.jpg"
 
-              - if one_detail[:status].blank?
+                - if @item_photos.present? && @item_photos.key?(one_detail.id) && @item_photos[one_detail.id].size > 0
+                  = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                    span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                  = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                    span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+
+              - if ![OrderDetail.statuses[:delivery_scheduled], OrderDetail.statuses[:delivered]].include? one_detail[:status]
                 = link_to "javascript:;", class: "item-delivery"
                   = image_tag "images/icon_item_download.png", width: 45, height: 45
             - if one_detail[:status] == OrderDetail.statuses[:delivery_scheduled]
@@ -43,12 +53,13 @@
               = link_to "STORED", "javascript:;", class: "stored"
 
             .cnt-slide-dt
-              | Winter clothes, sheets...
+              = Shipping::Zoho.addons_desc[one_detail[:order_item_id].to_s]
+              | ...
             .cnt-slide-ext
               = link_to one_detail[:barcode], "javascript:;", class: "barcode"
               span.stored_dt
                 | Stored &nbsp;
-                = one_detail[:created_at].strftime('%m/%d/%Y')
+                = one_detail.order[:shipping_date]
 
       - one_detail = @items_in_storage[i + 1]
       - if one_detail.present?
@@ -58,31 +69,41 @@
               #carousel-example-generic1.carousel.slide data-ride="carousel"
                 .carousel-inner role="listbox"
                   .item.active
-                    = image_tag "images/empty.png"
+                    = image_tag "images/default.jpg"
             - if one_detail.order[:status] == Order.statuses[:dropoff]
               = link_to "WITH YOU", "javascript:;", class: "withyou"
             - else
               = link_to "PROCESSING", "javascript:;", class: "processing"
             .cnt-slide-dt
-              | Untitled Bin
+              = Shipping::Zoho.addons_desc[one_detail[:order_item_id].to_s]
+              | ...
 
         - if one_detail.order[:status] == Order.statuses[:stored]
           .col-sm-4.item-detail order_detail_id = "#{one_detail.id}"
             .slide-detail
               #carousel-example-generic1.carousel.slide data-ride="carousel"
                 .carousel-inner role="listbox"
-                  .item.active
-                    = image_tag "images/1.jpg"
-                  .item
-                    = image_tag "images/2.jpg"
-                  .item
-                    = image_tag "images/3.jpg"
-                = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                  span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                  span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+                  - if @item_photos.present? && @item_photos.key?(one_detail.id) && @item_photos[one_detail.id].size > 0
+                    - b_active = true
+                    - @item_photos[one_detail.id].each do |photo|
+                      - if b_active
+                        - b_active = false
+                        .item.active
+                          = image_tag photo
+                      - else
+                        .item
+                          = image_tag photo
+                  - else
+                    .item.active
+                      = image_tag "images/default.jpg"
 
-              - if one_detail[:status].blank?
+                - if @item_photos.present? && @item_photos.key?(one_detail.id) && @item_photos[one_detail.id].size > 0
+                  = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                    span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                  = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                    span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+
+              - if ![OrderDetail.statuses[:delivery_scheduled], OrderDetail.statuses[:delivered]].include? one_detail[:status]
                 = link_to "javascript:;", class: "item-delivery"
                   = image_tag "images/icon_item_download.png", width: 45, height: 45
             - if one_detail[:status] == OrderDetail.statuses[:delivery_scheduled]
@@ -91,12 +112,13 @@
               = link_to "STORED", "javascript:;", class: "stored"
 
             .cnt-slide-dt
-              | Winter clothes, sheets...
+              = Shipping::Zoho.addons_desc[one_detail[:order_item_id].to_s]
+              | ...
             .cnt-slide-ext
               = link_to one_detail[:barcode], "javascript:;", class: "barcode"
               span.stored_dt
                 | Stored &nbsp;
-                = one_detail[:created_at].strftime('%m/%d/%Y')
+                = one_detail.order[:shipping_date]
 
       - one_detail = @items_in_storage[i + 2]
       - if one_detail.present?
@@ -106,31 +128,41 @@
               #carousel-example-generic1.carousel.slide data-ride="carousel"
                 .carousel-inner role="listbox"
                   .item.active
-                    = image_tag "images/empty.png"
+                    = image_tag "images/default.jpg"
             - if one_detail.order[:status] == Order.statuses[:dropoff]
               = link_to "WITH YOU", "javascript:;", class: "withyou"
             - else
               = link_to "PROCESSING", "javascript:;", class: "processing"
             .cnt-slide-dt
-              | Untitled Bin
+              = Shipping::Zoho.addons_desc[one_detail[:order_item_id].to_s]
+              | ...
 
         - if one_detail.order[:status] == Order.statuses[:stored]
           .col-sm-4.item-detail order_detail_id = "#{one_detail.id}"
             .slide-detail
               #carousel-example-generic1.carousel.slide data-ride="carousel"
                 .carousel-inner role="listbox"
-                  .item.active
-                    = image_tag "images/1.jpg"
-                  .item
-                    = image_tag "images/2.jpg"
-                  .item
-                    = image_tag "images/3.jpg"
-                = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
-                  span.glyphicon.glyphicon-chevron-left aria-hidden="true"
-                = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
-                  span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+                  - if @item_photos.present? && @item_photos.key?(one_detail.id) && @item_photos[one_detail.id].size > 0
+                    - b_active = true
+                    - @item_photos[one_detail.id].each do |photo|
+                      - if b_active
+                        - b_active = false
+                        .item.active
+                          = image_tag photo
+                      - else
+                        .item
+                          = image_tag photo
+                  - else
+                    .item.active
+                      = image_tag "images/default.jpg"
 
-              - if one_detail[:status].blank?
+                - if @item_photos.present? && @item_photos.key?(one_detail.id) && @item_photos[one_detail.id].size > 0
+                  = link_to "#carousel-example-generic1", class: "left carousel-control", :'role' => 'button', :'data-slide' => 'prev'
+                    span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+                  = link_to "#carousel-example-generic1", class: "right carousel-control", :'role' => 'button', :'data-slide' => 'next'
+                    span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+
+              - if ![OrderDetail.statuses[:delivery_scheduled], OrderDetail.statuses[:delivered]].include? one_detail[:status]
                 = link_to "javascript:;", class: "item-delivery"
                   = image_tag "images/icon_item_download.png", width: 45, height: 45
             - if one_detail[:status] == OrderDetail.statuses[:delivery_scheduled]
@@ -139,9 +171,10 @@
               = link_to "STORED", "javascript:;", class: "stored"
 
             .cnt-slide-dt
-              | Winter clothes, sheets...
+              = Shipping::Zoho.addons_desc[one_detail[:order_item_id].to_s]
+              | ...
             .cnt-slide-ext
               = link_to one_detail[:barcode], "javascript:;", class: "barcode"
               span.stored_dt
                 | Stored &nbsp;
-                = one_detail[:created_at].strftime('%m/%d/%Y')
+                = one_detail.order[:shipping_date]

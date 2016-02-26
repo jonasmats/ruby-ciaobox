@@ -15,7 +15,33 @@ class Shipping::Zoho
   end
 
   def self.addons
-    {"1" => "1000", "2" => "1001", "3" => "1100", "4" => "1101", "5" => "1102", "6" => "1103", "7" => "1104", "8" => "1105", "9" => "1106", "10" => "1200"}
+    {
+        "1" => "1000",
+        "2" => "1001",
+        "3" => "1100",
+        "4" => "1101",
+        "5" => "1102",
+        "6" => "1103",
+        "7" => "1104",
+        "8" => "1105",
+        "9" => "1106",
+        "10" => "1200"
+    }
+  end
+
+  def self.addons_desc
+    {
+        "1" => "Ciaobox Box",
+        "2" => "Wardrope Box",
+        "3" => "Bike",
+        "4" => "Golf Clubs",
+        "5" => "Ski/Snowboard",
+        "6" => "AC Unit",
+        "7" => "Small Luggage",
+        "8" => "Large Luggage",
+        "9" => "Mini Fridge",
+        "10" => "Other Items"
+    }
   end
 
   # Create/Retrieve a Product

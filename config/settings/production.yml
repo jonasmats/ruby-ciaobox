@@ -19,7 +19,9 @@ zoho:
   hostedpage_redirect: 'http://ciaobox.it/shipping/standard/confirmation'
 
 detrack:
-  api_key: 'ec5f7d4e6a0b508f3450cdfc942d946bf3c6f5acecd378ed'
+  api_key: 55fea8bec5c911ecb9c355eb92bc7195bcd605c702ba80e0
   notify_email: 'sales@ciaobox.ch'
   collection_notify_url: 'http://ciaobox.it/detrack/collection_notify'
   delivery_notify_url: 'http://ciaobox.it/detrack/delivery_notify'
+  photo_dir_path: '/home/ubuntu/ciaobox/current/public/images/order_item/photos/'
+  photo_uri_path: '/images/order_item/photos/'

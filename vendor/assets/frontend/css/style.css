@@ -3873,13 +3873,13 @@ input[type="radio"]+label {
     right: 30px;
 }
 .slide-detail{
-    border-top-left-radius: 3px!important;
-    border-top-right-radius: 3px!important;
+    border-top-left-radius: 8px!important;
+    border-top-right-radius: 8px!important;
     border: 1px solid #ccccd2;
 }
 .slide-detail .item img{
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: 8px!important;
+    border-top-right-radius: 8px!important;
     height: 220px;
     width: 100%;
 }
@@ -3889,11 +3889,12 @@ input[type="radio"]+label {
 }
 .cnt-slide-dt{
     width: 100%;
-    background: #fff;
+    background: #79af8f;
     border: 1px solid #E3E3E3;
     border-top: 0;
     padding: 20px 15px 15px;
-    color: #81cd99;
+    color: #d6f1de;
+    /*color: #81cd99;*/
     font-size: 15px;
     text-align: justify;
 }

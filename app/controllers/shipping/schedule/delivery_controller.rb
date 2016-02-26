@@ -45,6 +45,16 @@ class Shipping::Schedule::DeliveryController < ScheduleController
           end
         end
         session.delete(:delivery_step)
+
+        #Detrack Integration
+        @order_details = OrderDetail.where("id IN (?)", session[:order_detail_ids])
+        if exists_delivery(@order_details)
+          res = create_delivery(@order_details, false)
+          logger.debug("DETRACK CREATE DEBUG:: #{res.inspect}")
+        else
+          res = create_delivery(@order_details)
+          logger.debug("DETRACK UPDATE DEBUG:: #{res.inspect}")
+        end
     end
     render_wizard
   end
@@ -110,12 +120,113 @@ class Shipping::Schedule::DeliveryController < ScheduleController
 
   def update_order_detail
     #order_details = OrderDetail.find(session[:order_detail_ids])
-    order_details = OrderDetail.where("id IN (?)", session[:order_detail_ids])
-    order_details.update_all delivery_params
+    @order_details = OrderDetail.where("id IN (?)", session[:order_detail_ids])
+    @order_details.update_all delivery_params
   end
 
   def update_status
-    order_details = OrderDetail.where("id IN (?)", session[:order_detail_ids])
-    order_details.update_all(:status => OrderDetail.statuses[:delivery_scheduled])
+    @order_details = OrderDetail.where("id IN (?)", session[:order_detail_ids])
+    @order_details.update_all(:status => OrderDetail.statuses[:delivery_scheduled])
+  end
+
+
+  ##############################  Detrack Integration ################################
+  def exists_delivery(order_details)
+    one_order_detail = order_details.first
+
+    #1
+    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%m/%d/%Y")
+    delivery_date = delivery_date.strftime("%Y-%m-%d")
+
+    #2
+    order_no = ''
+    order_details.each do |detail|
+      order_no = order_no + detail[:id].to_s + '-'
+    end
+    len = order_no.length
+    order_no = order_no[0..len - 2]
+
+    res = Shipping::Detrack.view_delivery(delivery_date, order_no)
+    res = JSON.parse res
+
+    status = res["info"]["status"]
+    failed = res["info"]["failed"]
+
+    logger.debug("EXISTS DELIVERY:: #{res}")
+    if status == "ok" && failed == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  # D.O. Combination of order detail ids (172-173-174)
+  def create_delivery(order_details, is_create = true)
+    one_order_detail = order_details.first
+
+    #1
+    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%m/%d/%Y")
+    delivery_date = delivery_date.strftime("%Y-%m-%d")
+
+    #2
+    order_no = ''
+    order_details.each do |detail|
+      order_no = order_no + detail[:id].to_s + '-'
+    end
+    len = order_no.length
+    order_no = order_no[0..len - 2]
+
+    #3
+    delivery_address = one_order_detail[:address]
+
+    #4
+    delivery_time = one_order_detail[:delivery_time]
+
+    #5
+    delivery_to = one_order_detail.order[:contact_name]
+
+    #6
+    phone = one_order_detail.order[:contact_phone]
+
+    #7
+    notify_email = Settings.detrack.notify_email
+
+    #8
+    notify_url = Settings.detrack.delivery_notify_url
+
+    #9
+    assign_to = one_order_detail.order.shipping.driver[:name]
+
+    #10
+    instructions = one_order_detail[:additional]
+
+    #11
+    zone = nil
+
+    #12
+    items = []
+    order_details.each do |v|
+      item = Hash.new
+      item["po_no"] = v.id.to_s
+      item["sku"] = Shipping::Zoho.addons[v.order_item_id.to_s]
+      item["desc"] = Shipping::Zoho.addons_desc[v.order_item_id.to_s]
+      item["qty"] = v.quantity
+      items << item
+    end
+    # order_details.select("order_item_id, count(quantity) as qty").group("order_item_id").each do |v|
+    #   item = Hash.new
+    #   item["sku"] = Shipping::Zoho.addons[v.order_item_id.to_s]
+    #   item["desc"] = Shipping::Zoho.addons_desc[v.order_item_id.to_s]
+    #   item["qty"] = v.qty
+    #   items << item
+    # end
+
+    # Call a Request
+    if is_create
+      res = Shipping::Detrack.add_delivery(delivery_date, order_no, delivery_address, delivery_time, delivery_to, phone, notify_email, notify_url, assign_to, instructions, zone, items)
+    else
+      res = Shipping::Detrack.update_delivery(delivery_date, order_no, delivery_address, delivery_time, delivery_to, phone, notify_email, notify_url, assign_to, instructions, zone, items)
+    end
+    return res
   end
 end

@@ -19,7 +19,9 @@ zoho:
   hostedpage_redirect: 'http://localhost:3000/shipping/standard/confirmation'
 
 detrack:
-  api_key: 'ec5f7d4e6a0b508f3450cdfc942d946bf3c6f5acecd378ed'
+  api_key: 55fea8bec5c911ecb9c355eb92bc7195bcd605c702ba80e0
   notify_email: 'sales@ciaobox.ch'
   collection_notify_url: 'http://localhost:3000/detrack/collection_notify'
   delivery_notify_url: 'http://localhost:3000/detrack/delivery_notify'
+  photo_dir_path: '/work/CiaoBox/version/vendor/assets/frontend/images/'
+  photo_uri_path: 'images/'
