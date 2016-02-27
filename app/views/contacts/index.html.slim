@@ -51,17 +51,20 @@ section.contact-main
           | Inquiry Form
         .contact-form
           .contact-field
-            input[type="text" placeholder="Name"]
+            input[type="text" placeholder="Name" name="contact_name" id="contact_name"]
           .contact-field
-            input[type="email" placeholder="Email Address"]
+            input[type="email" placeholder="Email Address" name="email_from" id="email_from"]
           .contact-field
-            input[type="text" placeholder="Subject"]
+            input[type="text" placeholder="Subject" name="subject" id="subject"]
           .contact-field
-            input[type="text" placeholder="Contact Number"]
+            input[type="text" placeholder="Contact Number" name="contact_phone" id="contact_phone"]
           .contact-field.full-field
-            textarea[placeholder="Message"]
+            textarea[placeholder="Message" name="message" id="message"]
           .contact-field.full-field
-            input[type="submit" value="Submit"]
+            /input[type="button" value="Submit" id="submit_inquiry"]
+            input[type="button" value="Submit" id="submit_inquiry" class="place-order"]
+            input[type="hidden" value="#{contacts_path}" id="submit_inquiry_url"]
+
 section.map-section.wrapper
   h2
     | Our coverage area
@@ -76,3 +79,4 @@ section.map-section.wrapper
 
 = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'
 = javascript_include_tag 'application.map'
+= javascript_include_tag 'public/inquiry'

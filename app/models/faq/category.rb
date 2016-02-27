@@ -14,7 +14,7 @@ class Faq::Category < ActiveRecord::Base
   accepts_nested_attributes_for :translations
 
   # 1. associations
-  has_many :faqs, dependent: :destroy, foreign_key: :faq_category_id
+  has_many :faqs, -> {order(:order_no => :asc)}, dependent: :destroy, foreign_key: :faq_category_id
   # 2. scopes
   default_scope -> { includes(:translations) }
   scope :order_by_id_desc, -> { order("id DESC") }

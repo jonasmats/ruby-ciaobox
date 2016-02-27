@@ -120,7 +120,7 @@ class Shipping::StandardController < ShippingController
         #redirect back to appointment step if total amount is less than 25 CHF
         if !@order.check_amount?
           redirect_to shipping_standard_path(:review),
-            alert: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
+            notice: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
         end
 
         delete_order_details

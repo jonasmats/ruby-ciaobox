@@ -3395,7 +3395,7 @@ padding-top: 16px;
 .detail-radio-div {
     background: white;
     padding: 6px 20px;
-    border-radius: 25px;
+    /*border-radius: 25px;*/
     margin: 15px 30px 10px 0;
     display: flex;
     cursor: pointer;

@@ -1,6 +1,9 @@
 tr
   td
-    = "FQ%03d" % faq.faq_category.id
+    /= "FQ%03d" % faq.faq_category.id
+    = faq.faq_category.id
+    | -
+    = faq.order_no
   td
     = faq.faq_category.name
   td

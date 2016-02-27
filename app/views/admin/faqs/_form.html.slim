@@ -15,6 +15,14 @@
               = Faq.h :faq_category_id
             .col-md-4
               = f.select :faq_category_id, options_for_select(Faq::Category.all.map{|c| [c.name, c.id]}, selected: @faq.faq_category_id), { include_blank: t('.blank')}, {class: "form-control"}
+          .form-group
+            - count_buff = []
+            - (1..20).each {|v| count_buff << v}
+            label.col-md-3.control-label
+              = Faq.h :order_no
+            .col-md-4
+              = f.select :order_no, options_for_select(count_buff.map { |c| [c, c] }, selected: @faq.order_no), {include_blank: t('.blank')}, {class: "form-control"}
+
           - Settings.list_locales.each do |lang, locale|
             .tab-pane.fade class=("in active" if (locale.to_sym == I18n.locale) ) id="tab_#{locale}"
               = f.globalize_fields_for locale.to_sym do |g|

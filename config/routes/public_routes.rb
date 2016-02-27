@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :faqs, only: :index
-  resources :contacts, only: :index
+  resources :contacts, only: [:index, :create]
   resources :abouts, only: :index
   resources :prices, only: :index
   resources :articles, only: [:index, :show], path: "blogs"

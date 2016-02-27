@@ -9,7 +9,11 @@ class Shipping::Schedule::CollectionController < ScheduleController
   def show
     case step
       when :appointment
-        check_order_info
+        if check_order_info?
+          check_order_info
+        else
+          redirect_to v1_zip_codes_path and return
+        end
 
       when :review
         if session[:collection_step].blank? || session[:collection_step] != 1

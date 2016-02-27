@@ -1,0 +1,11 @@
+h1
+  = @email_obj[:name]
+br
+p
+  = @email_obj[:message]
+p
+  | contact phone number: &nbsp;
+  = @email_obj[:phone]
+p
+  | contact email address: &nbsp;
+  = @email_obj[:from]
