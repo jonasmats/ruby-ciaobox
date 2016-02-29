@@ -204,7 +204,9 @@ class Shipping::FlyController < ShippingController
       @order.shipping = @shipping
       @order.user = current_user
       @order.pay_status = false
-      @order.card_number = current_user.orders.where.not('card_number' => nil).order('created_at DESC').pluck(:card_number).first
+      if current_user.present?
+        @order.card_number = current_user.orders.where.not('card_number' => nil).order('created_at DESC').pluck(:card_number).first
+      end
     else
       @order = Order.find(session[:order_id])
     end
