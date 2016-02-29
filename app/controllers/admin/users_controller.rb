@@ -64,6 +64,7 @@ class Admin::UsersController < Admin::BaseAdminController
     msg =
     full_name = @user.full_name
       if @user.destroy
+        @user.really_destroy!
         active_job_log_action(params.extract!(:id), t('summary.admin.users.update', name: full_name))
         t('notice.admin.users.destroy.success')
       else

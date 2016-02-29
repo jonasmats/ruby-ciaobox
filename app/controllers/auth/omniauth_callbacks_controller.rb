@@ -11,12 +11,26 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def callback_process(provider)
     auth = request.env["omniauth.auth"]
     user = User.from_omniauth(auth)
+    logger.debug("AUTHORIZATION:: #{auth.inspect}, #{user.profile.inspect}")
     if user.persisted?
-      unless user.profile.present?
+      # unless user.profile.present?
+      #   user.create_profile(
+      #     first_name: auth.info.first_name,
+      #     last_name: auth.info.last_name,
+      #     avatar: process_uri(auth.info.image)
+      #   )
+      # end
+      if user.profile.present?
+        User::Profile.update(user.profile.id,
+                             :first_name => auth.info.first_name,
+                             :last_name => auth.info.last_name,
+                             :avatar => process_uri(auth.info.image)
+        )
+      else
         user.create_profile(
-          first_name: auth.info.first_name,
-          last_name: auth.info.last_name,
-          avatar: process_uri(auth.info.image)
+            first_name: auth.info.first_name,
+            last_name: auth.info.last_name,
+            avatar: process_uri(auth.info.image)
         )
       end
       sign_in_and_redirect user
