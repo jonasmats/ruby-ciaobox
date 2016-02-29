@@ -1,16 +1,53 @@
 section.schedule-question-title.schedule-question-padd.clearfix
   .container.schedule-question-inner
-    h2 
-      | Billing Information
+    h2
+      | Credit Card Information
 section.address-meet.clearfix
   .container.address-meet-inner
-    .address-meet-top
-      input.in-addess placeholder=("Credit Card Number") type="text" /
-      input.app-state placeholder="CVV" type="text" /
-      input.app-num.app-num-bg placeholder="MM/YY" type="text" /
-    .address-meet-top-btm
-      .date-picker
-        input placeholder=("Name on Card") type="text" /
-      .time-picker.time-bg
-        input placeholder=("Promo Code") type="text" /
+    -if current_user.payment_subscriptions.all.count < 1
+      .address-meet-top
+        .check-input
+          input[type="checkbox" checked]
+        .card-image
+          figure
+            = image_tag "images/visa-mastercard-amex.png", height: '32', width: '147', class: "img-responsive"
+      .address-meet-top-btm
+        .email-input
+          = form.text_field :card_surname, placeholder: "Surname on Card", readonly: true
+          figure
+            = image_tag "images/edit-ic.png", alt: "credit_surname", id: "edt-credit-surname"
+        .phone-input
+          = form.text_field :card_name, placeholder: "Name on Code", readonly: true
+          figure
+            = image_tag "images/edit-ic.png", alt: "credit_name", id: "edt-credit-name"
+      .address-meet-top-btm
+        = form.text_field :card_street, placeholder: "Street", readonly: true
+        figure
+          = image_tag "images/edit-ic.png", alt: "credit_street", id: "edt-credit-street"
+      .address-meet-top-btm
+        .credit-city
+          = form.text_field :card_city, placeholder: "City", readonly: true
+          figure
+            = image_tag "images/edit-ic.png", alt: "credit_city", id: "edt-credit-city"
+        .credit-zip
+          = form.text_field :card_zipcode, placeholder: "Zip", readonly: true
+          figure
+            = image_tag "images/edit-ic.png", alt: "credit_zip", id: "edt-credit-zip"
+      .address-meet-top-btm
+        .credit-country
+          = form.text_field :card_country, placeholder: "Country", readonly: true
+          figure
+            = image_tag "images/edit-ic.png", alt: "credit_country", id: "edt-credit-country"
+        .promo-code
+          input placeholder="Promo Code" type="text" id="coupon_code" /
+
+    -else
+      .address-meet-top
+        p
+          | Payment will be processed with the following Credit Card:
+      .address-meet-top-btm
+        .credit-country
+          = form.text_field :card_number, placeholder: "Credit Card Number", readonly: true, value: order.card_number
+        .promo-code
+          input placeholder="Promo Code" type="text" id="coupon_code" /
 

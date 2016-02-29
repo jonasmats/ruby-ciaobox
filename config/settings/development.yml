@@ -17,6 +17,7 @@ zoho:
   auth_token: 8191b6c216e8d6c3fd3a55965535495b
   organ_id: '89033694'
   hostedpage_redirect: 'http://localhost:3000/shipping/standard/confirmation'
+  hostedpage_fly_redirect: 'http://localhost:3000/shipping/fly/confirmation'
 
 detrack:
   api_key: 55fea8bec5c911ecb9c355eb92bc7195bcd605c702ba80e0

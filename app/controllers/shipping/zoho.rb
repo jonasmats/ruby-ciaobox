@@ -29,6 +29,14 @@ class Shipping::Zoho
     }
   end
 
+  def self.fly_addons
+    {
+        "1" => "2000",
+        "2" => "2001",
+        "3" => "2002"
+    }
+  end
+
   def self.addons_desc
     {
         "1" => "Ciaobox Box",

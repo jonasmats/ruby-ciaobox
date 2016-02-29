@@ -1,5 +1,5 @@
 class Shipping::FlyController < ShippingController
-  steps :appoinment, :review, :billcheck, :confirmation
+  steps :appoinment, :review, :confirmation
   include ::Dashboard::Shipping::Fly::Parameter
   before_action :title_form, only: [:show, :update]
 
@@ -32,6 +32,7 @@ class Shipping::FlyController < ShippingController
       end
 
     when :review
+      authenticate_user!
       create_instance
       if @order.persisted?
         if @order.checking?
@@ -45,33 +46,8 @@ class Shipping::FlyController < ShippingController
       build_feed_back
       load_order_details
 
-    when :billcheck
-      authenticate_user!
-      create_instance
-      set_params
-      if @order.persisted?
-        if @order.registering?
-          redirect_to shipping_standard_path(:review),
-           alert: I18n.t('shipping.not_finish_step_2') and return
-        end
-      else
-        redirect_to shipping_standard_path(:appoinment),
-         alert: I18n.t('shipping.not_finish_step_1') and return
-      end
-
-      if @order.valid?
-        delete_order_details
-        set_params
-        @order.status = Order.statuses[:amount_confirm]
-        @order.save
-        redirect_to shipping_standard_path(:confirmation),
-         notice: "Thank you for your order" and return
-      else
-        redirect_to shipping_standard_path(:review),
-          alert: @order.errors.full_messages and return
-      end
-
     when :confirmation
+      authenticate_user!
       create_instance
       if @order.persisted?
         if @order.registering?
@@ -82,6 +58,10 @@ class Shipping::FlyController < ShippingController
         redirect_to shipping_fly_path(:appoinment), 
           alert: I18n.t('shipping.not_finish_step_1') and return
       end
+
+      #Confirm Credit card
+      confirm_credit
+
     end
     render_wizard
   end
@@ -89,6 +69,7 @@ class Shipping::FlyController < ShippingController
   def update
     case step
     when :review
+      authenticate_user!
       load_shipping
       create_instance
       # delete_order_item_customer_in_order_detail
@@ -108,43 +89,109 @@ class Shipping::FlyController < ShippingController
       build_feed_back
       load_order_details
 
-    when :billcheck
+
+    when :confirmation
       authenticate_user!
       create_instance
       set_params
-      puts @order
+
       if @order.valid?
+
+        delete_order_details
+        set_params
+        @order.status = Order.statuses[:amount_confirm]
+        @order.save
+
         #redirect back to appointment step if total amount is less than 25 CHF
         if !@order.check_amount?
-          redirect_to shipping_standard_path(:review),
-            alert: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
+          redirect_to shipping_fly_path(:review),
+            notice: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
         end
 
-        delete_order_details
-        set_params
-        @order.status = Order.statuses[:amount_confirm]
-        @order.save
-      else
-        redirect_to shipping_standard_path(:review),
-         alert: @order.errors.full_messages and return
-      end
-      generate_postfinance_fields
+        #check if current user has already customer id for zoho
+        addrs = @order.address.split(%r{,\s*})
+        addr = {
+            "street": addrs[0],
+            "city": addrs[1],
+            "state": @order.state,
+            "zip": session[:zip_code],
+            "country": addrs[3]
+        }
 
-    when :confirmation
-      create_instance
-      set_params
-      if @order.valid?
-        delete_order_details
-        set_params
-        @order.status = Order.statuses[:amount_confirm]
-        @order.save
+        customer = Shipping::Zoho.retrieve_customer(current_user.customer_code)
+        logger.debug("INSPECT PARAMS:: #{customer.inspect}")
+        if customer.blank?
+
+          result = Shipping::Zoho.create_customer @order.contact_name, @order.contact_email, current_user.profile.first_name,
+                  current_user.profile.last_name, @order.contact_phone, addr, addr,
+                  (SysSetting.first.currency == SysSetting.sys_currencies[:CHF]) ? 'CHF' : 'EUR'
+          json = JSON.parse result
+          customer_code = json["customer"]["customer_id"]
+
+          @user = User.find(current_user.id)
+          @user.customer_code = customer_code
+          @user.save
+        else
+          json = JSON.parse customer
+          if json["code"].to_i != 0
+            result = Shipping::Zoho.create_customer @order.contact_name, @order.contact_email, current_user.profile.first_name,
+                  current_user.profile.last_name, @order.contact_phone, addr, addr,
+                  (SysSetting.first.currency == SysSetting.sys_currencies[:CHF]) ? 'CHF' : 'EUR'
+            json = JSON.parse result
+            customer_code = json["customer"]["customer_id"]
+
+            @user = User.find(current_user.id)
+            @user.customer_code = customer_code
+            @user.save
+          else
+            result = Shipping::Zoho.update_customer current_user.customer_code, @order.contact_name, @order.contact_email, current_user.profile.first_name,
+                  current_user.profile.last_name, @order.contact_phone, addr, addr,
+                  (SysSetting.first.currency == SysSetting.sys_currencies[:CHF]) ? 'CHF' : 'EUR'
+            json = JSON.parse result
+            customer_code = json["customer"]["customer_id"]
+          end
+        end
+
+        #Create a new subscription
+        plan_code = Shipping::Zoho.plans[:fly]
+        starts_at = Date.strptime(@order.shipping_date, "%m/%d/%Y") + 40
+        starts_at = starts_at.strftime("%Y-%m-%d")
+        addons = []
+        @order.order_details.select("order_item_id, count(quantity) as qty").group("order_item_id").each do |v|
+          addon = {"addon_code": Shipping::Zoho.fly_addons[v.order_item_id.to_s], "quantity": v.qty}
+          addons << addon
+        end
+        subscription = Shipping::Zoho.create_subscription customer_code, plan_code, addons, nil, starts_at
+        #logger.debug("CREATE SUBSCRIPTION:: #{subscription.inspect}, #{addons.inspect}")
+        subscription = JSON.parse subscription
+        subscription_id = subscription["subscription"]["subscription_id"]
+
+        #Check if the credit card already checked
+        is_checked_credit = (current_user.payment_subscriptions.all.count >= 1) ? true : false
+
+        if !is_checked_credit
+          #Create a Hosted page to checkout credit card for new subscription
+          result = Shipping::Zoho.update_card_hostedpage subscription_id, Settings.zoho.hostedpage_fly_redirect
+          result = JSON.parse result
+          logger.debug("HOSTED PAGE:: #{result}, #{customer_code}, DBCODE:: #{current_user.customer_code}")
+          if result["code"].to_i == 0
+            create_subscription(subscription_id)
+            redirect_to result["hostedpage"]["url"]
+            return
+          else
+            redirect_to shipping_fly_path(:review), alert: "Error occured while processing your request, Please try it again" and return
+          end
+        else
+          create_subscription(subscription_id)
+        end
+
       else
         redirect_to shipping_fly_path(:review), 
           alert: @order.errors.full_messages and return
       end
     end
     render_wizard
-  end
+  end;
 
   private
   def load_shipping
@@ -157,6 +204,7 @@ class Shipping::FlyController < ShippingController
       @order.shipping = @shipping
       @order.user = current_user
       @order.pay_status = false
+      @order.card_number = current_user.orders.where.not('card_number' => nil).order('created_at DESC').pluck(:card_number).first
     else
       @order = Order.find(session[:order_id])
     end
@@ -168,6 +216,7 @@ class Shipping::FlyController < ShippingController
 
   def load_order_details
     @items = @order.order_details.includes(:order_item)
+    @items_for_view = @order.order_details.select("order_item_id, count(quantity) as quantity").group("order_item_id")
   end
 
   def build_feed_back
@@ -233,32 +282,31 @@ class Shipping::FlyController < ShippingController
     end
   end
 
-  def generate_postfinance_fields
-    keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "ACCEPTURL", "EXCEPTIONURL", "TP", "ALIAS", "ALIASUSAGE", "SHASIGN"]
-    #keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "EXCEPTIONURL", "TP", "SHASIGN"]
-    curr_time = "#{(Time.now.to_f * 1000).to_i}"
-
-    @hidden_f = {}
-    @hidden_f["PSPID"] = Settings.postfinance.PSP
-    #@hidden_f["ORDERID"] = "CB%08d" % @order.id
-    @hidden_f["ORDERID"] = "CBO#{curr_time}"
-    @hidden_f["AMOUNT"] = (@order.amount * 100).to_i.to_s
-    @hidden_f["CURRENCY"] = "CHF"
-    @hidden_f["OPERATION"] = "SAL"
-    @hidden_f["LANGUAGE"] = "en_US"
-    @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/fly/billcheck"
-    @hidden_f["EXCEPTIONURL"] = "http://www.ciaobox.it/shipping/fly/review"
-    @hidden_f["ALIAS"] = "ALIS#{curr_time}"
-    @hidden_f["ALIASUSAGE"] = "Validtion of payable status"
-    @hidden_f["TP"] = Settings.postfinance.TP
-
-    shasign = ""
-    keys.each do |k|
-      shasign = shasign + k + "=" + @hidden_f[k].to_s + Settings.postfinance.HASHSEED
+  def create_subscription(subscription_id)
+    subscription_record = Payment::Subscription.new
+    subscription_record.subscription_id = subscription_id
+    subscription_record.user_id = current_user.id
+    if subscription_record.save
+      session[:subscription_id] = subscription_id
     end
+  end
 
-    @hidden_f["SHASIGN"] = Digest::SHA1.hexdigest(shasign).upcase
+  def confirm_credit
+    #Retrieve the subscription to retrieve Card Number etc again
+    #logger.debug("Session Subscription ID:: #{session[:subscription_id]}")
+    subscription_id = session[:subscription_id]
+    subscription = Shipping::Zoho.retrieve_subscription subscription_id
+    subscription = JSON.parse subscription
+    #logger.debug("Retreive SUBSCRIPTION INFO:: #{subscription}")
 
-    logger.debug "HASPMAP HIDDEN Fields => #{@hidden_f}"
+    #Update a subscription
+    subscription_record = Payment::Subscription.find_by_subscription_id(subscription_id)
+    subscription_record.update!(
+        card_id: subscription["subscription"]["card"]["card_id"],
+        order_id: @order.id
+    )
+
+    #Update this Order record
+    @order.update!(card_number: "XXXXXXXXXXXXX" + subscription["subscription"]["card"]["last_four_digits"])
   end
 end

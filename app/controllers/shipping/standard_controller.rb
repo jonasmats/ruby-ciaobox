@@ -65,11 +65,11 @@ class Shipping::StandardController < ShippingController
       end
 
       #Retrieve the subscription to retrieve Card Number etc again
-      logger.debug("Session Subscription ID:: #{session[:subscription_id]}")
+      #logger.debug("Session Subscription ID:: #{session[:subscription_id]}")
       subscription_id = session[:subscription_id]
       subscription = Shipping::Zoho.retrieve_subscription subscription_id
       subscription = JSON.parse subscription
-      logger.debug("Retreive SUBSCRIPTION INFO:: #{subscription}")
+      #logger.debug("Retreive SUBSCRIPTION INFO:: #{subscription}")
 
       #Update a subscription
       subscription_record = Payment::Subscription.find_by_subscription_id(subscription_id)
@@ -115,18 +115,19 @@ class Shipping::StandardController < ShippingController
       authenticate_user!
       create_instance
       set_params
-
+      logger.debug("INSPECT PARAMS:: #{params}")
       if @order.valid?
-        #redirect back to appointment step if total amount is less than 25 CHF
-        if !@order.check_amount?
-          redirect_to shipping_standard_path(:review),
-            notice: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
-        end
 
         delete_order_details
         set_params
         @order.status = Order.statuses[:amount_confirm]
         @order.save
+
+        #redirect back to appointment step if total amount is less than 25 CHF
+        if !@order.check_amount?
+          redirect_to shipping_standard_path(:review),
+            notice: "Thank you for your choice. Remember that the minimum monthly fee is 25.00 CHF" and return;
+        end
 
         #check if current user has already customer id for zoho
         addrs = @order.address.split(%r{,\s*})
