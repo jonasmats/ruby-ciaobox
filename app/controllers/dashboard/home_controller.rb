@@ -6,11 +6,15 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
     #@user = User.includes(:orders, :order_items, :notification).find(current_user.id)
     #logger.debug("USER-ORDER:: #{current_user.orders.upcoming[0].order_details.inspect}")
     @count_items_in_storage = 0
+    @count_items_available_in_storage = 0
     @items_in_storage = []
 
     current_user.orders.allitems.each do |item|
       @items_in_storage = @items_in_storage + item.order_details.includes(:order)
       @count_items_in_storage = @count_items_in_storage + item.order_details.count
+      if [Order.statuses[:dropoff], Order.statuses[:pickup_scheduled], Order.statuses[:stored]].include?(item[:status])
+        @count_items_available_in_storage = @count_items_available_in_storage + 1
+      end
     end
 
     # Order Detail Image Management

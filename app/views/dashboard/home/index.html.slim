@@ -60,11 +60,12 @@ section.section-3.detail-content
                 | You have &nbsp;
                 = @count_items_in_storage
                 | &nbsp; Items In Storage:
-          .detail-bottom-btn-area
-            = link_to "#", class: "btn-schedule-delivery", :onclick => "$('.aform').submit()" do
-              | Schedule Delivery
-              span.badge.badge-success
-                | 0
+          - if @count_items_available_in_storage > 0
+            .detail-bottom-btn-area
+              = link_to "#", class: "btn-schedule-delivery", :onclick => "$('.aform').submit()" do
+                | Schedule Delivery
+                span.badge.badge-success
+                  | 0
         = render partial: 'dashboard/home/detail_appointment'
 
     .detail-bottom-schedule-pickup
