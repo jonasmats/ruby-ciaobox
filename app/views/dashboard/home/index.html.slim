@@ -52,13 +52,14 @@ section.section-3.detail-content
       .detail-bottom
         .detail-bottom-top-area
           .detail-bottom-title-area
-            - if current_user.orders.allitems.blank?
+            /- if current_user.orders.allitems.blank?
+            - if @count_items_available_in_storage <= 0
               h3
                 | You have no Item
             - else
               h3
                 | You have &nbsp;
-                = @count_items_in_storage
+                = @count_items_available_in_storage
                 | &nbsp; Items In Storage:
           - if @count_items_available_in_storage > 0
             .detail-bottom-btn-area
