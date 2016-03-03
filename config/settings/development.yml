@@ -1,8 +1,8 @@
 devise:
   FB_APP_ID: 1486098568362378
   FB_APP_SECRET: 8ec12e102b130acfd4447234253f59db
-  GG_APP_ID: '630017564342-bepruna5tsrmq9ojkvokknlt08sebu3a.apps.googleusercontent.com'
-  GG_APP_SECRET: 'tAXClscei57RbFamLojWdRMM'
+  GG_APP_ID: 632109957585-70h7jdt0ll0r3fptlacpodgasohk52bj.apps.googleusercontent.com
+  GG_APP_SECRET: twxXCELEAuyLcvOLrGv3TEyq
 
 postfinance:
   ACTION_URL: 'https://e-payment.postfinance.ch/ncol/test/orderstandard.asp'

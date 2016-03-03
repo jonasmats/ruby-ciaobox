@@ -11,7 +11,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def callback_process(provider)
     auth = request.env["omniauth.auth"]
     user = User.from_omniauth(auth)
-    logger.debug("AUTHORIZATION:: #{auth.inspect}, #{user.profile.inspect}")
+    logger.debug("AUTHORIZATION:: #{auth.inspect}")
     if user.persisted?
       # unless user.profile.present?
       #   user.create_profile(
@@ -33,6 +33,13 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             avatar: process_uri(auth.info.image)
         )
       end
+
+      if provider == 'facebook'
+        session[:fb_token] = auth["credentials"]["token"]
+      else
+        session[:google_token] = auth["credentials"]["token"]
+      end
+
       sign_in_and_redirect user
     else
       session["devise.#{provider}_data"] = env["omniauth.auth"]

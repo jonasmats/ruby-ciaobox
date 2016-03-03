@@ -13,9 +13,11 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
       @items_in_storage = @items_in_storage + item.order_details.includes(:order)
       @count_items_in_storage = @count_items_in_storage + item.order_details.count
       if [Order.statuses[:dropoff], Order.statuses[:pickup_scheduled], Order.statuses[:stored]].include?(item[:status])
-        @count_items_available_in_storage = @count_items_available_in_storage + 1
+        @count_items_available_in_storage = @count_items_available_in_storage + item.order_details.count
       end
     end
+
+    logger.debug("ITEMS IN STORAGE:: #{@items_in_storage}, COUNT:: #{@count_items_available_in_storage}")
 
     # Order Detail Image Management
     img_dir_path = Settings.detrack.photo_dir_path

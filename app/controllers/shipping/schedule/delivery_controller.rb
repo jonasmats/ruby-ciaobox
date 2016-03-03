@@ -196,6 +196,7 @@ class Shipping::Schedule::DeliveryController < ScheduleController
 
     #9
     assign_to = one_order_detail.order.shipping.driver[:name]
+    assign_to = "Driver A" if assign_to.nil?
 
     #10
     instructions = one_order_detail[:additional]
