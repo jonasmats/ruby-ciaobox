@@ -52,13 +52,12 @@ class Order < ActiveRecord::Base
     where(:status => [statuses[:checking], statuses[:dropoff], statuses[:pickup_scheduled], statuses[:stored]])
   }
   # 4. validation
-  validates :user, :shipping, :pay_status,
-    :shipping_date, :shipping_time,
-    :address, :state,
+  validates :user, :shipping, :pay_status, :shipping_date, :shipping_time,
+    :address, :state, :contact_name, :contact_email, :contact_phone,
     presence: true
 
-  validates :contact_name,:contact_email, :contact_phone, 
-    presence: true, if: :validate_step_2?
+  validates :contact_name,:contact_email, :contact_phone, presence: true, if: :validate_step_2?
+
   #5. callbacks
   # 5. callbacks
   # before_create :init_score

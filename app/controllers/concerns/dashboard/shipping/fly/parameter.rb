@@ -45,6 +45,11 @@ module Dashboard::Shipping::Fly::Parameter
     filted_temp.each do |k, v|
       filted[:order_details_attributes][k] = v
     end
+
+    if params[:first_name].present? && params[:last_name].present?
+      filted[:contact_name] = params[:first_name] + ' ' + params[:last_name]
+    end
+
     #logger.debug("STANDARD FILTERED:: #{filted.inspect}")
     filted
   end

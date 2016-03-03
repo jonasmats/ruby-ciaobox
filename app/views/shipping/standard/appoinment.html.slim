@@ -54,13 +54,21 @@ section.section-2.about
         h2 What address should we meet you at?
     section.address-meet.clearfix
       .container.address-meet-inner
-        .address-meet-top
+        .name-input
+          = text_field_tag :first_name, current_user.profile.first_name, placeholder: "Name"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-date-img"
+        .surname-input
+          = text_field_tag :last_name, current_user.profile.last_name, placeholder: "Surname"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-time-img"
+        .margin-top-35.address-meet-top
           .in-addess
-            = f.text_field :address, placeholder: "Address", value: @address, readonly: true
+            = f.text_field :address, placeholder: "Address", value: @address, readonly: false
             figure
               = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-address-img"
           .app-state
-            = f.text_field :state, placeholder: "Apt/State", value: @state, readonly: true
+            = f.text_field :state, placeholder: "Apt/State", value: @state, readonly: false
             figure
               = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-state-img"
           .app-num
@@ -68,5 +76,12 @@ section.section-2.about
           /= f.text_field :address, class: "in-addess", placeholder: "Address", value: @address
           /= f.text_field :state, class: "app-state", placeholder: "Apt/State", value: @state
           /= text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
-        .address-meet-bottom
+        .address-meet-bottom.margin-top-35
           = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-name-img"
+        .john-input.margin-top-35
+          = f.text_field :contact_phone, placeholder: "Please enter phone number"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-name-img"
+        = f.hidden_field :contact_email, value: "#{current_user.email}"

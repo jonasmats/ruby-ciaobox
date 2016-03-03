@@ -44,6 +44,12 @@ section.address-meet.clearfix
             = image_tag "images/edit-ic.png", alt: "promo_code", id: "promo_code"
     -else
       .address-meet-top
+        .check-input
+          input[type="checkbox" checked disabled]
+        .card-image
+          figure
+            = image_tag "images/visa-mastercard-amex.png", height: '32', width: '147', class: "img-responsive"
+      .address-meet-top
         p
           | Payment will be processed with the following Credit Card:
       .address-meet-top-btm

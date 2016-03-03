@@ -3,10 +3,11 @@ module Dashboard::Shipping::Standard::Parameter
 
   private
     def private_params
+      logger.debug("STANDARD PARAMS:: #{params[:order]}")
       if params[:order]
         params.require(:order).permit(:shipping_date, :shipping_time,
           :address, :state, :additional, :save_image,
-          :contact_name, :contact_email, :contact_phone,
+          :contact_name, :contact_email, :contact_phone, :pickup_rightaway,
           order_details_attributes: [:id, :quantity, :order_item_id],
           feedback_attributes: [:id, :content]
         )
@@ -43,7 +44,12 @@ module Dashboard::Shipping::Standard::Parameter
     filted_temp.each do |k, v|
       filted[:order_details_attributes][k] = v
     end
-    #logger.debug("STANDARD FILTERED:: #{filted.inspect}")
+
+    if params[:first_name].present? && params[:last_name].present?
+      filted[:contact_name] = params[:first_name] + ' ' + params[:last_name]
+    end
+
+    logger.debug("STANDARD FILTERED:: #{filted.inspect}")
     filted
   end
 

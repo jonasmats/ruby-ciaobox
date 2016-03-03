@@ -262,9 +262,15 @@ class Shipping::FlyController < ShippingController
   # end
 
   def list_order_items_in_order_details
+    # @item_oders = {}
+    # @order.order_details.select("order_item_id", "quantity").each do |item|
+    #   @item_oders[item.order_item_id] = item.quantity
+    # end
+    # @item_oders
+
     @item_oders = {}
-    @order.order_details.select("order_item_id", "quantity").each do |item|
-      @item_oders[item.order_item_id] = item.quantity 
+    @order.order_details.select("order_item_id, count(quantity) as quantity").group("order_item_id").each do |item|
+      @item_oders[item.order_item_id] = item.quantity
     end
     @item_oders
   end
@@ -309,6 +315,6 @@ class Shipping::FlyController < ShippingController
     )
 
     #Update this Order record
-    @order.update!(card_number: "XXXXXXXXXXXXX" + subscription["subscription"]["card"]["last_four_digits"])
+    @order.update!(card_number: "XXXX-XXXX-XXXX-" + subscription["subscription"]["card"]["last_four_digits"])
   end
 end
