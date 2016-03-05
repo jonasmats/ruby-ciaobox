@@ -523,6 +523,7 @@ class Shipping::Zoho
     return res.body
   end
 
+  # Retrieve Card Info
   def self.retrieve_card(customer_id, card_id)
     url_str = "https://subscriptions.zoho.com/api/v1/customers/" + customer_id + "/cards/" + card_id
     uri = URI(url_str)
@@ -534,5 +535,71 @@ class Shipping::Zoho
     end
 
     return res.body
+  end
+
+  # Create/Update/Retrieve/Delete a Coupon
+  def self.create_coupon(coupon_code, name, type, discount_by, discount_value, product_id, desc = nil, apply_to_addons = 'all', addons = nil)
+    url_str = "https://subscriptions.zoho.com/api/v1/coupons"
+    uri = URI(url_str)
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Post.new(uri)
+      req['Content-Type'] = 'application/json;charset=UTF-8'
+      req['X-com-zoho-subscriptions-organizationid'] = Settings.zoho.organ_id
+      req['Authorization'] = 'Zoho-authtoken ' + Settings.zoho.auth_token
+
+      req_hash = Hash.new
+      req_hash["coupon_code"] = coupon_code
+      req_hash["name"] = name
+      req_hash["type"] = type
+      req_hash["discount_by"] = discount_by
+      req_hash["discount_value"] = discount_value
+      req_hash["product_id"] = product_id
+      req_hash["description"] = desc if desc.present?
+      req_hash["apply_to_plans"] = "none"
+      req_hash["apply_to_addons"] = apply_to_addons if apply_to_addons.present?
+      req_hash["addons"] = addons if addons.present?
+
+      req.body = req_hash.to_json
+      http.request(req)
+    end
+    res.body
+  end
+
+  def self.retrieve_coupon(coupon_code)
+    url_str = "https://subscriptions.zoho.com/api/v1/coupons/" + coupon_code
+    uri = URI(url_str)
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Get.new(uri)
+      req['X-com-zoho-subscriptions-organizationid'] = Settings.zoho.organ_id
+      req['Authorization'] = 'Zoho-authtoken ' + Settings.zoho.auth_token
+      http.request(req)
+    end
+    res.body
+  end
+
+  def self.delete_coupon(coupon_code)
+    url_str = "https://subscriptions.zoho.com/api/v1/coupons/" + coupon_code
+    uri = URI(url_str)
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Delete.new(uri)
+      req['X-com-zoho-subscriptions-organizationid'] = Settings.zoho.organ_id
+      req['Authorization'] = 'Zoho-authtoken ' + Settings.zoho.auth_token
+      http.request(req)
+    end
+    res.body
+  end
+
+  def self.assoc_coupon(subscription_id, coupon_code)
+    url_str = "https://subscriptions.zoho.com/api/v1/subscriptions/" + subscription_id + "/coupons/" + coupon_code
+    uri = URI(url_str)
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Post.new(uri)
+      req['Content-Type'] = 'application/json;charset=UTF-8'
+      req['X-com-zoho-subscriptions-organizationid'] = Settings.zoho.organ_id
+      req['Authorization'] = 'Zoho-authtoken ' + Settings.zoho.auth_token
+
+      http.request(req)
+    end
+    res.body
   end
 end

@@ -27,6 +27,9 @@ class ApplicationController < ActionController::Base
     if session[:subscription_id].present?
       session.delete(:subscription_id)
     end
+    if session[:order_count].present?
+      session.delete(:order_count)
+    end
   end
 
   def delete_session_order_detail_ids?
