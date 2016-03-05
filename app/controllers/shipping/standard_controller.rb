@@ -204,23 +204,23 @@ class Shipping::StandardController < ShippingController
         subscription_id = subscription["subscription"]["subscription_id"]
 
         #Check if a mulitple coupon can be applied to
-        if session[:order_count] == 0
-          m_coupon = MultipleCoupon.all.first
-          result = Shipping::Zoho.retrieve_coupon m_coupon[:code]
-          result = JSON.parse result
-          if result["code"].to_i == 0
-            res = Shipping::Zoho.assoc_coupon subscription_id, m_coupon[:code]
-            res = JSON.parse res
-            logger.debug("COUPON ASSOC1:: #{res}")
-          else
-            res = Shipping::Zoho.create_coupon m_coupon[:code], 'Gift 28.5 CHF offer', 'one_time', 'flat', m_coupon[:discount_value], Shipping::Zoho.products[:standard]
-            res = JSON.parse res
-            logger.debug("COUPON CREATE:: #{res}")
-            res = Shipping::Zoho.assoc_coupon subscription_id, res["coupon"]["coupon_code"]
-            res = JSON.parse res
-            logger.debug("COUPON ASSOC2:: #{res}")
-          end
-        end
+        # if session[:order_count] == 0
+        #   m_coupon = MultipleCoupon.all.first
+        #   result = Shipping::Zoho.retrieve_coupon m_coupon[:code]
+        #   result = JSON.parse result
+        #   if result["code"].to_i == 0
+        #     res = Shipping::Zoho.assoc_coupon subscription_id, m_coupon[:code]
+        #     res = JSON.parse res
+        #     logger.debug("COUPON ASSOC1:: #{res}")
+        #   else
+        #     res = Shipping::Zoho.create_coupon m_coupon[:code], 'Gift 28.5 CHF offer', 'one_time', 'flat', m_coupon[:discount_value], Shipping::Zoho.products[:standard]
+        #     res = JSON.parse res
+        #     logger.debug("COUPON CREATE:: #{res}")
+        #     res = Shipping::Zoho.assoc_coupon subscription_id, res["coupon"]["coupon_code"]
+        #     res = JSON.parse res
+        #     logger.debug("COUPON ASSOC2:: #{res}")
+        #   end
+        # end
 
         #Check if the credit card already checked
         is_checked_credit = (current_user.payment_subscriptions.all.count >= 1) ? true : false
