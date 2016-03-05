@@ -61,7 +61,7 @@ section.section-3.detail-content
                 | You have &nbsp;
                 = @count_items_available_in_storage
                 | &nbsp; Items In Storage:
-          - if @count_items_available_in_storage > 0
+          - if @count_items_available_to_delivery > 0
             .detail-bottom-btn-area
               = link_to "#", class: "btn-schedule-delivery", :onclick => "$('.aform').submit()" do
                 | Schedule Delivery

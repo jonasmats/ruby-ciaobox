@@ -11,4 +11,4 @@ section.section-2.about
     .container
       h3 Items
     = render partial: 'shipping/schedule/delivery/review/personal_info', locals: {order_detail: @order_detail_for_view}
-    = render partial: 'shipping/schedule/delivery/review/contact_info', locals: {contact_info: @contact_info}
+    /= render partial: 'shipping/schedule/delivery/review/contact_info', locals: {contact_info: @contact_info}

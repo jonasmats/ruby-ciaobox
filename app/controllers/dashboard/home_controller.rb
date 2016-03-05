@@ -7,6 +7,7 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
     #logger.debug("USER-ORDER:: #{current_user.orders.upcoming[0].order_details.inspect}")
     @count_items_in_storage = 0
     @count_items_available_in_storage = 0
+    @count_items_available_to_delivery = 0
     @items_in_storage = []
 
     current_user.orders.allitems.each do |item|
@@ -14,6 +15,10 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
       @count_items_in_storage = @count_items_in_storage + item.order_details.count
       if [Order.statuses[:dropoff], Order.statuses[:pickup_scheduled], Order.statuses[:stored]].include?(item[:status])
         @count_items_available_in_storage = @count_items_available_in_storage + item.order_details.count
+      end
+
+      if item[:status] == Order.statuses[:stored]
+        @count_items_available_to_delivery = @count_items_available_to_delivery + item.order_details.count
       end
     end
 
@@ -82,7 +87,17 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
     end
 
     if params[:id] == "cancel"
+      #Remove From Detrack
+      one_order = Order.find(params[:order_id])
+      order_no = 'DRP-' + one_order[:id].to_s
+      delivery_date = Date.strptime(one_order[:shipping_date], "%m/%d/%Y")
+      delivery_date = delivery_date.strftime("%Y-%m-%d")
+      logger.debug("HOME_CONTROLLER:: #{order_no}, #{delivery_date}")
+      ::Shipping::Detrack.delete_delivery(delivery_date, order_no)
+
+      #Update Order table
       Order.where("id = ?", params[:order_id]).update_all(status: Order.statuses[:cancel])
+
       redirect_to dashboard_root_path
     end
   end

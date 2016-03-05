@@ -49,13 +49,15 @@ class Shipping::Schedule::CollectionController < ScheduleController
   def update
     case step
       when :review
-        update_instance
+        if !update_instance
+          redirect_to shipping_schedule_collection_path(:appointment), alert: @error_message and return
+        end
         check_order_info
         session[:collection_step] = 1
 
       when :confirmation
         if session[:collection_step].present? && session[:collection_step] == 1
-          update_instance
+          #update_instance
           update_status
           session[:collection_step] = 2
         else
@@ -80,14 +82,32 @@ class Shipping::Schedule::CollectionController < ScheduleController
   end
 
   def update_instance
+    bRet = true
+    @error_message = nil
+
     if current_user.orders.dropoff.present?
-      current_user.orders.dropoff.update_all private_params
+      current_user.orders.dropoff.find_each do |order|
+        if !order.update_attributes filter_params
+          bRet = false
+          @error_message = order.errors.full_messages
+          break
+        end
+      end
+      #current_user.orders.dropoff.update_all filter_params
     end
 
     if current_user.orders.pickup_scheduled.present?
-      current_user.orders.pickup_scheduled.update_all private_params
+      current_user.orders.pickup_scheduled.find_each do |order|
+        if !order.update_attributes filter_params
+          bRet = false
+          @error_message = order.errors.full_messages
+          break
+        end
+      end
+      #current_user.orders.pickup_scheduled.update_all filter_params
     end
-    #logger.debug("Update Instance:: #{private_params.inspect}")
+    #logger.debug("Update Instance:: #{filter_params.inspect}")
+    bRet
   end
 
   def update_status

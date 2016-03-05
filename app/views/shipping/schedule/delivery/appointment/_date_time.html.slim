@@ -1,7 +1,7 @@
 section.when-swing.clearfix
   .container.when-swing-inner
     .date-picker.input-group.date
-      = form.text_field :delivery_date, class: "item-input", placeholder: "Choose Date", readonly: false
+      = form.text_field :delivery_date, class: "item-input order_shipping_date", placeholder: "Choose Date", readonly: false
       figure
         = image_tag "images/date-ic.png", alt: "date and time"
       span.input-group-addon
@@ -23,6 +23,8 @@ section.when-swing.clearfix
           li data-option="" data-value="2015-12-12T17:00:00-05:00//2015-12-12T19:00:00-05:00"
             span 5PM - 7PM
 
+  - DateOff.select(:start_at, :end_at).each do |doff|
+    = hidden_field_tag 'h_dateoff', '', start_at: doff[:start_at].strftime("%Y-%m-%d"), end_at: doff[:end_at].strftime("%Y-%m-%d")
   /#form-over-swing.store-box.form-expand style="display: none;"
     p
       strong After you're done packing, when should we pick up your stuff?

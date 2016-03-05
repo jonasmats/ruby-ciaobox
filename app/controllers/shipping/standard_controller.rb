@@ -66,20 +66,33 @@ class Shipping::StandardController < ShippingController
 
       #Retrieve the subscription to retrieve Card Number etc again
       #logger.debug("Session Subscription ID:: #{session[:subscription_id]}")
+      customer_code = current_user.customer_code
       subscription_id = session[:subscription_id]
       subscription = Shipping::Zoho.retrieve_subscription subscription_id
       subscription = JSON.parse subscription
-      #logger.debug("Retreive SUBSCRIPTION INFO:: #{subscription}")
 
-      #Update a subscription
       subscription_record = Payment::Subscription.find_by_subscription_id(subscription_id)
-      subscription_record.update!(
-          card_id: subscription["subscription"]["card"]["card_id"],
-          order_id: @order.id
-      )
 
-      #Update this Order record
-      @order.update!(card_number: "XXXX-XXXX-XXXX-" + subscription["subscription"]["card"]["last_four_digits"])
+      card = subscription["subscription"]["card"]
+      if card.present?
+        #Update a subscription
+        subscription_record.update!(card_id: card["card_id"])
+        #Update this Order record
+        @order.update!(card_number: "XXXX-XXXX-XXXX-" + card["last_four_digits"])
+      else
+        card_info = Shipping::Zoho.retrieve_card(customer_code, subscription_record.card_id)
+        card_info = JSON.parse card_info
+        #logger.debug("Retreive CARD INFO:: #{card_info}")
+        #Update a subscription
+        subscription_record.update!(card_id: card_info["card"]["card_id"])
+        #Update this Order record
+        @order.update!(card_number: "XXXX-XXXX-XXXX-" + card_info["card"]["last_four_digits"])
+      end
+
+      #Detrack Integration
+      res = create_delivery(@order)
+      #logger.debug("DETRACK STANDARD DELIVERY CREATE:: #{res.inspect}")
+
     end
     render_wizard
   end
@@ -203,7 +216,8 @@ class Shipping::StandardController < ShippingController
               alert: "Error occured while processing your request, Please try it again" and return
           end
         else
-          create_subscription(subscription_id)
+          card_id = current_user.payment_subscriptions.where("card_id IS NOT NULL").first[:card_id]
+          create_subscription(subscription_id, card_id)
         end
 
       else
@@ -320,41 +334,144 @@ class Shipping::StandardController < ShippingController
     end
   end
 
-  def create_subscription(subscription_id)
+  def create_subscription(subscription_id, card_id = nil)
     subscription_record = Payment::Subscription.new
     subscription_record.subscription_id = subscription_id
+    subscription_record.order_id = @order.id
     subscription_record.user_id = current_user.id
+    if !card_id.nil?
+      subscription_record.card_id = card_id
+    end
     if subscription_record.save
       session[:subscription_id] = subscription_id
     end
   end
 
-  def generate_postfinance_fields
-    keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "ACCEPTURL", "EXCEPTIONURL", "TP", "ALIAS", "ALIASUSAGE", "SHASIGN"]
-    #keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "EXCEPTIONURL", "TP", "SHASIGN"]
-    curr_time = "#{(Time.now.to_f * 1000).to_i}"
 
-    @hidden_f = {}
-    @hidden_f["PSPID"] = Settings.postfinance.PSP
-    #@hidden_f["ORDERID"] = "CB%08d" % @order.id
-    @hidden_f["ORDERID"] = "CBO#{curr_time}"
-    @hidden_f["AMOUNT"] = (@order.amount * 100).to_i.to_s
-    @hidden_f["CURRENCY"] = "CHF"
-    @hidden_f["OPERATION"] = "SAL"
-    @hidden_f["LANGUAGE"] = "en_US"
-    @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/standard/billcheck"
-    @hidden_f["EXCEPTIONURL"] = "http://www.ciaobox.it/shipping/standard/review"
-    @hidden_f["ALIAS"] = "ALIS#{curr_time}"
-    @hidden_f["ALIASUSAGE"] = "Validtion of payable status"
-    @hidden_f["TP"] = Settings.postfinance.TP
+  ##############################  Detrack Integration ################################
+  def exists_delivery(order_details)
+    one_order_detail = order_details.first
 
-    shasign = ""
-    keys.each do |k|
-      shasign = shasign + k + "=" + @hidden_f[k].to_s + Settings.postfinance.HASHSEED
+    #1
+    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%m/%d/%Y")
+    delivery_date = delivery_date.strftime("%Y-%m-%d")
+
+    #2
+    order_no = ''
+    order_details.each do |detail|
+      order_no = order_no + detail[:id].to_s + '-'
+    end
+    len = order_no.length
+    order_no = order_no[0..len - 2]
+
+    res = Shipping::Detrack.view_delivery(delivery_date, order_no)
+    res = JSON.parse res
+
+    status = res["info"]["status"]
+    failed = res["info"]["failed"]
+
+    logger.debug("EXISTS DELIVERY:: #{res}")
+    if status == "ok" && failed == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  # D.O. Combination of order detail ids (172-173-174)
+  def create_delivery(order, is_create = true)
+    order_details = order.order_details
+    one_order_detail = order_details.first
+
+    #1
+    delivery_date = Date.strptime(order[:shipping_date], "%m/%d/%Y")
+    delivery_date = delivery_date.strftime("%Y-%m-%d")
+
+    #2
+    order_no = 'DRP-' + order.id.to_s
+
+    # order_details.each do |detail|
+    #   order_no = order_no + detail[:id].to_s + '-'
+    # end
+    # len = order_no.length
+    # order_no = order_no[0..len - 2]
+
+    #3
+    delivery_address = order[:address]
+
+    #4
+    delivery_time = order[:shipping_time]
+
+    #5
+    delivery_to = order[:contact_name]
+
+    #6
+    phone = order[:contact_phone]
+
+    #7
+    notify_email = Settings.detrack.notify_email
+
+    #8
+    notify_url = Settings.detrack.delivery_notify_url
+
+    #9
+    assign_to = order.shipping.driver[:name]
+    assign_to = "Driver A" if assign_to.nil?
+
+    #10
+    instructions = one_order_detail[:additional]
+
+    #11
+    zone = nil
+
+    #12
+    items = []
+    order_details.each do |v|
+      item = Hash.new
+      item["po_no"] = v.id.to_s
+      item["sku"] = Shipping::Zoho.addons[v.order_item_id.to_s]
+      item["desc"] = Shipping::Zoho.addons_desc[v.order_item_id.to_s]
+      item["qty"] = v.quantity
+      items << item
     end
 
-    @hidden_f["SHASIGN"] = Digest::SHA1.hexdigest(shasign).upcase
-
-    logger.debug "HASPMAP HIDDEN Fields => #{@hidden_f}"
+    logger.debug("ADD DELIVERY:: #{delivery_date}, #{order_no}, #{delivery_address}, #{delivery_time},#{delivery_to}, #{phone}, #{notify_email}, #{notify_url}, #{assign_to}, #{instructions}, #{zone}, #{items}")
+    # Call a Request
+    if is_create
+      res = Shipping::Detrack.add_delivery(delivery_date, order_no, delivery_address, delivery_time, delivery_to, phone, notify_email, notify_url, assign_to, instructions, zone, items)
+    else
+      res = Shipping::Detrack.update_delivery(delivery_date, order_no, delivery_address, delivery_time, delivery_to, phone, notify_email, notify_url, assign_to, instructions, zone, items)
+    end
+    return res
   end
+
+
+  # def generate_postfinance_fields
+  #   keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "ACCEPTURL", "EXCEPTIONURL", "TP", "ALIAS", "ALIASUSAGE", "SHASIGN"]
+  #   #keys = ["PSPID", "ORDERID", "AMOUNT", "CURRENCY", "OPERATION", "LANGUAGE", "EXCEPTIONURL", "TP", "SHASIGN"]
+  #   curr_time = "#{(Time.now.to_f * 1000).to_i}"
+  #
+  #   @hidden_f = {}
+  #   @hidden_f["PSPID"] = Settings.postfinance.PSP
+  #   #@hidden_f["ORDERID"] = "CB%08d" % @order.id
+  #   @hidden_f["ORDERID"] = "CBO#{curr_time}"
+  #   @hidden_f["AMOUNT"] = (@order.amount * 100).to_i.to_s
+  #   @hidden_f["CURRENCY"] = "CHF"
+  #   @hidden_f["OPERATION"] = "SAL"
+  #   @hidden_f["LANGUAGE"] = "en_US"
+  #   @hidden_f["ACCEPTURL"] = "http://www.ciaobox.it/shipping/standard/billcheck"
+  #   @hidden_f["EXCEPTIONURL"] = "http://www.ciaobox.it/shipping/standard/review"
+  #   @hidden_f["ALIAS"] = "ALIS#{curr_time}"
+  #   @hidden_f["ALIASUSAGE"] = "Validtion of payable status"
+  #   @hidden_f["TP"] = Settings.postfinance.TP
+  #
+  #   shasign = ""
+  #   keys.each do |k|
+  #     shasign = shasign + k + "=" + @hidden_f[k].to_s + Settings.postfinance.HASHSEED
+  #   end
+  #
+  #   @hidden_f["SHASIGN"] = Digest::SHA1.hexdigest(shasign).upcase
+  #
+  #   logger.debug "HASPMAP HIDDEN Fields => #{@hidden_f}"
+  # end
 end

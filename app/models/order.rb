@@ -58,6 +58,8 @@ class Order < ActiveRecord::Base
 
   validates :contact_name,:contact_email, :contact_phone, presence: true, if: :validate_step_2?
 
+  validates_format_of :shipping_time, with: /\A^[0-9][a-zA-Z0-9-.\s]*$\z/, message: 'must be valid'
+
   #5. callbacks
   # 5. callbacks
   # before_create :init_score

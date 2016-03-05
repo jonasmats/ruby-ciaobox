@@ -63,13 +63,19 @@ class Shipping::Schedule::DeliveryController < ScheduleController
     case step
       when :review
         logger.debug("UPDATE REVIEW:: #{params.inspect}")
-        update_order_detail
+        if !update_order_detail
+          redirect_to shipping_schedule_delivery_path(:appointment), alert: @error_message and return
+        end
+
+        if !update_order
+          redirect_to shipping_schedule_delivery_path(:appointment), alert: @error_message and return
+        end
+
         load_order_detail
         session[:delivery_step] = 1
 
       when :confirmation
         if session[:delivery_step].present? && session[:delivery_step] == 1
-          update_order
           update_status
           session[:delivery_step] = 2
         else
@@ -115,13 +121,34 @@ class Shipping::Schedule::DeliveryController < ScheduleController
   end
 
   def update_order
-    current_user.orders.update_all contact_info_params
+    bRet = true
+    @error_message = nil
+    current_user.orders.find_each do |order|
+      if !order.update_attributes filter_params_contact
+        bRet = false
+        @error_message = order.errors.full_messages
+        break
+      end
+    end
+    bRet
+    #current_user.orders.update_all filter_params_contact
   end
 
   def update_order_detail
-    #order_details = OrderDetail.find(session[:order_detail_ids])
+    bRet = true
+    @error_message = nil
+
     @order_details = OrderDetail.where("id IN (?)", session[:order_detail_ids])
-    @order_details.update_all delivery_params
+    #@order_details.update_all delivery_params
+
+    @order_details.find_each do |detail|
+      if !detail.update_attributes delivery_params
+        bRet = false
+        @error_message = detail.errors.full_messages
+        break
+      end
+    end
+    bRet
   end
 
   def update_status
@@ -221,6 +248,8 @@ class Shipping::Schedule::DeliveryController < ScheduleController
     #   item["qty"] = v.qty
     #   items << item
     # end
+
+    logger.debug("ADD DELIVERY:: #{delivery_date}, #{order_no}, #{delivery_address}, #{delivery_time},#{delivery_to}, #{phone}, #{notify_email}, #{notify_url}, #{assign_to}, #{instructions}, #{zone}, #{items}")
 
     # Call a Request
     if is_create

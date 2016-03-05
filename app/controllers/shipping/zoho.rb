@@ -522,4 +522,17 @@ class Shipping::Zoho
 
     return res.body
   end
+
+  def self.retrieve_card(customer_id, card_id)
+    url_str = "https://subscriptions.zoho.com/api/v1/customers/" + customer_id + "/cards/" + card_id
+    uri = URI(url_str)
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Get.new(uri)
+      req['X-com-zoho-subscriptions-organizationid'] = Settings.zoho.organ_id
+      req['Authorization'] = 'Zoho-authtoken ' + Settings.zoho.auth_token
+      http.request(req)
+    end
+
+    return res.body
+  end
 end

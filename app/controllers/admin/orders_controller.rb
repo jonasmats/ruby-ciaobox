@@ -38,7 +38,9 @@ class Admin::OrdersController < Admin::BaseAdminController
   end
 
   def destroy
-    @order.destroy
+    if @order.destroy
+      @order.really_destroy!
+    end
     redirect_to admin_orders_path, notice: t('notice.admin.deleted', model: Order.name)
   end
 

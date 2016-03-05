@@ -15,7 +15,15 @@ section.section-2.about
         h2 What address should we meet you at?
     section.address-meet.clearfix
       .container.address-meet-inner
-        .address-meet-top
+        .name-input
+          = text_field_tag :first_name, current_user.profile.first_name, placeholder: "Name"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-date-img"
+        .surname-input
+          = text_field_tag :last_name, current_user.profile.last_name, placeholder: "Surname"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-time-img"
+        .address-meet-top.margin-top-35
           .in-addess
             = f.text_field :address, placeholder: "Address", value: @address, readonly: true
             figure
@@ -26,5 +34,12 @@ section.section-2.about
               = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-state-img"
           .app-num
             = text_field_tag :zip_code, session[:zip_code], class: "input-app-num", placeholder: "zip code", readonly: true
-        .address-meet-bottom
+        .address-meet-bottom.margin-top-35
           = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-state-img"
+        .john-input.margin-top-35
+          = text_field_tag :contact_phone, @order_detail_for_view.order[:contact_phone], placeholder: "Please enter phone number"
+          figure
+            = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-name-img"
+        = hidden_field_tag :contact_email, @order_detail_for_view.order[:contact_email]

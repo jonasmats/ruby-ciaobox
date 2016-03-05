@@ -5,26 +5,26 @@ section.when-swing.clearfix
       .container.when-swing-inner
         .date-picker.input-group.date
           / input placeholder="Date" type="text"
-          = form.text_field :shipping_date, class: "item-input", placeholder: "Choose Date", readonly: false
+          = form.text_field :shipping_date, class: "item-input order_shipping_date", placeholder: "Choose Date", readonly: false
           figure
             = image_tag "images/date-ic.png", alt: "date and time"
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
         .time-picker
-          = form.text_field :shipping_time, class: "item-input", placeholder: "Choose time", id: "time_picker_value", readonly: true
+          = form.text_field :shipping_time, class: "item-input", placeholder: "Choose time", id: "time_picker_value", value: "8AM - 10AM", readonly: true
           figure
             = image_tag "images/time-ic.png", alt: "date and time", id: "time-picker-img"
           .cs-options
             ul
-              li data-option="" data-value="2015-12-12T08:00:00-05:00//2015-12-12T10:00:00-05:00" 
+              li data-option="" data-value="2015-12-12T08:00:00-05:00//2015-12-12T10:00:00-05:00"
                 span 8AM - 10AM
-              li data-option="" data-value="2015-12-12T10:00:00-05:00//2015-12-12T12:00:00-05:00" 
+              li data-option="" data-value="2015-12-12T10:00:00-05:00//2015-12-12T12:00:00-05:00"
                 span 10AM - 12PM
-              li data-option="" data-value="2015-12-12T13:00:00-05:00//2015-12-12T15:00:00-05:00" 
+              li data-option="" data-value="2015-12-12T13:00:00-05:00//2015-12-12T15:00:00-05:00"
                 span 1PM - 3PM
-              li data-option="" data-value="2015-12-12T15:00:00-05:00//2015-12-12T17:00:00-05:00" 
+              li data-option="" data-value="2015-12-12T15:00:00-05:00//2015-12-12T17:00:00-05:00"
                 span 3PM - 5PM
-              li data-option="" data-value="2015-12-12T17:00:00-05:00//2015-12-12T19:00:00-05:00" 
+              li data-option="" data-value="2015-12-12T17:00:00-05:00//2015-12-12T19:00:00-05:00"
                 span 5PM - 7PM
 
       #form-over-swing.store-box.form-expand style="display: none;"
@@ -40,5 +40,8 @@ section.when-swing.clearfix
             = form.radio_button :pickup_rightaway, false
             label for="no-rightaway"
               | I need more time. I'll schedule a separate pickup within 2 weeks.
+
+      - DateOff.select(:start_at, :end_at).each do |doff|
+        = hidden_field_tag 'h_dateoff', '', start_at: doff[:start_at].strftime("%Y-%m-%d"), end_at: doff[:end_at].strftime("%Y-%m-%d")
 
 = javascript_include_tag 'shipping/date_picker'

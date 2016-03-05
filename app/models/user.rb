@@ -21,11 +21,14 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   acts_as_paranoid
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :async,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2],
          :authentication_keys => [:login]
+
+  #validates_uniqueness_of :email, :scope => :deleted_at
 
   attr_accessor :login
 
@@ -57,7 +60,8 @@ class User < ActiveRecord::Base
   # 2. scopes
   scope :latest, -> {order("created_at DESC")}
   # 4 validates
-  validates_format_of :username, with: /\A^[a-zA-Z0-9_\.]*$\z/
+  validates_format_of :username, with: /\A^[a-zA-Z0-9\.]*$\z/
+  validates_format_of :password, with: /\A(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])/, message: 'must include at least one lowercase letter, one uppercase letter, and one digit'
   validates :status, presence: true
   # 5 callbacks
   after_save :set_customer_code, if: :set_customer_code?

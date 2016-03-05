@@ -157,8 +157,8 @@ class Shipping::Detrack
       params["date"] = delivery_date
       params["do"] = order_no
       params["address"] = delivery_address
-      params["collection_time"] = delivery_time if delivery_time.present?
-      params["collect_from"] = delivery_to if delivery_to.present?
+      params["delivery_time"] = delivery_time if delivery_time.present?
+      params["delivery_to"] = delivery_to if delivery_to.present?
       params["phone"] = phone if phone.present?
       params["notify_email"] = notify_email if notify_email.present?
       params["notify_url"] = notify_url if notify_url.present?
@@ -197,8 +197,8 @@ class Shipping::Detrack
       params["date"] = delivery_date
       params["do"] = order_no
       params["address"] = delivery_address
-      params["collection_time"] = delivery_time if delivery_time.present?
-      params["collect_from"] = delivery_to if delivery_to.present?
+      params["delivery_time"] = delivery_time if delivery_time.present?
+      params["delivery_to"] = delivery_to if delivery_to.present?
       params["phone"] = phone if phone.present?
       params["notify_email"] = notify_email if notify_email.present?
       params["notify_url"] = notify_url if notify_url.present?

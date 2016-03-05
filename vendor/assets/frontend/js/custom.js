@@ -165,15 +165,13 @@ $(document).ready(function(){
     });
 
     $("#time_picker_value").on("change", function() {
-
         var date = $(this).parent().parent().find(".date-picker input").val();
         var time = $(this).val();
         if (date != undefined && time != undefined) {
             var display = $("#form-over-swing").css("display");
-            if (display == "none")
+            if (display == "none" && time != "NO DELIVERIES")
                 $("#form-over-swing").slideDown();
         }
-
     });
 });/*--End---*/
 
