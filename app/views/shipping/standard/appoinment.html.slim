@@ -48,18 +48,22 @@ section.section-2.about
           #other-item-tags
             - if current_user.present? && (@item_oders.keys & current_user.order_items.pluck(:id)).present?
               = render partial: 'shipping/standard/appoinment/store_box_customer', collection: (@order.order_items & current_user.order_items)
-    = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f}
+    = render partial: 'shipping/standard/appoinment/date_time', locals: {form: f, date: @shipping_date, time: @shipping_time}
     section.schedule-question-title.schedule-question-padd.clearfix
       .container.schedule-question-inner
         h2 What address should we meet you at?
+
+    - first_name = (current_user.present?) ? current_user.profile.first_name : ''
+    - last_name = (current_user.present?) ? current_user.profile.last_name : ''
+    - email = (current_user.present?) ? current_user.email : ''
     section.address-meet.clearfix
       .container.address-meet-inner
         .name-input
-          = text_field_tag :first_name, current_user.profile.first_name, placeholder: "Name"
+          = text_field_tag :first_name, @first_name, placeholder: "Name"
           figure
             = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-date-img"
         .surname-input
-          = text_field_tag :last_name, current_user.profile.last_name, placeholder: "Surname"
+          = text_field_tag :last_name, @last_name, placeholder: "Surname"
           figure
             = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-time-img"
         .margin-top-35.address-meet-top
@@ -77,11 +81,11 @@ section.section-2.about
           /= f.text_field :state, class: "app-state", placeholder: "Apt/State", value: @state
           /= text_field_tag :zip_code, session[:zip_code], class: "app-num", placeholder: "zip code", readonly: true
         .address-meet-bottom.margin-top-35
-          = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions"
+          = f.text_field :additional, class: "in-addess", placeholder: "Additional delivery instructions", value: @additional
           figure
             = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-name-img"
         .john-input.margin-top-35
-          = f.text_field :contact_phone, placeholder: "Please enter phone number"
+          = f.text_field :contact_phone, placeholder: "Please enter phone number", value: @contact_phone
           figure
             = image_tag "images/edit-ic.png", alt: "edit address", id: "edt-name-img"
-        = f.hidden_field :contact_email, value: "#{current_user.email}"
+        = f.hidden_field :contact_email, value: email

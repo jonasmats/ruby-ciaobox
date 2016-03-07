@@ -17,9 +17,10 @@
       h4 
         = store_box.title
       span
-        | $
+        | CHF
+        | &nbsp;
         span.store-cost>
-          = "#{store_box.price}/mo"
+          = "#{'%.2f'%store_box.price}/mo"
     div class = "schedule-box store-box-text input-copy-wrapper #{odered ? "store-box-normal" : ""}"
       .input-copy
         .booking-icon-background-num.js-nav-min

@@ -4,7 +4,7 @@ class DeliveryNotifyController < ActionController::Base
     # Filtering params from Push Notification Post
     delivery_date = params[:date]
     delivery_date = Date.strptime(delivery_date, "%Y-%m-%d")
-    delivery_date = delivery_date.strftime("%m/%d/%Y")
+    delivery_date = delivery_date.strftime("%d.%m.%Y")
 
     delivery_time = params[:delivery_time]
     order_no = params[:do]

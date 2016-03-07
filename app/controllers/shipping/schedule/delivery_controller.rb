@@ -162,7 +162,7 @@ class Shipping::Schedule::DeliveryController < ScheduleController
     one_order_detail = order_details.first
 
     #1
-    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%m/%d/%Y")
+    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%d.%m.%Y")
     delivery_date = delivery_date.strftime("%Y-%m-%d")
 
     #2
@@ -192,7 +192,7 @@ class Shipping::Schedule::DeliveryController < ScheduleController
     one_order_detail = order_details.first
 
     #1
-    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%m/%d/%Y")
+    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%d.%m.%Y")
     delivery_date = delivery_date.strftime("%Y-%m-%d")
 
     #2

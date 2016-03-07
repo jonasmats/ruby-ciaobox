@@ -4,7 +4,8 @@ class CollectionNotifyController < ActionController::Base
     # Filtering params from Push Notification Post
     collection_date = params[:date]
     collection_date = Date.strptime(collection_date, "%Y-%m-%d")
-    collection_date = collection_date.strftime("%m/%d/%Y")
+    #collection_date = collection_date.strftime("%m/%d/%Y")
+    collection_date = collection_date.strftime("%d.%m.%Y")
 
     collection_time = params[:collection_time]
     order_no = params[:do]

@@ -16,15 +16,25 @@ class Shipping::StandardController < ShippingController
       create_instance
       list_order_items_in_order_details
       # get address/state
-      geocode = Geocoder.coordinates(session[:zip_code])
-      result = Geocoder.search(geocode).first
-      if result.present?
-        @state = result.state
-        @address = result.address
-      end
+      # geocode = Geocoder.coordinates(session[:zip_code])
+      # result = Geocoder.search(geocode).first
+      # if result.present?
+      #   @state = result.state
+      #   @address = result.address
+      # end
+      @state = (@order.state.present?) ? @order.state : session[:state]
+      @address = (@order.address.present?) ? @order.address : session[:address]
+      @first_name = (@order.contact_name.present?) ? @order.contact_name.split(' ')[0] : session[:first_name]
+      @last_name = (@order.contact_name.present?) ? @order.contact_name.split(' ')[1] : session[:last_name]
+      @contact_phone = (@order.contact_phone.present?) ? @order.contact_phone : session[:contact_phone]
+      @shipping_date = (@order.shipping_date.present?) ? @order.shipping_date : session[:shipping_date]
+      @shipping_time = (@order.shipping_time.present?) ? @order.shipping_time : session[:shipping_time]
+      @additional = (@order.additional.present?) ? @order.additional : session[:additional]
 
       # check if it's the very first time of order for this user
-      session[:order_count] = current_user.orders.count
+      if current_user.present?
+        session[:order_count] = current_user.orders.count
+      end
 
       if @order.persisted?
         if @order.checking?
@@ -109,6 +119,8 @@ class Shipping::StandardController < ShippingController
       delete_order_item_customer_in_order_detail
       delete_order_details
       set_params
+      reset_session_temporary(true)
+      logger.debug("REVIEW PARAMS:: #{params[:order][:address]}")
       # if session[:order_id].blank?
       if @order.save
         session[:order_id] = @order.id
@@ -119,7 +131,8 @@ class Shipping::StandardController < ShippingController
         end
 
       else
-        redirect_to shipping_standard_path(:appoinment), 
+        reset_session_temporary(false)
+        redirect_to shipping_standard_path(:appoinment),
           alert: @order.errors.full_messages and return
       end
       # end
@@ -190,7 +203,7 @@ class Shipping::StandardController < ShippingController
 
         #Create a new subscription
         plan_code = Shipping::Zoho.plans[:standard]
-        starts_at = Date.strptime(@order.shipping_date, "%m/%d/%Y") + 40
+        starts_at = Date.strptime(@order.shipping_date, "%d.%m.%Y") + 40
         starts_at = starts_at.strftime("%Y-%m-%d")
         addons = []
         @order.order_details.select("order_item_id, count(quantity) as qty").group("order_item_id").each do |v|
@@ -370,13 +383,34 @@ class Shipping::StandardController < ShippingController
     end
   end
 
+  def reset_session_temporary(is_delete)
+    if !is_delete
+      session[:first_name] = params[:first_name]
+      session[:last_name] = params[:last_name]
+      session[:address] = params[:order][:address]
+      session[:state] = params[:order][:state]
+      session[:contact_phone] = params[:order][:contact_phone]
+      session[:shipping_date] = params[:order][:shipping_date]
+      session[:shipping_time] = params[:order][:shipping_time]
+      session[:additional] = params[:order][:additional]
+    else
+      session.delete(:first_name)
+      session.delete(:last_name)
+      session.delete(:address)
+      session.delete(:state)
+      session.delete(:contact_phone)
+      session.delete(:shipping_date)
+      session.delete(:shipping_time)
+      session.delete(:additional)
+    end
+  end
 
   ##############################  Detrack Integration ################################
   def exists_delivery(order_details)
     one_order_detail = order_details.first
 
     #1
-    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%m/%d/%Y")
+    delivery_date = Date.strptime(one_order_detail[:delivery_date], "%d.%m.%Y")
     delivery_date = delivery_date.strftime("%Y-%m-%d")
 
     #2
@@ -407,7 +441,7 @@ class Shipping::StandardController < ShippingController
     one_order_detail = order_details.first
 
     #1
-    delivery_date = Date.strptime(order[:shipping_date], "%m/%d/%Y")
+    delivery_date = Date.strptime(order[:shipping_date], "%d.%m.%Y")
     delivery_date = delivery_date.strftime("%Y-%m-%d")
 
     #2

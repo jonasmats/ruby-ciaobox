@@ -10,9 +10,10 @@
       = store_box.order_item.title
     .review-right-price
       span
-        | $
+        | CHF
+        | &nbsp;
         span.store-cost 
-          = store_box.order_item.price
+          = '%.2f' % store_box.order_item.price
       .review-ic
         figure.re-edit
           = image_tag "images/edit-ic.png", alt: "date and time"

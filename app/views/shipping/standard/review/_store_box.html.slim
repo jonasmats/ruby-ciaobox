@@ -32,9 +32,10 @@
       = store_box.order_item.title
     .review-right-price
       span
-        | $
+        | CHF
+        | &nbsp;
         span.store-cost 
-          = store_box.order_item.price
+          = '%.2f' % store_box.order_item.price
       - unless store_box.order_item.type == OrderItem::Customer.name
         .review-ic
           figure.re-edit

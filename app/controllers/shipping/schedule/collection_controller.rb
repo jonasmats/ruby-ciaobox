@@ -134,7 +134,7 @@ class Shipping::Schedule::CollectionController < ScheduleController
   ############################## Detrack Integration ###################################
   def exists_collection(one_order)
     #1
-    collection_date = Date.strptime(one_order[:shipping_date], "%m/%d/%Y")
+    collection_date = Date.strptime(one_order[:shipping_date], "%d.%m.%Y")
     collection_date = collection_date.strftime("%Y-%m-%d")
 
     #2
@@ -157,7 +157,7 @@ class Shipping::Schedule::CollectionController < ScheduleController
   # D.O. (7 digits) : "DOXXXXXXX"
   def create_collection(one_order, is_create = true)
     #1
-    collection_date = Date.strptime(one_order[:shipping_date], "%m/%d/%Y")
+    collection_date = Date.strptime(one_order[:shipping_date], "%d.%m.%Y")
     collection_date = collection_date.strftime("%Y-%m-%d")
 
     #2

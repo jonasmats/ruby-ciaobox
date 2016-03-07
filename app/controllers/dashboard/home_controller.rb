@@ -90,7 +90,8 @@ class Dashboard::HomeController < Dashboard::BaseDashboardController
       #Remove From Detrack
       one_order = Order.find(params[:order_id])
       order_no = 'DRP-' + one_order[:id].to_s
-      delivery_date = Date.strptime(one_order[:shipping_date], "%m/%d/%Y")
+      #delivery_date = Date.strptime(one_order[:shipping_date], "%m/%d/%Y")
+      delivery_date = Date.strptime(one_order[:shipping_date], "%d.%m.%Y")
       delivery_date = delivery_date.strftime("%Y-%m-%d")
       logger.debug("HOME_CONTROLLER:: #{order_no}, #{delivery_date}")
       ::Shipping::Detrack.delete_delivery(delivery_date, order_no)

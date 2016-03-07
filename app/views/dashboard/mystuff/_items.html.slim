@@ -47,7 +47,7 @@
               = link_to one_detail[:barcode], "javascript:;", class: "barcode"
               span.stored_dt
                 | Stored &nbsp;
-                = one_detail[:created_at].strftime('%m/%d/%Y')
+                = one_detail[:created_at].strftime('%d.%m.%Y')
 
       - one_detail = @items_in_storage[i + 1]
       - if one_detail.present?
@@ -95,7 +95,7 @@
               = link_to one_detail[:barcode], "javascript:;", class: "barcode"
               span.stored_dt
                 | Stored &nbsp;
-                = one_detail[:created_at].strftime('%m/%d/%Y')
+                = one_detail[:created_at].strftime('%d.%m.%Y')
 
       - one_detail = @items_in_storage[i + 2]
       - if one_detail.present?
@@ -143,4 +143,4 @@
               = link_to one_detail[:barcode], "javascript:;", class: "barcode"
               span.stored_dt
                 | Stored &nbsp;
-                = one_detail[:created_at].strftime('%m/%d/%Y')
+                = one_detail[:created_at].strftime('%d.%m.%Y')

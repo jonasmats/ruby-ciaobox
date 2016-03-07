@@ -23,6 +23,15 @@ class ApplicationController < ActionController::Base
     if session[:order_id].present? || session[:zip_code].present?
       session.delete(:order_id)
       session.delete(:zip_code)
+
+      session.delete(:first_name)
+      session.delete(:last_name)
+      session.delete(:address)
+      session.delete(:state)
+      session.delete(:contact_phone)
+      session.delete(:shipping_date)
+      session.delete(:shipping_time)
+      session.delete(:additional)
     end
     if session[:subscription_id].present?
       session.delete(:subscription_id)

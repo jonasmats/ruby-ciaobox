@@ -22,6 +22,7 @@ $(function () {
     // });
 
   //Calculate Date Off from Backend
+
     var day = 1000 * 60 * 60 * 24;
     var dateOffs = [];
     $('.when-swing.clearfix').find("input[type='hidden'][name='h_dateoff']").each(function() {
@@ -60,7 +61,8 @@ $(function () {
 
     //Create a DateTimePicker
     $('.date-picker').datetimepicker({
-        format: 'MM/DD/YYYY',
+        //format: 'MM/DD/YYYY',
+        format: 'DD.MM.YYYY',
         minDate: minDay,
         maxDate: maxDay,
         disabledDates: dateOffs
@@ -90,7 +92,10 @@ $(function () {
     var resetTimeSchedule = function(selDate) {
         $('.time-picker').find('.cs-options').remove();
 
-        var dayOfWeek = new Date(selDate).getDay();
+        var dates = selDate.split('.');
+        var dateObj = new Date(parseInt(dates[2]), parseInt(dates[1]) - 1, parseInt(dates[0]))
+        var dayOfWeek = dateObj.getDay();
+
         if (dayOfWeek == 1) {
             $('#time_picker_value').attr('value', "NO DELIVERIES");
         }
@@ -137,6 +142,8 @@ $(function () {
             $('#time_picker_value').attr('value', "09.00 - 11.00");
         }
         else if (dayOfWeek == 0) {
+            $('.time-picker').append("<div class='cs-options'><ul></ul></div>");
+
             var ul =  $(".cs-options").find('ul');
             ul.append("<li><span>09.00 - 11.00</span></li>");
             ul.append("<li><span>11.00 - 13.00</span></li>");
@@ -149,17 +156,25 @@ $(function () {
         resetEvent();
     }
 
-    resetTimeSchedule(minDay);
+    if (date == null || date == undefined || date == '')
+        resetTimeSchedule(minDay);
+    else {
+        $('.order_shipping_date').attr('value', date)
+        resetTimeSchedule(date);
+    }
 });
 
 $('html').click(function() {
     $(".cs-options").hide();
 });
 $('.time-picker').click(function(e){
-     e.stopPropagation();
+    e.stopPropagation();
 });
 $(".time-picker figure img").click(function(){
-  $(".cs-options").toggle();
+    $(".cs-options").toggle();
+});
+$('.time-picker').find('.item-input').click(function() {
+    $(".cs-options").toggle();
 });
 
 

@@ -12,7 +12,7 @@ section.schedule-question-title.clearfix
       span
         | CHF
         span.month-total-cost 
-         = total_amount
+         = '%.2f' % total_amount
 = form_for @order, url: next_wizard_path, method: :put do |f|
   = yield f
   .actions
@@ -24,4 +24,4 @@ section.schedule-question-title.clearfix
         span
           | CHF
           span.month-total-cost
-            = total_amount
+            = '%.2f' % total_amount
