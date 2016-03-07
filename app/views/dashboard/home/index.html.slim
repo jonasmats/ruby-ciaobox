@@ -20,10 +20,10 @@ section.section-3.detail-content
         .row
           .datetime-details.col-sm-2.col-xs-2
             span.month-dt
-              - inx = current_user.orders.upcoming[0][:shipping_date].split('/')[0].to_i - 1
+              - inx = current_user.orders.upcoming[0][:shipping_date].split('.')[1].to_i - 1
               = Order.months_to_case[inx]
             span.date-dt
-              = current_user.orders.upcoming[0][:shipping_date].split('/')[1]
+              = current_user.orders.upcoming[0][:shipping_date].split('.')[0]
             span.time-dt
               = current_user.orders.upcoming[0][:shipping_time]
           .col-sm-8.col-xs-8.cnt-top-dt

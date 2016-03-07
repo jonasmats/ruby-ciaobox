@@ -182,8 +182,9 @@ class Shipping::Schedule::CollectionController < ScheduleController
     notify_url = Settings.detrack.collection_notify_url
 
     #9
-    assign_to = one_order.shipping.driver[:name]
-    assign_to = "Driver A" if assign_to.nil?
+    #assign_to = one_order.shipping.driver[:name]
+    #assign_to = "Driver A" if assign_to.nil?
+    assign_to = "Driver A"
 
     #10
     instructions = one_order[:additional]

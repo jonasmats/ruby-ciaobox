@@ -428,8 +428,9 @@ class Shipping::FlyController < ShippingController
     notify_url = Settings.detrack.delivery_notify_url
 
     #9
-    assign_to = order.shipping.driver[:name]
-    assign_to = "Driver A" if assign_to.nil?
+    #assign_to = order.shipping.driver[:name]
+    #assign_to = "Driver A" if assign_to.nil?
+    assign_to = "Driver A"
 
     #10
     instructions = one_order_detail[:additional]
