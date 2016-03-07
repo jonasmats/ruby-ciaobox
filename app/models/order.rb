@@ -29,8 +29,8 @@ class Order < ActiveRecord::Base
     includes(:order_details).
     #where(:status => [statuses[:checking]]).
     where(status: statuses[:checking]).
-    where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
-    order("to_date(shipping_date, 'MM/DD/YYYY')")
+    where("to_date(shipping_date, 'DD.MM.YYYY') >= current_date").
+    order("to_date(shipping_date, 'DD.MM.YYYY')")
     #limit(1)
   }
   scope :dropoff, -> {
@@ -40,8 +40,8 @@ class Order < ActiveRecord::Base
   scope :pickup_scheduled, -> {
     includes(:order_details).
     where(status: statuses[:pickup_scheduled]).
-    where("to_date(shipping_date, 'MM/DD/YYYY') >= current_date").
-    order("to_date(shipping_date, 'MM/DD/YYYY')")
+    where("to_date(shipping_date, 'DD.MM.YYYY') >= current_date").
+    order("to_date(shipping_date, 'DD.MM.YYYY')")
   }
   scope :stored, -> {
     includes(:order_details).
